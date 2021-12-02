@@ -1,2 +1,3 @@
 ### hai there i'm hnitch 👋
-[![Header](https://i.imgur.com/BTIZgPh.png "Header")](https://i.imgur.com/BTIZgPh.png)
+![hnitch's GitHub stats](https://github-readme-stats.vercel.app/api?username=hnitch&count_private=true)
+
