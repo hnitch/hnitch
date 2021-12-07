@@ -1,6 +1,6 @@
 ### hai there i'm hnitch 👋
 
-(ps most of my repos are either private or on @tunesmusic *stop asking me why i have 5 repos)
+(ps most of my repos are either private or on @tunesmusic) /// stop asking me why i have 5 repos ///
 
 -----------------------------------------------------
 ### my stats 😏
