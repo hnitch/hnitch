@@ -3,7 +3,8 @@
 - 🌱 hai i'm a website developer and work with JS too
 - 🏆 2022 Goals: Add more features to my [website!](https://tunesmusic.tk/)
 - 📫 contact me? [Discord](https://discord.com/users/690729789702537336)
-- 😄 Pronouns: he/him/they 💅🏳️‍🌈
+- 😄 pronouns: he/him/they 💅🏳️‍🌈
+- 🥲 pls don't ask me why i have 5 repos // most of them are private :)
 -----------------------------------------------------
 ### my stats 😏
 ![](https://komarev.com/ghpvc/?username=hnitch)
