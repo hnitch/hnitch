@@ -13,7 +13,7 @@
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=hnitch&langs_count=8)](hn)
 -----------------------------------------------------
 ### Spotify 🎧
-[![Spotify](https://novatorem-kyzbk7wxl-bardiesel.vercel.app/api/spotify)](https://open.spotify.com/user/7wlba5h7g909qjvcezba2f4ab)
+[![spotify-github-profile](https://spotify-github-profile.vercel.app/api/view?uid=7wlba5h7g909qjvcezba2f4ab&cover_image=true&theme=default&bar_color=ff40ff&bar_color_cover=false)](https://spotify-github-profile.vercel.app/api/view?uid=7wlba5h7g909qjvcezba2f4ab&redirect=true)
 -----------------------------------------------------
 ### my work ✨
 websites i developed (https://tunesmusic.tk) (https://hnitch.ml) (https://hnitchx.gq)
