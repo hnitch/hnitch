@@ -1,9 +1,9 @@
 ### hai there i'm hnitch 👋
 
-- 🌱 hai i'm a website developer and work with JS too
+- 🌱 hai i'm a website developer and work with JS and CSS too
 - 🏆 2022 Goals: Add more features to my [website!](https://tunesmusic.tk/)
 - 📫 contact me? [Discord](https://discord.com/users/690729789702537336)
-- 😄 pronouns: he/him/they 💅🏳️‍🌈
+- 😄 pronouns: he/they 💅🏳️‍🌈
 - 🥲 pls don't ask me why i have 5 repos // most of them are private :)
 -----------------------------------------------------
 ### my stats 😏
