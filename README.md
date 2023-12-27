@@ -1,6 +1,6 @@
 ### i'm hn 👋
 
-- 🌱 developer, ![](https://komarev.com/ghpvc/?username=hnitch)
+- 🌱 developer,                  ![](https://komarev.com/ghpvc/?username=hnitch)
 -----------------------------------------------------
 ### 🫠💒🔗
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=hnitch&langs_count=8)](hn)
