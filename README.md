@@ -1,9 +1,7 @@
 ### i'm hn 👋
 
-- 🌱 developer, director/editor
+- 🌱 developer,
 - 📫 contact me? [INSTAGRAM DMS](https://www.instagram.com/hnitch/)
-- 😄 pronouns: he/they
-- 🥲 repositories in organizations (not personal)
 -----------------------------------------------------
 ### 🫠💒🔗
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=hnitch&langs_count=8)](hn)
