@@ -1,6 +1,7 @@
 ### i'm hn 👋
 
-- 🌱 developer,                  ![](https://komarev.com/ghpvc/?username=hnitch)
+- 🌱 developer,                  
+![](https://komarev.com/ghpvc/?username=hnitch)
 -----------------------------------------------------
 ### 🫠💒🔗
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=hnitch&langs_count=8)](hn)
@@ -9,7 +10,7 @@
 
 -----------------------------------------------------
 ### 🎧🔗🎶
-[![spotify-github-profile](https://spotify-github-profile.vercel.app/api/view?uid=7wlba5h7g909qjvcezba2f4ab&cover_image=true&theme=default&bar_color=ff40ff&bar_color_cover=false)](https://spotify-github-profile.vercel.app/api/view?uid=7wlba5h7g909qjvcezba2f4ab&redirect=true)
+[![Apple Music GitHub profile](https://music-profile.rayriffy.com/theme/dark.svg?uid=000568.fa0178bfed7a4356a5b20a996b4824a4.1200)](https://github.com/rayriffy/apple-music-github-profile)
 -----------------------------------------------------
 
 ### 🥲👾🧑‍🤝‍🧑
