@@ -3,8 +3,7 @@
 - 🌱 developer,                  
 ![](https://komarev.com/ghpvc/?username=hnitch)
 -----------------------------------------------------
-### 🫠💒🔗
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=hnitch&langs_count=8)](hn)
+### 🫠🔗
 
 ![hnitch's GitHub stats](https://github-readme-stats.vercel.app/api?username=hnitch&count_private=trueicons=true&theme=radical)
 
