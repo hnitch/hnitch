@@ -1,14 +1,14 @@
 ### i'm hn 👋
 
-- 🌱 developer,                  
+- 🌱 developer                  
 ![](https://komarev.com/ghpvc/?username=hnitch)
 -----------------------------------------------------
-### 🫠🔗
+### 🫠
 
 ![hnitch's GitHub stats](https://github-readme-stats.vercel.app/api?username=hnitch&count_private=trueicons=true&theme=radical)
 
 -----------------------------------------------------
-### 🎧🔗🎶
+### 🎧
 [![Apple Music GitHub profile](https://music-profile.rayriffy.com/theme/dark.svg?uid=000568.fa0178bfed7a4356a5b20a996b4824a4.1200)](https://github.com/rayriffy/apple-music-github-profile)
 -----------------------------------------------------
 
