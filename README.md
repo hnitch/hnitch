@@ -3,7 +3,7 @@
 - 🌱 developer                  
 ![](https://komarev.com/ghpvc/?username=hnitch)
 -----------------------------------------------------
-### what i'm listening to 🎧
+### what i'm listening to (updated realtime) 🎧
 
 ![](https://github-profile-apple-music.web.app/api/v1/users/CjUp0Zg2m2doW5HWQcHH/recent/played/tracks?template=template_3_1)
 
