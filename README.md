@@ -1,6 +1,6 @@
 ### hey, i'm hn 👋
 
-- 🌱 developer                  
+- 🌱 developer + designer                 
 
 ![](https://komarev.com/ghpvc/?username=hnitch)
 ### current projects
