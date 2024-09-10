@@ -10,7 +10,7 @@
 -----------------------------------------------------
 ### what i'm listening to (updated realtime) 🎧
 
-![](https://github-profile-apple-music.web.app/api/v1/users/CjUp0Zg2m2doW5HWQcHH/recent/played/tracks?template=template_3_1)
+[![Apple Music GitHub profile](https://music-profile.rayriffy.com/theme/dark.svg?uid=000568.fa0178bfed7a4356a5b20a996b4824a4.1200)](https://github.com/rayriffy/apple-music-github-profile)
 
 -----------------------------------------------------
 
