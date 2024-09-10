@@ -10,7 +10,7 @@
 -----------------------------------------------------
 ### what i'm listening to rn 🎧
 
-[https://github-profile-apple-music.web.app/api/v1/users/sWNiHRwswHZIR3Bw3GwB/recent/played/tracks?template=template_3_1](https://github-profile-apple-music.web.app/api/v1/users/sWNiHRwswHZIR3Bw3GwB/recent/played/tracks?template=template_3_1)
+[![Apple Music]([https://github-profile-apple-music.web.app/api/v1/users/sWNiHRwswHZIR3Bw3GwB/recent/played/tracks?template=template_3_1](https://github-profile-apple-music.web.app/api/v1/users/sWNiHRwswHZIR3Bw3GwB/recent/played/tracks?template=template_3_1))]
 
 -----------------------------------------------------
 
