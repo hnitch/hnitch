@@ -15,7 +15,7 @@
 -----------------------------------------------------
 
 ### socials
-[![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UC6OTetJJekudr2dz5PVa-rw?color=8495f3&label=Youtube%3A&logo=youtube&logoColor=8495f3&style=for-the-badge)](https://www.youtube.com/channel/UC6OTetJJekudr2dz5PVa-rw) [![GitHub followers](https://img.shields.io/github/followers/hnitch?color=8495f3&label=Github%3A&logo=github&logoColor=8495f3&style=for-the-badge)](https://github.com/hnitch/) ![](https://dcbadge.limes.pink/api/shield/690729789702537336?theme=full-presence)
+[![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UC6OTetJJekudr2dz5PVa-rw?color=8495f3&label=Youtube%3A&logo=youtube&logoColor=8495f3&style=for-the-badge)](https://www.youtube.com/channel/UC6OTetJJekudr2dz5PVa-rw)  ![](https://dcbadge.limes.pink/api/shield/690729789702537336?theme=full-presence)
 
 
 -----------------------------------------------------
