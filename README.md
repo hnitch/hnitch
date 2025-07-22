@@ -15,7 +15,7 @@
 -----------------------------------------------------
 
 ### socials
-[![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UC6OTetJJekudr2dz5PVa-rw?color=8495f3&label=Youtube%3A&logo=youtube&logoColor=8495f3&style=for-the-badge)](https://www.youtube.com/channel/UC6OTetJJekudr2dz5PVa-rw)  [![Discord Presence](https://lanyard.cnrad.dev/api/:690729789702537336)](https://discord.com/users/:690729789702537336)
+[![YouTube Channel Subscribers](https://img.shields.io/youtube/channel/subscribers/UC6OTetJJekudr2dz5PVa-rw?color=8495f3&label=Youtube%3A&logo=youtube&logoColor=8495f3&style=for-the-badge)](https://www.youtube.com/channel/UC6OTetJJekudr2dz5PVa-rw)  [![Discord Presence](https://lanyard.cnrad.dev/api/690729789702537336)](https://discord.com/users/690729789702537336)
 
 
 -----------------------------------------------------
