@@ -1,4 +1,4 @@
-### hii , i'm hn 👋
+### hey , i'm hn 👋
 
 { 🧑‍💻 developer + designer }                 
 
