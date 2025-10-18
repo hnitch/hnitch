@@ -7,6 +7,10 @@ on:
 
 jobs:
   update-readme:
+    # Add this permissions block
+    permissions: 
+      contents: write 
+    # End of added block
     name: Update README with Goodreads
     runs-on: ubuntu-latest
     steps:
