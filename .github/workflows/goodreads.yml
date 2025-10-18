@@ -13,9 +13,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: zwacky/goodreads-profile-workflow@v1.2.4
         with:
-          user_id: "178629903"
-          rss_url: "https://www.goodreads.com/review/list_rss/178629903"
+          goodreads_user_id: "178629903"
           shelf: "read"
-          sort_by: "date_read"
-          order: "d"
-          max_books: 5
+          max_books_count: 5
