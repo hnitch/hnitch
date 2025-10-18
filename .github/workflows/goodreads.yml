@@ -1,0 +1,21 @@
+name: Update Goodreads
+on:
+  schedule:
+    # Runs every hour
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    name: Update README with Goodreads
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: zxvincent/goodreads-readme@v1
+        with:
+          user_id: "178629903"
+          rss_url: "https://www.goodreads.com/review/list_rss/178629903"
+          shelf: "read"
+          sort_by: "date_read"
+          order: "d"
+          max_books: 5
