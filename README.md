@@ -11,6 +11,8 @@
   <li>#3rd and #4th ( projects in the vault 🤐 )</li>
 </ul>
 
+### 📚 goodreads
+
 <hr>
 
 ### 🕵️ stalk me ( legally pls )
