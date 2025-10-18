@@ -12,7 +12,9 @@
 </ul>
 
 ### 📚 goodreads
-
+### Books I'm currently reading
+<!-- GOODREADS-LIST:START -->
+<!-- GOODREADS-LIST:END -->
 <hr>
 
 ### 🕵️ stalk me ( legally pls )
@@ -33,13 +35,13 @@
             </a>
           </p>
           
-   <p>
+  <p>
             <a style="text-decoration: none;" href="https://letterboxd.com/hnitch/" target="_blank" rel="noopener noreferrer">
               <img width="360" src="https://letterboxd-badge.vercel.app/hnitch/svg?index=1" alt="( watched ) letterboxd film #2">
             </a>
           </p>
           
-   <p>
+  <p>
             <a href="https://discord.com/users/690729789702537336" target="_blank" rel="noopener noreferrer">
               <img width="360" src="https://lanyard.cnrad.dev/api/690729789702537336?theme=dark&bg=00000000&borderRadius=8px" alt="Discord Presence">
             </a>
