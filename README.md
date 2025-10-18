@@ -10,7 +10,7 @@
 -----------------------------------------------------
 ### what i'm listening to rn 🎧
 
-[![Apple Music GitHub profile](https://music-profile.rayriffy.com/theme/dark.svg?uid=000568.fa0178bfed7a4356a5b20a996b4824a4.1200)](https://github.com/rayriffy/apple-music-github-profile)
+[![Apple Music GitHub profile](https://music-profile.rayriffy.com/theme/dark.svg?uid=000568.fa0178bfed7a4356a5b20a996b4824a4.1200)](https://music-profile.rayriffy.com)
 
 -----------------------------------------------------
 
