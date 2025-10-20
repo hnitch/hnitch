@@ -1,22 +1,35 @@
 name: Update Goodreads
 on:
   schedule:
-    # Runs every hour
     - cron: "0 * * * *"
   workflow_dispatch:
 
 jobs:
   update-readme:
-    # Add this permissions block
-    permissions: 
-      contents: write 
-    # End of added block
+    permissions:
+      contents: write
     name: Update README with Goodreads
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: zwacky/goodreads-profile-workflow@v1.2.4
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Update README with Goodreads Books
+        uses: zwacky/goodreads-profile-workflow@v1.2.4
         with:
           goodreads_user_id: "178629903"
           shelf: "read"
           max_books_count: 5
+
+      - name: Configure Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        
+      - name: Pull latest changes
+        run: git pull --rebase origin main
+
+      - name: Push changes
+        run: git push
