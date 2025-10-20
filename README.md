@@ -7,41 +7,39 @@
 ### 📂 current projects
 
 <ul>
-  <li><a href="https://sangetavadivelu.com" target="_blank">sangetavadivelu.com</a></li>
+  <li><a href="https://sangetavadivelu.com" target="_blank" rel="noopener noreferrer">sangetavadivelu.com</a></li>
   <li>#3rd and #4th ( projects in the vault 🤐 )</li>
 </ul>
 <hr>
 
 ### 🕵️ stalk me ( legally pls )
 #### 📚 goodreads - recently read
-<!-- GOODREADS-LIST:START -->
-<!-- GOODREADS-LIST:END -->
 <br />
 <div align="center">
   <table border="0" cellpadding="0" cellspacing="0">
     <tr valign="middle">
       
   <td style="padding: 5px;">
-        <img width="380" src="https://music-profile.rayriffy.com/theme/dark.svg?uid=000568.fa0178bfed7a4356a5b20a996b4824a4.1200" alt="apple music last listened" target="_blank" rel="noopener noreferrer">
+        <img width="380" src="https://music-profile.rayriffy.com/theme/dark.svg?uid=000568.fa0178bfed7a4356a5b20a996b4824a4.1200" alt="apple music last listened">
       </td>
       
   <td style="padding: 5px;">
         <div>
           <p>
             <a style="text-decoration: none;" href="https://letterboxd.com/hnitch/" target="_blank" rel="noopener noreferrer">
-              <img width="380" src="https://letterboxd-badge.vercel.app/hnitch/svg" alt="( watched ) letterboxd last watched film" target="_blank" rel="noopener noreferrer">
+              <img width="380" src="https://letterboxd-badge.vercel.app/hnitch/svg" alt="( watched ) letterboxd last watched film">
             </a>
           </p>
           
   <p>
             <a style="text-decoration: none;" href="https://letterboxd.com/hnitch/" target="_blank" rel="noopener noreferrer">
-              <img width="380" src="https://letterboxd-badge.vercel.app/hnitch/svg?index=1" alt="( watched ) letterboxd film #2" target="_blank" rel="noopener noreferrer">
+              <img width="380" src="https://letterboxd-badge.vercel.app/hnitch/svg?index=1" alt="( watched ) letterboxd film #2">
             </a>
           </p>
           
   <p>
             <a href="https://discord.com/users/690729789702537336" target="_blank" rel="noopener noreferrer">
-              <img width="380" src="https://lanyard.cnrad.dev/api/690729789702537336?theme=dark&bg=00000000&borderRadius=8px" alt="discord presence pane" target="_blank" rel="noopener noreferrer">
+              <img width="380" src="https://lanyard.cnrad.dev/api/690729789702537336?theme=dark&bg=00000000&borderRadius=8px" alt="discord presence pane">
             </a>
           </p>
         </div>
