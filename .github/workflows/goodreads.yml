@@ -14,14 +14,11 @@ jobs:
     name: Update README with Goodreads
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout repository
       - name: Checkout repository (fetch full history)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          # persist-credentials: true is default for v4 when token is implicitly used
 
-      # Step 2: Run Goodreads actions
       - name: Run Goodreads action for Read Books
         uses: zwacky/goodreads-profile-workflow@v1.2.4
         with:
@@ -39,13 +36,11 @@ jobs:
           comment_tag_name: "CURRENTLY-READING-LIST"
           template: "**\* [$title]($url) by $author**"
 
-      # Step 3: Configure git user
       - name: Configure git
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      # Step 4: Commit changes if any were made by the Goodreads actions
       - name: Commit changes if any
         id: commit
         run: |
@@ -55,18 +50,16 @@ jobs:
           fi
           git add -A
           git commit -m "Synced and updated with user's goodreads book lists [skip ci]"
-          echo "no_changes=false" >> $GITHUB_OUTPUT # Ensure this is set if commit happens
+          echo "no_changes=false" >> $GITHUB_OUTPUT
 
-      # Step 5: Pull latest changes, Rebase, and Push
       - name: Pull Rebase and Push changes
         if: steps.commit.outputs.no_changes == 'false'
-        id: push_changes # Give this step an ID to check its outcome
+        id: push_changes
         run: |
-          git pull --rebase origin main # Pull latest changes first
-          git push origin main # Try to push
-        continue-on-error: true # IMPORTANT: Continue even if push fails
+          git pull --rebase origin main
+          git push origin main
+        continue-on-error: true
 
-      # Step 6: Create PR only if the push step explicitly failed
       - name: Create Pull Request on Push Failure
         if: steps.commit.outputs.no_changes == 'false' && steps.push_changes.outcome == 'failure'
         uses: peter-evans/create-pull-request@v5
