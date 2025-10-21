@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write # Added permission for creating PRs
 
 jobs:
   update-readme:
@@ -20,12 +21,21 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Run Goodreads action
+      - name: Run Goodreads action for Read Books
         uses: zwacky/goodreads-profile-workflow@v1.2.4
         with:
           goodreads_user_id: "178629903"
           shelf: "read"
           max_books_count: 5
+          comment_tag_name: "GOODREADS-LIST" # Explicitly set tag for read books
+
+      - name: Run Goodreads action for Currently Reading Books
+        uses: zwacky/goodreads-profile-workflow@v1.2.4
+        with:
+          goodreads_user_id: "178629903"
+          shelf: "currently-reading"
+          max_books_count: 5 # You can adjust this count if needed
+          comment_tag_name: "CURRENTLY-READING-LIST" # Specific tag for currently reading
 
       - name: Configure git
         run: |
@@ -66,17 +76,20 @@ jobs:
               echo "Rebase failed - aborting rebase and switching to fallback (create PR)"
               git rebase --abort || true
               echo "rebase_failed=true" >> $GITHUB_OUTPUT
-              exit 0
+              exit 0 # Exit script if rebase fails
             fi
           else
             echo "$ORIGIN/$TARGET_BRANCH not found; will attempt to push"
           fi
 
+          # Initialize push_ok flag
+          echo "push_ok=false" >> $GITHUB_OUTPUT
+
           # Try pushing up to two times (handles intermittent race)
           PUSH_OK=false
           for i in 1 2; do
             if git push $ORIGIN HEAD:$TARGET_BRANCH; then
-              echo "push_ok=true" >> $GITHUB_OUTPUT
+              echo "push_ok=true" >> $GITHUB_OUTPUT # Update GITHUB_OUTPUT on success
               PUSH_OK=true
               break
             else
@@ -88,10 +101,12 @@ jobs:
 
           if [ "$PUSH_OK" = "false" ]; then
             echo "Failed to push after retries; will create a pull request instead"
-            echo "push_ok=false" >> $GITHUB_OUTPUT
+            # push_ok is already false in GITHUB_OUTPUT if loop finished without success
           fi
 
+
       - name: Create a pull request if rebase failed or push blocked
+        # Check explicitly for false string, as unset output might not evaluate correctly
         if: steps.rebase_and_push.outputs.rebase_failed == 'true' || steps.rebase_and_push.outputs.push_ok == 'false'
         uses: peter-evans/create-pull-request@v5
         with:
