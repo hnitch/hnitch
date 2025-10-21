@@ -1,4 +1,4 @@
-name: Update Goodreads
+name: update goodreads
 
 on:
   schedule:
