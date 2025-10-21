@@ -34,7 +34,7 @@ jobs:
           shelf: "currently-reading"
           max_books_count: 5
           comment_tag_name: "CURRENTLY-READING-LIST"
-          template: "**\* [$title]($url) by $author**"
+          template: "**📖 [$title]($url) by $author**" # Updated template line
 
       - name: Configure git
         run: |
