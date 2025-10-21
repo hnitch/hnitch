@@ -20,7 +20,7 @@
 <!-- CURRENTLY-READING-LIST:END -->
 <!-- GOODREADS-LIST:START -->
 - [You Weren&apos;t Meant to Be Human](https://www.goodreads.com/review/show/7994800611?utm_medium=api&utm_source=rss) by Andrew Joseph White (⭐️4.07)
-- [Graveyard Shift: the highly anticipated new book by the author of the BookTok sensation If We Were Villains](https://www.goodreads.com/review/show/7945415962?utm_medium=api&utm_source=rss) by M.L. Rio (⭐️3.06)
+- [Graveyard Shift: the highly anticipated new book by the author of the BookTok sensation If We Were Villains](https://www.goodreads.com/review/show/7945415962?utm_medium=api&utm_source=rss) by M.L. Rio (⭐️3.07)
 - [Not Quite Dead Yet](https://www.goodreads.com/review/show/6945678900?utm_medium=api&utm_source=rss) by Holly  Jackson (⭐️4.56)
 - [Lessons in Chemistry](https://www.goodreads.com/review/show/7870668798?utm_medium=api&utm_source=rss) by Bonnie Garmus (⭐️4.25)
 - [That&apos;s Not My Name](https://www.goodreads.com/review/show/7568058741?utm_medium=api&utm_source=rss) by Megan Lally (⭐️4.01)
