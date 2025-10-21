@@ -13,7 +13,7 @@
 <hr>
 
 ### 🕵️ stalk me ( legally pls )
-#### 📚 goodreads - recently read
+#### 📚 goodreads - ( reading + read )
 
 <!-- GOODREADS-LIST:START -->
 - [You Weren&apos;t Meant to Be Human](https://www.goodreads.com/review/show/7994800611?utm_medium=api&utm_source=rss) by Andrew Joseph White (⭐️4.07)
