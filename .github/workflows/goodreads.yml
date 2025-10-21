@@ -1,4 +1,4 @@
-name: Update Goodreads
+name: update goodreads
 
 on:
   schedule:
@@ -28,6 +28,7 @@ jobs:
           shelf: "read"
           max_books_count: 5
           comment_tag_name: "GOODREADS-LIST" # Explicitly set tag for read books
+          # Uses default template for read books
 
       - name: Run Goodreads action for Currently Reading Books
         uses: zwacky/goodreads-profile-workflow@v1.2.4
@@ -36,6 +37,7 @@ jobs:
           shelf: "currently-reading"
           max_books_count: 5 # You can adjust this count if needed
           comment_tag_name: "CURRENTLY-READING-LIST" # Specific tag for currently reading
+          template: "**- [$title]($url) by $author**" # Added template for bolding
 
       - name: Configure git
         run: |
