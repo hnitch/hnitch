@@ -13,7 +13,7 @@
 <hr>
 
 ### 🕵️ stalk me ( legally pls )
-  #### 📚 goodreads ( * **reading** + read books )
+  #### ⋆.˚📚⋆.˚ goodreads ( 📖 **currently reading** + read books )
 
 <!-- CURRENTLY-READING-LIST:START -->
 **📖 [Showstopper](https://www.goodreads.com/review/show/7321135159?utm_medium=api&utm_source=rss) by Lily  Anderson**
