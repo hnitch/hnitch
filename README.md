@@ -14,6 +14,10 @@
 
 ### 🕵️ stalk me ( legally pls )
 #### 📚 goodreads - recently read
+
+<!-- GOODREADS-LIST:START -->
+<!-- GOODREADS-LIST:END -->
+
 <br />
 <div align="center">
   <table border="0" cellpadding="0" cellspacing="0">
