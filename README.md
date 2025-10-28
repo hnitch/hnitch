@@ -19,9 +19,9 @@
 **📖 [Showstopper](https://www.goodreads.com/review/show/7321135159?utm_medium=api&utm_source=rss) by Lily  Anderson**
 <!-- CURRENTLY-READING-LIST:END -->
 <!-- GOODREADS-LIST:START -->
-- [Showstopper](https://www.goodreads.com/review/show/7321135159?utm_medium=api&utm_source=rss) by Lily  Anderson (⭐️3.6)
+- [Showstopper](https://www.goodreads.com/review/show/7321135159?utm_medium=api&utm_source=rss) by Lily  Anderson (⭐️3.59)
 - [You Weren&apos;t Meant to Be Human](https://www.goodreads.com/review/show/7994800611?utm_medium=api&utm_source=rss) by Andrew Joseph White (⭐️4.05)
-- [Graveyard Shift: the highly anticipated new book by the author of the BookTok sensation If We Were Villains](https://www.goodreads.com/review/show/7945415962?utm_medium=api&utm_source=rss) by M.L. Rio (⭐️3.04)
+- [Graveyard Shift: the highly anticipated new book by the author of the BookTok sensation If We Were Villains](https://www.goodreads.com/review/show/7945415962?utm_medium=api&utm_source=rss) by M.L. Rio (⭐️3.05)
 - [Not Quite Dead Yet](https://www.goodreads.com/review/show/6945678900?utm_medium=api&utm_source=rss) by Holly  Jackson (⭐️4.53)
 - [Lessons in Chemistry](https://www.goodreads.com/review/show/7870668798?utm_medium=api&utm_source=rss) by Bonnie Garmus (⭐️4.26)
 <!-- GOODREADS-LIST:END -->
