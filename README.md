@@ -16,7 +16,7 @@
   #### ⋆.˚📚⋆.˚ goodreads ( 📖 **currently reading** + read books )
 
 <!-- CURRENTLY-READING-LIST:START -->
-**📖 [Showstopper](https://www.goodreads.com/review/show/7321135159?utm_medium=api&utm_source=rss) by Lily  Anderson**
+**📖 [The Forsaken and the Fated: The Hollow and the Haunted duology](https://www.goodreads.com/review/show/7530698073?utm_medium=api&utm_source=rss) by Camilla Raines**
 <!-- CURRENTLY-READING-LIST:END -->
 <!-- GOODREADS-LIST:START -->
 - [Showstopper](https://www.goodreads.com/review/show/7321135159?utm_medium=api&utm_source=rss) by Lily  Anderson (⭐️3.47)
