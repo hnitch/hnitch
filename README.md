@@ -19,8 +19,8 @@
 **📖 [The Forsaken and the Fated: The Hollow and the Haunted duology](https://www.goodreads.com/review/show/7530698073?utm_medium=api&utm_source=rss) by Camilla Raines**
 <!-- CURRENTLY-READING-LIST:END -->
 <!-- GOODREADS-LIST:START -->
-- [The Forsaken and the Fated: The Hollow and the Haunted duology](https://www.goodreads.com/review/show/7530698073?utm_medium=api&utm_source=rss) by Camilla Raines (⭐️4.12)
 - [Showstopper](https://www.goodreads.com/review/show/7321135159?utm_medium=api&utm_source=rss) by Lily  Anderson (⭐️3.42)
+- [The Forsaken and the Fated: The Hollow and the Haunted duology](https://www.goodreads.com/review/show/7530698073?utm_medium=api&utm_source=rss) by Camilla Raines (⭐️4.12)
 - [You Weren&apos;t Meant to Be Human](https://www.goodreads.com/review/show/7994800611?utm_medium=api&utm_source=rss) by Andrew Joseph White (⭐️3.99)
 - [Graveyard Shift: the highly anticipated new book by the author of the BookTok sensation If We Were Villains](https://www.goodreads.com/review/show/7945415962?utm_medium=api&utm_source=rss) by M.L. Rio (⭐️3.04)
 - [Not Quite Dead Yet](https://www.goodreads.com/review/show/6945678900?utm_medium=api&utm_source=rss) by Holly  Jackson (⭐️4.48)
