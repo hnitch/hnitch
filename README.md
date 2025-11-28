@@ -23,7 +23,7 @@
 - [You Weren&apos;t Meant to Be Human](https://www.goodreads.com/review/show/7994800611?utm_medium=api&utm_source=rss) by Andrew Joseph White (⭐️3.98)
 - [Showstopper](https://www.goodreads.com/review/show/7321135159?utm_medium=api&utm_source=rss) by Lily  Anderson (⭐️3.39)
 - [The Forsaken and the Fated: The Hollow and the Haunted duology](https://www.goodreads.com/review/show/7530698073?utm_medium=api&utm_source=rss) by Camilla Raines (⭐️4.11)
-- [Graveyard shift](https://www.goodreads.com/review/show/7945415962?utm_medium=api&utm_source=rss) by M.L. Rio (⭐️3.03)
+- [Graveyard shift](https://www.goodreads.com/review/show/7945415962?utm_medium=api&utm_source=rss) by M.L. Rio (⭐️3.02)
 <!-- GOODREADS-LIST:END -->
 
 <br />
