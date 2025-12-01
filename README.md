@@ -16,7 +16,7 @@
   #### ⋆.˚📚⋆.˚ goodreads ( 📖 **currently reading** + read books )
 
 <!-- CURRENTLY-READING-LIST:START -->
-**📖 [The Forsaken and the Fated: The Hollow and the Haunted duology](https://www.goodreads.com/review/show/7530698073?utm_medium=api&utm_source=rss) by Camilla Raines**
+**📖 [This Is How You Lose the Time War](https://www.goodreads.com/review/show/7341373288?utm_medium=api&utm_source=rss) by Amal El-Mohtar**
 <!-- CURRENTLY-READING-LIST:END -->
 <!-- GOODREADS-LIST:START -->
 - [Sunrise on the Reaping (The Hunger Games)](https://www.goodreads.com/review/show/6564675173?utm_medium=api&utm_source=rss) by Suzanne Collins (⭐️4.58)
