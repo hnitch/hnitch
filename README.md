@@ -19,7 +19,7 @@
 **📖 [This Is How You Lose the Time War](https://www.goodreads.com/review/show/7341373288?utm_medium=api&utm_source=rss) by Amal El-Mohtar**
 <!-- CURRENTLY-READING-LIST:END -->
 <!-- GOODREADS-LIST:START -->
-- [This Is How You Lose the Time War](https://www.goodreads.com/review/show/7341373288?utm_medium=api&utm_source=rss) by Amal El-Mohtar (⭐️3.62)
+- [This Is How You Lose the Time War](https://www.goodreads.com/review/show/7341373288?utm_medium=api&utm_source=rss) by Amal El-Mohtar (⭐️3.56)
 - [Sunrise on the Reaping (The Hunger Games)](https://www.goodreads.com/review/show/6564675173?utm_medium=api&utm_source=rss) by Suzanne Collins (⭐️4.58)
 - [You Weren&apos;t Meant to Be Human](https://www.goodreads.com/review/show/7994800611?utm_medium=api&utm_source=rss) by Andrew Joseph White (⭐️3.97)
 - [Showstopper](https://www.goodreads.com/review/show/7321135159?utm_medium=api&utm_source=rss) by Lily  Anderson (⭐️3.4)
