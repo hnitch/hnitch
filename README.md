@@ -4,7 +4,7 @@
 <img src="https://komarev.com/ghpvc/?username=hnitch&style=flat-square" alt="profile views" style="margin-top: 15px;"/>
 </div>
 
-### 📂 current projects
+### 📂 projects
 
 <ul>
   <li><a href="https://sangetavadivelu.com" target="_blank" rel="noopener noreferrer">sangetavadivelu.com</a></li>
