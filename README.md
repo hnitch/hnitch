@@ -16,7 +16,7 @@
   #### ⋆.˚📚⋆.˚ goodreads ( 📖 **currently reading** + read books )
 
 <!-- CURRENTLY-READING-LIST:START -->
-**📖 [This Is How You Lose the Time War](https://www.goodreads.com/review/show/7341373288?utm_medium=api&utm_source=rss) by Amal El-Mohtar**
+**📖 [Hazelthorn](https://www.goodreads.com/review/show/7274513286?utm_medium=api&utm_source=rss) by C.G. Drews**
 <!-- CURRENTLY-READING-LIST:END -->
 <!-- GOODREADS-LIST:START -->
 - [This Is How You Lose the Time War](https://www.goodreads.com/review/show/7341373288?utm_medium=api&utm_source=rss) by Amal El-Mohtar (⭐️3.56)
