@@ -16,7 +16,7 @@
   #### ⋆.˚📚⋆.˚ goodreads ( 📖 **currently reading** + read books )
 
 <!-- CURRENTLY-READING-LIST:START -->
-**📖 [Hazelthorn](https://www.goodreads.com/review/show/7274513286?utm_medium=api&utm_source=rss) by C.G. Drews**
+**📖 [The Housemaid (The Housemaid, #1)](https://www.goodreads.com/review/show/7253467779?utm_medium=api&utm_source=rss) by Freida McFadden**
 <!-- CURRENTLY-READING-LIST:END -->
 <!-- GOODREADS-LIST:START -->
 - [Lessons in Chemistry](https://www.goodreads.com/review/show/7870668798?utm_medium=api&utm_source=rss) by Bonnie Garmus (⭐️4.24)
