@@ -3,7 +3,7 @@ import https from "https";
 import { parseStringPromise } from "xml2js";
 
 const USER_ID = "178629903";
-const MAX_READ = 5;
+const MAX_READ = 6;
 
 const feeds = {
   currentlyReading: `https://www.goodreads.com/review/list_rss/${USER_ID}?shelf=currently-reading`,
@@ -41,12 +41,7 @@ async function safeParse(xml) {
 }
 
 function pulseSymbol() {
-  const frames = ["✨", "💫", "✦", "✧"];
-  return frames[new Date().getMinutes() % frames.length];
-}
-
-function readingArrow() {
-  const frames = ["↳", "↠", "⇢"];
+  const frames = ["✨", "💫", "✦"];
   return frames[new Date().getMinutes() % frames.length];
 }
 
@@ -80,24 +75,23 @@ function renderSpotlight(items) {
   const book = items[0];
   const rating = parseInt(book.user_rating?.[0] || "0", 10);
   const stars = rating ? "★".repeat(rating) : "";
-  const label = ratingLabel(rating);
 
   return `${pulseSymbol()} recently finished
 
 📕 **[${book.title}](${book.link})**  
 by ${book.author_name}  
-${stars} — ${label}`;
+${stars} — ${ratingLabel(rating)}`;
 }
 
 function renderCurrentlyReading(items) {
   if (!items?.length) {
-    return `${readingArrow()} 📖 currently reading
+    return `↳ 📖 currently reading
 
 _Not currently reading anything_`;
   }
 
   const book = items[0];
-  return `${readingArrow()} 📖 currently reading
+  return `↳ 📖 currently reading
 
 📘 **[${book.title}](${book.link}) by ${book.author_name}**`;
 }
@@ -118,34 +112,32 @@ function renderProgress(items) {
 function renderRead(items) {
   if (!items?.length) return "_No recently read books_";
 
-  return items
-    .slice(0, MAX_READ)
-    .map((book) => {
-      const rating = parseInt(book.user_rating?.[0] || "0", 10);
-      const glow = rating === 5 ? ` ${pulseSymbol()}` : "";
-      return `• [${book.title}](${book.link}) by ${book.author_name} ( ⭐ ${rating} )${glow}`;
-    })
-    .join("\n");
+  const books = items.slice(0, MAX_READ);
+
+  const cells = books.map((book) => {
+    const rating = parseInt(book.user_rating?.[0] || "0", 10);
+    const glow = rating === 5 ? ` ${pulseSymbol()}` : "";
+
+    return `
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="${book.link}">${book.title}</a></strong><br/>
+    <sub>${book.author_name}</sub><br/>
+    ⭐ ${rating}${glow}
+  </div>
+</td>`;
+  });
+
+  const rows = [];
+  for (let i = 0; i < cells.length; i += 3) {
+    rows.push(`<tr>${cells.slice(i, i + 3).join("")}</tr>`);
+  }
+
+  return `<table><tbody>${rows.join("")}</tbody></table>`;
 }
 
 function renderLastUpdated() {
-  const diffMs = Date.now() - Date.now();
-
-  const minutes = Math.floor(diffMs / (1000 * 60));
-  const hours = Math.floor(diffMs / (1000 * 60 * 60));
-  const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-
-  let label = "just now";
-
-  if (minutes >= 1 && minutes < 60) {
-    label = `${minutes} minute${minutes === 1 ? "" : "s"} ago`;
-  } else if (hours >= 1 && hours < 24) {
-    label = `${hours} hour${hours === 1 ? "" : "s"} ago`;
-  } else if (days >= 1) {
-    label = `${days} day${days === 1 ? "" : "s"} ago`;
-  }
-
-  return `_⏳ updated ${label}_`;
+  return `_⏳ updated just now_`;
 }
 
 function replaceSection(content, tag, replacement) {
