@@ -60,32 +60,21 @@ function animatedDivider() {
   return "⋆｡˚ 📚 ⋆｡˚";
 }
 
-/* ---------------- mood logic ---------------- */
-/**
- * Mood is inferred from rating + keywords in title/description
- * This keeps it automated and still emotionally accurate
- */
-function inferMood(book) {
-  const rating = parseInt(book.user_rating?.[0] || "0", 10);
-  const text = `${book.title} ${book.description || ""}`.toLowerCase();
-
-  if (text.includes("horror") || text.includes("dark")) {
-    return "_dark • unsettling • obsessive_";
+function ratingLabel(rating) {
+  switch (rating) {
+    case 5:
+      return "literally obsessed !!! 😝";
+    case 4:
+      return "really enjoyed 🤭";
+    case 3:
+      return "mixed feelings / good ish";
+    case 2:
+      return "not for me 😟";
+    case 1:
+      return "straight to jailll 😦";
+    default:
+      return "no rating yet";
   }
-
-  if (rating >= 5) {
-    return "_obsessive • devastating • unforgettable_";
-  }
-
-  if (rating >= 4) {
-    return "_emotional • immersive • haunting_";
-  }
-
-  if (rating === 3) {
-    return "_interesting • uneven • thoughtful_";
-  }
-
-  return "_not for me • reflective • complicated_";
 }
 
 /* ---------------- renderers ---------------- */
@@ -94,15 +83,15 @@ function renderSpotlight(items) {
   if (!items?.length) return "";
 
   const book = items[0];
-  const stars = "★".repeat(parseInt(book.user_rating?.[0] || "0", 10));
-  const mood = inferMood(book);
+  const rating = parseInt(book.user_rating?.[0] || "0", 10);
+  const stars = rating ? "★".repeat(rating) : "";
+  const label = ratingLabel(rating);
 
   return `✨ **recently finished**
 
 📕 **[${book.title}](${book.link})**  
 by ${book.author_name}  
-${stars}  
-${mood}`;
+${stars} — ${label}`;
 }
 
 function renderCurrentlyReading(items) {
@@ -117,8 +106,12 @@ function renderCurrentlyReading(items) {
 function renderProgress(items) {
   if (!items?.length) return "";
 
-  const progress = parseInt(items[0].user_reading_progress?.[0] || "0", 10);
-  if (!progress) return "";
+  const raw = items[0].user_reading_progress?.[0];
+  const progress = parseInt(raw || "0", 10);
+
+  if (!progress) {
+    return "▱▱▱▱▱▱▱▱▱▱ _in progress…_";
+  }
 
   return `${progressBar(progress)} **${progress}%**`;
 }
@@ -151,13 +144,14 @@ function renderLastUpdated() {
   return `_Last updated: ${now} UTC_`;
 }
 
-/* ---------------- replace ---------------- */
+/* ---------------- replace helper ---------------- */
 
 function replaceSection(content, tag, replacement) {
   const regex = new RegExp(
     `<!-- ${tag}:START -->[\\s\\S]*?<!-- ${tag}:END -->`,
     "m"
   );
+
   return content.replace(
     regex,
     `<!-- ${tag}:START -->\n${replacement}\n<!-- ${tag}:END -->`
@@ -214,5 +208,5 @@ function replaceSection(content, tag, replacement) {
 
   fs.writeFileSync("README.md", readme);
 
-  console.log("✨ Goodreads updated with spotlight");
+  console.log("✨ Goodreads updated successfully");
 })();
