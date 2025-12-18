@@ -36,26 +36,37 @@ function fetch(url) {
 /* ---------------- parsing ---------------- */
 
 async function safeParse(xml, label) {
-  if (!xml || !xml.includes("<rss")) {
-    console.warn(`⚠️ ${label}: invalid RSS`);
-    return null;
-  }
+  if (!xml || !xml.includes("<rss")) return null;
   try {
     return await parseStringPromise(xml);
   } catch {
-    console.warn(`⚠️ ${label}: parse failed`);
     return null;
   }
 }
 
-/* ---------------- helpers ---------------- */
+/* ---------------- animation helpers ---------------- */
 
+// Pulsing sparkles (cycles every run)
+function pulseSymbol() {
+  const frames = ["✨", "💫", "✦", "✧"];
+  return frames[new Date().getMinutes() % frames.length];
+}
+
+// Animated arrow
+function readingArrow() {
+  const frames = ["↳", "↠", "⇢"];
+  return frames[new Date().getMinutes() % frames.length];
+}
+
+// Animated progress bar
 function progressBar(percent) {
   const total = 10;
   const filled = Math.round((percent / 100) * total);
-  return "▰".repeat(filled) + "▱".repeat(total - filled);
+  const pulse = ["▰", "▮"][new Date().getMinutes() % 2];
+  return pulse.repeat(filled) + "▱".repeat(total - filled);
 }
 
+// Rating mood labels
 function ratingLabel(rating) {
   switch (rating) {
     case 5:
@@ -75,7 +86,6 @@ function ratingLabel(rating) {
 
 /* ---------------- renderers ---------------- */
 
-/* ✨ recently finished */
 function renderSpotlight(items) {
   if (!items?.length) return "";
 
@@ -84,30 +94,26 @@ function renderSpotlight(items) {
   const stars = rating ? "★".repeat(rating) : "";
   const label = ratingLabel(rating);
 
-  return `✨ **recently finished**
+  return `${pulseSymbol()} recently finished
 
 📕 **[${book.title}](${book.link})**  
 by ${book.author_name}  
 ${stars} — ${label}`;
 }
 
-/* 📖 currently reading */
 function renderCurrentlyReading(items) {
   if (!items?.length) {
-    return `───
-📖 **currently reading**
+    return `${readingArrow()} 📖 currently reading
 
 _Not currently reading anything_`;
   }
 
   const book = items[0];
-  return `───
-📖 **currently reading**
+  return `${readingArrow()} 📖 currently reading
 
-**📘 [${book.title}](${book.link}) by ${book.author_name}**`;
+📘 **[${book.title}](${book.link}) by ${book.author_name}**`;
 }
 
-/* 📊 progress */
 function renderProgress(items) {
   if (!items?.length) return "";
 
@@ -121,24 +127,19 @@ function renderProgress(items) {
   return `${progressBar(progress)} **${progress}%**`;
 }
 
-/* 📚 recent reads */
 function renderRead(items) {
-  if (!items?.length) {
-    return "_No recently read books_";
-  }
+  if (!items?.length) return "_No recently read books_";
 
   return items
     .slice(0, MAX_READ)
     .map((book) => {
-      const rating = book.user_rating?.[0]
-        ? `( ⭐ ${book.user_rating[0]} )`
-        : "";
-      return `- [${book.title}](${book.link}) by ${book.author_name} ${rating}`;
+      const rating = parseInt(book.user_rating?.[0] || "0", 10);
+      const glow = rating === 5 ? ` ${pulseSymbol()}` : "";
+      return `• [${book.title}](${book.link}) by ${book.author_name} ( ⭐ ${rating} )${glow}`;
     })
     .join("\n");
 }
 
-/* 🕰 last updated */
 function renderLastUpdated() {
   const now = new Date().toLocaleString("en-GB", {
     timeZone: "UTC",
@@ -158,7 +159,6 @@ function replaceSection(content, tag, replacement) {
     `<!-- ${tag}:START -->[\\s\\S]*?<!-- ${tag}:END -->`,
     "m"
   );
-
   return content.replace(
     regex,
     `<!-- ${tag}:START -->\n${replacement}\n<!-- ${tag}:END -->`
@@ -168,7 +168,7 @@ function replaceSection(content, tag, replacement) {
 /* ---------------- main ---------------- */
 
 (async function main() {
-  console.log("📚 Updating Goodreads…");
+  console.log("📚 Updating Goodreads with ✨ vibes…");
 
   const [currentlyXML, readXML] = await Promise.all([
     fetch(feeds.currentlyReading),
@@ -204,7 +204,7 @@ function replaceSection(content, tag, replacement) {
   readme = replaceSection(
     readme,
     "GOODREADS-LIST",
-    `───\n📚 **recent reads**\n\n${renderRead(readItems)}`
+    `✦ 📚 recent reads\n\n${renderRead(readItems)}`
   );
 
   readme = replaceSection(
@@ -215,5 +215,5 @@ function replaceSection(content, tag, replacement) {
 
   fs.writeFileSync("README.md", readme);
 
-  console.log("✨ Goodreads updated successfully");
+  console.log("✨ Goodreads synced and glowing");
 })();
