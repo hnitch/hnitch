@@ -20,9 +20,11 @@
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 <!-- GOODREADS-LIST:START -->
+⋆｡˚ 📚 ⋆｡˚
 - [Lessons in Chemistry](https://www.goodreads.com/review/show/7870668798?utm_medium=api&utm_source=rss) by Bonnie Garmus ( ⭐ 4 )
 - [Bad Blood (The Naturals, #4)](https://www.goodreads.com/review/show/7268775924?utm_medium=api&utm_source=rss) by Jennifer Lynn Barnes ( ⭐ 5 )
 - [Hazelthorn](https://www.goodreads.com/review/show/7274513286?utm_medium=api&utm_source=rss) by C.G. Drews ( ⭐ 5 )
@@ -31,7 +33,7 @@
 <!-- GOODREADS-LIST:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_Last updated: 18 Dec 2025, 06:41 UTC_
+_Last updated: 18 Dec 2025, 06:47 UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <br />
