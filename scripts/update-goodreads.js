@@ -56,10 +56,6 @@ function progressBar(percent) {
   return "▰".repeat(filled) + "▱".repeat(total - filled);
 }
 
-function animatedDivider() {
-  return "⋆｡˚ 📚 ⋆｡˚";
-}
-
 function ratingLabel(rating) {
   switch (rating) {
     case 5:
@@ -67,18 +63,19 @@ function ratingLabel(rating) {
     case 4:
       return "really enjoyed 🤭";
     case 3:
-      return "mixed feelings / good ish";
+      return "mixed feelings / good ish 🫠";
     case 2:
       return "not for me 😟";
     case 1:
       return "straight to jailll 😦";
     default:
-      return "no rating yet";
+      return "no rating yet ❌";
   }
 }
 
 /* ---------------- renderers ---------------- */
 
+/* ✨ recently finished */
 function renderSpotlight(items) {
   if (!items?.length) return "";
 
@@ -94,15 +91,23 @@ by ${book.author_name}
 ${stars} — ${label}`;
 }
 
+/* 📖 currently reading */
 function renderCurrentlyReading(items) {
   if (!items?.length) {
-    return "_Not currently reading anything_";
+    return `───
+📖 **currently reading**
+
+_Not currently reading anything_`;
   }
 
   const book = items[0];
-  return `**📖 [${book.title}](${book.link}) by ${book.author_name}**`;
+  return `───
+📖 **currently reading**
+
+**📘 [${book.title}](${book.link}) by ${book.author_name}**`;
 }
 
+/* 📊 progress */
 function renderProgress(items) {
   if (!items?.length) return "";
 
@@ -116,6 +121,7 @@ function renderProgress(items) {
   return `${progressBar(progress)} **${progress}%**`;
 }
 
+/* 📚 recent reads */
 function renderRead(items) {
   if (!items?.length) {
     return "_No recently read books_";
@@ -132,6 +138,7 @@ function renderRead(items) {
     .join("\n");
 }
 
+/* 🕰 last updated */
 function renderLastUpdated() {
   const now = new Date().toLocaleString("en-GB", {
     timeZone: "UTC",
@@ -197,7 +204,7 @@ function replaceSection(content, tag, replacement) {
   readme = replaceSection(
     readme,
     "GOODREADS-LIST",
-    `${animatedDivider()}\n${renderRead(readItems)}`
+    `───\n📚 **recent reads**\n\n${renderRead(readItems)}`
   );
 
   readme = replaceSection(
