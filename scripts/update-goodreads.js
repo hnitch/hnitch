@@ -85,7 +85,6 @@ function renderSpotlight(items) {
 
   return `${pulseSymbol()} recently finished
 
-
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
@@ -151,7 +150,20 @@ function renderRead(items) {
 }
 
 function renderLastUpdated() {
-  return `_⏳ updated just now_`;
+  const now = new Date();
+
+  const datePart = now.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+  });
+
+  const timePart = now.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+
+  return `_⏳ last updated on ${datePart} at ${timePart}_`;
 }
 
 function replaceSection(content, tag, replacement) {
