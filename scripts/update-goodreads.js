@@ -83,7 +83,8 @@ function renderSpotlight(items) {
   const stars = rating ? "★".repeat(rating) : "";
   const glow = glowForRating(rating);
 
-  return `${pulseSymbol()} recently finished
+  return `${pulseSymbol()} 📕 recently finished
+
 
 <table>
   <tr>
@@ -161,6 +162,7 @@ function renderLastUpdated() {
     hour: "numeric",
     minute: "2-digit",
     hour12: true,
+    timeZoneName: "short",
   });
 
   return `_⏳ last updated on ${datePart} at ${timePart}_`;
