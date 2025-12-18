@@ -18,7 +18,7 @@
 
 
 <!-- CURRENTLY-READING-LIST:START -->
-⇢ 📖 currently reading
+↳ 📖 currently reading
 
 📘 **[The Housemaid (The Housemaid, #1)](https://www.goodreads.com/review/show/7253467779?utm_medium=api&utm_source=rss) by Freida McFadden**
 <!-- CURRENTLY-READING-LIST:END -->
@@ -31,14 +31,52 @@
 <!-- GOODREADS-LIST:START -->
 ✦ 📚 recent reads
 
-• [Lessons in Chemistry](https://www.goodreads.com/review/show/7870668798?utm_medium=api&utm_source=rss) by Bonnie Garmus ( ⭐ 4 )
-• [Bad Blood (The Naturals, #4)](https://www.goodreads.com/review/show/7268775924?utm_medium=api&utm_source=rss) by Jennifer Lynn Barnes ( ⭐ 5 ) ✨
-• [Hazelthorn](https://www.goodreads.com/review/show/7274513286?utm_medium=api&utm_source=rss) by C.G. Drews ( ⭐ 5 ) ✨
-• [This Is How You Lose the Time War](https://www.goodreads.com/review/show/7341373288?utm_medium=api&utm_source=rss) by Amal El-Mohtar ( ⭐ 2 )
-• [Sunrise on the Reaping (The Hunger Games)](https://www.goodreads.com/review/show/6564675173?utm_medium=api&utm_source=rss) by Suzanne Collins ( ⭐ 5 ) ✨
+<table><tbody><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/7870668798?utm_medium=api&utm_source=rss">Lessons in Chemistry</a></strong><br/>
+    <sub>Bonnie Garmus</sub><br/>
+    ⭐ 4
+  </div>
+</td>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/7268775924?utm_medium=api&utm_source=rss">Bad Blood (The Naturals, #4)</a></strong><br/>
+    <sub>Jennifer Lynn Barnes</sub><br/>
+    ⭐ 5 ✦
+  </div>
+</td>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/7274513286?utm_medium=api&utm_source=rss">Hazelthorn</a></strong><br/>
+    <sub>C.G. Drews</sub><br/>
+    ⭐ 5 ✦
+  </div>
+</td></tr><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/7341373288?utm_medium=api&utm_source=rss">This Is How You Lose the Time War</a></strong><br/>
+    <sub>Amal El-Mohtar</sub><br/>
+    ⭐ 2
+  </div>
+</td>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/6564675173?utm_medium=api&utm_source=rss">Sunrise on the Reaping (The Hunger Games)</a></strong><br/>
+    <sub>Suzanne Collins</sub><br/>
+    ⭐ 5 ✦
+  </div>
+</td>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/7994800611?utm_medium=api&utm_source=rss">You Weren't Meant to Be Human</a></strong><br/>
+    <sub>Andrew Joseph White</sub><br/>
+    ⭐ 3
+  </div>
+</td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-✨ recently finished
+✦ recently finished
 
 📕 **[Lessons in Chemistry](https://www.goodreads.com/review/show/7870668798?utm_medium=api&utm_source=rss)**  
 by Bonnie Garmus  
