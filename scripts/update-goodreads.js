@@ -11,17 +11,27 @@ const feeds = {
 };
 
 /**
- * Fetch URL as text
+ * Fetch URL as text with headers that Goodreads accepts
  */
 function fetch(url) {
   return new Promise((resolve, reject) => {
-    https
-      .get(url, (res) => {
+    const req = https.get(
+      url,
+      {
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0 (compatible; GitHubActions/1.0; +https://github.com/)",
+          Accept: "application/rss+xml, application/xml, text/xml",
+        },
+      },
+      (res) => {
         let data = "";
         res.on("data", (chunk) => (data += chunk));
         res.on("end", () => resolve(data));
-      })
-      .on("error", reject);
+      }
+    );
+
+    req.on("error", reject);
   });
 }
 
@@ -94,6 +104,22 @@ function replaceSection(content, tag, replacement) {
   );
 }
 
+/**
+ * Render last updated timestamp
+ */
+function renderLastUpdated() {
+  const now = new Date().toLocaleString("en-GB", {
+    timeZone: "UTC",
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  return `_Last updated: ${now} UTC_`;
+}
+
 (async function main() {
   console.log("📚 Fetching Goodreads RSS feeds…");
 
@@ -102,14 +128,21 @@ function replaceSection(content, tag, replacement) {
     fetch(feeds.read),
   ]);
 
-  const currentlyParsed = await safeParse(currentlyXML, "currently-reading");
+  const currentlyParsed = await safeParse(
+    currentlyXML,
+    "currently-reading"
+  );
   const readParsed = await safeParse(readXML, "read");
 
   const currentlyItems =
     currentlyParsed?.rss?.channel?.[0]?.item ?? [];
-
   const readItems =
     readParsed?.rss?.channel?.[0]?.item ?? [];
+
+  console.log(
+    `📖 Currently reading items: ${currentlyItems.length}`
+  );
+  console.log(`📚 Read items: ${readItems.length}`);
 
   let readme = fs.readFileSync("README.md", "utf8");
 
@@ -123,6 +156,12 @@ function replaceSection(content, tag, replacement) {
     readme,
     "GOODREADS-LIST",
     renderRead(readItems)
+  );
+
+  readme = replaceSection(
+    readme,
+    "GOODREADS-LAST-UPDATED",
+    renderLastUpdated()
   );
 
   fs.writeFileSync("README.md", readme);
