@@ -14,11 +14,10 @@
 <hr>
 
 ### 🕵️ stalk me ( legally pls )
-#### ⋆.˚📚⋆.˚ goodreads ( 📖 **currently reading** + read books )
+#### ⋆.˚📚⋆.˚ goodreads
 
 <!-- GOODREADS-SPOTLIGHT:START -->
 ✨ recently finished
-
 📕 **[Lessons in Chemistry](https://www.goodreads.com/review/show/7870668798?utm_medium=api&utm_source=rss)**  
 by Bonnie Garmus  
 ★★★★ — really enjoyed 🤭
