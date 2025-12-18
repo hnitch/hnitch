@@ -10,9 +10,6 @@ const feeds = {
   read: `https://www.goodreads.com/review/list_rss/${USER_ID}?shelf=read`,
 };
 
-/**
- * Fetch URL as text with headers Goodreads accepts
- */
 function fetch(url) {
   return new Promise((resolve, reject) => {
     const req = https.get(
@@ -30,38 +27,39 @@ function fetch(url) {
         res.on("end", () => resolve(data));
       }
     );
-
     req.on("error", reject);
   });
 }
 
-/**
- * Safely parse RSS
- */
 async function safeParse(xml, label) {
-  if (!xml || !xml.trim().startsWith("<")) {
-    console.warn(`⚠️ ${label}: response is not XML, skipping`);
+  if (!xml || !xml.includes("<rss")) {
+    console.warn(`⚠️ ${label}: invalid RSS`);
     return null;
   }
-
-  if (!xml.includes("<rss")) {
-    console.warn(`⚠️ ${label}: response is not RSS, skipping`);
-    return null;
-  }
-
   try {
     return await parseStringPromise(xml);
   } catch {
-    console.warn(`⚠️ ${label}: XML parse failed, skipping`);
+    console.warn(`⚠️ ${label}: parse failed`);
     return null;
   }
 }
 
-/**
- * Render currently reading
- */
+/* ─────────── helpers ─────────── */
+
+function progressBar(percent) {
+  const total = 10;
+  const filled = Math.round((percent / 100) * total);
+  return "▰".repeat(filled) + "▱".repeat(total - filled);
+}
+
+function animatedDivider() {
+  return "⋆｡˚ 📚 ⋆｡˚";
+}
+
+/* ─────────── renderers ─────────── */
+
 function renderCurrentlyReading(items) {
-  if (!items || !items.length) {
+  if (!items?.length) {
     return "_Not currently reading anything_";
   }
 
@@ -69,11 +67,19 @@ function renderCurrentlyReading(items) {
   return `**📖 [${book.title}](${book.link}) by ${book.author_name}**`;
 }
 
-/**
- * Render read books (with spaced stars)
- */
+function renderProgress(items) {
+  if (!items?.length) return "";
+
+  const book = items[0];
+  const progress = parseInt(book.user_reading_progress?.[0] || "0", 10);
+
+  if (!progress) return "";
+
+  return `\n${progressBar(progress)} **${progress}%**`;
+}
+
 function renderRead(items) {
-  if (!items || !items.length) {
+  if (!items?.length) {
     return "_No recently read books_";
   }
 
@@ -88,24 +94,6 @@ function renderRead(items) {
     .join("\n");
 }
 
-/**
- * Replace section between markers
- */
-function replaceSection(content, tag, replacement) {
-  const regex = new RegExp(
-    `<!-- ${tag}:START -->[\\s\\S]*?<!-- ${tag}:END -->`,
-    "m"
-  );
-
-  return content.replace(
-    regex,
-    `<!-- ${tag}:START -->\n${replacement}\n<!-- ${tag}:END -->`
-  );
-}
-
-/**
- * Render last updated timestamp
- */
 function renderLastUpdated() {
   const now = new Date().toLocaleString("en-GB", {
     timeZone: "UTC",
@@ -115,31 +103,35 @@ function renderLastUpdated() {
     hour: "2-digit",
     minute: "2-digit",
   });
-
   return `_Last updated: ${now} UTC_`;
 }
 
+function replaceSection(content, tag, replacement) {
+  const regex = new RegExp(
+    `<!-- ${tag}:START -->[\\s\\S]*?<!-- ${tag}:END -->`,
+    "m"
+  );
+  return content.replace(
+    regex,
+    `<!-- ${tag}:START -->\n${replacement}\n<!-- ${tag}:END -->`
+  );
+}
+
+/* ─────────── main ─────────── */
+
 (async function main() {
-  console.log("📚 Fetching Goodreads RSS feeds…");
+  console.log("📚 Updating Goodreads…");
 
   const [currentlyXML, readXML] = await Promise.all([
     fetch(feeds.currentlyReading),
     fetch(feeds.read),
   ]);
 
-  const currentlyParsed = await safeParse(
-    currentlyXML,
-    "currently-reading"
-  );
-  const readParsed = await safeParse(readXML, "read");
+  const currently = await safeParse(currentlyXML, "currently-reading");
+  const read = await safeParse(readXML, "read");
 
-  const currentlyItems =
-    currentlyParsed?.rss?.channel?.[0]?.item ?? [];
-  const readItems =
-    readParsed?.rss?.channel?.[0]?.item ?? [];
-
-  console.log(`📖 Currently reading: ${currentlyItems.length}`);
-  console.log(`📚 Recently read: ${readItems.length}`);
+  const currentlyItems = currently?.rss?.channel?.[0]?.item ?? [];
+  const readItems = read?.rss?.channel?.[0]?.item ?? [];
 
   let readme = fs.readFileSync("README.md", "utf8");
 
@@ -151,8 +143,14 @@ function renderLastUpdated() {
 
   readme = replaceSection(
     readme,
+    "GOODREADS-CURRENT-PROGRESS",
+    renderProgress(currentlyItems)
+  );
+
+  readme = replaceSection(
+    readme,
     "GOODREADS-LIST",
-    renderRead(readItems)
+    `${animatedDivider()}\n${renderRead(readItems)}`
   );
 
   readme = replaceSection(
@@ -163,5 +161,5 @@ function renderLastUpdated() {
 
   fs.writeFileSync("README.md", readme);
 
-  console.log("✅ README updated successfully");
+  console.log("✨ Goodreads updated");
 })();
