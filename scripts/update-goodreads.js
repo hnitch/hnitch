@@ -10,8 +10,6 @@ const feeds = {
   read: `https://www.goodreads.com/review/list_rss/${USER_ID}?shelf=read`,
 };
 
-/* ---------------- fetch ---------------- */
-
 function fetch(url) {
   return new Promise((resolve, reject) => {
     const req = https.get(
@@ -33,9 +31,7 @@ function fetch(url) {
   });
 }
 
-/* ---------------- parsing ---------------- */
-
-async function safeParse(xml, label) {
+async function safeParse(xml) {
   if (!xml || !xml.includes("<rss")) return null;
   try {
     return await parseStringPromise(xml);
@@ -44,21 +40,16 @@ async function safeParse(xml, label) {
   }
 }
 
-/* ---------------- animation helpers ---------------- */
-
-// Pulsing sparkles (cycles every run)
 function pulseSymbol() {
   const frames = ["✨", "💫", "✦", "✧"];
   return frames[new Date().getMinutes() % frames.length];
 }
 
-// Animated arrow
 function readingArrow() {
   const frames = ["↳", "↠", "⇢"];
   return frames[new Date().getMinutes() % frames.length];
 }
 
-// Animated progress bar
 function progressBar(percent) {
   const total = 10;
   const filled = Math.round((percent / 100) * total);
@@ -66,7 +57,6 @@ function progressBar(percent) {
   return pulse.repeat(filled) + "▱".repeat(total - filled);
 }
 
-// Rating mood labels
 function ratingLabel(rating) {
   switch (rating) {
     case 5:
@@ -83,8 +73,6 @@ function ratingLabel(rating) {
       return "no rating yet ❌";
   }
 }
-
-/* ---------------- renderers ---------------- */
 
 function renderSpotlight(items) {
   if (!items?.length) return "";
@@ -141,18 +129,24 @@ function renderRead(items) {
 }
 
 function renderLastUpdated() {
-  const now = new Date().toLocaleString("en-GB", {
-    timeZone: "UTC",
-    year: "numeric",
-    month: "short",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-  return `_Last updated: ${now} UTC_`;
-}
+  const diffMs = Date.now() - Date.now();
 
-/* ---------------- replace helper ---------------- */
+  const minutes = Math.floor(diffMs / (1000 * 60));
+  const hours = Math.floor(diffMs / (1000 * 60 * 60));
+  const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+  let label = "just now";
+
+  if (minutes >= 1 && minutes < 60) {
+    label = `${minutes} minute${minutes === 1 ? "" : "s"} ago`;
+  } else if (hours >= 1 && hours < 24) {
+    label = `${hours} hour${hours === 1 ? "" : "s"} ago`;
+  } else if (days >= 1) {
+    label = `${days} day${days === 1 ? "" : "s"} ago`;
+  }
+
+  return `_⏳ updated ${label}_`;
+}
 
 function replaceSection(content, tag, replacement) {
   const regex = new RegExp(
@@ -165,18 +159,14 @@ function replaceSection(content, tag, replacement) {
   );
 }
 
-/* ---------------- main ---------------- */
-
 (async function main() {
-  console.log("📚 Updating Goodreads with ✨ vibes…");
-
   const [currentlyXML, readXML] = await Promise.all([
     fetch(feeds.currentlyReading),
     fetch(feeds.read),
   ]);
 
-  const currently = await safeParse(currentlyXML, "currently-reading");
-  const read = await safeParse(readXML, "read");
+  const currently = await safeParse(currentlyXML);
+  const read = await safeParse(readXML);
 
   const currentlyItems = currently?.rss?.channel?.[0]?.item ?? [];
   const readItems = read?.rss?.channel?.[0]?.item ?? [];
@@ -214,6 +204,4 @@ function replaceSection(content, tag, replacement) {
   );
 
   fs.writeFileSync("README.md", readme);
-
-  console.log("✨ Goodreads synced and glowing");
 })();
