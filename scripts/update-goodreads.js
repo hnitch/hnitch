@@ -85,6 +85,7 @@ function renderSpotlight(items) {
 
   return `${pulseSymbol()} recently finished
 
+
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
