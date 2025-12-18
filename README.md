@@ -18,7 +18,7 @@
 
 
 <!-- CURRENTLY-READING-LIST:START -->
-↳ 📖 currently reading
+⇢ 📖 currently reading
 
 📘 **[The Housemaid (The Housemaid, #1)](https://www.goodreads.com/review/show/7253467779?utm_medium=api&utm_source=rss) by Freida McFadden**
 <!-- CURRENTLY-READING-LIST:END -->
@@ -32,13 +32,13 @@
 ✦ 📚 recent reads
 
 • [Lessons in Chemistry](https://www.goodreads.com/review/show/7870668798?utm_medium=api&utm_source=rss) by Bonnie Garmus ( ⭐ 4 )
-• [Bad Blood (The Naturals, #4)](https://www.goodreads.com/review/show/7268775924?utm_medium=api&utm_source=rss) by Jennifer Lynn Barnes ( ⭐ 5 ) ✧
-• [Hazelthorn](https://www.goodreads.com/review/show/7274513286?utm_medium=api&utm_source=rss) by C.G. Drews ( ⭐ 5 ) ✧
+• [Bad Blood (The Naturals, #4)](https://www.goodreads.com/review/show/7268775924?utm_medium=api&utm_source=rss) by Jennifer Lynn Barnes ( ⭐ 5 ) ✨
+• [Hazelthorn](https://www.goodreads.com/review/show/7274513286?utm_medium=api&utm_source=rss) by C.G. Drews ( ⭐ 5 ) ✨
 • [This Is How You Lose the Time War](https://www.goodreads.com/review/show/7341373288?utm_medium=api&utm_source=rss) by Amal El-Mohtar ( ⭐ 2 )
-• [Sunrise on the Reaping (The Hunger Games)](https://www.goodreads.com/review/show/6564675173?utm_medium=api&utm_source=rss) by Suzanne Collins ( ⭐ 5 ) ✧
+• [Sunrise on the Reaping (The Hunger Games)](https://www.goodreads.com/review/show/6564675173?utm_medium=api&utm_source=rss) by Suzanne Collins ( ⭐ 5 ) ✨
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-✧ recently finished
+✨ recently finished
 
 📕 **[Lessons in Chemistry](https://www.goodreads.com/review/show/7870668798?utm_medium=api&utm_source=rss)**  
 by Bonnie Garmus  
@@ -46,7 +46,7 @@ by Bonnie Garmus
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_Last updated: 18 Dec 2025, 10:39 UTC_
+_⏳ updated just now_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
