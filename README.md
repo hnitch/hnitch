@@ -36,21 +36,21 @@
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/7870668798?utm_medium=api&utm_source=rss">Lessons in Chemistry</a></strong><br/>
     <sub>Bonnie Garmus</sub><br/>
-    ⭐ 4
+    ⭐ 4 ✨
   </div>
 </td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/7268775924?utm_medium=api&utm_source=rss">Bad Blood (The Naturals, #4)</a></strong><br/>
     <sub>Jennifer Lynn Barnes</sub><br/>
-    ⭐ 5 ✦
+    ⭐ 5 ✨✨
   </div>
 </td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/7274513286?utm_medium=api&utm_source=rss">Hazelthorn</a></strong><br/>
     <sub>C.G. Drews</sub><br/>
-    ⭐ 5 ✦
+    ⭐ 5 ✨✨
   </div>
 </td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
@@ -64,7 +64,7 @@
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/6564675173?utm_medium=api&utm_source=rss">Sunrise on the Reaping (The Hunger Games)</a></strong><br/>
     <sub>Suzanne Collins</sub><br/>
-    ⭐ 5 ✦
+    ⭐ 5 ✨✨
   </div>
 </td>
 <td style="padding:12px; vertical-align:top;">
@@ -76,11 +76,17 @@
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-✦ recently finished
+💫 recently finished
 
-📕 **[Lessons in Chemistry](https://www.goodreads.com/review/show/7870668798?utm_medium=api&utm_source=rss)**  
-by Bonnie Garmus  
-★★★★ — this one cooked 🤭
+<table>
+  <tr>
+    <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
+      <strong>📕 <a href="https://www.goodreads.com/review/show/7870668798?utm_medium=api&utm_source=rss">Lessons in Chemistry</a></strong><br/>
+      <sub>Bonnie Garmus</sub><br/><br/>
+      ★★★★ ✨ — this one cooked 🤭
+    </td>
+  </tr>
+</table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
