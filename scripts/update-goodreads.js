@@ -52,6 +52,12 @@ function progressBar(percent) {
   return pulse.repeat(filled) + "▱".repeat(total - filled);
 }
 
+function glowForRating(rating) {
+  if (rating === 5) return " ✨✨";
+  if (rating === 4) return " ✨";
+  return "";
+}
+
 function ratingLabel(rating) {
   switch (rating) {
     case 5:
@@ -69,14 +75,13 @@ function ratingLabel(rating) {
   }
 }
 
-/* ⭐ FEATURED CARD */
 function renderSpotlight(items) {
   if (!items?.length) return "";
 
   const book = items[0];
   const rating = parseInt(book.user_rating?.[0] || "0", 10);
   const stars = rating ? "★".repeat(rating) : "";
-  const glow = rating >= 4 ? ` ${pulseSymbol()}` : "";
+  const glow = glowForRating(rating);
 
   return `${pulseSymbol()} recently finished
 
@@ -117,7 +122,6 @@ function renderProgress(items) {
   return `${progressBar(progress)} **${progress}%**`;
 }
 
-/* 📚 GRID WITH SPARKLES ≥ 4 */
 function renderRead(items) {
   if (!items?.length) return "_No recently read books_";
 
@@ -125,7 +129,7 @@ function renderRead(items) {
 
   const cells = books.map((book) => {
     const rating = parseInt(book.user_rating?.[0] || "0", 10);
-    const glow = rating >= 4 ? ` ${pulseSymbol()}` : "";
+    const glow = glowForRating(rating);
 
     return `
 <td style="padding:12px; vertical-align:top;">
