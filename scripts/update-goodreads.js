@@ -70,9 +70,9 @@ function progressBar(percent) {
 function ratingLabel(rating) {
   switch (rating) {
     case 5:
-      return "literally obsessed !!! 😝";
+      return "literally obsesseddd !!! 😝";
     case 4:
-      return "really enjoyed 🤭";
+      return "this one cooked 🤭";
     case 3:
       return "mixed feelings / good ish 🫠";
     case 2:
