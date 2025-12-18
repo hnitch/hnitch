@@ -83,8 +83,8 @@ function renderSpotlight(items) {
   const stars = rating ? "★".repeat(rating) : "";
   const glow = glowForRating(rating);
 
-  return `${pulseSymbol()} 📕 recently finished
-
+  return `${pulseSymbol()} recently finished
+<br/>
 
 <table>
   <tr>
