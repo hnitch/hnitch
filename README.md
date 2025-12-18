@@ -16,15 +16,6 @@
 ### 🕵️ stalk me ( legally pls )
 #### ⋆.˚📚⋆.˚ goodreads
 
-<!-- GOODREADS-SPOTLIGHT:START -->
-
-✨ recently finished
-
-📕 **[Lessons in Chemistry](https://www.goodreads.com/review/show/7870668798?utm_medium=api&utm_source=rss)**  
-by Bonnie Garmus  
-★★★★ — really enjoyed 🤭
-<!-- GOODREADS-SPOTLIGHT:END -->
-
 
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
@@ -47,6 +38,14 @@ by Freida McFadden
 - [This Is How You Lose the Time War](https://www.goodreads.com/review/show/7341373288?utm_medium=api&utm_source=rss) by Amal El-Mohtar ( ⭐ 2 )
 - [Sunrise on the Reaping (The Hunger Games)](https://www.goodreads.com/review/show/6564675173?utm_medium=api&utm_source=rss) by Suzanne Collins ( ⭐ 5 )
 <!-- GOODREADS-LIST:END -->
+<!-- GOODREADS-SPOTLIGHT:START -->
+
+✨ recently finished
+
+📕 **[Lessons in Chemistry](https://www.goodreads.com/review/show/7870668798?utm_medium=api&utm_source=rss)**  
+by Bonnie Garmus  
+★★★★ — really enjoyed 🤭
+<!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
 _Last updated: 18 Dec 2025, 07:07 UTC_
