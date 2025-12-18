@@ -69,18 +69,26 @@ function ratingLabel(rating) {
   }
 }
 
+/* ⭐ FEATURED CARD */
 function renderSpotlight(items) {
   if (!items?.length) return "";
 
   const book = items[0];
   const rating = parseInt(book.user_rating?.[0] || "0", 10);
   const stars = rating ? "★".repeat(rating) : "";
+  const glow = rating >= 4 ? ` ${pulseSymbol()}` : "";
 
   return `${pulseSymbol()} recently finished
 
-📕 **[${book.title}](${book.link})**  
-by ${book.author_name}  
-${stars} — ${ratingLabel(rating)}`;
+<table>
+  <tr>
+    <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
+      <strong>📕 <a href="${book.link}">${book.title}</a></strong><br/>
+      <sub>${book.author_name}</sub><br/><br/>
+      ${stars}${glow} — ${ratingLabel(rating)}
+    </td>
+  </tr>
+</table>`;
 }
 
 function renderCurrentlyReading(items) {
@@ -109,6 +117,7 @@ function renderProgress(items) {
   return `${progressBar(progress)} **${progress}%**`;
 }
 
+/* 📚 GRID WITH SPARKLES ≥ 4 */
 function renderRead(items) {
   if (!items?.length) return "_No recently read books_";
 
@@ -116,7 +125,7 @@ function renderRead(items) {
 
   const cells = books.map((book) => {
     const rating = parseInt(book.user_rating?.[0] || "0", 10);
-    const glow = rating === 5 ? ` ${pulseSymbol()}` : "";
+    const glow = rating >= 4 ? ` ${pulseSymbol()}` : "";
 
     return `
 <td style="padding:12px; vertical-align:top;">
