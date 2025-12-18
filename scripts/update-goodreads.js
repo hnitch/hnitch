@@ -11,7 +11,7 @@ const feeds = {
 };
 
 /**
- * Fetch URL as text with headers that Goodreads accepts
+ * Fetch URL as text with headers Goodreads accepts
  */
 function fetch(url) {
   return new Promise((resolve, reject) => {
@@ -36,8 +36,7 @@ function fetch(url) {
 }
 
 /**
- * Safely parse Goodreads RSS
- * Returns null if the response is not valid RSS
+ * Safely parse RSS
  */
 async function safeParse(xml, label) {
   if (!xml || !xml.trim().startsWith("<")) {
@@ -52,14 +51,14 @@ async function safeParse(xml, label) {
 
   try {
     return await parseStringPromise(xml);
-  } catch (err) {
+  } catch {
     console.warn(`⚠️ ${label}: XML parse failed, skipping`);
     return null;
   }
 }
 
 /**
- * Render currently reading section
+ * Render currently reading
  */
 function renderCurrentlyReading(items) {
   if (!items || !items.length) {
@@ -71,7 +70,7 @@ function renderCurrentlyReading(items) {
 }
 
 /**
- * Render read books section
+ * Render read books (with spaced stars)
  */
 function renderRead(items) {
   if (!items || !items.length) {
@@ -82,7 +81,7 @@ function renderRead(items) {
     .slice(0, MAX_READ)
     .map((book) => {
       const rating = book.user_rating?.[0]
-        ? `(⭐️${book.user_rating[0]})`
+        ? `( ⭐ ${book.user_rating[0]} )`
         : "";
       return `- [${book.title}](${book.link}) by ${book.author_name} ${rating}`;
     })
@@ -90,7 +89,7 @@ function renderRead(items) {
 }
 
 /**
- * Replace README section between markers
+ * Replace section between markers
  */
 function replaceSection(content, tag, replacement) {
   const regex = new RegExp(
@@ -139,10 +138,8 @@ function renderLastUpdated() {
   const readItems =
     readParsed?.rss?.channel?.[0]?.item ?? [];
 
-  console.log(
-    `📖 Currently reading items: ${currentlyItems.length}`
-  );
-  console.log(`📚 Read items: ${readItems.length}`);
+  console.log(`📖 Currently reading: ${currentlyItems.length}`);
+  console.log(`📚 Recently read: ${readItems.length}`);
 
   let readme = fs.readFileSync("README.md", "utf8");
 
