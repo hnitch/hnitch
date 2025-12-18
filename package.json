@@ -1,2 +1,9 @@
-npm init -y
-npm install xml2js
+{
+  "name": "goodreads-rss-updater",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "xml2js": "^0.6.2"
+  }
+}
