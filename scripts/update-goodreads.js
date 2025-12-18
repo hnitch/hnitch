@@ -10,6 +10,9 @@ const feeds = {
   read: `https://www.goodreads.com/review/list_rss/${USER_ID}?shelf=read`,
 };
 
+/**
+ * Fetch URL as text
+ */
 function fetch(url) {
   return new Promise((resolve, reject) => {
     https
@@ -22,27 +25,69 @@ function fetch(url) {
   });
 }
 
+/**
+ * Safely parse Goodreads RSS
+ * Returns null if the response is not valid RSS
+ */
+async function safeParse(xml, label) {
+  if (!xml || !xml.trim().startsWith("<")) {
+    console.warn(`⚠️ ${label}: response is not XML, skipping`);
+    return null;
+  }
+
+  if (!xml.includes("<rss")) {
+    console.warn(`⚠️ ${label}: response is not RSS, skipping`);
+    return null;
+  }
+
+  try {
+    return await parseStringPromise(xml);
+  } catch (err) {
+    console.warn(`⚠️ ${label}: XML parse failed, skipping`);
+    return null;
+  }
+}
+
+/**
+ * Render currently reading section
+ */
 function renderCurrentlyReading(items) {
-  if (!items.length) return "_Not currently reading anything_";
+  if (!items || !items.length) {
+    return "_Not currently reading anything_";
+  }
 
   const book = items[0];
-  return `**📖 [${book.title} ](${book.link}) by ${book.author_name}**`;
+  return `**📖 [${book.title}](${book.link}) by ${book.author_name}**`;
 }
 
+/**
+ * Render read books section
+ */
 function renderRead(items) {
-  return items.slice(0, MAX_READ).map((book) => {
-    const rating = book.user_rating?.[0]
-      ? `(⭐️${book.user_rating[0]})`
-      : "";
-    return `- [${book.title}](${book.link}) by ${book.author_name} ${rating}`;
-  }).join("\n");
+  if (!items || !items.length) {
+    return "_No recently read books_";
+  }
+
+  return items
+    .slice(0, MAX_READ)
+    .map((book) => {
+      const rating = book.user_rating?.[0]
+        ? `(⭐️${book.user_rating[0]})`
+        : "";
+      return `- [${book.title}](${book.link}) by ${book.author_name} ${rating}`;
+    })
+    .join("\n");
 }
 
+/**
+ * Replace README section between markers
+ */
 function replaceSection(content, tag, replacement) {
   const regex = new RegExp(
     `<!-- ${tag}:START -->[\\s\\S]*?<!-- ${tag}:END -->`,
     "m"
   );
+
   return content.replace(
     regex,
     `<!-- ${tag}:START -->\n${replacement}\n<!-- ${tag}:END -->`
@@ -50,18 +95,21 @@ function replaceSection(content, tag, replacement) {
 }
 
 (async function main() {
+  console.log("📚 Fetching Goodreads RSS feeds…");
+
   const [currentlyXML, readXML] = await Promise.all([
     fetch(feeds.currentlyReading),
     fetch(feeds.read),
   ]);
 
-  const currently = await parseStringPromise(currentlyXML);
-  const read = await parseStringPromise(readXML);
+  const currentlyParsed = await safeParse(currentlyXML, "currently-reading");
+  const readParsed = await safeParse(readXML, "read");
 
   const currentlyItems =
-    currently?.rss?.channel?.[0]?.item ?? [];
+    currentlyParsed?.rss?.channel?.[0]?.item ?? [];
+
   const readItems =
-    read?.rss?.channel?.[0]?.item ?? [];
+    readParsed?.rss?.channel?.[0]?.item ?? [];
 
   let readme = fs.readFileSync("README.md", "utf8");
 
@@ -78,4 +126,6 @@ function replaceSection(content, tag, replacement) {
   );
 
   fs.writeFileSync("README.md", readme);
+
+  console.log("✅ README updated successfully");
 })();
