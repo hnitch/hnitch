@@ -24,16 +24,21 @@ by Bonnie Garmus
 ★★★★ — really enjoyed 🤭
 <!-- GOODREADS-SPOTLIGHT:END -->
 
+───  
+📖 **currently reading**
+
 <!-- CURRENTLY-READING-LIST:START -->
-**📖 [The Housemaid (The Housemaid, #1)](https://www.goodreads.com/review/show/7253467779?utm_medium=api&utm_source=rss) by Freida McFadden**
+**📘 [The Housemaid (The Housemaid, #1)](https://www.goodreads.com/review/show/7253467779?utm_medium=api&utm_source=rss) by Freida McFadden**
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
 ▱▱▱▱▱▱▱▱▱▱ _in progress…_
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
+───  
+📚 **recent reads**
+
 <!-- GOODREADS-LIST:START -->
-⋆｡˚ 📚 ⋆｡˚
 - [Lessons in Chemistry](https://www.goodreads.com/review/show/7870668798?utm_medium=api&utm_source=rss) by Bonnie Garmus ( ⭐ 4 )
 - [Bad Blood (The Naturals, #4)](https://www.goodreads.com/review/show/7268775924?utm_medium=api&utm_source=rss) by Jennifer Lynn Barnes ( ⭐ 5 )
 - [Hazelthorn](https://www.goodreads.com/review/show/7274513286?utm_medium=api&utm_source=rss) by C.G. Drews ( ⭐ 5 )
