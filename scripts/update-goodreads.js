@@ -10,6 +10,8 @@ const feeds = {
   read: `https://www.goodreads.com/review/list_rss/${USER_ID}?shelf=read`,
 };
 
+/* ---------------- fetch ---------------- */
+
 function fetch(url) {
   return new Promise((resolve, reject) => {
     const req = https.get(
@@ -31,6 +33,8 @@ function fetch(url) {
   });
 }
 
+/* ---------------- parsing ---------------- */
+
 async function safeParse(xml, label) {
   if (!xml || !xml.includes("<rss")) {
     console.warn(`⚠️ ${label}: invalid RSS`);
@@ -44,7 +48,7 @@ async function safeParse(xml, label) {
   }
 }
 
-/* ─────────── helpers ─────────── */
+/* ---------------- helpers ---------------- */
 
 function progressBar(percent) {
   const total = 10;
@@ -56,7 +60,50 @@ function animatedDivider() {
   return "⋆｡˚ 📚 ⋆｡˚";
 }
 
-/* ─────────── renderers ─────────── */
+/* ---------------- mood logic ---------------- */
+/**
+ * Mood is inferred from rating + keywords in title/description
+ * This keeps it automated and still emotionally accurate
+ */
+function inferMood(book) {
+  const rating = parseInt(book.user_rating?.[0] || "0", 10);
+  const text = `${book.title} ${book.description || ""}`.toLowerCase();
+
+  if (text.includes("horror") || text.includes("dark")) {
+    return "_dark • unsettling • obsessive_";
+  }
+
+  if (rating >= 5) {
+    return "_obsessive • devastating • unforgettable_";
+  }
+
+  if (rating >= 4) {
+    return "_emotional • immersive • haunting_";
+  }
+
+  if (rating === 3) {
+    return "_interesting • uneven • thoughtful_";
+  }
+
+  return "_not for me • reflective • complicated_";
+}
+
+/* ---------------- renderers ---------------- */
+
+function renderSpotlight(items) {
+  if (!items?.length) return "";
+
+  const book = items[0];
+  const stars = "★".repeat(parseInt(book.user_rating?.[0] || "0", 10));
+  const mood = inferMood(book);
+
+  return `✨ **recently finished**
+
+📕 **[${book.title}](${book.link})**  
+by ${book.author_name}  
+${stars}  
+${mood}`;
+}
 
 function renderCurrentlyReading(items) {
   if (!items?.length) {
@@ -70,12 +117,10 @@ function renderCurrentlyReading(items) {
 function renderProgress(items) {
   if (!items?.length) return "";
 
-  const book = items[0];
-  const progress = parseInt(book.user_reading_progress?.[0] || "0", 10);
-
+  const progress = parseInt(items[0].user_reading_progress?.[0] || "0", 10);
   if (!progress) return "";
 
-  return `\n${progressBar(progress)} **${progress}%**`;
+  return `${progressBar(progress)} **${progress}%**`;
 }
 
 function renderRead(items) {
@@ -106,6 +151,8 @@ function renderLastUpdated() {
   return `_Last updated: ${now} UTC_`;
 }
 
+/* ---------------- replace ---------------- */
+
 function replaceSection(content, tag, replacement) {
   const regex = new RegExp(
     `<!-- ${tag}:START -->[\\s\\S]*?<!-- ${tag}:END -->`,
@@ -117,7 +164,7 @@ function replaceSection(content, tag, replacement) {
   );
 }
 
-/* ─────────── main ─────────── */
+/* ---------------- main ---------------- */
 
 (async function main() {
   console.log("📚 Updating Goodreads…");
@@ -134,6 +181,12 @@ function replaceSection(content, tag, replacement) {
   const readItems = read?.rss?.channel?.[0]?.item ?? [];
 
   let readme = fs.readFileSync("README.md", "utf8");
+
+  readme = replaceSection(
+    readme,
+    "GOODREADS-SPOTLIGHT",
+    renderSpotlight(readItems)
+  );
 
   readme = replaceSection(
     readme,
@@ -161,5 +214,5 @@ function replaceSection(content, tag, replacement) {
 
   fs.writeFileSync("README.md", readme);
 
-  console.log("✨ Goodreads updated");
+  console.log("✨ Goodreads updated with spotlight");
 })();
