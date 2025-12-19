@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-_Not currently reading anything_
+📘 **[The Housemaid's Secret (The Housemaid, #2)](https://www.goodreads.com/review/show/8158619001?utm_medium=api&utm_source=rss) by Freida McFadden**
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-
+▱▱▱▱▱▱▱▱▱▱ _in progress…_
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -76,7 +76,7 @@ _Not currently reading anything_
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-✦ recently finished
+✨ recently finished
 <br/>
 
 <table>
@@ -91,7 +91,7 @@ _Not currently reading anything_
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Dec 19 at 4:08 PM UTC_
+_⏳ last updated on Dec 19 at 5:06 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
