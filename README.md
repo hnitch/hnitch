@@ -91,7 +91,7 @@ _Not currently reading anything_
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Dec 19 at 12:01 AM UTC_
+_⏳ last updated on Dec 19 at 6:10 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
