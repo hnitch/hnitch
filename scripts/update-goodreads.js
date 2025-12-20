@@ -48,7 +48,10 @@ function pulseSymbol() {
 
 function progressBar(percent) {
   const total = 10;
-  const filled = Math.max(0, Math.min(total, Math.round((percent / 100) * total)));
+  const filled = Math.max(
+    0,
+    Math.min(total, Math.round((percent / 100) * total))
+  );
   const pulse = ["▰", "▮"][new Date().getMinutes() % 2];
   return pulse.repeat(filled) + "▱".repeat(total - filled);
 }
@@ -111,6 +114,30 @@ function extractProgressFromItem(item) {
   return null;
 }
 
+async function scrapeProgressFromReviewPage(reviewUrl) {
+  try {
+    const html = await fetch(reviewUrl);
+    if (!html) return null;
+
+    const percentMatch = html.match(/(\d{1,3})\s*%/);
+    if (percentMatch) {
+      const value = parseInt(percentMatch[1], 10);
+      if (value >= 0 && value <= 100) return value;
+    }
+
+    const fractionMatch = html.match(/(\d+)\s*\/\s*(\d+)/);
+    if (fractionMatch) {
+      const current = parseInt(fractionMatch[1], 10);
+      const total = parseInt(fractionMatch[2], 10);
+      if (total > 0) return Math.round((current / total) * 100);
+    }
+
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 function renderSpotlight(items) {
   if (!items?.length) return "";
 
@@ -147,15 +174,29 @@ _Not currently reading anything_`;
 📘 **[${book.title}](${book.link}) by ${book.author_name}**`;
 }
 
-function renderProgress(items, manualOverride) {
-  const progress =
-    manualOverride ?? extractProgressFromItem(items?.[0]);
+async function renderProgress(items, manualOverride) {
+  if (!items?.length) return "";
 
-  if (!progress) {
-    return "▱▱▱▱▱▱▱▱▱▱ _in progress…_";
+  if (manualOverride != null) {
+    return `${progressBar(manualOverride)} **${manualOverride}%**`;
   }
 
-  return `${progressBar(progress)} **${progress}%**`;
+  const item = items[0];
+  const reviewUrl = item?.link?.[0];
+
+  if (reviewUrl) {
+    const scraped = await scrapeProgressFromReviewPage(reviewUrl);
+    if (scraped != null) {
+      return `${progressBar(scraped)} **${scraped}%**`;
+    }
+  }
+
+  const rssProgress = extractProgressFromItem(item);
+  if (rssProgress != null) {
+    return `${progressBar(rssProgress)} **${rssProgress}%**`;
+  }
+
+  return "▱▱▱▱▱▱▱▱▱▱ _in progress…_";
 }
 
 function renderRead(items) {
@@ -226,6 +267,10 @@ function replaceSection(content, tag, replacement) {
   let readme = fs.readFileSync("README.md", "utf8");
 
   const manualProgress = getManualProgressOverride(readme);
+  const progressMarkup = await renderProgress(
+    currentlyItems,
+    manualProgress
+  );
 
   readme = replaceSection(
     readme,
@@ -242,7 +287,7 @@ function replaceSection(content, tag, replacement) {
   readme = replaceSection(
     readme,
     "GOODREADS-CURRENT-PROGRESS",
-    renderProgress(currentlyItems, manualProgress)
+    progressMarkup
   );
 
   readme = replaceSection(
