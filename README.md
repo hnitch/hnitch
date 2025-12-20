@@ -26,7 +26,7 @@
 
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+▮▮▮▮▱▱▱▱▱▱ **38%**
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -78,7 +78,9 @@
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-✦ recently finished
+💫 📕 recently finished
+
+<br/>
 
 <table>
   <tr>
@@ -92,7 +94,7 @@
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Dec 19 at 11:41 PM UTC_
+_⏳ last updated on Dec 20 at 12:19 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
