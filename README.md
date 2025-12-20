@@ -23,7 +23,7 @@
 📘 **[The Housemaid's Secret (The Housemaid, #2)](https://www.goodreads.com/review/show/8158619001?utm_medium=api&utm_source=rss) by Freida McFadden**
 <!-- CURRENTLY-READING-LIST:END -->
 
-<!-- GOODREADS-PROGRESS-OVERRIDE:58 -->
+
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
 ▱▱▱▱▱▱▱▱▱▱ _in progress…_
