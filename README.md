@@ -26,7 +26,7 @@
 
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▮▮▮▮▱▱▱▱▱▱ **38%**
+▱▱▱▱▱▱▱▱▱▱ _in progress…_
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -52,14 +52,14 @@
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/7268775924?utm_medium=api&utm_source=rss">Bad Blood (The Naturals, #4)</a></strong><br/>
     <sub>Jennifer Lynn Barnes</sub><br/>
-    ⭐ 5 ✨✨
+    ⭐ 5 ✨
   </div>
 </td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/7274513286?utm_medium=api&utm_source=rss">Hazelthorn</a></strong><br/>
     <sub>C.G. Drews</sub><br/>
-    ⭐ 5 ✨✨
+    ⭐ 5 ✨
   </div>
 </td>
 <td style="padding:12px; vertical-align:top;">
@@ -73,7 +73,7 @@
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/6564675173?utm_medium=api&utm_source=rss">Sunrise on the Reaping (The Hunger Games)</a></strong><br/>
     <sub>Suzanne Collins</sub><br/>
-    ⭐ 5 ✨✨
+    ⭐ 5 ✨
   </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
@@ -94,7 +94,7 @@
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Dec 21 at 1:13 AM UTC_
+_⏳ last updated on Dec 21 at 1:23 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
