@@ -4,6 +4,7 @@ import { parseStringPromise } from "xml2js";
 
 const USER_ID = "178629903";
 const MAX_READ = 6;
+const CACHE_FILE = ".goodreads-progress-cache.json";
 
 const feeds = {
   currentlyReading: `https://www.goodreads.com/review/list_rss/${USER_ID}?shelf=currently-reading`,
@@ -11,7 +12,7 @@ const feeds = {
 };
 
 function fetch(url) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     https
       .get(
         url,
@@ -39,6 +40,21 @@ async function safeParse(xml) {
   } catch {
     return null;
   }
+}
+
+function loadCache() {
+  try {
+    return JSON.parse(fs.readFileSync(CACHE_FILE, "utf8"));
+  } catch {
+    return null;
+  }
+}
+
+function saveCache(data) {
+  fs.writeFileSync(
+    CACHE_FILE,
+    JSON.stringify({ ...data, updatedAt: Date.now() }, null, 2)
+  );
 }
 
 function progressBar(percent) {
@@ -72,7 +88,6 @@ function extractRssProgress(item) {
     const m = String(f).match(/(\d{1,3})\s*%/);
     if (m) return parseInt(m[1], 10);
   }
-
   return null;
 }
 
@@ -91,41 +106,49 @@ function extractPagesFromHtml(html) {
       if (total > 0) return { current, total };
     }
   }
-
   return null;
 }
 
 async function scrapeProgressFromReviewPage(reviewUrl) {
   const html = await fetch(reviewUrl);
   if (!html) return null;
-
-  const pages = extractPagesFromHtml(html);
-  if (!pages) return null;
-
-  const percent = Math.floor((pages.current / pages.total) * 100);
-  return percent >= 0 && percent <= 100 ? percent : null;
+  return extractPagesFromHtml(html);
 }
 
 async function renderProgress(items, manualOverride) {
   if (!items?.length) return "";
 
   if (manualOverride != null) {
-    return `${progressBar(manualOverride)} **${manualOverride}%**`;
+    saveCache({ percent: manualOverride, source: "manual" });
+    return `${progressBar(manualOverride)} **${manualOverride}% · manual override**`;
+  }
+
+  const cached = loadCache();
+  if (cached?.percent != null && cached?.source) {
+    return `${progressBar(cached.percent)} **≈${cached.percent}% · inferred (${cached.source})**`;
   }
 
   const item = items[0];
   const reviewUrl = item?.link?.[0];
 
   if (reviewUrl) {
-    const scraped = await scrapeProgressFromReviewPage(reviewUrl);
-    if (scraped != null) {
-      return `${progressBar(scraped)} **≈${scraped}%**`;
+    const pages = await scrapeProgressFromReviewPage(reviewUrl);
+    if (pages) {
+      const percent = Math.floor((pages.current / pages.total) * 100);
+      saveCache({
+        percent,
+        current: pages.current,
+        total: pages.total,
+        source: "html",
+      });
+      return `${progressBar(percent)} **≈${percent}% · inferred from html**`;
     }
   }
 
   const rss = extractRssProgress(item);
   if (rss != null) {
-    return `${progressBar(rss)} **≈${rss}%**`;
+    saveCache({ percent: rss, source: "rss" });
+    return `${progressBar(rss)} **≈${rss}% · inferred from rss**`;
   }
 
   return "▱▱▱▱▱▱▱▱▱▱ _in progress…_";
