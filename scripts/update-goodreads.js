@@ -40,12 +40,14 @@ function progressBar(percent) {
   return "▰".repeat(filled) + "▱".repeat(10 - filled);
 }
 
+/* ---------- CACHE ---------- */
+
 function loadCache() {
   try {
-    const c = JSON.parse(fs.readFileSync(CACHE_FILE, "utf8"));
-    if (typeof c.percent === "number") return c;
-  } catch {}
-  return null;
+    return JSON.parse(fs.readFileSync(CACHE_FILE, "utf8"));
+  } catch {
+    return null;
+  }
 }
 
 function saveCache(data) {
@@ -53,13 +55,6 @@ function saveCache(data) {
     CACHE_FILE,
     JSON.stringify({ ...data, updatedAt: Date.now() }, null, 2)
   );
-}
-
-function getManualProgressOverride(readme) {
-  const m = readme.match(/GOODREADS-PROGRESS-OVERRIDE:(\d{1,3})/);
-  if (!m) return null;
-  const v = parseInt(m[1], 10);
-  return v >= 0 && v <= 100 ? v : null;
 }
 
 /* ---------- VELOCITY ---------- */
@@ -116,55 +111,41 @@ function estimateETA(velocity, progressPercent) {
   return { label, confidenceEmoji, confidenceLabel };
 }
 
-/* ---------- CARD ---------- */
+/* ---------- RENDER TABLE ---------- */
 
-function renderReadingCard({ progress, velocity, eta }) {
-  if (!progress && !velocity && !eta) return "";
+function renderReadingTable({ progress, velocity, eta }) {
+  const rows = [];
 
-  const progressLine = progress
-    ? `<div style="margin-bottom:12px;">
-        ${progressBar(progress.percent)}
-        <span style="opacity:0.9; margin-left:6px;">
-          ${progress.percent}%
-        </span>
-      </div>`
-    : "";
+  if (velocity) {
+    rows.push(
+      `| **Reading velocity** | ${velocityLabel(velocity)} (${velocity.toFixed(
+        2
+      )} books/day) |`
+    );
+  }
 
-  const velocityLine = velocity
-    ? `<div style="font-size:0.95em; opacity:0.95;">
-        📊 <strong>reading velocity:</strong>
-        ${velocityLabel(velocity)} (${velocity.toFixed(2)} books/day)
-      </div>`
-    : "";
+  if (eta) {
+    rows.push(
+      `| **ETA** | ${eta.label} · ${eta.confidenceEmoji} ${eta.confidenceLabel} confidence |`
+    );
+  }
 
-  const etaLine = eta
-    ? `<div style="margin-top:6px; font-size:0.95em; opacity:0.95;">
-        ⏳ <strong>ETA:</strong>
-        ${eta.label} · ${eta.confidenceEmoji} ${eta.confidenceLabel} confidence
-      </div>`
-    : "";
+  if (progress) {
+    rows.push(
+      `| **Progress** | ${progress.percent}% ${progressBar(progress.percent)} |`
+    );
+  }
+
+  if (!rows.length) return "";
 
   return `
-<div style="
-  margin-top:18px;
-  margin-bottom:26px;
-  padding:18px 20px;
-  border:1px solid rgba(255,255,255,0.14);
-  border-radius:20px;
-  background:linear-gradient(
-    180deg,
-    rgba(255,255,255,0.06),
-    rgba(255,255,255,0.015)
-  );
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,0.03),
-    0 8px 30px rgba(0,0,0,0.35);
-">
-  ${progressLine}
-  ${velocityLine}
-  ${etaLine}
-</div>`;
+| 📊 **Reading insights** | |
+|---|---|
+${rows.join("\n")}
+`;
 }
+
+/* ---------- UTIL ---------- */
 
 function replaceSection(content, tag, replacement) {
   return content.replace(
@@ -173,29 +154,21 @@ function replaceSection(content, tag, replacement) {
   );
 }
 
+function renderLastUpdated() {
+  return `_⏳ last updated on ${new Date().toUTCString()}_`;
+}
+
 /* ---------- MAIN ---------- */
 
 (async function main() {
-  const [currentlyXML, readXML] = await Promise.all([
-    fetch(feeds.currentlyReading),
-    fetch(feeds.read),
-  ]);
-
+  const readXML = await fetch(feeds.read);
   const read = await safeParse(readXML);
   const readItems = read?.rss?.channel?.[0]?.item ?? [];
 
   let readme = fs.readFileSync("README.md", "utf8");
 
-  const manual = getManualProgressOverride(readme);
-  let cache = loadCache();
-
-  let progress = null;
-  if (manual != null) {
-    progress = { percent: manual };
-    saveCache({ percent: manual, source: "manual" });
-  } else if (cache?.percent != null) {
-    progress = cache;
-  }
+  const cache = loadCache();
+  const progress = cache?.percent != null ? cache : null;
 
   const velocity = computeVelocity(readItems);
   const eta = estimateETA(velocity, progress?.percent);
@@ -203,7 +176,14 @@ function replaceSection(content, tag, replacement) {
   readme = replaceSection(
     readme,
     "GOODREADS-READING-CARD",
-    renderReadingCard({ progress, velocity, eta })
+    renderReadingTable({ progress, velocity, eta })
+  );
+
+ 
+  readme = replaceSection(
+    readme,
+    "GOODREADS-LAST-UPDATED",
+    renderLastUpdated()
   );
 
   fs.writeFileSync("README.md", readme);
