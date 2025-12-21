@@ -84,14 +84,14 @@ _Not currently reading anything_
 
 
 <!-- GOODREADS-SPOTLIGHT:START -->
-💫 📕 recently finished
+💫 recently finished
 
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/7253467779?utm_medium=api&utm_source=rss">The Housemaid (The Housemaid, #1)</a></strong><br/>
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8158619001?utm_medium=api&utm_source=rss">The Housemaid's Secret (The Housemaid, #2)</a></strong><br/>
       <sub>Freida McFadden</sub><br/><br/>
-      ★★★★ ✨ — this one cooked 🤭
+      ★★★ — mixed feelings / good ish 🫠
     </td>
   </tr>
 </table>
@@ -99,7 +99,7 @@ _Not currently reading anything_
 
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Dec 21 at 10:58 AM UTC_
+_⏳ last updated on Dec 21 at 12:55 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
