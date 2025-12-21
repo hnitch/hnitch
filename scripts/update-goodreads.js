@@ -62,7 +62,7 @@ function progressBar(percent) {
   return pulse.repeat(filled) + "▱".repeat(total - filled);
 }
 
-/* ---------- PROGRESS EXTRACTION (2.0-STABLE) ---------- */
+/* ---------- PROGRESS EXTRACTION (2.0 STABLE) ---------- */
 
 function extractNumberFromString(s) {
   if (!s) return null;
@@ -98,30 +98,30 @@ function extractProgressFromItem(item) {
   return extractNumberFromString(text);
 }
 
-/* ---------- VELOCITY + ETA ---------- */
+/* ---------- VELOCITY (FIXED) ---------- */
 
 function computeVelocity(readItems) {
-  if (readItems.length < 2) return null;
+  const now = Date.now();
+  const THIRTY_DAYS = 1000 * 60 * 60 * 24 * 30;
 
-  const dates = readItems
-    .slice(0, 3)
-    .map((b) => new Date(b.pubDate?.[0]).getTime())
-    .filter(Boolean);
+  const recent = readItems.filter((b) => {
+    const t = new Date(b.pubDate?.[0]).getTime();
+    return now - t <= THIRTY_DAYS;
+  });
 
-  if (dates.length < 2) return null;
+  if (!recent.length) return null;
 
-  const days =
-    (Math.max(...dates) - Math.min(...dates)) / (1000 * 60 * 60 * 24);
-
-  return clamp((dates.length - 1) / days, 0.05, 1.2);
+  return clamp(recent.length / 30, 0.05, 1.2);
 }
 
 function velocityLabel(v) {
   if (v >= 0.7) return "locked in 🔥";
   if (v >= 0.35) return "steady 📖";
-  if (v >= 0.15) return "slow 🐢";
+  if (v >= 0.15) return "casual 🐢";
   return "slump 💤";
 }
+
+/* ---------- ETA ---------- */
 
 function estimateETA(velocity, progress) {
   if (!velocity) return null;
@@ -163,7 +163,7 @@ function renderProgress(items) {
   return `${progressBar(p)} **${p}%**`;
 }
 
-/* ---------- INSIGHTS TABLE ---------- */
+/* ---------- INSIGHTS TABLE (CLEAN) ---------- */
 
 function renderInsights({ progress, velocity, eta }) {
   if (!velocity && !eta && progress == null) return "";
@@ -180,7 +180,7 @@ function renderInsights({ progress, velocity, eta }) {
 
   if (eta) {
     rows.push(
-      `| ⏳ *eta* | ${eta.label} · ${eta.confidenceEmoji} ${eta.confidenceLabel} confidence |`
+      `| ⏳ *book completion eta* | ${eta.label} · ${eta.confidenceEmoji} ${eta.confidenceLabel} confidence |`
     );
   }
 
@@ -191,13 +191,12 @@ function renderInsights({ progress, velocity, eta }) {
   }
 
   return `
-| | |
 |---|---|
 ${rows.join("\n")}
 `;
 }
 
-/* ---------- RECENTLY FINISHED (FIXED) ---------- */
+/* ---------- RECENTLY FINISHED ---------- */
 
 function glowForRating(rating) {
   if (rating === 5) return " ✨✨";
