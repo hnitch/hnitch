@@ -26,31 +26,11 @@
 
 <!-- GOODREADS-READING-CARD:START -->
 
-<div style="
-  margin-top:18px;
-  margin-bottom:26px;
-  padding:18px 20px;
-  border:1px solid rgba(255,255,255,0.14);
-  border-radius:20px;
-  background:linear-gradient(
-    180deg,
-    rgba(255,255,255,0.06),
-    rgba(255,255,255,0.015)
-  );
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,0.03),
-    0 8px 30px rgba(0,0,0,0.35);
-">
-  
-  <div style="font-size:0.95em; opacity:0.95;">
-        📊 <strong>reading velocity:</strong>
-        steady 📖 (0.66 books/day)
-      </div>
-  <div style="margin-top:6px; font-size:0.95em; opacity:0.95;">
-        ⏳ <strong>ETA:</strong>
-        today / tomorrow · 🟡 medium confidence
-      </div>
-</div>
+| 📊 **Reading insights** | |
+|---|---|
+| **Reading velocity** | steady 📖 (0.66 books/day) |
+| **ETA** | today / tomorrow · 🟡 medium confidence |
+
 <!-- GOODREADS-READING-CARD:END -->
 
 
@@ -123,7 +103,7 @@
 
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Dec 21, 4:24 AM UTC_
+_⏳ last updated on Sun, 21 Dec 2025 05:05:29 GMT_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
