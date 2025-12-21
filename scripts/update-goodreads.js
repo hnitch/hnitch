@@ -4,8 +4,8 @@ import { parseStringPromise } from "xml2js";
 
 const USER_ID = "178629903";
 const MAX_READ = 6;
-const CACHE_FILE = ".goodreads-progress-cache.json";
-const CACHE_TTL = 1000 * 60 * 60 * 6; // 6 hours
+
+/* ---------- FEEDS ---------- */
 
 const feeds = {
   currentlyReading: `https://www.goodreads.com/review/list_rss/${USER_ID}?shelf=currently-reading`,
@@ -27,7 +27,7 @@ function fetch(url) {
       },
       (res) => {
         let data = "";
-        res.on("data", (chunk) => (data += chunk));
+        res.on("data", (c) => (data += c));
         res.on("end", () => resolve(data));
       }
     );
@@ -62,27 +62,7 @@ function progressBar(percent) {
   return pulse.repeat(filled) + "▱".repeat(total - filled);
 }
 
-/* ---------- CACHE (SAFE) ---------- */
-
-function loadCache() {
-  try {
-    const c = JSON.parse(fs.readFileSync(CACHE_FILE, "utf8"));
-    if (!c.updatedAt) return null;
-    if (Date.now() - c.updatedAt > CACHE_TTL) return null;
-    return c;
-  } catch {
-    return null;
-  }
-}
-
-function saveCache(data) {
-  fs.writeFileSync(
-    CACHE_FILE,
-    JSON.stringify({ ...data, updatedAt: Date.now() }, null, 2)
-  );
-}
-
-/* ---------- PROGRESS EXTRACTION (2.0 LOGIC) ---------- */
+/* ---------- PROGRESS EXTRACTION (2.0-STABLE) ---------- */
 
 function extractNumberFromString(s) {
   if (!s) return null;
@@ -148,9 +128,8 @@ function estimateETA(velocity, progress) {
 
   const avgPages = 350;
   const pagesPerDay = avgPages * velocity;
-  const remaining = progress != null
-    ? avgPages * (1 - progress / 100)
-    : avgPages * 0.5;
+  const remaining =
+    progress != null ? avgPages * (1 - progress / 100) : avgPages * 0.5;
 
   const days = clamp(remaining / pagesPerDay, 0.5, 14);
 
@@ -167,7 +146,7 @@ function estimateETA(velocity, progress) {
   };
 }
 
-/* ---------- RENDER ---------- */
+/* ---------- RENDERERS ---------- */
 
 function renderCurrentlyReading(items) {
   if (!items.length) {
@@ -184,24 +163,32 @@ function renderProgress(items) {
   return `${progressBar(p)} **${p}%**`;
 }
 
+/* ---------- INSIGHTS TABLE ---------- */
+
 function renderInsights({ progress, velocity, eta }) {
   if (!velocity && !eta && progress == null) return "";
 
   const rows = [];
-  if (velocity)
+
+  if (velocity) {
     rows.push(
       `| 📊 *reading velocity* | ${velocityLabel(velocity)} · ${velocity.toFixed(
         2
       )} books/day |`
     );
-  if (eta)
+  }
+
+  if (eta) {
     rows.push(
       `| ⏳ *eta* | ${eta.label} · ${eta.confidenceEmoji} ${eta.confidenceLabel} confidence |`
     );
-  if (progress != null)
+  }
+
+  if (progress != null) {
     rows.push(
       `| 📖 *progress* | ${progress}% · ${progressBar(progress)} |`
     );
+  }
 
   return `
 | | |
@@ -209,6 +196,54 @@ function renderInsights({ progress, velocity, eta }) {
 ${rows.join("\n")}
 `;
 }
+
+/* ---------- RECENTLY FINISHED (FIXED) ---------- */
+
+function glowForRating(rating) {
+  if (rating === 5) return " ✨✨";
+  if (rating === 4) return " ✨";
+  return "";
+}
+
+function ratingLabel(rating) {
+  switch (rating) {
+    case 5:
+      return "literally obsesseddd !!! 😝";
+    case 4:
+      return "this one cooked 🤭";
+    case 3:
+      return "mixed feelings / good ish 🫠";
+    case 2:
+      return "not for me 😟";
+    case 1:
+      return "straight to jailll 😦";
+    default:
+      return "no rating yet ❌";
+  }
+}
+
+function renderSpotlight(items) {
+  if (!items.length) return "";
+
+  const book = items[0];
+  const rating = parseInt(book.user_rating?.[0] || "0", 10);
+  const stars = rating ? "★".repeat(rating) : "";
+  const glow = glowForRating(rating);
+
+  return `${pulseSymbol()} recently finished
+
+<table>
+  <tr>
+    <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
+      <strong>📕 <a href="${book.link}">${book.title}</a></strong><br/>
+      <sub>${book.author_name}</sub><br/><br/>
+      ${stars}${glow} — ${ratingLabel(rating)}
+    </td>
+  </tr>
+</table>`;
+}
+
+/* ---------- RECENT READS ---------- */
 
 function renderRead(items) {
   const books = items.slice(0, MAX_READ);
@@ -235,6 +270,8 @@ function renderRead(items) {
   return `<table><tbody>${rows.join("")}</tbody></table>`;
 }
 
+/* ---------- LAST UPDATED ---------- */
+
 function renderLastUpdated() {
   const d = new Date();
   return `_⏳ last updated on ${d.toLocaleDateString("en-US", {
@@ -248,9 +285,15 @@ function renderLastUpdated() {
   })}_`;
 }
 
+/* ---------- REPLACE ---------- */
+
 function replaceSection(content, tag, replacement) {
+  const regex = new RegExp(
+    `<!-- ${tag}:START -->[\\s\\S]*?<!-- ${tag}:END -->`,
+    "m"
+  );
   return content.replace(
-    new RegExp(`<!-- ${tag}:START -->[\\s\\S]*?<!-- ${tag}:END -->`, "m"),
+    regex,
     `<!-- ${tag}:START -->\n${replacement}\n<!-- ${tag}:END -->`
   );
 }
@@ -299,6 +342,12 @@ function replaceSection(content, tag, replacement) {
 
   readme = replaceSection(
     readme,
+    "GOODREADS-SPOTLIGHT",
+    renderSpotlight(readItems)
+  );
+
+  readme = replaceSection(
+    readme,
     "GOODREADS-LIST",
     `✦ 📚 recent reads\n\n${renderRead(readItems)}`
   );
@@ -310,5 +359,5 @@ function replaceSection(content, tag, replacement) {
   );
 
   fs.writeFileSync("README.md", readme);
-  console.log("✨ README updated (v2.1)");
+  console.log("✨ README updated (v2.1 – final)");
 })();
