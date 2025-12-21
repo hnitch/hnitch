@@ -37,22 +37,19 @@
   );
 ">
 
-  <!-- progress (only renders when % exists) -->
-  <!-- GOODREADS-CURRENT-PROGRESS:START -->
-
-<!-- GOODREADS-CURRENT-PROGRESS:END -->
-
-  <div style="margin-top: 10px; font-size: 0.95em; opacity: 0.9;">
-
-    <!-- GOODREADS-VELOCITY:START -->
-**reading velocity:** steady 📖 (0.66 books/day)
-<!-- GOODREADS-VELOCITY:END -->
-
-    <!-- GOODREADS-ETA:START -->
-**ETA:** today / tomorrow · medium confidence
-<!-- GOODREADS-ETA:END -->
-
+  <!-- progress line (optional, script controls visibility) -->
+  <div style="margin-bottom: 10px;">
+    ▰▰▰▱▱▱▱▱▱▱ <span style="opacity:0.9;">38%</span>
   </div>
+
+  <div style="font-size: 0.95em; opacity: 0.9;">
+    📊 <strong>reading velocity:</strong> steady 📖 (0.66 books/day)
+  </div>
+
+  <div style="margin-top: 4px; font-size: 0.95em; opacity: 0.9;">
+    ⏳ <strong>ETA:</strong> today / tomorrow · medium confidence
+  </div>
+
 </div>
 <!-- GOODREADS-READING-CARD:END -->
 
