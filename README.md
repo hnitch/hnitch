@@ -94,7 +94,7 @@
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Dec 21, 1:42 AM UTC_
+_⏳ last updated on Dec 21, 2:25 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
