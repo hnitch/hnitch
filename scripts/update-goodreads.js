@@ -42,6 +42,8 @@ async function safeParse(xml) {
   }
 }
 
+/* ---------- UTIL ---------- */
+
 function clamp(n, min, max) {
   return Math.max(min, Math.min(max, n));
 }
@@ -50,6 +52,14 @@ function progressBar(percent) {
   const filled = Math.round((percent / 100) * 10);
   return "▰".repeat(filled) + "▱".repeat(10 - filled);
 }
+
+function confidenceEmoji(confidence) {
+  if (confidence === "high") return "🟢";
+  if (confidence === "medium") return "🟡";
+  return "⚪️";
+}
+
+/* ---------- CACHE ---------- */
 
 function loadCache() {
   try {
@@ -133,12 +143,15 @@ function estimateETA(velocity, progressPercent) {
 function resolveProgress(readme, cache) {
   const manual = getManualProgressOverride(readme);
   if (manual != null) {
-    saveCache({ percent: manual, source: "manual" });
+    saveCache({ percent: manual, source: "manual override" });
     return { percent: manual, source: "manual override" };
   }
 
   if (cache?.percent != null) {
-    return { percent: cache.percent, source: `inferred (${cache.source})` };
+    return {
+      percent: cache.percent,
+      source: `inferred (${cache.source})`,
+    };
   }
 
   return null;
@@ -157,35 +170,62 @@ function renderReadingCard({ progress, velocity, eta }) {
   if (!velocity && !eta && !progress) return "";
 
   const progressLine = progress
-    ? `<div style="margin-bottom:8px;">
-        ${progressBar(progress.percent)}
-        <span style="opacity:0.9;">${progress.percent}% · ${progress.source}</span>
-      </div>`
+    ? `
+    <div style="margin-bottom:14px;">
+      ${progressBar(progress.percent)}
+      <span style="opacity:0.9; margin-left:6px;">
+        ${progress.percent}% · ${progress.source}
+      </span>
+    </div>
+  `
     : "";
 
   const velocityLine = velocity
-    ? `<div style="font-size:0.95em; opacity:0.9;">
-        📊 <strong>reading velocity:</strong> ${velocityLabel(velocity)} (${velocity.toFixed(
-        2
-      )} books/day)
-      </div>`
+    ? `
+    <div style="font-size:0.95em; opacity:0.9;">
+      📊 <strong>reading velocity:</strong>
+      ${velocityLabel(velocity)} (${velocity.toFixed(2)} books/day)
+    </div>
+  `
     : "";
 
   const etaLine = eta
-    ? `<div style="margin-top:4px; font-size:0.95em; opacity:0.9;">
-        ⏳ <strong>ETA:</strong> ${eta.label} · ${eta.confidence} confidence
-      </div>`
+    ? `
+    <div style="margin-top:6px; font-size:0.95em; opacity:0.9;">
+      ⏳ <strong>ETA:</strong>
+      ${eta.label} · ${eta.confidence} confidence ${confidenceEmoji(
+        eta.confidence
+      )}
+    </div>
+  `
     : "";
 
   return `
 <div style="
-  margin-top:12px;
-  padding:14px 16px;
+  margin-top:18px;
+  margin-bottom:28px;
+  padding:18px 20px;
   border:1px solid rgba(255,255,255,0.10);
-  border-radius:16px;
-  background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  border-radius:18px;
+  background:linear-gradient(
+    180deg,
+    rgba(255,255,255,0.05),
+    rgba(255,255,255,0.015)
+  );
 ">
   ${progressLine}
+
+  <div style="
+    height:1px;
+    margin:14px 0;
+    background:linear-gradient(
+      to right,
+      transparent,
+      rgba(255,255,255,0.12),
+      transparent
+    );
+  "></div>
+
   ${velocityLine}
   ${etaLine}
 </div>`;
