@@ -20,7 +20,7 @@ function fetch(url) {
           headers: {
             "User-Agent":
               "Mozilla/5.0 (compatible; GitHubActions/1.0; +https://github.com/)",
-            Accept: "text/html,application/rss+xml,application/xml",
+            Accept: "application/rss+xml,application/xml",
           },
         },
         (res) => {
@@ -47,8 +47,7 @@ function clamp(n, min, max) {
 }
 
 function progressBar(percent) {
-  const p = clamp(percent, 0, 100);
-  const filled = Math.round((p / 100) * 10);
+  const filled = Math.round((percent / 100) * 10);
   return "▰".repeat(filled) + "▱".repeat(10 - filled);
 }
 
@@ -56,10 +55,8 @@ function loadCache() {
   try {
     const c = JSON.parse(fs.readFileSync(CACHE_FILE, "utf8"));
     if (typeof c.percent === "number") return c;
-    return {};
-  } catch {
-    return {};
-  }
+  } catch {}
+  return null;
 }
 
 function saveCache(data) {
@@ -93,8 +90,7 @@ function computeVelocity(readItems) {
 
   if (days <= 0) return null;
 
-  const raw = (dates.length - 1) / days;
-  return clamp(raw, 0.05, 1.2);
+  return clamp((dates.length - 1) / days, 0.05, 1.2);
 }
 
 function velocityLabel(v) {
@@ -134,18 +130,15 @@ function estimateETA(velocity, progressPercent) {
 
 /* ---------- PROGRESS ---------- */
 
-async function resolveProgress(readme, cache) {
+function resolveProgress(readme, cache) {
   const manual = getManualProgressOverride(readme);
   if (manual != null) {
     saveCache({ percent: manual, source: "manual" });
-    return { percent: manual, label: "manual override" };
+    return { percent: manual, source: "manual override" };
   }
 
-  if (cache.percent != null) {
-    return {
-      percent: cache.percent,
-      label: `inferred (${cache.source})`,
-    };
+  if (cache?.percent != null) {
+    return { percent: cache.percent, source: `inferred (${cache.source})` };
   }
 
   return null;
@@ -160,14 +153,42 @@ function renderCurrentlyReading(item) {
   return `↳ 📖 currently reading\n\n📘 **[${item.title}](${item.link}) by ${item.author_name}**`;
 }
 
-function renderVelocity(v) {
-  if (!v) return "";
-  return `**reading velocity:** ${velocityLabel(v)} (${v.toFixed(2)} books/day)`;
-}
+function renderReadingCard({ progress, velocity, eta }) {
+  if (!velocity && !eta && !progress) return "";
 
-function renderETA(eta) {
-  if (!eta) return "";
-  return `**ETA:** ${eta.label} · ${eta.confidence} confidence`;
+  const progressLine = progress
+    ? `<div style="margin-bottom:8px;">
+        ${progressBar(progress.percent)}
+        <span style="opacity:0.9;">${progress.percent}% · ${progress.source}</span>
+      </div>`
+    : "";
+
+  const velocityLine = velocity
+    ? `<div style="font-size:0.95em; opacity:0.9;">
+        📊 <strong>reading velocity:</strong> ${velocityLabel(velocity)} (${velocity.toFixed(
+        2
+      )} books/day)
+      </div>`
+    : "";
+
+  const etaLine = eta
+    ? `<div style="margin-top:4px; font-size:0.95em; opacity:0.9;">
+        ⏳ <strong>ETA:</strong> ${eta.label} · ${eta.confidence} confidence
+      </div>`
+    : "";
+
+  return `
+<div style="
+  margin-top:12px;
+  padding:14px 16px;
+  border:1px solid rgba(255,255,255,0.10);
+  border-radius:16px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+">
+  ${progressLine}
+  ${velocityLine}
+  ${etaLine}
+</div>`;
 }
 
 function renderLastUpdated() {
@@ -203,10 +224,10 @@ function replaceSection(content, tag, replacement) {
   const readItems = read?.rss?.channel?.[0]?.item ?? [];
 
   let readme = fs.readFileSync("README.md", "utf8");
-  const cache = loadCache();
 
+  const cache = loadCache();
+  const progress = resolveProgress(readme, cache);
   const velocity = computeVelocity(readItems);
-  const progress = await resolveProgress(readme, cache);
   const eta = estimateETA(velocity, progress?.percent);
 
   readme = replaceSection(
@@ -218,14 +239,14 @@ function replaceSection(content, tag, replacement) {
   readme = replaceSection(
     readme,
     "GOODREADS-CURRENT-PROGRESS",
-    progress
-      ? `${progressBar(progress.percent)} **${progress.percent}% · ${progress.label}**`
-      : ""
+    renderReadingCard({ progress, velocity, eta })
   );
 
-  readme = replaceSection(readme, "GOODREADS-VELOCITY", renderVelocity(velocity));
-  readme = replaceSection(readme, "GOODREADS-ETA", renderETA(eta));
-  readme = replaceSection(readme, "GOODREADS-LAST-UPDATED", renderLastUpdated());
+  readme = replaceSection(
+    readme,
+    "GOODREADS-LAST-UPDATED",
+    renderLastUpdated()
+  );
 
   fs.writeFileSync("README.md", readme);
   console.log("✨ README updated (v2.1)");
