@@ -30,6 +30,27 @@
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
+<!-- GOODREADS-READING-INSIGHTS:START -->
+<div style="margin-top: 10px; margin-bottom: 6px; padding: 10px 14px; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));">
+
+<p style="margin: 0; font-weight: 600;">📊 reading insights</p>
+
+<p style="margin: 6px 0 0 0; font-size: 0.95em; opacity: 0.9;">
+<!-- GOODREADS-VELOCITY:START -->
+⏱️ <em>calculating reading velocity…</em>
+<!-- GOODREADS-VELOCITY:END -->
+</p>
+
+<p style="margin: 4px 0 0 0; font-size: 0.95em; opacity: 0.9;">
+<!-- GOODREADS-ETA:START -->
+🗓️ <em>estimating completion…</em>
+<!-- GOODREADS-ETA:END -->
+</p>
+
+</div>
+<!-- GOODREADS-READING-INSIGHTS:END -->
+
+
 <!-- GOODREADS-LIST:START -->
 ✦ 📚 recent reads
 
@@ -77,6 +98,8 @@
   </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
+
+
 <!-- GOODREADS-SPOTLIGHT:START -->
 💫 📕 recently finished
 
@@ -92,6 +115,7 @@
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
+
 
 <!-- GOODREADS-LAST-UPDATED:START -->
 _⏳ last updated on Dec 21, 2:44 AM UTC_
