@@ -3,7 +3,6 @@ import https from "https";
 import { parseStringPromise } from "xml2js";
 
 const USER_ID = "178629903";
-const MAX_READ = 6;
 const CACHE_FILE = ".goodreads-progress-cache.json";
 
 const feeds = {
@@ -43,10 +42,10 @@ function progressBar(percent) {
 
 function loadCache() {
   try {
-    return JSON.parse(fs.readFileSync(CACHE_FILE, "utf8"));
-  } catch {
-    return null;
-  }
+    const c = JSON.parse(fs.readFileSync(CACHE_FILE, "utf8"));
+    if (typeof c.percent === "number") return c;
+  } catch {}
+  return null;
 }
 
 function saveCache(data) {
@@ -97,11 +96,13 @@ function estimateETA(velocity, progressPercent) {
   const pagesPerDay = avgPages * velocity;
 
   let remainingPages = avgPages * 0.5;
-  let confidence = "🟡";
+  let confidenceEmoji = "🟡";
+  let confidenceLabel = "medium";
 
   if (typeof progressPercent === "number") {
     remainingPages = avgPages * (1 - progressPercent / 100);
-    confidence = "🟢";
+    confidenceEmoji = "🟢";
+    confidenceLabel = "high";
   }
 
   const days = clamp(remainingPages / pagesPerDay, 0.5, 14);
@@ -112,7 +113,7 @@ function estimateETA(velocity, progressPercent) {
   else if (days < 4) label = "2–4 days";
   else label = "within a week";
 
-  return { label, confidence };
+  return { label, confidenceEmoji, confidenceLabel };
 }
 
 /* ---------- CARD ---------- */
@@ -121,34 +122,43 @@ function renderReadingCard({ progress, velocity, eta }) {
   if (!progress && !velocity && !eta) return "";
 
   const progressLine = progress
-    ? `<div style="margin-bottom:10px;">
+    ? `<div style="margin-bottom:12px;">
         ${progressBar(progress.percent)}
-        <span style="opacity:0.9;">${progress.percent}%</span>
+        <span style="opacity:0.9; margin-left:6px;">
+          ${progress.percent}%
+        </span>
       </div>`
     : "";
 
   const velocityLine = velocity
-    ? `<div style="font-size:0.95em; opacity:0.9;">
-        📊 <strong>reading velocity:</strong> ${velocityLabel(velocity)} (${velocity.toFixed(
-        2
-      )} books/day)
+    ? `<div style="font-size:0.95em; opacity:0.95;">
+        📊 <strong>reading velocity:</strong>
+        ${velocityLabel(velocity)} (${velocity.toFixed(2)} books/day)
       </div>`
     : "";
 
   const etaLine = eta
-    ? `<div style="margin-top:4px; font-size:0.95em; opacity:0.9;">
-        ⏳ <strong>ETA:</strong> ${eta.label} · ${eta.confidence} confidence
+    ? `<div style="margin-top:6px; font-size:0.95em; opacity:0.95;">
+        ⏳ <strong>ETA:</strong>
+        ${eta.label} · ${eta.confidenceEmoji} ${eta.confidenceLabel} confidence
       </div>`
     : "";
 
   return `
 <div style="
-  margin-top:14px;
-  margin-bottom:20px;
-  padding:16px 18px;
-  border:1px solid rgba(255,255,255,0.10);
-  border-radius:18px;
-  background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015));
+  margin-top:18px;
+  margin-bottom:26px;
+  padding:18px 20px;
+  border:1px solid rgba(255,255,255,0.14);
+  border-radius:20px;
+  background:linear-gradient(
+    180deg,
+    rgba(255,255,255,0.06),
+    rgba(255,255,255,0.015)
+  );
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03),
+    0 8px 30px rgba(0,0,0,0.35);
 ">
   ${progressLine}
   ${velocityLine}
@@ -171,16 +181,13 @@ function replaceSection(content, tag, replacement) {
     fetch(feeds.read),
   ]);
 
-  const currently = await safeParse(currentlyXML);
   const read = await safeParse(readXML);
-
-  const currentlyItem = currently?.rss?.channel?.[0]?.item?.[0];
   const readItems = read?.rss?.channel?.[0]?.item ?? [];
 
   let readme = fs.readFileSync("README.md", "utf8");
 
   const manual = getManualProgressOverride(readme);
-  const cache = loadCache();
+  let cache = loadCache();
 
   let progress = null;
   if (manual != null) {
