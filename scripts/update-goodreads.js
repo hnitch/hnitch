@@ -50,13 +50,6 @@ function loadCache() {
   }
 }
 
-function saveCache(data) {
-  fs.writeFileSync(
-    CACHE_FILE,
-    JSON.stringify({ ...data, updatedAt: Date.now() }, null, 2)
-  );
-}
-
 /* ---------- VELOCITY ---------- */
 
 function computeVelocity(readItems) {
@@ -111,7 +104,7 @@ function estimateETA(velocity, progressPercent) {
   return { label, confidenceEmoji, confidenceLabel };
 }
 
-/* ---------- RENDER TABLE ---------- */
+/* ---------- TABLE RENDER ---------- */
 
 function renderReadingTable({ progress, velocity, eta }) {
   const rows = [];
@@ -155,7 +148,22 @@ function replaceSection(content, tag, replacement) {
 }
 
 function renderLastUpdated() {
-  return `_⏳ last updated on ${new Date().toUTCString()}_`;
+  const d = new Date();
+
+  const date = d.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+
+  const time = d.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+    timeZone: "UTC",
+  });
+
+  return `_⏳ last updated on ${date} at ${time} UTC_`;
 }
 
 /* ---------- MAIN ---------- */
@@ -179,7 +187,6 @@ function renderLastUpdated() {
     renderReadingTable({ progress, velocity, eta })
   );
 
- 
   readme = replaceSection(
     readme,
     "GOODREADS-LAST-UPDATED",
