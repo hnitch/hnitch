@@ -42,31 +42,25 @@ async function safeParse(xml) {
   }
 }
 
-function clampPercent(n) {
-  return Math.max(0, Math.min(100, n));
+function clamp(n, min, max) {
+  return Math.max(min, Math.min(max, n));
 }
 
 function progressBar(percent) {
-  const p = clampPercent(percent);
-  const total = 10;
-  const filled = Math.round((p / 100) * total);
-  return "▰".repeat(filled) + "▱".repeat(total - filled);
+  const p = clamp(percent, 0, 100);
+  const filled = Math.round((p / 100) * 10);
+  return "▰".repeat(filled) + "▱".repeat(10 - filled);
 }
 
 function loadCache() {
   try {
-    const c = JSON.parse(fs.readFileSync(CACHE_FILE, "utf8"));
-    if (typeof c.percent === "number" && c.percent >= 0 && c.percent <= 100) {
-      return c;
-    }
-    return null;
+    return JSON.parse(fs.readFileSync(CACHE_FILE, "utf8"));
   } catch {
-    return null;
+    return {};
   }
 }
 
 function saveCache(data) {
-  if (data.percent < 0 || data.percent > 100) return;
   fs.writeFileSync(
     CACHE_FILE,
     JSON.stringify({ ...data, updatedAt: Date.now() }, null, 2)
@@ -80,133 +74,105 @@ function getManualProgressOverride(readme) {
   return v >= 0 && v <= 100 ? v : null;
 }
 
-function extractRssProgress(item) {
-  const fields = [
-    item.user_reading_progress?.[0],
-    item.progress?.[0],
-    item.description?.[0],
-    item["content:encoded"]?.[0],
-  ];
+/* ---------- VELOCITY ---------- */
 
-  for (const f of fields) {
-    if (!f) continue;
-    const m = String(f).match(/(\d{1,3})\s*%/);
-    if (m) return clampPercent(parseInt(m[1], 10));
+function computeVelocity(readItems) {
+  if (readItems.length < 2) return null;
+
+  const dates = readItems
+    .slice(0, 3)
+    .map((b) => new Date(b.pubDate?.[0]).getTime())
+    .filter(Boolean);
+
+  if (dates.length < 2) return null;
+
+  const days =
+    (Math.max(...dates) - Math.min(...dates)) / (1000 * 60 * 60 * 24);
+
+  if (days <= 0) return null;
+
+  const raw = (dates.length - 1) / days;
+  return clamp(raw, 0.05, 1.2);
+}
+
+function velocityLabel(v) {
+  if (v >= 0.7) return "locked in 🔥";
+  if (v >= 0.35) return "steady 📖";
+  if (v >= 0.15) return "slow 🐢";
+  return "slump 💤";
+}
+
+/* ---------- ETA ---------- */
+
+function estimateETA(velocity, progressPercent) {
+  if (!velocity) return null;
+
+  const avgPages = 350;
+  const pagesPerDay = avgPages * velocity;
+
+  let remainingPages = avgPages * 0.5;
+  let confidence = "medium";
+
+  if (typeof progressPercent === "number") {
+    remainingPages = avgPages * (1 - progressPercent / 100);
+    confidence = "high";
   }
+
+  const days = clamp(remainingPages / pagesPerDay, 0.5, 14);
+
+  let label;
+  if (days < 1) label = "today / tomorrow";
+  else if (days < 2) label = "1–2 days";
+  else if (days < 4) label = "2–4 days";
+  else if (days < 7) label = "within a week";
+  else label = "1–2 weeks";
+
+  return { label, confidence };
+}
+
+/* ---------- PROGRESS ---------- */
+
+async function renderProgress(item, readme, cache) {
+  const manual = getManualProgressOverride(readme);
+  if (manual != null) {
+    saveCache({ percent: manual, source: "manual" });
+    return {
+      percent: manual,
+      label: `manual override`,
+    };
+  }
+
+  if (cache.percent != null) {
+    return {
+      percent: cache.percent,
+      label: `inferred (${cache.source})`,
+    };
+  }
+
   return null;
 }
 
-function extractPagesFromHtml(html) {
-  const patterns = [
-    /progress[^0-9]{0,40}(\d+)\s*\/\s*(\d+)/i,
-    /reading[^0-9]{0,40}(\d+)\s*\/\s*(\d+)/i,
-    /page[^0-9]{0,40}(\d+)\s*of\s*(\d+)/i,
-  ];
+/* ---------- RENDER ---------- */
 
-  for (const p of patterns) {
-    const m = html.match(p);
-    if (!m) continue;
-
-    const current = parseInt(m[1], 10);
-    const total = parseInt(m[2], 10);
-
-    if (total > 0 && total <= 2000 && current >= 0 && current <= total) {
-      return { current, total };
-    }
-  }
-  return null;
-}
-
-async function scrapeProgressFromReviewPage(url) {
-  const html = await fetch(url);
-  if (!html) return null;
-  return extractPagesFromHtml(html);
-}
-
-async function renderProgress(items, manualOverride) {
-  if (!items?.length) return "";
-
-  // 1️⃣ Manual override (always wins)
-  if (manualOverride != null) {
-    saveCache({ percent: manualOverride, source: "manual override" });
-    return `${progressBar(manualOverride)} **${manualOverride}% · manual override**`;
-  }
-
-  const item = items[0];
-  const reviewUrl = item?.link?.[0];
-
-  // 2️⃣ Fresh HTML scrape
-  if (reviewUrl) {
-    const pages = await scrapeProgressFromReviewPage(reviewUrl);
-    if (pages) {
-      const percent = clampPercent(
-        Math.floor((pages.current / pages.total) * 100)
-      );
-
-      saveCache({
-        percent,
-        current: pages.current,
-        total: pages.total,
-        source: "html",
-      });
-
-      return `${progressBar(percent)} **≈${percent}% · inferred from html**`;
-    }
-  }
-
-  // 3️⃣ RSS inference
-  const rss = extractRssProgress(item);
-  if (rss != null) {
-    saveCache({ percent: rss, source: "rss" });
-    return `${progressBar(rss)} **≈${rss}% · inferred from rss**`;
-  }
-
-  // 4️⃣ Cached fallback (last known good)
-  const cached = loadCache();
-  if (cached) {
-    return `${progressBar(cached.percent)} **≈${cached.percent}% · inferred from ${cached.source}**`;
-  }
-
-  // 5️⃣ Absolute fallback
-  return "▱▱▱▱▱▱▱▱▱▱ _in progress…_";
-}
-
-function renderCurrentlyReading(items) {
-  if (!items?.length) {
+function renderCurrentlyReading(item) {
+  if (!item) {
     return `↳ 📖 currently reading\n\n_Not currently reading anything_`;
   }
-  const b = items[0];
-  return `↳ 📖 currently reading\n\n📘 **[${b.title}](${b.link}) by ${b.author_name}**`;
+  return `↳ 📖 currently reading\n\n📘 **[${item.title}](${item.link}) by ${item.author_name}**`;
 }
 
-function renderRead(items) {
-  if (!items?.length) return "_No recently read books_";
-  const books = items.slice(0, MAX_READ);
+function renderVelocity(v) {
+  if (!v) return "_velocity unknown_";
+  return `**reading velocity:** ${velocityLabel(v)} (${v.toFixed(2)} books/day)`;
+}
 
-  const cells = books.map((b) => {
-    const rating = parseInt(b.user_rating?.[0] || "0", 10);
-    const glow = rating >= 4 ? " ✨" : "";
-    return `
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="${b.link}">${b.title}</a></strong><br/>
-    <sub>${b.author_name}</sub><br/>
-    ⭐ ${rating}${glow}
-  </div>
-</td>`;
-  });
-
-  const rows = [];
-  for (let i = 0; i < cells.length; i += 3) {
-    rows.push(`<tr>${cells.slice(i, i + 3).join("")}</tr>`);
-  }
-
-  return `<table><tbody>${rows.join("")}</tbody></table>`;
+function renderETA(eta) {
+  if (!eta) return "_ETA unavailable_";
+  return `**ETA:** ${eta.label} · ${eta.confidence} confidence`;
 }
 
 function renderLastUpdated() {
-  const now = new Date();
-  return `_⏳ last updated on ${now.toLocaleString("en-US", {
+  return `_⏳ last updated on ${new Date().toLocaleString("en-US", {
     month: "short",
     day: "numeric",
     hour: "numeric",
@@ -217,15 +183,13 @@ function renderLastUpdated() {
 }
 
 function replaceSection(content, tag, replacement) {
-  const r = new RegExp(
-    `<!-- ${tag}:START -->[\\s\\S]*?<!-- ${tag}:END -->`,
-    "m"
-  );
   return content.replace(
-    r,
+    new RegExp(`<!-- ${tag}:START -->[\\s\\S]*?<!-- ${tag}:END -->`, "m"),
     `<!-- ${tag}:START -->\n${replacement}\n<!-- ${tag}:END -->`
   );
 }
+
+/* ---------- MAIN ---------- */
 
 (async function main() {
   const [currentlyXML, readXML] = await Promise.all([
@@ -236,38 +200,34 @@ function replaceSection(content, tag, replacement) {
   const currently = await safeParse(currentlyXML);
   const read = await safeParse(readXML);
 
-  const currentlyItems = currently?.rss?.channel?.[0]?.item ?? [];
+  const currentlyItem = currently?.rss?.channel?.[0]?.item?.[0];
   const readItems = read?.rss?.channel?.[0]?.item ?? [];
 
   let readme = fs.readFileSync("README.md", "utf8");
-  const manual = getManualProgressOverride(readme);
+  const cache = loadCache();
 
-  const progressMarkup = await renderProgress(currentlyItems, manual);
+  const velocity = computeVelocity(readItems);
+  const progress = await renderProgress(currentlyItem, readme, cache);
+  const eta = estimateETA(velocity, progress?.percent);
 
   readme = replaceSection(
     readme,
     "CURRENTLY-READING-LIST",
-    renderCurrentlyReading(currentlyItems)
+    renderCurrentlyReading(currentlyItem)
   );
 
   readme = replaceSection(
     readme,
     "GOODREADS-CURRENT-PROGRESS",
-    progressMarkup
+    progress
+      ? `${progressBar(progress.percent)} **${progress.percent}% · ${progress.label}**`
+      : "▱▱▱▱▱▱▱▱▱▱ _in progress…_"
   );
 
-  readme = replaceSection(
-    readme,
-    "GOODREADS-LIST",
-    `✦ 📚 recent reads\n\n${renderRead(readItems)}`
-  );
-
-  readme = replaceSection(
-    readme,
-    "GOODREADS-LAST-UPDATED",
-    renderLastUpdated()
-  );
+  readme = replaceSection(readme, "GOODREADS-VELOCITY", renderVelocity(velocity));
+  readme = replaceSection(readme, "GOODREADS-ETA", renderETA(eta));
+  readme = replaceSection(readme, "GOODREADS-LAST-UPDATED", renderLastUpdated());
 
   fs.writeFileSync("README.md", readme);
-  console.log("✨ README updated (v2.1 experimental)");
+  console.log("✨ README updated (v2.1)");
 })();
