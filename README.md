@@ -20,13 +20,13 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[The Housemaid's Secret (The Housemaid, #2)](https://www.goodreads.com/review/show/8158619001?utm_medium=api&utm_source=rss) by Freida McFadden**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 
 <!-- GOODREADS-READING-CARD:START -->
 
-| ✦ reading insights | |
+| | |
 |---|---|
 | 📊 *reading velocity* | slow 🐢 · 0.34 books/day |
 | ⏳ *eta* | 1–2 days · 🟡 medium confidence |
@@ -35,11 +35,16 @@
 
 
 <!-- GOODREADS-LIST:START -->
-<div style="margin-top:30px; margin-bottom:14px; font-weight:600;">
-  ✦ 📚 recent reads
-</div>
+✦ 📚 recent reads
 
 <table><tbody><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8158619001?utm_medium=api&utm_source=rss">The Housemaid's Secret (The Housemaid, #2)</a></strong><br/>
+    <sub>Freida McFadden</sub><br/>
+    ⭐ 3
+  </div>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/7253467779?utm_medium=api&utm_source=rss">The Housemaid (The Housemaid, #1)</a></strong><br/>
@@ -53,14 +58,14 @@
     <sub>Bonnie Garmus</sub><br/>
     ⭐ 4 ✨
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/7268775924?utm_medium=api&utm_source=rss">Bad Blood (The Naturals, #4)</a></strong><br/>
     <sub>Jennifer Lynn Barnes</sub><br/>
     ⭐ 5 ✨
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/7274513286?utm_medium=api&utm_source=rss">Hazelthorn</a></strong><br/>
@@ -73,13 +78,6 @@
     <strong>📘 <a href="https://www.goodreads.com/review/show/7341373288?utm_medium=api&utm_source=rss">This Is How You Lose the Time War</a></strong><br/>
     <sub>Amal El-Mohtar</sub><br/>
     ⭐ 2
-  </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/6564675173?utm_medium=api&utm_source=rss">Sunrise on the Reaping (The Hunger Games)</a></strong><br/>
-    <sub>Suzanne Collins</sub><br/>
-    ⭐ 5 ✨
   </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
@@ -101,7 +99,7 @@
 
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Dec 21 at 10:08 AM UTC_
+_⏳ last updated on Dec 21 at 10:58 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
