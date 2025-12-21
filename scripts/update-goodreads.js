@@ -54,7 +54,9 @@ function progressBar(percent) {
 
 function loadCache() {
   try {
-    return JSON.parse(fs.readFileSync(CACHE_FILE, "utf8"));
+    const c = JSON.parse(fs.readFileSync(CACHE_FILE, "utf8"));
+    if (typeof c.percent === "number") return c;
+    return {};
   } catch {
     return {};
   }
@@ -132,14 +134,11 @@ function estimateETA(velocity, progressPercent) {
 
 /* ---------- PROGRESS ---------- */
 
-async function renderProgress(item, readme, cache) {
+async function resolveProgress(readme, cache) {
   const manual = getManualProgressOverride(readme);
   if (manual != null) {
     saveCache({ percent: manual, source: "manual" });
-    return {
-      percent: manual,
-      label: `manual override`,
-    };
+    return { percent: manual, label: "manual override" };
   }
 
   if (cache.percent != null) {
@@ -162,12 +161,12 @@ function renderCurrentlyReading(item) {
 }
 
 function renderVelocity(v) {
-  if (!v) return "_velocity unknown_";
+  if (!v) return "";
   return `**reading velocity:** ${velocityLabel(v)} (${v.toFixed(2)} books/day)`;
 }
 
 function renderETA(eta) {
-  if (!eta) return "_ETA unavailable_";
+  if (!eta) return "";
   return `**ETA:** ${eta.label} · ${eta.confidence} confidence`;
 }
 
@@ -207,7 +206,7 @@ function replaceSection(content, tag, replacement) {
   const cache = loadCache();
 
   const velocity = computeVelocity(readItems);
-  const progress = await renderProgress(currentlyItem, readme, cache);
+  const progress = await resolveProgress(readme, cache);
   const eta = estimateETA(velocity, progress?.percent);
 
   readme = replaceSection(
@@ -221,7 +220,7 @@ function replaceSection(content, tag, replacement) {
     "GOODREADS-CURRENT-PROGRESS",
     progress
       ? `${progressBar(progress.percent)} **${progress.percent}% · ${progress.label}**`
-      : "▱▱▱▱▱▱▱▱▱▱ _in progress…_"
+      : ""
   );
 
   readme = replaceSection(readme, "GOODREADS-VELOCITY", renderVelocity(velocity));
