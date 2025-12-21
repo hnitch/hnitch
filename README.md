@@ -25,7 +25,6 @@
 
 
 <!-- GOODREADS-READING-CARD:START -->
-
 <div style="
   margin-top:18px;
   margin-bottom:26px;
@@ -41,21 +40,24 @@
     0 0 0 1px rgba(255,255,255,0.03),
     0 8px 30px rgba(0,0,0,0.35);
 ">
-  
+
   <div style="font-size:0.95em; opacity:0.95;">
-        📊 <strong>reading velocity:</strong>
-        steady 📖 (0.66 books/day)
-      </div>
+    📊 <strong>reading velocity:</strong>
+    steady 📖 (0.66 books/day)
+  </div>
+
   <div style="margin-top:6px; font-size:0.95em; opacity:0.95;">
-        ⏳ <strong>ETA:</strong>
-        today / tomorrow · 🟡 medium confidence
-      </div>
+    ⏳ <strong>ETA:</strong>
+    today / tomorrow · 🟡 medium confidence
+  </div>
 </div>
 <!-- GOODREADS-READING-CARD:END -->
 
 
 <!-- GOODREADS-LIST:START -->
-✦ 📚 recent reads
+<div style="margin-top:28px; margin-bottom:12px; font-weight:600;">
+  ✦ 📚 recent reads
+</div>
 
 <table><tbody><tr>
 <td style="padding:12px; vertical-align:top;">
@@ -101,56 +103,3 @@
   </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
-
-
-<!-- GOODREADS-SPOTLIGHT:START -->
-💫 📕 recently finished
-
-<br/>
-
-<table>
-  <tr>
-    <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/7253467779?utm_medium=api&utm_source=rss">The Housemaid (The Housemaid, #1)</a></strong><br/>
-      <sub>Freida McFadden</sub><br/><br/>
-      ★★★★ ✨ — this one cooked 🤭
-    </td>
-  </tr>
-</table>
-<!-- GOODREADS-SPOTLIGHT:END -->
-
-
-<!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Dec 21, 4:24 AM UTC_
-<!-- GOODREADS-LAST-UPDATED:END -->
-
-<hr>
-
-<div align="center">
-<table border="0" cellpadding="0" cellspacing="0">
-<tr valign="middle">
-<td style="padding: 5px;">
-<img width="380" src="https://music-profile.rayriffy.com/theme/dark.svg?uid=000568.fa0178bfed7a4356a5b20a996b4824a4.1200" alt="apple music last listened">
-</td>
-<td style="padding: 5px;">
-<div>
-<p>
-<a style="text-decoration: none;" href="https://letterboxd.com/hnitch/" target="_blank" rel="noopener noreferrer">
-<img width="380" src="https://letterboxd-badge.vercel.app/hnitch/svg" alt="( watched ) letterboxd last watched film">
-</a>
-</p>
-<p>
-<a style="text-decoration: none;" href="https://letterboxd.com/hnitch/" target="_blank" rel="noopener noreferrer">
-<img width="380" src="https://letterboxd-badge.vercel.app/hnitch/svg?index=1" alt="( watched ) letterboxd film #2">
-</a>
-</p>
-<p>
-<a href="https://discord.com/users/690729789702537336" target="_blank" rel="noopener noreferrer">
-<img width="380" src="https://lanyard.cnrad.dev/api/690729789702537336?theme=dark&bg=00000000&borderRadius=8px" alt="discord presence pane">
-</a>
-</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
