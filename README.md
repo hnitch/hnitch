@@ -26,10 +26,9 @@ _Not currently reading anything_
 
 <!-- GOODREADS-READING-CARD:START -->
 
-| | |
 |---|---|
-| 📊 *reading velocity* | slow 🐢 · 0.34 books/day |
-| ⏳ *eta* | 1–2 days · 🟡 medium confidence |
+| 📊 *reading velocity* | casual 🐢 · 0.30 books/day |
+| ⏳ *book completion eta* | 1–2 days · 🟡 medium confidence |
 
 <!-- GOODREADS-READING-CARD:END -->
 
@@ -99,7 +98,7 @@ _Not currently reading anything_
 
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Dec 21 at 12:55 PM UTC_
+_⏳ last updated on Dec 21 at 1:10 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
