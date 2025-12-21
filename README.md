@@ -26,19 +26,20 @@
 
 <!-- GOODREADS-READING-CARD:START -->
 <div style="
-  margin-top: 12px;
-  padding: 14px 16px;
+  margin-top: 14px;
+  margin-bottom: 18px;
+  padding: 16px 18px;
   border: 1px solid rgba(255,255,255,0.10);
-  border-radius: 16px;
+  border-radius: 18px;
   background: linear-gradient(
     180deg,
-    rgba(255,255,255,0.04),
-    rgba(255,255,255,0.01)
+    rgba(255,255,255,0.05),
+    rgba(255,255,255,0.015)
   );
 ">
 
-  <!-- progress line (optional, script controls visibility) -->
-  <div style="margin-bottom: 10px;">
+  <!-- progress (script controls visibility) -->
+  <div style="margin-bottom: 10px; font-size: 0.95em;">
     ▰▰▰▱▱▱▱▱▱▱ <span style="opacity:0.9;">38%</span>
   </div>
 
@@ -47,7 +48,7 @@
   </div>
 
   <div style="margin-top: 4px; font-size: 0.95em; opacity: 0.9;">
-    ⏳ <strong>ETA:</strong> today / tomorrow · medium confidence
+    ⏳ <strong>ETA:</strong> today / tomorrow · 🟡 medium confidence
   </div>
 
 </div>
