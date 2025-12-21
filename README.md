@@ -39,22 +39,18 @@
 
   <!-- progress (only renders when % exists) -->
   <!-- GOODREADS-CURRENT-PROGRESS:START -->
-  ▰▰▰▱▱▱▱▱▱▱ <span style="opacity:0.9;">38%</span>
-  <!-- GOODREADS-CURRENT-PROGRESS:END -->
+
+<!-- GOODREADS-CURRENT-PROGRESS:END -->
 
   <div style="margin-top: 10px; font-size: 0.95em; opacity: 0.9;">
 
     <!-- GOODREADS-VELOCITY:START -->
-    <div style="margin-bottom: 4px;">
-      📊 <strong>reading velocity:</strong> steady 📖 (0.66 books/day)
-    </div>
-    <!-- GOODREADS-VELOCITY:END -->
+**reading velocity:** steady 📖 (0.66 books/day)
+<!-- GOODREADS-VELOCITY:END -->
 
     <!-- GOODREADS-ETA:START -->
-    <div>
-      ⏳ <strong>ETA:</strong> today / tomorrow · medium confidence
-    </div>
-    <!-- GOODREADS-ETA:END -->
+**ETA:** today / tomorrow · medium confidence
+<!-- GOODREADS-ETA:END -->
 
   </div>
 </div>
@@ -128,7 +124,7 @@
 
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Dec 21, 3:32 AM UTC_
+_⏳ last updated on Dec 21, 3:49 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
