@@ -6,7 +6,6 @@ const USER_ID = "178629903";
 const CACHE_FILE = ".goodreads-progress-cache.json";
 
 const feeds = {
-  currentlyReading: `https://www.goodreads.com/review/list_rss/${USER_ID}?shelf=currently-reading`,
   read: `https://www.goodreads.com/review/list_rss/${USER_ID}?shelf=read`,
 };
 
@@ -111,7 +110,7 @@ function renderReadingTable({ progress, velocity, eta }) {
 
   if (velocity) {
     rows.push(
-      `| 📊 **reading velocity** | ${velocityLabel(velocity)} · ${velocity.toFixed(
+      `| 📊 *reading velocity* | ${velocityLabel(velocity)} · ${velocity.toFixed(
         2
       )} books/day |`
     );
@@ -119,13 +118,13 @@ function renderReadingTable({ progress, velocity, eta }) {
 
   if (eta) {
     rows.push(
-      `| ⏳ **eta** | ${eta.label} · ${eta.confidenceEmoji} ${eta.confidenceLabel} confidence |`
+      `| ⏳ *eta* | ${eta.label} · ${eta.confidenceEmoji} ${eta.confidenceLabel} confidence |`
     );
   }
 
   if (progress) {
     rows.push(
-      `| 📖 **progress** | ${progress.percent}% · ${progressBar(
+      `| 📖 *progress* | ${progress.percent}% · ${progressBar(
         progress.percent
       )} |`
     );
