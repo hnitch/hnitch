@@ -26,7 +26,7 @@
 
 <!-- GOODREADS-READING-CARD:START -->
 
-| | |
+| ✨ reading insights | |
 |---|---|
 | 📊 *reading velocity* | slow 🐢 · 0.34 books/day |
 | ⏳ *eta* | 1–2 days · 🟡 medium confidence |
@@ -101,7 +101,7 @@
 
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Dec 21 at 9:57 AM UTC_
+_⏳ last updated on Dec 21 at 10:06 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
