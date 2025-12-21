@@ -42,10 +42,23 @@ async function safeParse(xml) {
   }
 }
 
+function clampPercent(n) {
+  return Math.max(0, Math.min(100, n));
+}
+
+function progressBar(percent) {
+  const p = clampPercent(percent);
+  const total = 10;
+  const filled = Math.round((p / 100) * total);
+  return "▰".repeat(filled) + "▱".repeat(total - filled);
+}
+
 function loadCache() {
   try {
     const c = JSON.parse(fs.readFileSync(CACHE_FILE, "utf8"));
-    if (c.percent >= 0 && c.percent <= 100) return c;
+    if (typeof c.percent === "number" && c.percent >= 0 && c.percent <= 100) {
+      return c;
+    }
     return null;
   } catch {
     return null;
@@ -58,12 +71,6 @@ function saveCache(data) {
     CACHE_FILE,
     JSON.stringify({ ...data, updatedAt: Date.now() }, null, 2)
   );
-}
-
-function progressBar(percent) {
-  const total = 10;
-  const filled = Math.round((percent / 100) * total);
-  return "▰".repeat(filled) + "▱".repeat(total - filled);
 }
 
 function getManualProgressOverride(readme) {
@@ -84,7 +91,7 @@ function extractRssProgress(item) {
   for (const f of fields) {
     if (!f) continue;
     const m = String(f).match(/(\d{1,3})\s*%/);
-    if (m) return parseInt(m[1], 10);
+    if (m) return clampPercent(parseInt(m[1], 10));
   }
   return null;
 }
@@ -98,18 +105,13 @@ function extractPagesFromHtml(html) {
 
   for (const p of patterns) {
     const m = html.match(p);
-    if (m) {
-      const current = parseInt(m[1], 10);
-      const total = parseInt(m[2], 10);
+    if (!m) continue;
 
-      if (
-        total > 0 &&
-        total <= 2000 &&
-        current >= 0 &&
-        current <= total
-      ) {
-        return { current, total };
-      }
+    const current = parseInt(m[1], 10);
+    const total = parseInt(m[2], 10);
+
+    if (total > 0 && total <= 2000 && current >= 0 && current <= total) {
+      return { current, total };
     }
   }
   return null;
@@ -124,41 +126,48 @@ async function scrapeProgressFromReviewPage(url) {
 async function renderProgress(items, manualOverride) {
   if (!items?.length) return "";
 
+  // 1️⃣ Manual override (always wins)
   if (manualOverride != null) {
     saveCache({ percent: manualOverride, source: "manual override" });
     return `${progressBar(manualOverride)} **${manualOverride}% · manual override**`;
   }
 
-  const cached = loadCache();
-  if (cached) {
-    return `${progressBar(cached.percent)} **≈${cached.percent}% · inferred from ${cached.source}**`;
-  }
-
   const item = items[0];
   const reviewUrl = item?.link?.[0];
 
+  // 2️⃣ Fresh HTML scrape
   if (reviewUrl) {
     const pages = await scrapeProgressFromReviewPage(reviewUrl);
     if (pages) {
-      const percent = Math.floor((pages.current / pages.total) * 100);
-      if (percent >= 0 && percent <= 100) {
-        saveCache({
-          percent,
-          current: pages.current,
-          total: pages.total,
-          source: "html",
-        });
-        return `${progressBar(percent)} **≈${percent}% · inferred from html**`;
-      }
+      const percent = clampPercent(
+        Math.floor((pages.current / pages.total) * 100)
+      );
+
+      saveCache({
+        percent,
+        current: pages.current,
+        total: pages.total,
+        source: "html",
+      });
+
+      return `${progressBar(percent)} **≈${percent}% · inferred from html**`;
     }
   }
 
+  // 3️⃣ RSS inference
   const rss = extractRssProgress(item);
   if (rss != null) {
     saveCache({ percent: rss, source: "rss" });
     return `${progressBar(rss)} **≈${rss}% · inferred from rss**`;
   }
 
+  // 4️⃣ Cached fallback (last known good)
+  const cached = loadCache();
+  if (cached) {
+    return `${progressBar(cached.percent)} **≈${cached.percent}% · inferred from ${cached.source}**`;
+  }
+
+  // 5️⃣ Absolute fallback
   return "▱▱▱▱▱▱▱▱▱▱ _in progress…_";
 }
 
