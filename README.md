@@ -25,22 +25,40 @@
 
 
 <!-- GOODREADS-READING-CARD:START -->
-
 <div style="
-  margin-top:14px;
-  margin-bottom:20px;
-  padding:16px 18px;
-  border:1px solid rgba(255,255,255,0.10);
-  border-radius:18px;
-  background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015));
+  margin-top:18px;
+  margin-bottom:26px;
+  padding:18px 20px;
+  border:1px solid rgba(255,255,255,0.16);
+  border-radius:20px;
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,0.06),
+      rgba(255,255,255,0.015)
+    );
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03),
+    0 8px 30px rgba(0,0,0,0.35);
 ">
-  
-  <div style="font-size:0.95em; opacity:0.9;">
-        📊 <strong>reading velocity:</strong> steady 📖 (0.66 books/day)
-      </div>
-  <div style="margin-top:4px; font-size:0.95em; opacity:0.9;">
-        ⏳ <strong>ETA:</strong> today / tomorrow · 🟡 confidence
-      </div>
+
+  <div style="
+    font-size:0.85em;
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+    opacity:0.75;
+    margin-bottom:10px;
+  ">
+    📊 reading insights
+  </div>
+
+  <div style="font-size:0.95em; opacity:0.95;">
+    📈 <strong>reading velocity:</strong> steady 📖 (0.66 books/day)
+  </div>
+
+  <div style="margin-top:6px; font-size:0.95em; opacity:0.95;">
+    ⏳ <strong>ETA:</strong> today / tomorrow · 🟡 medium confidence
+  </div>
+
 </div>
 <!-- GOODREADS-READING-CARD:END -->
 
