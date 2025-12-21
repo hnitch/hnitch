@@ -14,21 +14,11 @@ const feeds = {
 function fetch(url) {
   return new Promise((resolve) => {
     https
-      .get(
-        url,
-        {
-          headers: {
-            "User-Agent":
-              "Mozilla/5.0 (compatible; GitHubActions/1.0; +https://github.com/)",
-            Accept: "application/rss+xml,application/xml",
-          },
-        },
-        (res) => {
-          let data = "";
-          res.on("data", (c) => (data += c));
-          res.on("end", () => resolve(data));
-        }
-      )
+      .get(url, { headers: { "User-Agent": "GitHubActions/1.0" } }, (res) => {
+        let data = "";
+        res.on("data", (c) => (data += c));
+        res.on("end", () => resolve(data));
+      })
       .on("error", () => resolve(null));
   });
 }
@@ -42,8 +32,6 @@ async function safeParse(xml) {
   }
 }
 
-/* ---------- UTIL ---------- */
-
 function clamp(n, min, max) {
   return Math.max(min, Math.min(max, n));
 }
@@ -53,20 +41,12 @@ function progressBar(percent) {
   return "▰".repeat(filled) + "▱".repeat(10 - filled);
 }
 
-function confidenceEmoji(confidence) {
-  if (confidence === "high") return "🟢";
-  if (confidence === "medium") return "🟡";
-  return "⚪️";
-}
-
-/* ---------- CACHE ---------- */
-
 function loadCache() {
   try {
-    const c = JSON.parse(fs.readFileSync(CACHE_FILE, "utf8"));
-    if (typeof c.percent === "number") return c;
-  } catch {}
-  return null;
+    return JSON.parse(fs.readFileSync(CACHE_FILE, "utf8"));
+  } catch {
+    return null;
+  }
 }
 
 function saveCache(data) {
@@ -98,8 +78,6 @@ function computeVelocity(readItems) {
   const days =
     (Math.max(...dates) - Math.min(...dates)) / (1000 * 60 * 60 * 24);
 
-  if (days <= 0) return null;
-
   return clamp((dates.length - 1) / days, 0.05, 1.2);
 }
 
@@ -119,11 +97,11 @@ function estimateETA(velocity, progressPercent) {
   const pagesPerDay = avgPages * velocity;
 
   let remainingPages = avgPages * 0.5;
-  let confidence = "medium";
+  let confidence = "🟡";
 
   if (typeof progressPercent === "number") {
     remainingPages = avgPages * (1 - progressPercent / 100);
-    confidence = "high";
+    confidence = "🟢";
   }
 
   const days = clamp(remainingPages / pagesPerDay, 0.5, 14);
@@ -132,114 +110,50 @@ function estimateETA(velocity, progressPercent) {
   if (days < 1) label = "today / tomorrow";
   else if (days < 2) label = "1–2 days";
   else if (days < 4) label = "2–4 days";
-  else if (days < 7) label = "within a week";
-  else label = "1–2 weeks";
+  else label = "within a week";
 
   return { label, confidence };
 }
 
-/* ---------- PROGRESS ---------- */
-
-function resolveProgress(readme, cache) {
-  const manual = getManualProgressOverride(readme);
-  if (manual != null) {
-    saveCache({ percent: manual, source: "manual override" });
-    return { percent: manual, source: "manual override" };
-  }
-
-  if (cache?.percent != null) {
-    return {
-      percent: cache.percent,
-      source: `inferred (${cache.source})`,
-    };
-  }
-
-  return null;
-}
-
-/* ---------- RENDER ---------- */
-
-function renderCurrentlyReading(item) {
-  if (!item) {
-    return `↳ 📖 currently reading\n\n_Not currently reading anything_`;
-  }
-  return `↳ 📖 currently reading\n\n📘 **[${item.title}](${item.link}) by ${item.author_name}**`;
-}
+/* ---------- CARD ---------- */
 
 function renderReadingCard({ progress, velocity, eta }) {
-  if (!velocity && !eta && !progress) return "";
+  if (!progress && !velocity && !eta) return "";
 
   const progressLine = progress
-    ? `
-    <div style="margin-bottom:14px;">
-      ${progressBar(progress.percent)}
-      <span style="opacity:0.9; margin-left:6px;">
-        ${progress.percent}% · ${progress.source}
-      </span>
-    </div>
-  `
+    ? `<div style="margin-bottom:10px;">
+        ${progressBar(progress.percent)}
+        <span style="opacity:0.9;">${progress.percent}%</span>
+      </div>`
     : "";
 
   const velocityLine = velocity
-    ? `
-    <div style="font-size:0.95em; opacity:0.9;">
-      📊 <strong>reading velocity:</strong>
-      ${velocityLabel(velocity)} (${velocity.toFixed(2)} books/day)
-    </div>
-  `
+    ? `<div style="font-size:0.95em; opacity:0.9;">
+        📊 <strong>reading velocity:</strong> ${velocityLabel(velocity)} (${velocity.toFixed(
+        2
+      )} books/day)
+      </div>`
     : "";
 
   const etaLine = eta
-    ? `
-    <div style="margin-top:6px; font-size:0.95em; opacity:0.9;">
-      ⏳ <strong>ETA:</strong>
-      ${eta.label} · ${eta.confidence} confidence ${confidenceEmoji(
-        eta.confidence
-      )}
-    </div>
-  `
+    ? `<div style="margin-top:4px; font-size:0.95em; opacity:0.9;">
+        ⏳ <strong>ETA:</strong> ${eta.label} · ${eta.confidence} confidence
+      </div>`
     : "";
 
   return `
 <div style="
-  margin-top:18px;
-  margin-bottom:28px;
-  padding:18px 20px;
+  margin-top:14px;
+  margin-bottom:20px;
+  padding:16px 18px;
   border:1px solid rgba(255,255,255,0.10);
   border-radius:18px;
-  background:linear-gradient(
-    180deg,
-    rgba(255,255,255,0.05),
-    rgba(255,255,255,0.015)
-  );
+  background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015));
 ">
   ${progressLine}
-
-  <div style="
-    height:1px;
-    margin:14px 0;
-    background:linear-gradient(
-      to right,
-      transparent,
-      rgba(255,255,255,0.12),
-      transparent
-    );
-  "></div>
-
   ${velocityLine}
   ${etaLine}
 </div>`;
-}
-
-function renderLastUpdated() {
-  return `_⏳ last updated on ${new Date().toLocaleString("en-US", {
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-    timeZoneName: "short",
-  })}_`;
 }
 
 function replaceSection(content, tag, replacement) {
@@ -265,37 +179,24 @@ function replaceSection(content, tag, replacement) {
 
   let readme = fs.readFileSync("README.md", "utf8");
 
+  const manual = getManualProgressOverride(readme);
   const cache = loadCache();
-  const progress = resolveProgress(readme, cache);
+
+  let progress = null;
+  if (manual != null) {
+    progress = { percent: manual };
+    saveCache({ percent: manual, source: "manual" });
+  } else if (cache?.percent != null) {
+    progress = cache;
+  }
+
   const velocity = computeVelocity(readItems);
   const eta = estimateETA(velocity, progress?.percent);
 
   readme = replaceSection(
     readme,
-    "CURRENTLY-READING-LIST",
-    renderCurrentlyReading(currentlyItem)
-  );
-
-
-readme = replaceSection(
-  readme,
-  "GOODREADS-CURRENT-PROGRESS",
-  progress
-    ? `${progressBar(progress.percent)} **${progress.percent}%**`
-    : ""
-);
-
-
-readme = replaceSection(
-  readme,
-  "GOODREADS-READING-INSIGHTS",
-  renderReadingCard({ progress, velocity, eta })
-);
-
-  readme = replaceSection(
-    readme,
-    "GOODREADS-LAST-UPDATED",
-    renderLastUpdated()
+    "GOODREADS-READING-CARD",
+    renderReadingCard({ progress, velocity, eta })
   );
 
   fs.writeFileSync("README.md", readme);
