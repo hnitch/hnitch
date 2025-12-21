@@ -24,31 +24,41 @@
 <!-- CURRENTLY-READING-LIST:END -->
 
 
+<!-- GOODREADS-READING-CARD:START -->
+<div style="
+  margin-top: 12px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 16px;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.04),
+    rgba(255,255,255,0.01)
+  );
+">
 
-<!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
-<!-- GOODREADS-CURRENT-PROGRESS:END -->
+  <!-- progress (only renders when % exists) -->
+  <!-- GOODREADS-CURRENT-PROGRESS:START -->
+  ▰▰▰▱▱▱▱▱▱▱ <span style="opacity:0.9;">38%</span>
+  <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
+  <div style="margin-top: 10px; font-size: 0.95em; opacity: 0.9;">
 
-<!-- GOODREADS-READING-INSIGHTS:START -->
-<div style="margin-top: 10px; margin-bottom: 6px; padding: 10px 14px; border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));">
+    <!-- GOODREADS-VELOCITY:START -->
+    <div style="margin-bottom: 4px;">
+      📊 <strong>reading velocity:</strong> steady 📖 (0.66 books/day)
+    </div>
+    <!-- GOODREADS-VELOCITY:END -->
 
-<p style="margin: 0; font-weight: 600;">📊 reading insights</p>
+    <!-- GOODREADS-ETA:START -->
+    <div>
+      ⏳ <strong>ETA:</strong> today / tomorrow · medium confidence
+    </div>
+    <!-- GOODREADS-ETA:END -->
 
-<p style="margin: 6px 0 0 0; font-size: 0.95em; opacity: 0.9;">
-<!-- GOODREADS-VELOCITY:START -->
-**reading velocity:** steady 📖 (0.66 books/day)
-<!-- GOODREADS-VELOCITY:END -->
-</p>
-
-<p style="margin: 4px 0 0 0; font-size: 0.95em; opacity: 0.9;">
-<!-- GOODREADS-ETA:START -->
-**ETA:** today / tomorrow · medium confidence
-<!-- GOODREADS-ETA:END -->
-</p>
-
+  </div>
 </div>
-<!-- GOODREADS-READING-INSIGHTS:END -->
+<!-- GOODREADS-READING-CARD:END -->
 
 
 <!-- GOODREADS-LIST:START -->
