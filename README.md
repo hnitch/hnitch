@@ -37,13 +37,13 @@
 
 <p style="margin: 6px 0 0 0; font-size: 0.95em; opacity: 0.9;">
 <!-- GOODREADS-VELOCITY:START -->
-⏱️ <em>calculating reading velocity…</em>
+**reading velocity:** steady 📖 (0.66 books/day)
 <!-- GOODREADS-VELOCITY:END -->
 </p>
 
 <p style="margin: 4px 0 0 0; font-size: 0.95em; opacity: 0.9;">
 <!-- GOODREADS-ETA:START -->
-🗓️ <em>estimating completion…</em>
+**ETA:** today / tomorrow · medium confidence
 <!-- GOODREADS-ETA:END -->
 </p>
 
@@ -118,7 +118,7 @@
 
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Dec 21, 2:44 AM UTC_
+_⏳ last updated on Dec 21, 3:32 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
