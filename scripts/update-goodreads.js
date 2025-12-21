@@ -6,17 +6,30 @@ const USER_ID = "178629903";
 const CACHE_FILE = ".goodreads-progress-cache.json";
 
 const feeds = {
+  currentlyReading: `https://www.goodreads.com/review/list_rss/${USER_ID}?shelf=currently-reading`,
   read: `https://www.goodreads.com/review/list_rss/${USER_ID}?shelf=read`,
 };
+
+/* ---------- FETCH ---------- */
 
 function fetch(url) {
   return new Promise((resolve) => {
     https
-      .get(url, { headers: { "User-Agent": "GitHubActions/1.0" } }, (res) => {
-        let data = "";
-        res.on("data", (c) => (data += c));
-        res.on("end", () => resolve(data));
-      })
+      .get(
+        url,
+        {
+          headers: {
+            "User-Agent":
+              "Mozilla/5.0 (compatible; GitHubActions/1.0; +https://github.com/)",
+            Accept: "application/rss+xml, application/xml, text/xml",
+          },
+        },
+        (res) => {
+          let data = "";
+          res.on("data", (c) => (data += c));
+          res.on("end", () => resolve(data));
+        }
+      )
       .on("error", () => resolve(null));
   });
 }
@@ -30,16 +43,25 @@ async function safeParse(xml) {
   }
 }
 
+/* ---------- UTILS ---------- */
+
 function clamp(n, min, max) {
   return Math.max(min, Math.min(max, n));
 }
 
-function progressBar(percent) {
-  const filled = Math.round((percent / 100) * 10);
-  return "▰".repeat(filled) + "▱".repeat(10 - filled);
+function pulseSymbol() {
+  const frames = ["✨", "💫", "✦"];
+  return frames[new Date().getMinutes() % frames.length];
 }
 
-/* ---------- CACHE ---------- */
+function progressBar(percent) {
+  const total = 10;
+  const filled = clamp(Math.round((percent / 100) * total), 0, total);
+  const pulse = ["▰", "▮"][new Date().getMinutes() % 2];
+  return pulse.repeat(filled) + "▱".repeat(total - filled);
+}
+
+/* ---------- CACHE (SAFE) ---------- */
 
 function loadCache() {
   try {
@@ -47,6 +69,19 @@ function loadCache() {
   } catch {
     return null;
   }
+}
+
+function saveCache(data) {
+  fs.writeFileSync(
+    CACHE_FILE,
+    JSON.stringify({ ...data, updatedAt: Date.now() }, null, 2)
+  );
+}
+
+function clearCache() {
+  try {
+    fs.unlinkSync(CACHE_FILE);
+  } catch {}
 }
 
 /* ---------- VELOCITY ---------- */
@@ -103,7 +138,7 @@ function estimateETA(velocity, progressPercent) {
   return { label, confidenceEmoji, confidenceLabel };
 }
 
-/* ---------- TABLE RENDER ---------- */
+/* ---------- TABLE ---------- */
 
 function renderReadingTable({ progress, velocity, eta }) {
   const rows = [];
@@ -133,13 +168,13 @@ function renderReadingTable({ progress, velocity, eta }) {
   if (!rows.length) return "";
 
   return `
-| | |
+| ${pulseSymbol()} reading insights | |
 |---|---|
 ${rows.join("\n")}
 `;
 }
 
-/* ---------- UTIL ---------- */
+/* ---------- README ---------- */
 
 function replaceSection(content, tag, replacement) {
   return content.replace(
@@ -150,34 +185,47 @@ function replaceSection(content, tag, replacement) {
 
 function renderLastUpdated() {
   const d = new Date();
-
   const date = d.toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
-    timeZone: "UTC",
   });
-
   const time = d.toLocaleTimeString("en-US", {
     hour: "numeric",
     minute: "2-digit",
     hour12: true,
-    timeZone: "UTC",
+    timeZoneName: "short",
   });
-
-  return `_⏳ last updated on ${date} at ${time} UTC_`;
+  return `_⏳ last updated on ${date} at ${time}_`;
 }
 
 /* ---------- MAIN ---------- */
 
 (async function main() {
-  const readXML = await fetch(feeds.read);
+  const [currentlyXML, readXML] = await Promise.all([
+    fetch(feeds.currentlyReading),
+    fetch(feeds.read),
+  ]);
+
+  const currently = await safeParse(currentlyXML);
   const read = await safeParse(readXML);
+
+  const currentlyItems = currently?.rss?.channel?.[0]?.item ?? [];
   const readItems = read?.rss?.channel?.[0]?.item ?? [];
 
   let readme = fs.readFileSync("README.md", "utf8");
 
   const cache = loadCache();
-  const progress = cache?.percent != null ? cache : null;
+  const currentTitle = currentlyItems[0]?.title ?? null;
+
+  let progress = null;
+
+  if (!currentTitle) {
+    clearCache();
+  } else if (cache?.title === currentTitle) {
+    progress = cache;
+  } else {
+    clearCache();
+  }
 
   const velocity = computeVelocity(readItems);
   const eta = estimateETA(velocity, progress?.percent);
@@ -195,5 +243,5 @@ function renderLastUpdated() {
   );
 
   fs.writeFileSync("README.md", readme);
-  console.log("✨ README updated (v2.1)");
+  console.log("✨ README updated (v2.1.1)");
 })();
