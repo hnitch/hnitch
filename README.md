@@ -26,10 +26,10 @@
 
 <!-- GOODREADS-READING-CARD:START -->
 
-| 📊 **Reading insights** | |
+| | |
 |---|---|
-| **Reading velocity** | steady 📖 (0.66 books/day) |
-| **ETA** | today / tomorrow · 🟡 medium confidence |
+| 📊 **reading velocity** | steady 📖 · 0.66 books/day |
+| ⏳ **eta** | today / tomorrow · 🟡 medium confidence |
 
 <!-- GOODREADS-READING-CARD:END -->
 
@@ -101,7 +101,7 @@
 
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Dec 21 at 5:11 AM UTC_
+_⏳ last updated on Dec 21 at 5:17 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
