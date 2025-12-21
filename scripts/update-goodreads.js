@@ -44,13 +44,16 @@ async function safeParse(xml) {
 
 function loadCache() {
   try {
-    return JSON.parse(fs.readFileSync(CACHE_FILE, "utf8"));
+    const c = JSON.parse(fs.readFileSync(CACHE_FILE, "utf8"));
+    if (c.percent >= 0 && c.percent <= 100) return c;
+    return null;
   } catch {
     return null;
   }
 }
 
 function saveCache(data) {
+  if (data.percent < 0 || data.percent > 100) return;
   fs.writeFileSync(
     CACHE_FILE,
     JSON.stringify({ ...data, updatedAt: Date.now() }, null, 2)
@@ -59,17 +62,12 @@ function saveCache(data) {
 
 function progressBar(percent) {
   const total = 10;
-  const filled = Math.max(
-    0,
-    Math.min(total, Math.round((percent / 100) * total))
-  );
+  const filled = Math.round((percent / 100) * total);
   return "▰".repeat(filled) + "▱".repeat(total - filled);
 }
 
 function getManualProgressOverride(readme) {
-  const m = readme.match(
-    /<!--\s*GOODREADS-PROGRESS-OVERRIDE:(\d{1,3})\s*-->/
-  );
+  const m = readme.match(/GOODREADS-PROGRESS-OVERRIDE:(\d{1,3})/);
   if (!m) return null;
   const v = parseInt(m[1], 10);
   return v >= 0 && v <= 100 ? v : null;
@@ -93,9 +91,9 @@ function extractRssProgress(item) {
 
 function extractPagesFromHtml(html) {
   const patterns = [
-    /(\d+)\s*of\s*(\d+)\s*pages/i,
-    /page\s*(\d+)\s*of\s*(\d+)/i,
-    /(\d+)\s*\/\s*(\d+)/,
+    /progress[^0-9]{0,40}(\d+)\s*\/\s*(\d+)/i,
+    /reading[^0-9]{0,40}(\d+)\s*\/\s*(\d+)/i,
+    /page[^0-9]{0,40}(\d+)\s*of\s*(\d+)/i,
   ];
 
   for (const p of patterns) {
@@ -103,14 +101,22 @@ function extractPagesFromHtml(html) {
     if (m) {
       const current = parseInt(m[1], 10);
       const total = parseInt(m[2], 10);
-      if (total > 0) return { current, total };
+
+      if (
+        total > 0 &&
+        total <= 2000 &&
+        current >= 0 &&
+        current <= total
+      ) {
+        return { current, total };
+      }
     }
   }
   return null;
 }
 
-async function scrapeProgressFromReviewPage(reviewUrl) {
-  const html = await fetch(reviewUrl);
+async function scrapeProgressFromReviewPage(url) {
+  const html = await fetch(url);
   if (!html) return null;
   return extractPagesFromHtml(html);
 }
@@ -119,13 +125,13 @@ async function renderProgress(items, manualOverride) {
   if (!items?.length) return "";
 
   if (manualOverride != null) {
-    saveCache({ percent: manualOverride, source: "manual" });
+    saveCache({ percent: manualOverride, source: "manual override" });
     return `${progressBar(manualOverride)} **${manualOverride}% · manual override**`;
   }
 
   const cached = loadCache();
-  if (cached?.percent != null && cached?.source) {
-    return `${progressBar(cached.percent)} **≈${cached.percent}% · inferred (${cached.source})**`;
+  if (cached) {
+    return `${progressBar(cached.percent)} **≈${cached.percent}% · inferred from ${cached.source}**`;
   }
 
   const item = items[0];
@@ -135,13 +141,15 @@ async function renderProgress(items, manualOverride) {
     const pages = await scrapeProgressFromReviewPage(reviewUrl);
     if (pages) {
       const percent = Math.floor((pages.current / pages.total) * 100);
-      saveCache({
-        percent,
-        current: pages.current,
-        total: pages.total,
-        source: "html",
-      });
-      return `${progressBar(percent)} **≈${percent}% · inferred from html**`;
+      if (percent >= 0 && percent <= 100) {
+        saveCache({
+          percent,
+          current: pages.current,
+          total: pages.total,
+          source: "html",
+        });
+        return `${progressBar(percent)} **≈${percent}% · inferred from html**`;
+      }
     }
   }
 
@@ -189,17 +197,14 @@ function renderRead(items) {
 
 function renderLastUpdated() {
   const now = new Date();
-  const date = now.toLocaleDateString("en-US", {
+  return `_⏳ last updated on ${now.toLocaleString("en-US", {
     month: "short",
     day: "numeric",
-  });
-  const time = now.toLocaleTimeString("en-US", {
     hour: "numeric",
     minute: "2-digit",
     hour12: true,
     timeZoneName: "short",
-  });
-  return `_⏳ last updated on ${date} at ${time}_`;
+  })}_`;
 }
 
 function replaceSection(content, tag, replacement) {
