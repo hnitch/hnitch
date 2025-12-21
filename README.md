@@ -26,7 +26,7 @@
 
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▰▰▰▰▰▰▰▰▰▰ **≈16875% · inferred from html**
+▱▱▱▱▱▱▱▱▱▱ _in progress…_
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -94,7 +94,7 @@
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Dec 21 at 1:36 AM UTC_
+_⏳ last updated on Dec 21, 1:42 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
