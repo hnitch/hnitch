@@ -62,7 +62,7 @@ function progressBar(percent) {
   return pulse.repeat(filled) + "▱".repeat(total - filled);
 }
 
-/* ---------- PROGRESS EXTRACTION (2.0 STABLE) ---------- */
+/* ---------- PROGRESS EXTRACTION (STABLE) ---------- */
 
 function extractNumberFromString(s) {
   if (!s) return null;
@@ -98,36 +98,38 @@ function extractProgressFromItem(item) {
   return extractNumberFromString(text);
 }
 
-/* ---------- VELOCITY (FIXED) ---------- */
+/* ---------- READING PACE (REWORKED) ---------- */
 
-function computeVelocity(readItems) {
+function computeReadingPace(readItems) {
   const now = Date.now();
-  const THIRTY_DAYS = 1000 * 60 * 60 * 24 * 30;
+  const WINDOW = 1000 * 60 * 60 * 24 * 30; // 30 days
 
   const recent = readItems.filter((b) => {
     const t = new Date(b.pubDate?.[0]).getTime();
-    return now - t <= THIRTY_DAYS;
+    return now - t <= WINDOW;
   });
 
   if (!recent.length) return null;
 
-  return clamp(recent.length / 30, 0.05, 1.2);
-}
+  const booksPerMonth = recent.length;
 
-function velocityLabel(v) {
-  if (v >= 0.7) return "locked in 🔥";
-  if (v >= 0.35) return "steady 📖";
-  if (v >= 0.15) return "casual 🐢";
-  return "slump 💤";
+  let label;
+  if (booksPerMonth >= 12) label = "on a roll 🔥";
+  else if (booksPerMonth >= 6) label = "actively reading 📖";
+  else if (booksPerMonth >= 3) label = "casual pace 🐢";
+  else label = "slow burn 💤";
+
+  return { booksPerMonth, label };
 }
 
 /* ---------- ETA ---------- */
 
-function estimateETA(velocity, progress) {
-  if (!velocity) return null;
+function estimateETA(pace, progress) {
+  if (!pace) return null;
 
   const avgPages = 350;
-  const pagesPerDay = avgPages * velocity;
+  const pagesPerDay = (pace.booksPerMonth * avgPages) / 30;
+
   const remaining =
     progress != null ? avgPages * (1 - progress / 100) : avgPages * 0.5;
 
@@ -163,18 +165,16 @@ function renderProgress(items) {
   return `${progressBar(p)} **${p}%**`;
 }
 
-/* ---------- INSIGHTS TABLE (CLEAN) ---------- */
+/* ---------- INSIGHTS TABLE (FIXED RENDERING) ---------- */
 
-function renderInsights({ progress, velocity, eta }) {
-  if (!velocity && !eta && progress == null) return "";
+function renderInsights({ progress, pace, eta }) {
+  if (!pace && !eta && progress == null) return "";
 
   const rows = [];
 
-  if (velocity) {
+  if (pace) {
     rows.push(
-      `| 📊 *reading velocity* | ${velocityLabel(velocity)} · ${velocity.toFixed(
-        2
-      )} books/day |`
+      `| 📊 *reading pace* | ${pace.label} · ~${pace.booksPerMonth} books/month |`
     );
   }
 
@@ -191,82 +191,10 @@ function renderInsights({ progress, velocity, eta }) {
   }
 
   return `
+| insight | details |
 |---|---|
 ${rows.join("\n")}
 `;
-}
-
-/* ---------- RECENTLY FINISHED ---------- */
-
-function glowForRating(rating) {
-  if (rating === 5) return " ✨✨";
-  if (rating === 4) return " ✨";
-  return "";
-}
-
-function ratingLabel(rating) {
-  switch (rating) {
-    case 5:
-      return "literally obsesseddd !!! 😝";
-    case 4:
-      return "this one cooked 🤭";
-    case 3:
-      return "mixed feelings / good ish 🫠";
-    case 2:
-      return "not for me 😟";
-    case 1:
-      return "straight to jailll 😦";
-    default:
-      return "no rating yet ❌";
-  }
-}
-
-function renderSpotlight(items) {
-  if (!items.length) return "";
-
-  const book = items[0];
-  const rating = parseInt(book.user_rating?.[0] || "0", 10);
-  const stars = rating ? "★".repeat(rating) : "";
-  const glow = glowForRating(rating);
-
-  return `${pulseSymbol()} recently finished
-
-<table>
-  <tr>
-    <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="${book.link}">${book.title}</a></strong><br/>
-      <sub>${book.author_name}</sub><br/><br/>
-      ${stars}${glow} — ${ratingLabel(rating)}
-    </td>
-  </tr>
-</table>`;
-}
-
-/* ---------- RECENT READS ---------- */
-
-function renderRead(items) {
-  const books = items.slice(0, MAX_READ);
-  if (!books.length) return "_No recently read books_";
-
-  const cells = books.map((b) => {
-    const r = parseInt(b.user_rating?.[0] || "0", 10);
-    const glow = r >= 4 ? " ✨" : "";
-    return `
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="${b.link}">${b.title}</a></strong><br/>
-    <sub>${b.author_name}</sub><br/>
-    ⭐ ${r}${glow}
-  </div>
-</td>`;
-  });
-
-  const rows = [];
-  for (let i = 0; i < cells.length; i += 3) {
-    rows.push(`<tr>${cells.slice(i, i + 3).join("")}</tr>`);
-  }
-
-  return `<table><tbody>${rows.join("")}</tbody></table>`;
 }
 
 /* ---------- LAST UPDATED ---------- */
@@ -316,8 +244,8 @@ function replaceSection(content, tag, replacement) {
       ? extractProgressFromItem(currentlyItems[0])
       : null;
 
-  const velocity = computeVelocity(readItems);
-  const eta = estimateETA(velocity, progress);
+  const pace = computeReadingPace(readItems);
+  const eta = estimateETA(pace, progress);
 
   let readme = fs.readFileSync("README.md", "utf8");
 
@@ -336,19 +264,7 @@ function replaceSection(content, tag, replacement) {
   readme = replaceSection(
     readme,
     "GOODREADS-READING-CARD",
-    renderInsights({ progress, velocity, eta })
-  );
-
-  readme = replaceSection(
-    readme,
-    "GOODREADS-SPOTLIGHT",
-    renderSpotlight(readItems)
-  );
-
-  readme = replaceSection(
-    readme,
-    "GOODREADS-LIST",
-    `✦ 📚 recent reads\n\n${renderRead(readItems)}`
+    renderInsights({ progress, pace, eta })
   );
 
   readme = replaceSection(
@@ -358,5 +274,5 @@ function replaceSection(content, tag, replacement) {
   );
 
   fs.writeFileSync("README.md", readme);
-  console.log("✨ README updated (v2.1 – final)");
+  console.log("✨ README updated (v2.1 – final, fixed)");
 })();
