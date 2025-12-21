@@ -276,11 +276,21 @@ function replaceSection(content, tag, replacement) {
     renderCurrentlyReading(currentlyItem)
   );
 
-  readme = replaceSection(
-    readme,
-    "GOODREADS-CURRENT-PROGRESS",
-    renderReadingCard({ progress, velocity, eta })
-  );
+
+readme = replaceSection(
+  readme,
+  "GOODREADS-CURRENT-PROGRESS",
+  progress
+    ? `${progressBar(progress.percent)} **${progress.percent}%**`
+    : ""
+);
+
+
+readme = replaceSection(
+  readme,
+  "GOODREADS-READING-INSIGHTS",
+  renderReadingCard({ progress, velocity, eta })
+);
 
   readme = replaceSection(
     readme,
