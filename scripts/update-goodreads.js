@@ -111,28 +111,30 @@ function renderReadingTable({ progress, velocity, eta }) {
 
   if (velocity) {
     rows.push(
-      `| **Reading velocity** | ${velocityLabel(velocity)} (${velocity.toFixed(
+      `| 📊 **reading velocity** | ${velocityLabel(velocity)} · ${velocity.toFixed(
         2
-      )} books/day) |`
+      )} books/day |`
     );
   }
 
   if (eta) {
     rows.push(
-      `| **ETA** | ${eta.label} · ${eta.confidenceEmoji} ${eta.confidenceLabel} confidence |`
+      `| ⏳ **eta** | ${eta.label} · ${eta.confidenceEmoji} ${eta.confidenceLabel} confidence |`
     );
   }
 
   if (progress) {
     rows.push(
-      `| **Progress** | ${progress.percent}% ${progressBar(progress.percent)} |`
+      `| 📖 **progress** | ${progress.percent}% · ${progressBar(
+        progress.percent
+      )} |`
     );
   }
 
   if (!rows.length) return "";
 
   return `
-| 📊 **Reading insights** | |
+| | |
 |---|---|
 ${rows.join("\n")}
 `;
