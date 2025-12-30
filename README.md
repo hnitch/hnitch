@@ -28,8 +28,8 @@ _Not currently reading anything_
 
 | insight | details |
 |---|---|
-| 📊 *reading pace* | actively reading 📖 · ~9 books/month |
-| ⏳ *book completion eta* | 1–2 days · 🟡 medium confidence |
+| 📊 *reading pace* | actively reading 📖 · ~6 books/month |
+| ⏳ *book completion eta* | 2–4 days · 🟡 medium confidence |
 
 <!-- GOODREADS-READING-CARD:END -->
 
@@ -99,7 +99,7 @@ _Not currently reading anything_
 
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Dec 21 at 1:19 PM UTC_
+_⏳ last updated on Dec 30 at 8:43 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
