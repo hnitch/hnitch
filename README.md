@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[Cemetery Boys (Cemetery Boys, #1)](https://www.goodreads.com/review/show/7254387815?utm_medium=api&utm_source=rss) by Aiden Thomas**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -32,6 +32,13 @@
 ✦ 📚 recent reads
 
 <table><tbody><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/7254387815?utm_medium=api&utm_source=rss">Cemetery Boys (Cemetery Boys, #1)</a></strong><br/>
+    <sub>Aiden Thomas</sub><br/>
+    ⭐ 1
+  </div>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8158619001?utm_medium=api&utm_source=rss">The Housemaid's Secret (The Housemaid, #2)</a></strong><br/>
@@ -45,14 +52,14 @@
     <sub>Freida McFadden</sub><br/>
     ⭐ 4 ✨
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/7870668798?utm_medium=api&utm_source=rss">Lessons in Chemistry</a></strong><br/>
     <sub>Bonnie Garmus</sub><br/>
     ⭐ 4 ✨
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/7268775924?utm_medium=api&utm_source=rss">Bad Blood (The Naturals, #4)</a></strong><br/>
@@ -66,13 +73,6 @@
     <sub>C.G. Drews</sub><br/>
     ⭐ 5 ✨✨
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/7341373288?utm_medium=api&utm_source=rss">This Is How You Lose the Time War</a></strong><br/>
-    <sub>Amal El-Mohtar</sub><br/>
-    ⭐ 2
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
@@ -81,16 +81,16 @@
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8158619001?utm_medium=api&utm_source=rss">The Housemaid's Secret (The Housemaid, #2)</a></strong><br/>
-      <sub>Freida McFadden</sub><br/><br/>
-      ★★★ — mixed feelings / good ish 🫠
+      <strong>📕 <a href="https://www.goodreads.com/review/show/7254387815?utm_medium=api&utm_source=rss">Cemetery Boys (Cemetery Boys, #1)</a></strong><br/>
+      <sub>Aiden Thomas</sub><br/><br/>
+      ★ — straight to jailll 😦
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Jan 3 at 3:06 PM UTC_
+_⏳ last updated on Jan 3 at 4:06 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
