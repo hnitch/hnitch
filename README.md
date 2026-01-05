@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[The Final Scene](https://www.goodreads.com/review/show/8125432713?utm_medium=api&utm_source=rss) by Steph Nelson**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -32,6 +32,13 @@
 ✦ 📚 recent reads
 
 <table><tbody><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8125432713?utm_medium=api&utm_source=rss">The Final Scene</a></strong><br/>
+    <sub>Steph Nelson</sub><br/>
+    ⭐ 3
+  </div>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/7254387815?utm_medium=api&utm_source=rss">Cemetery Boys (Cemetery Boys, #1)</a></strong><br/>
@@ -45,14 +52,14 @@
     <sub>Freida McFadden</sub><br/>
     ⭐ 3
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/7253467779?utm_medium=api&utm_source=rss">The Housemaid (The Housemaid, #1)</a></strong><br/>
     <sub>Freida McFadden</sub><br/>
     ⭐ 4 ✨
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/7870668798?utm_medium=api&utm_source=rss">Lessons in Chemistry</a></strong><br/>
@@ -66,13 +73,6 @@
     <sub>Jennifer Lynn Barnes</sub><br/>
     ⭐ 5 ✨✨
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/7274513286?utm_medium=api&utm_source=rss">Hazelthorn</a></strong><br/>
-    <sub>C.G. Drews</sub><br/>
-    ⭐ 5 ✨✨
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
@@ -81,16 +81,16 @@
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/7254387815?utm_medium=api&utm_source=rss">Cemetery Boys (Cemetery Boys, #1)</a></strong><br/>
-      <sub>Aiden Thomas</sub><br/><br/>
-      ★ — straight to jailll 😦
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8125432713?utm_medium=api&utm_source=rss">The Final Scene</a></strong><br/>
+      <sub>Steph Nelson</sub><br/><br/>
+      ★★★ — mixed feelings / good ish 🫠
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Jan 5 at 6:13 AM UTC_
+_⏳ last updated on Jan 5 at 7:13 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
