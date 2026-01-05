@@ -20,7 +20,7 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-_Not currently reading anything_
+📘 **[The Final Scene](https://www.goodreads.com/review/show/8125432713?utm_medium=api&utm_source=rss) by Steph Nelson**
 <!-- CURRENTLY-READING-LIST:END -->
 
 
@@ -99,7 +99,7 @@ _Not currently reading anything_
 
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Dec 30 at 8:43 AM UTC_
+_⏳ last updated on Jan 5 at 12:55 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
