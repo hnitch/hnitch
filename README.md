@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-_Not currently reading anything_
+📘 **[Mexican Gothic](https://www.goodreads.com/review/show/7502633428?utm_medium=api&utm_source=rss) by Silvia Moreno-Garcia**
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-
+▱▱▱▱▱▱▱▱▱▱ _in progress…_
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -76,7 +76,7 @@ _Not currently reading anything_
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-💫 recently finished
+✨ recently finished
 
 <table>
   <tr>
@@ -90,7 +90,7 @@ _Not currently reading anything_
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Jan 8 at 11:07 AM UTC_
+_⏳ last updated on Jan 8 at 12:12 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
