@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-_Not currently reading anything_
+📘 **[My Darling Dreadful Thing](https://www.goodreads.com/review/show/8125432660?utm_medium=api&utm_source=rss) by Johanna van Veen**
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-
+▱▱▱▱▱▱▱▱▱▱ _in progress…_
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -90,7 +90,7 @@ _Not currently reading anything_
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Jan 23 at 9:11 AM UTC_
+_⏳ last updated on Jan 23 at 10:08 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
