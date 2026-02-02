@@ -34,6 +34,13 @@
 <table><tbody><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/7254387815?utm_medium=api&utm_source=rss">Cemetery Boys (Cemetery Boys #1)</a></strong><br/>
+    <sub>Aiden Thomas</sub><br/>
+    ⭐ 1
+  </div>
+</td>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8125432660?utm_medium=api&utm_source=rss">My Darling Dreadful Thing</a></strong><br/>
     <sub>Johanna van Veen</sub><br/>
     ⭐ 4 ✨
@@ -45,14 +52,14 @@
     <sub>Lee Mandelo</sub><br/>
     ⭐ 2
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8257618447?utm_medium=api&utm_source=rss">I Am Not Jessica Chen</a></strong><br/>
     <sub>Ann Liang</sub><br/>
     ⭐ 4 ✨
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/7502633428?utm_medium=api&utm_source=rss">Mexican Gothic</a></strong><br/>
@@ -66,31 +73,24 @@
     <sub>Michael Thomas Ford</sub><br/>
     ⭐ 4 ✨
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8125432713?utm_medium=api&utm_source=rss">The Final Scene</a></strong><br/>
-    <sub>Steph Nelson</sub><br/>
-    ⭐ 3
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-✨ recently finished
+💫 recently finished
 
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8125432660?utm_medium=api&utm_source=rss">My Darling Dreadful Thing</a></strong><br/>
-      <sub>Johanna van Veen</sub><br/><br/>
-      ★★★★ ✨ — this one cooked 🤭
+      <strong>📕 <a href="https://www.goodreads.com/review/show/7254387815?utm_medium=api&utm_source=rss">Cemetery Boys (Cemetery Boys #1)</a></strong><br/>
+      <sub>Aiden Thomas</sub><br/><br/>
+      ★ — straight to jailll 😦
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Feb 2 at 1:30 PM UTC_
+_⏳ last updated on Feb 2 at 2:19 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
