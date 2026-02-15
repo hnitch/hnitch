@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[The Housemaid Is Watching (The Housemaid, #3)](https://www.goodreads.com/review/show/8356679323?utm_medium=api&utm_source=rss) by Freida McFadden**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -32,6 +32,13 @@
 ✦ 📚 recent reads
 
 <table><tbody><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8356679323?utm_medium=api&utm_source=rss">The Housemaid Is Watching (The Housemaid, #3)</a></strong><br/>
+    <sub>Freida McFadden</sub><br/>
+    ⭐ 3
+  </div>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8092357695?utm_medium=api&utm_source=rss">Icarus</a></strong><br/>
@@ -45,14 +52,14 @@
     <sub>Aiden Thomas</sub><br/>
     ⭐ 1
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8125432660?utm_medium=api&utm_source=rss">My Darling Dreadful Thing</a></strong><br/>
     <sub>Johanna van Veen</sub><br/>
     ⭐ 4 ✨
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8135507894?utm_medium=api&utm_source=rss">Summer Sons</a></strong><br/>
@@ -66,13 +73,6 @@
     <sub>Ann Liang</sub><br/>
     ⭐ 4 ✨
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/7502633428?utm_medium=api&utm_source=rss">Mexican Gothic</a></strong><br/>
-    <sub>Silvia Moreno-Garcia</sub><br/>
-    ⭐ 3
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
@@ -81,16 +81,16 @@
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8092357695?utm_medium=api&utm_source=rss">Icarus</a></strong><br/>
-      <sub>K. Ancrum</sub><br/><br/>
-      ★★★★ ✨ — this one cooked 🤭
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8356679323?utm_medium=api&utm_source=rss">The Housemaid Is Watching (The Housemaid, #3)</a></strong><br/>
+      <sub>Freida McFadden</sub><br/><br/>
+      ★★★ — mixed feelings / good ish 🫠
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Feb 15 at 12:12 PM UTC_
+_⏳ last updated on Feb 15 at 1:21 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
