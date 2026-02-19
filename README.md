@@ -76,7 +76,7 @@
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-✦ recently finished
+✨ recently finished
 
 <table>
   <tr>
@@ -90,7 +90,7 @@
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Feb 19 at 1:38 AM UTC_
+_⏳ last updated on Feb 19 at 3:06 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
