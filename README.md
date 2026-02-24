@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[Someone Is Always Watching](https://www.goodreads.com/review/show/8377624019?utm_medium=api&utm_source=rss) by Kelley Armstrong**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -32,6 +32,13 @@
 ✦ 📚 recent reads
 
 <table><tbody><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8377624019?utm_medium=api&utm_source=rss">Someone Is Always Watching</a></strong><br/>
+    <sub>Kelley Armstrong</sub><br/>
+    ⭐ 2
+  </div>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8362823585?utm_medium=api&utm_source=rss">Alchemised</a></strong><br/>
@@ -45,14 +52,14 @@
     <sub>Freida McFadden</sub><br/>
     ⭐ 3
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8092357695?utm_medium=api&utm_source=rss">Icarus</a></strong><br/>
     <sub>K. Ancrum</sub><br/>
     ⭐ 4 ✨
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/7254387815?utm_medium=api&utm_source=rss">Cemetery Boys (Cemetery Boys #1)</a></strong><br/>
@@ -66,31 +73,24 @@
     <sub>Johanna van Veen</sub><br/>
     ⭐ 4 ✨
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8135507894?utm_medium=api&utm_source=rss">Summer Sons</a></strong><br/>
-    <sub>Lee Mandelo</sub><br/>
-    ⭐ 2
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-✨ recently finished
+✦ recently finished
 
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8362823585?utm_medium=api&utm_source=rss">Alchemised</a></strong><br/>
-      <sub>SenLinYu</sub><br/><br/>
-      ★★★★★ ✨✨ — literally obsesseddd !!! 😝
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8377624019?utm_medium=api&utm_source=rss">Someone Is Always Watching</a></strong><br/>
+      <sub>Kelley Armstrong</sub><br/><br/>
+      ★★ — not for me 😟
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Feb 24 at 3:24 PM UTC_
+_⏳ last updated on Feb 24 at 4:26 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
