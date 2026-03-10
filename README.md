@@ -34,6 +34,13 @@ _Not currently reading anything_
 <table><tbody><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8425171845?utm_medium=api&utm_source=rss">Nothing Can Hurt You Now</a></strong><br/>
+    <sub>Simone Campos</sub><br/>
+    ⭐ 1
+  </div>
+</td>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8377624019?utm_medium=api&utm_source=rss">Someone Is Always Watching</a></strong><br/>
     <sub>Kelley Armstrong</sub><br/>
     ⭐ 2
@@ -45,14 +52,14 @@ _Not currently reading anything_
     <sub>SenLinYu</sub><br/>
     ⭐ 5 ✨✨
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8356679323?utm_medium=api&utm_source=rss">The Housemaid Is Watching (The Housemaid, #3)</a></strong><br/>
     <sub>Freida McFadden</sub><br/>
     ⭐ 3
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8092357695?utm_medium=api&utm_source=rss">Icarus</a></strong><br/>
@@ -66,31 +73,24 @@ _Not currently reading anything_
     <sub>Aiden Thomas</sub><br/>
     ⭐ 1
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8125432660?utm_medium=api&utm_source=rss">My Darling Dreadful Thing</a></strong><br/>
-    <sub>Johanna van Veen</sub><br/>
-    ⭐ 4 ✨
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-💫 recently finished
+✨ recently finished
 
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8377624019?utm_medium=api&utm_source=rss">Someone Is Always Watching</a></strong><br/>
-      <sub>Kelley Armstrong</sub><br/><br/>
-      ★★ — not for me 😟
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8425171845?utm_medium=api&utm_source=rss">Nothing Can Hurt You Now</a></strong><br/>
+      <sub>Simone Campos</sub><br/><br/>
+      ★ — straight to jailll 😦
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Mar 10 at 4:37 AM UTC_
+_⏳ last updated on Mar 10 at 5:24 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
