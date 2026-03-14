@@ -10,6 +10,8 @@ const feeds = {
   read: `https://www.goodreads.com/review/list_rss/${USER_ID}?shelf=read`,
 };
 
+const shelfPage = `https://www.goodreads.com/review/list/${USER_ID}?shelf=currently-reading`;
+
 function fetch(url) {
   return new Promise((resolve, reject) => {
     const req = https.get(
@@ -86,7 +88,6 @@ function extractPageProgress(s) {
   if (!s) return null;
 
   const str = String(s);
-
   const match = str.match(/(\d+)\s*(?:of|\/)\s*(\d+)/i);
 
   if (!match) return null;
@@ -119,34 +120,51 @@ function extractProgressFromItem(item) {
   for (const val of tryFields) {
     if (!val) continue;
 
-    const pageProgress = extractPageProgress(val);
-    if (pageProgress) return pageProgress;
+    const page = extractPageProgress(val);
+    if (page) return page;
 
     const percent = extractNumberFromString(val);
-    if (percent != null) {
-      return { percent };
-    }
+    if (percent != null) return { percent };
   }
 
   return null;
 }
 
+function extractProgressFromHTML(html) {
+  if (!html) return null;
+
+  const match = html.match(/page\s*(\d+)\s*of\s*(\d+)/i);
+
+  if (!match) return null;
+
+  const current = parseInt(match[1], 10);
+  const total = parseInt(match[2], 10);
+
+  if (!current || !total) return null;
+
+  const percent = Math.round((current / total) * 100);
+
+  return { current, total, percent };
+}
+
 function renderSpotlight(items) {
   if (!items?.length) return "";
+
   const book = items[0];
   const rating = parseInt(book.user_rating?.[0] || "0", 10);
   const stars = rating ? "★".repeat(rating) : "";
   const glow = glowForRating(rating);
+
   return `${pulseSymbol()} recently finished
 
 <table>
-  <tr>
-    <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="${book.link}">${book.title}</a></strong><br/>
-      <sub>${book.author_name}</sub><br/><br/>
-      ${stars}${glow} — ${ratingLabel(rating)}
-    </td>
-  </tr>
+<tr>
+<td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
+<strong>📕 <a href="${book.link}">${book.title}</a></strong><br/>
+<sub>${book.author_name}</sub><br/><br/>
+${stars}${glow} — ${ratingLabel(rating)}
+</td>
+</tr>
 </table>`;
 }
 
@@ -156,17 +174,24 @@ function renderCurrentlyReading(items) {
 
 _Not currently reading anything_`;
   }
+
   const book = items[0];
+
   return `↳ 📖 currently reading
 
 📘 **[${book.title}](${book.link}) by ${book.author_name}**`;
 }
 
-function renderProgress(items) {
+function renderProgress(items, shelfHTML) {
   if (!items?.length) return "";
 
   const item = items[0];
-  const progress = extractProgressFromItem(item);
+
+  let progress = extractProgressFromItem(item);
+
+  if (!progress && shelfHTML) {
+    progress = extractProgressFromHTML(shelfHTML);
+  }
 
   if (!progress) {
     return "▱▱▱▱▱▱▱▱▱▱ _in progress…_";
@@ -186,17 +211,20 @@ ${percent}%`;
 
 function renderRead(items) {
   if (!items?.length) return "_No recently read books_";
+
   const books = items.slice(0, MAX_READ);
+
   const cells = books.map((book) => {
     const rating = parseInt(book.user_rating?.[0] || "0", 10);
     const glow = glowForRating(rating);
+
     return `
 <td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="${book.link}">${book.title}</a></strong><br/>
-    <sub>${book.author_name}</sub><br/>
-    ⭐ ${rating}${glow}
-  </div>
+<div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+<strong>📘 <a href="${book.link}">${book.title}</a></strong><br/>
+<sub>${book.author_name}</sub><br/>
+⭐ ${rating}${glow}
+</div>
 </td>`;
   });
 
@@ -210,10 +238,12 @@ function renderRead(items) {
 
 function renderLastUpdated() {
   const now = new Date();
+
   const datePart = now.toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
   });
+
   const timePart = now.toLocaleTimeString("en-US", {
     hour: "numeric",
     minute: "2-digit",
@@ -237,9 +267,10 @@ function replaceSection(content, tag, replacement) {
 }
 
 (async function main() {
-  const [currentlyXML, readXML] = await Promise.all([
+  const [currentlyXML, readXML, shelfHTML] = await Promise.all([
     fetch(feeds.currentlyReading),
     fetch(feeds.read),
+    fetch(shelfPage),
   ]);
 
   const currently = await safeParse(currentlyXML);
@@ -265,7 +296,7 @@ function replaceSection(content, tag, replacement) {
   readme = replaceSection(
     readme,
     "GOODREADS-CURRENT-PROGRESS",
-    renderProgress(currentlyItems)
+    renderProgress(currentlyItems, shelfHTML)
   );
 
   readme = replaceSection(
@@ -281,5 +312,6 @@ function replaceSection(content, tag, replacement) {
   );
 
   fs.writeFileSync("README.md", readme);
+
   console.log("✨ README updated");
 })();
