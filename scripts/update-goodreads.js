@@ -10,18 +10,32 @@ const feeds = {
   read: `https://www.goodreads.com/review/list_rss/${USER_ID}?shelf=read`,
 };
 
+
 function fetch(url) {
   return new Promise((resolve, reject) => {
-    https.get(url, { headers: { "User-Agent": "Mozilla/5.0" } }, (res) => {
-      let data = "";
-      res.on("data", (c) => (data += c));
-      res.on("end", () => resolve(data));
-    }).on("error", reject);
+    https
+      .get(
+        url,
+        {
+          headers: {
+            "User-Agent": "Mozilla/5.0",
+            "Cookie": process.env.GOODREADS_COOKIE || "",
+          },
+        },
+        (res) => {
+          let data = "";
+
+          res.on("data", (chunk) => (data += chunk));
+          res.on("end", () => resolve(data));
+        }
+      )
+      .on("error", reject);
   });
 }
 
 async function safeParse(xml) {
   if (!xml || !xml.includes("<rss")) return null;
+
   try {
     return await parseStringPromise(xml);
   } catch {
@@ -32,20 +46,30 @@ async function safeParse(xml) {
 function progressBar(percent) {
   const total = 10;
   const filled = Math.round((percent / 100) * total);
+
   return "▰".repeat(filled) + "▱".repeat(total - filled);
 }
+
 
 function extractProgress(description) {
   if (!description) return null;
 
   const match = description.match(/read\s*(\d+)\s*of\s*(\d+)/i);
+
   if (!match) return null;
 
   const current = parseInt(match[1], 10);
   const total = parseInt(match[2], 10);
+
+  if (!current || !total) return null;
+
   const percent = Math.round((current / total) * 100);
 
-  return { current, total, percent };
+  return {
+    current,
+    total,
+    percent,
+  };
 }
 
 function renderCurrentlyReading(items) {
@@ -63,7 +87,9 @@ _Not currently reading anything_`;
 }
 
 function renderProgress(progress) {
-  if (!progress) return "▱▱▱▱▱▱▱▱▱▱ _in progress…_";
+  if (!progress) {
+    return "▱▱▱▱▱▱▱▱▱▱ _in progress…_";
+  }
 
   const bar = progressBar(progress.percent);
 
@@ -90,6 +116,7 @@ function renderRead(items) {
   });
 
   const rows = [];
+
   for (let i = 0; i < cells.length; i += 3) {
     rows.push(`<tr>${cells.slice(i, i + 3).join("")}</tr>`);
   }
@@ -116,9 +143,15 @@ function renderLastUpdated() {
 }
 
 function replaceSection(content, tag, replacement) {
-  const regex = new RegExp(`<!-- ${tag}:START -->[\\s\\S]*?<!-- ${tag}:END -->`, "m");
+  const regex = new RegExp(
+    `<!-- ${tag}:START -->[\\s\\S]*?<!-- ${tag}:END -->`,
+    "m"
+  );
 
-  return content.replace(regex, `<!-- ${tag}:START -->\n${replacement}\n<!-- ${tag}:END -->`);
+  return content.replace(
+    regex,
+    `<!-- ${tag}:START -->\n${replacement}\n<!-- ${tag}:END -->`
+  );
 }
 
 (async function main() {
@@ -137,16 +170,17 @@ function replaceSection(content, tag, replacement) {
 
   if (currentlyItems.length) {
     const description = currentlyItems[0].description?.[0] || "";
+
     progress = extractProgress(description);
   }
 
   let readme = fs.readFileSync("README.md", "utf8");
 
   const sections = {
-    "CURRENTLY-READING-LIST": renderCurrentlyReading(currentlyItems),
-    "GOODREADS-CURRENT-PROGRESS": renderProgress(progress),
-    "GOODREADS-LIST": `✦ 📚 recent reads\n\n${renderRead(readItems)}`,
-    "GOODREADS-LAST-UPDATED": renderLastUpdated(),
+    CURRENTLY-READING-LIST: renderCurrentlyReading(currentlyItems),
+    GOODREADS-CURRENT-PROGRESS: renderProgress(progress),
+    GOODREADS-LIST: `✦ 📚 recent reads\n\n${renderRead(readItems)}`,
+    GOODREADS-LAST-UPDATED: renderLastUpdated(),
   };
 
   for (const tag in sections) {
