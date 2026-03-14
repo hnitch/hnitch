@@ -136,18 +136,24 @@ function extractProgressFromItem(item) {
 function extractProgressFromHTML(html) {
   if (!html) return null;
 
-  const match = html.match(/page\s+(\d+)\s+of\s+(\d+)\s+pages/i);
+  const matches = [...html.matchAll(/page\s+(\d+)\s+of\s+(\d+)/gi)];
 
-  if (!match) return null;
+  for (const match of matches) {
+    const current = parseInt(match[1], 10);
+    const total = parseInt(match[2], 10);
 
-  const current = parseInt(match[1], 10);
-  const total = parseInt(match[2], 10);
+    if (
+      current > 0 &&
+      total > 0 &&
+      current <= total &&
+      total < 5000
+    ) {
+      const percent = Math.round((current / total) * 100);
+      return { current, total, percent };
+    }
+  }
 
-  if (!current || !total) return null;
-
-  const percent = Math.round((current / total) * 100);
-
-  return { current, total, percent };
+  return null;
 }
 
 function renderSpotlight(items) {
