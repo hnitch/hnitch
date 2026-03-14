@@ -24,8 +24,7 @@
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▮▮▮▮▮▮▮▮▮▮ 67533%
-page 2026 / 3
+▱▱▱▱▱▱▱▱▱▱ _in progress…_
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -77,7 +76,7 @@ page 2026 / 3
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-✦ recently finished
+✨ recently finished
 
 <table>
 <tr>
@@ -91,7 +90,7 @@ page 2026 / 3
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Mar 14 at 1:59 PM UTC_
+_⏳ last updated on Mar 14 at 2:03 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
