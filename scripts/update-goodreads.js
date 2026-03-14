@@ -47,12 +47,8 @@ function pulseSymbol() {
 
 function progressBar(percent) {
   const total = 10;
-  const filled = Math.max(
-    0,
-    Math.min(total, Math.round((percent / 100) * total))
-  );
-  const pulse = ["▰", "▮"][new Date().getMinutes() % 2];
-  return pulse.repeat(filled) + "▱".repeat(total - filled);
+  const filled = Math.round((percent / 100) * total);
+  return "▰".repeat(filled) + "▱".repeat(total - filled);
 }
 
 function glowForRating(rating) {
@@ -91,11 +87,11 @@ function extractProgressFromReviewPage(html) {
   const total = parseInt(pagesMatch[2], 10);
 
   if (
-    !percent ||
-    !current ||
-    !total ||
-    current > total ||
-    percent > 100
+    !Number.isFinite(percent) ||
+    !Number.isFinite(current) ||
+    !Number.isFinite(total) ||
+    percent > 100 ||
+    current > total
   ) {
     return null;
   }
