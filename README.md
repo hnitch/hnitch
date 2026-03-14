@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[Placeholder](https://www.goodreads.com/review/show/8436221092?utm_medium=api&utm_source=rss) by Chris Harnan**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -90,7 +90,7 @@
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Mar 14 at 3:09 PM UTC_
+_⏳ last updated on Mar 14 at 4:09 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
