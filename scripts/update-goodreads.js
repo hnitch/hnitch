@@ -91,16 +91,28 @@ function extractPageProgress(s) {
   if (!s) return null;
 
   const str = String(s);
-  const match = str.match(/(\d+)\s*(?:of|\/)\s*(\d+)/i);
 
+  const match = str.match(/page\s*(\d+)\s*(?:of|\/)\s*(\d+)/i);
   if (!match) return null;
 
   const current = parseInt(match[1], 10);
   const total = parseInt(match[2], 10);
 
-  if (!current || !total) return null;
+  
+  if (
+    !Number.isFinite(current) ||
+    !Number.isFinite(total) ||
+    current <= 0 ||
+    total <= 0 ||
+    current > total ||
+    total > 5000
+  ) {
+    return null;
+  }
 
   const percent = Math.round((current / total) * 100);
+
+  if (percent < 0 || percent > 100) return null;
 
   return { current, total, percent };
 }
