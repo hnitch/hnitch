@@ -177,11 +177,11 @@ function replaceSection(content, tag, replacement) {
   let readme = fs.readFileSync("README.md", "utf8");
 
   const sections = {
-    CURRENTLY-READING-LIST: renderCurrentlyReading(currentlyItems),
-    GOODREADS-CURRENT-PROGRESS: renderProgress(progress),
-    GOODREADS-LIST: `✦ 📚 recent reads\n\n${renderRead(readItems)}`,
-    GOODREADS-LAST-UPDATED: renderLastUpdated(),
-  };
+  "CURRENTLY-READING-LIST": renderCurrentlyReading(currentlyItems),
+  "GOODREADS-CURRENT-PROGRESS": renderProgress(progress),
+  "GOODREADS-LIST": `✦ 📚 recent reads\n\n${renderRead(readItems)}`,
+  "GOODREADS-LAST-UPDATED": renderLastUpdated(),
+};
 
   for (const tag in sections) {
     readme = replaceSection(readme, tag, sections[tag]);
