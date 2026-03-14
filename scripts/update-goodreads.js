@@ -136,7 +136,7 @@ function extractProgressFromItem(item) {
 function extractProgressFromHTML(html) {
   if (!html) return null;
 
-  const match = html.match(/page\s*(\d+)\s*of\s*(\d+)/i);
+  const match = html.match(/page\s+(\d+)\s+of\s+(\d+)\s+pages/i);
 
   if (!match) return null;
 
