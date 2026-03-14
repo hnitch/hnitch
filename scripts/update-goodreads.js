@@ -74,30 +74,22 @@ function ratingLabel(rating) {
   }
 }
 
-function extractProgressFromReviewPage(html) {
+function extractProgressFromBookPage(html) {
   if (!html) return null;
 
-  const percentMatch = html.match(/"percent_complete":\s*(\d+)/);
-  const pageMatch = html.match(/"page":\s*(\d+)/);
-  const totalMatch = html.match(/"num_pages":\s*(\d+)/);
+  const match = html.match(/(\d+)\s*\/\s*(\d+)\s*\(\s*(\d+)%\s*\)/);
 
-  if (!percentMatch) return null;
+  if (!match) return null;
 
-  const percent = parseInt(percentMatch[1], 10);
+  const current = parseInt(match[1], 10);
+  const total = parseInt(match[2], 10);
+  const percent = parseInt(match[3], 10);
 
-  let current = null;
-  let total = null;
+  if (!Number.isFinite(current) || !Number.isFinite(total) || !Number.isFinite(percent)) {
+    return null;
+  }
 
-  if (pageMatch) current = parseInt(pageMatch[1], 10);
-  if (totalMatch) total = parseInt(totalMatch[1], 10);
-
-  if (percent < 0 || percent > 100) return null;
-
-  return {
-    percent,
-    current,
-    total,
-  };
+  return { current, total, percent };
 }
 
 function renderSpotlight(items) {
@@ -196,10 +188,7 @@ function renderLastUpdated() {
 }
 
 function replaceSection(content, tag, replacement) {
-  const regex = new RegExp(
-    `<!-- ${tag}:START -->[\\s\\S]*?<!-- ${tag}:END -->`,
-    "m"
-  );
+  const regex = new RegExp(`<!-- ${tag}:START -->[\\s\\S]*?<!-- ${tag}:END -->`, "m");
 
   return content.replace(
     regex,
@@ -221,16 +210,13 @@ function replaceSection(content, tag, replacement) {
 
   let progress = null;
 
- if (currentlyItems.length) {
-  const reviewLink = currentlyItems[0].link?.[0];
-  const reviewHTML = await fetch(reviewLink);
+  if (currentlyItems.length) {
+    const bookId = currentlyItems[0].book_id?.[0];
+    const bookPage = `https://www.goodreads.com/book/show/${bookId}`;
+    const bookHTML = await fetch(bookPage);
 
-  console.log("Review page fetched:", reviewLink);
-  console.log("HTML snippet:");
-  console.log(reviewHTML.slice(0, 2000));
-
-  progress = extractProgressFromReviewPage(reviewHTML);
-}
+    progress = extractProgressFromBookPage(bookHTML);
+  }
 
   let readme = fs.readFileSync("README.md", "utf8");
 
