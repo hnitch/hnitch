@@ -29,6 +29,8 @@ jobs:
 
       - name: Update README from Goodreads RSS
         run: node scripts/update-goodreads.js
+        env:
+          GOODREADS_COOKIE: ${{ secrets.GOODREADS_COOKIE }}
 
       - name: Commit and push changes (if any)
         run: |
