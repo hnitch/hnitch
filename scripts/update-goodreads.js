@@ -77,26 +77,27 @@ function ratingLabel(rating) {
 function extractProgressFromReviewPage(html) {
   if (!html) return null;
 
-  const percentMatch = html.match(/(\d+)%/);
-  const pagesMatch = html.match(/(\d+)\s*\/\s*(\d+)/);
+  const percentMatch = html.match(/"percent_complete":\s*(\d+)/);
+  const pageMatch = html.match(/"page":\s*(\d+)/);
+  const totalMatch = html.match(/"num_pages":\s*(\d+)/);
 
-  if (!percentMatch || !pagesMatch) return null;
+  if (!percentMatch) return null;
 
   const percent = parseInt(percentMatch[1], 10);
-  const current = parseInt(pagesMatch[1], 10);
-  const total = parseInt(pagesMatch[2], 10);
 
-  if (
-    !Number.isFinite(percent) ||
-    !Number.isFinite(current) ||
-    !Number.isFinite(total) ||
-    percent > 100 ||
-    current > total
-  ) {
-    return null;
-  }
+  let current = null;
+  let total = null;
 
-  return { percent, current, total };
+  if (pageMatch) current = parseInt(pageMatch[1], 10);
+  if (totalMatch) total = parseInt(totalMatch[1], 10);
+
+  if (percent < 0 || percent > 100) return null;
+
+  return {
+    percent,
+    current,
+    total,
+  };
 }
 
 function renderSpotlight(items) {
@@ -141,8 +142,12 @@ function renderProgress(progress) {
 
   const bar = progressBar(progress.percent);
 
-  return `${bar} ${progress.percent}%
+  if (progress.current && progress.total) {
+    return `${bar} ${progress.percent}%
 page ${progress.current}/${progress.total}`;
+  }
+
+  return `${bar} ${progress.percent}%`;
 }
 
 function renderRead(items) {
