@@ -10,26 +10,24 @@ const feeds = {
   read: `https://www.goodreads.com/review/list_rss/${USER_ID}?shelf=read`,
 };
 
-const shelfPage = `https://www.goodreads.com/review/list/${USER_ID}?shelf=currently-reading`;
-
 function fetch(url) {
   return new Promise((resolve, reject) => {
-    const req = https.get(
-      url,
-      {
-        headers: {
-          "User-Agent":
-            "Mozilla/5.0 (compatible; GitHubActions/1.0; +https://github.com/)",
-          Accept: "application/rss+xml, application/xml, text/xml",
+    https
+      .get(
+        url,
+        {
+          headers: {
+            "User-Agent":
+              "Mozilla/5.0 (compatible; GitHubActions/1.0; +https://github.com/)",
+          },
         },
-      },
-      (res) => {
-        let data = "";
-        res.on("data", (chunk) => (data += chunk));
-        res.on("end", () => resolve(data));
-      }
-    );
-    req.on("error", reject);
+        (res) => {
+          let data = "";
+          res.on("data", (chunk) => (data += chunk));
+          res.on("end", () => resolve(data));
+        }
+      )
+      .on("error", reject);
   });
 }
 
@@ -80,96 +78,30 @@ function ratingLabel(rating) {
   }
 }
 
-function extractNumberFromString(s) {
-  if (!s) return null;
-  const m = String(s).match(/(\d{1,3})\s*%/);
-  if (m) return parseInt(m[1], 10);
-  return null;
-}
+function extractProgressFromReviewPage(html) {
+  if (!html) return null;
 
-function extractPageProgress(s) {
-  if (!s) return null;
+  const percentMatch = html.match(/(\d+)%/);
+  const pagesMatch = html.match(/(\d+)\s*\/\s*(\d+)/);
 
-  const str = String(s);
+  if (!percentMatch || !pagesMatch) return null;
 
-  const match = str.match(/page\s*(\d+)\s*(?:of|\/)\s*(\d+)/i);
-  if (!match) return null;
+  const percent = parseInt(percentMatch[1], 10);
+  const current = parseInt(pagesMatch[1], 10);
+  const total = parseInt(pagesMatch[2], 10);
 
-  const current = parseInt(match[1], 10);
-  const total = parseInt(match[2], 10);
-
-  
   if (
-    !Number.isFinite(current) ||
-    !Number.isFinite(total) ||
-    current <= 0 ||
-    total <= 0 ||
+    !percent ||
+    !current ||
+    !total ||
     current > total ||
-    total > 5000
+    percent > 100
   ) {
     return null;
   }
 
-  const percent = Math.round((current / total) * 100);
-
-  if (percent < 0 || percent > 100) return null;
-
-  return { current, total, percent };
+  return { percent, current, total };
 }
-
-function extractProgressFromItem(item) {
-  if (!item) return null;
-
-  const tryFields = [
-    item.user_reading_progress && item.user_reading_progress[0],
-    item.user_progress && item.user_progress[0],
-    item.progress && item.progress[0],
-    item["gd:progress"] && item["gd:progress"][0],
-    item["atom:progress"] && item["atom:progress"][0],
-    item["media:progress"] && item["media:progress"][0],
-    item["percentage"] && item["percentage"][0],
-    item.description && item.description[0],
-    item["content:encoded"] && item["content:encoded"][0],
-  ];
-
-  for (const val of tryFields) {
-    if (!val) continue;
-
-    const page = extractPageProgress(val);
-    if (page) return page;
-
-    const percent = extractNumberFromString(val);
-    if (percent != null) return { percent };
-  }
-
-  return null;
-}
-
-
-function extractProgressFromHTML(html) {
-  if (!html) return null;
-
-  const matches = [...html.matchAll(/(\d+)\s*\/\s*(\d+)/g)];
-
-  for (const match of matches) {
-    const current = parseInt(match[1], 10);
-    const total = parseInt(match[2], 10);
-
-    if (
-      current > 0 &&
-      total > 0 &&
-      current <= total &&
-      total < 5000
-    ) {
-      const percent = Math.round((current / total) * 100);
-      return { current, total, percent };
-    }
-  }
-
-  return null;
-}
-
- 
 
 function renderSpotlight(items) {
   if (!items?.length) return "";
@@ -206,30 +138,15 @@ _Not currently reading anything_`;
 📘 **[${book.title}](${book.link}) by ${book.author_name}**`;
 }
 
-function renderProgress(items, shelfHTML) {
-  if (!items?.length) return "";
-
-  const item = items[0];
-
-  let progress = extractProgressFromItem(item);
-
-  if (!progress && shelfHTML) {
-    progress = extractProgressFromHTML(shelfHTML);
-  }
-
+function renderProgress(progress) {
   if (!progress) {
     return "▱▱▱▱▱▱▱▱▱▱ _in progress…_";
   }
 
-  const percent = progress.percent;
-  const bar = progressBar(percent);
+  const bar = progressBar(progress.percent);
 
-  if (progress.current && progress.total) {
-    return `${bar} ${percent}%
-page ${progress.current} / ${progress.total}`;
-  }
-
-  return `${bar} ${percent}%`;
+  return `${bar} ${progress.percent}%
+page ${progress.current}/${progress.total}`;
 }
 
 function renderRead(items) {
@@ -290,10 +207,9 @@ function replaceSection(content, tag, replacement) {
 }
 
 (async function main() {
-  const [currentlyXML, readXML, shelfHTML] = await Promise.all([
+  const [currentlyXML, readXML] = await Promise.all([
     fetch(feeds.currentlyReading),
     fetch(feeds.read),
-    fetch(shelfPage),
   ]);
 
   const currently = await safeParse(currentlyXML);
@@ -302,12 +218,20 @@ function replaceSection(content, tag, replacement) {
   const currentlyItems = currently?.rss?.channel?.[0]?.item ?? [];
   const readItems = read?.rss?.channel?.[0]?.item ?? [];
 
+  let progress = null;
+
+  if (currentlyItems.length) {
+    const reviewLink = currentlyItems[0].link?.[0];
+    const reviewHTML = await fetch(reviewLink);
+    progress = extractProgressFromReviewPage(reviewHTML);
+  }
+
   let readme = fs.readFileSync("README.md", "utf8");
 
   const sections = {
     "GOODREADS-SPOTLIGHT": renderSpotlight(readItems),
     "CURRENTLY-READING-LIST": renderCurrentlyReading(currentlyItems),
-    "GOODREADS-CURRENT-PROGRESS": renderProgress(currentlyItems, shelfHTML),
+    "GOODREADS-CURRENT-PROGRESS": renderProgress(progress),
     "GOODREADS-LIST": `✦ 📚 recent reads\n\n${renderRead(readItems)}`,
     "GOODREADS-LAST-UPDATED": renderLastUpdated(),
   };
