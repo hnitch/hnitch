@@ -36,7 +36,7 @@
 <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
 <strong>📘 <a href="https://www.goodreads.com/review/show/8425854096?utm_medium=api&utm_source=rss">If We Were Villains</a></strong><br/>
 <sub>M.L. Rio</sub><br/>
-⭐ 4 ✨
+⭐ 4
 </div>
 </td>
 <td style="padding:12px; vertical-align:top;">
@@ -57,7 +57,7 @@
 <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
 <strong>📘 <a href="https://www.goodreads.com/review/show/8362823585?utm_medium=api&utm_source=rss">Alchemised</a></strong><br/>
 <sub>SenLinYu</sub><br/>
-⭐ 5 ✨✨
+⭐ 5
 </div>
 </td>
 <td style="padding:12px; vertical-align:top;">
@@ -71,7 +71,7 @@
 <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
 <strong>📘 <a href="https://www.goodreads.com/review/show/8092357695?utm_medium=api&utm_source=rss">Icarus</a></strong><br/>
 <sub>K. Ancrum</sub><br/>
-⭐ 4 ✨
+⭐ 4
 </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
@@ -90,7 +90,7 @@
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Mar 14 at 2:42 PM UTC_
+_⏳ last updated on Mar 14 at 2:46 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
