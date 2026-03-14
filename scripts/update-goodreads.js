@@ -145,19 +145,13 @@ function extractProgressFromItem(item) {
   return null;
 }
 
+
 function extractProgressFromHTML(html) {
   if (!html) return null;
 
-  const patterns = [
-    /page\s*(\d+)\s*of\s*(\d+)/i,
-    /(\d+)\s*of\s*(\d+)\s*pages/i,
-    /(\d+)\s*\/\s*(\d+)/,
-  ];
+  const matches = [...html.matchAll(/(\d+)\s*\/\s*(\d+)/g)];
 
-  for (const pattern of patterns) {
-    const match = html.match(pattern);
-    if (!match) continue;
-
+  for (const match of matches) {
     const current = parseInt(match[1], 10);
     const total = parseInt(match[2], 10);
 
