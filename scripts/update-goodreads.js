@@ -82,6 +82,25 @@ function extractNumberFromString(s) {
   return null;
 }
 
+function extractPageProgress(s) {
+  if (!s) return null;
+
+  const str = String(s);
+
+  const match = str.match(/(\d+)\s*(?:of|\/)\s*(\d+)/i);
+
+  if (!match) return null;
+
+  const current = parseInt(match[1], 10);
+  const total = parseInt(match[2], 10);
+
+  if (!current || !total) return null;
+
+  const percent = Math.round((current / total) * 100);
+
+  return { current, total, percent };
+}
+
 function extractProgressFromItem(item) {
   if (!item) return null;
 
@@ -93,34 +112,21 @@ function extractProgressFromItem(item) {
     item['atom:progress'] && item['atom:progress'][0],
     item['media:progress'] && item['media:progress'][0],
     item['percentage'] && item['percentage'][0],
+    item.description && item.description[0],
+    item['content:encoded'] && item['content:encoded'][0],
   ];
 
   for (const val of tryFields) {
-    if (val == null) continue;
-    if (typeof val === "string") {
-      const n = extractNumberFromString(val);
-      if (n != null) return n;
-    } else if (typeof val === "object") {
-      if (val._) {
-        const n = extractNumberFromString(val._);
-        if (n != null) return n;
-      } else {
-        // sometimes xml2js stores value as an array with text at [0]
-        const text = Array.isArray(val) ? val[0] : null;
-        const n = extractNumberFromString(text);
-        if (n != null) return n;
-      }
+    if (!val) continue;
+
+    const pageProgress = extractPageProgress(val);
+    if (pageProgress) return pageProgress;
+
+    const percent = extractNumberFromString(val);
+    if (percent != null) {
+      return { percent };
     }
   }
-
-  const description = (item.description && item.description[0]) || (item['content:encoded'] && item['content:encoded'][0]) || "";
-  const nFromDesc = extractNumberFromString(description);
-  if (nFromDesc != null) return nFromDesc;
-
-  // fallback: check title or other text fields for something like "58%"
-  const otherText = (item.title && item.title[0]) || (item.link && item.link[0]) || "";
-  const nFromOther = extractNumberFromString(otherText);
-  if (nFromOther != null) return nFromOther;
 
   return null;
 }
@@ -158,21 +164,24 @@ _Not currently reading anything_`;
 
 function renderProgress(items) {
   if (!items?.length) return "";
+
   const item = items[0];
   const progress = extractProgressFromItem(item);
 
-  if (progress == null) {
-    console.warn("⚠️ progress not found in RSS item; dumping parsed item for debugging (first item).");
-    try {
-      const sample = JSON.parse(JSON.stringify(item, (k, v) => (typeof v === "function" ? String(v) : v)));
-      console.warn(JSON.stringify(sample, null, 2));
-    } catch (e) {
-      console.warn("failed to stringify item for debug:", e);
-    }
+  if (!progress) {
     return "▱▱▱▱▱▱▱▱▱▱ _in progress…_";
   }
 
-  return `${progressBar(progress)} **${progress}%**`;
+  const percent = progress.percent;
+  const bar = progressBar(percent);
+
+  if (progress.current && progress.total) {
+    return `${bar}
+${percent}% • page ${progress.current} / ${progress.total}`;
+  }
+
+  return `${bar}
+${percent}%`;
 }
 
 function renderRead(items) {
@@ -190,10 +199,12 @@ function renderRead(items) {
   </div>
 </td>`;
   });
+
   const rows = [];
   for (let i = 0; i < cells.length; i += 3) {
     rows.push(`<tr>${cells.slice(i, i + 3).join("")}</tr>`);
   }
+
   return `<table><tbody>${rows.join("")}</tbody></table>`;
 }
 
@@ -209,6 +220,7 @@ function renderLastUpdated() {
     hour12: true,
     timeZoneName: "short",
   });
+
   return `_⏳ last updated on ${datePart} at ${timePart}_`;
 }
 
@@ -217,6 +229,7 @@ function replaceSection(content, tag, replacement) {
     `<!-- ${tag}:START -->[\\s\\S]*?<!-- ${tag}:END -->`,
     "m"
   );
+
   return content.replace(
     regex,
     `<!-- ${tag}:START -->\n${replacement}\n<!-- ${tag}:END -->`
