@@ -12,22 +12,11 @@ const feeds = {
 
 function fetch(url) {
   return new Promise((resolve, reject) => {
-    https
-      .get(
-        url,
-        {
-          headers: {
-            "User-Agent":
-              "Mozilla/5.0 (compatible; GitHubActions/1.0; +https://github.com/)",
-          },
-        },
-        (res) => {
-          let data = "";
-          res.on("data", (chunk) => (data += chunk));
-          res.on("end", () => resolve(data));
-        }
-      )
-      .on("error", reject);
+    https.get(url, { headers: { "User-Agent": "Mozilla/5.0" } }, (res) => {
+      let data = "";
+      res.on("data", (c) => (data += c));
+      res.on("end", () => resolve(data));
+    }).on("error", reject);
   });
 }
 
@@ -40,77 +29,23 @@ async function safeParse(xml) {
   }
 }
 
-function pulseSymbol() {
-  const frames = ["✨", "💫", "✦"];
-  return frames[new Date().getMinutes() % frames.length];
-}
-
 function progressBar(percent) {
   const total = 10;
   const filled = Math.round((percent / 100) * total);
   return "▰".repeat(filled) + "▱".repeat(total - filled);
 }
 
-function glowForRating(rating) {
-  if (rating === 5) return " ✨✨";
-  if (rating === 4) return " ✨";
-  return "";
-}
+function extractProgress(description) {
+  if (!description) return null;
 
-function ratingLabel(rating) {
-  switch (rating) {
-    case 5:
-      return "literally obsesseddd !!! 😝";
-    case 4:
-      return "this one cooked 🤭";
-    case 3:
-      return "mixed feelings / good ish 🫠";
-    case 2:
-      return "not for me 😟";
-    case 1:
-      return "straight to jailll 😦";
-    default:
-      return "no rating yet ❌";
-  }
-}
-
-function extractProgressFromBookPage(html) {
-  if (!html) return null;
-
-  const match = html.match(/(\d+)\s*\/\s*(\d+)\s*\(\s*(\d+)%\s*\)/);
-
+  const match = description.match(/read\s*(\d+)\s*of\s*(\d+)/i);
   if (!match) return null;
 
   const current = parseInt(match[1], 10);
   const total = parseInt(match[2], 10);
-  const percent = parseInt(match[3], 10);
-
-  if (!Number.isFinite(current) || !Number.isFinite(total) || !Number.isFinite(percent)) {
-    return null;
-  }
+  const percent = Math.round((current / total) * 100);
 
   return { current, total, percent };
-}
-
-function renderSpotlight(items) {
-  if (!items?.length) return "";
-
-  const book = items[0];
-  const rating = parseInt(book.user_rating?.[0] || "0", 10);
-  const stars = rating ? "★".repeat(rating) : "";
-  const glow = glowForRating(rating);
-
-  return `${pulseSymbol()} recently finished
-
-<table>
-<tr>
-<td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-<strong>📕 <a href="${book.link}">${book.title}</a></strong><br/>
-<sub>${book.author_name}</sub><br/><br/>
-${stars}${glow} — ${ratingLabel(rating)}
-</td>
-</tr>
-</table>`;
 }
 
 function renderCurrentlyReading(items) {
@@ -128,18 +63,12 @@ _Not currently reading anything_`;
 }
 
 function renderProgress(progress) {
-  if (!progress) {
-    return "▱▱▱▱▱▱▱▱▱▱ _in progress…_";
-  }
+  if (!progress) return "▱▱▱▱▱▱▱▱▱▱ _in progress…_";
 
   const bar = progressBar(progress.percent);
 
-  if (progress.current && progress.total) {
-    return `${bar} ${progress.percent}%
+  return `${bar} ${progress.percent}%
 page ${progress.current}/${progress.total}`;
-  }
-
-  return `${bar} ${progress.percent}%`;
 }
 
 function renderRead(items) {
@@ -149,14 +78,13 @@ function renderRead(items) {
 
   const cells = books.map((book) => {
     const rating = parseInt(book.user_rating?.[0] || "0", 10);
-    const glow = glowForRating(rating);
 
     return `
 <td style="padding:12px; vertical-align:top;">
 <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
 <strong>📘 <a href="${book.link}">${book.title}</a></strong><br/>
 <sub>${book.author_name}</sub><br/>
-⭐ ${rating}${glow}
+⭐ ${rating}
 </div>
 </td>`;
   });
@@ -172,28 +100,25 @@ function renderRead(items) {
 function renderLastUpdated() {
   const now = new Date();
 
-  const datePart = now.toLocaleDateString("en-US", {
+  const date = now.toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
   });
 
-  const timePart = now.toLocaleTimeString("en-US", {
+  const time = now.toLocaleTimeString("en-US", {
     hour: "numeric",
     minute: "2-digit",
     hour12: true,
     timeZoneName: "short",
   });
 
-  return `_⏳ last updated on ${datePart} at ${timePart}_`;
+  return `_⏳ last updated on ${date} at ${time}_`;
 }
 
 function replaceSection(content, tag, replacement) {
   const regex = new RegExp(`<!-- ${tag}:START -->[\\s\\S]*?<!-- ${tag}:END -->`, "m");
 
-  return content.replace(
-    regex,
-    `<!-- ${tag}:START -->\n${replacement}\n<!-- ${tag}:END -->`
-  );
+  return content.replace(regex, `<!-- ${tag}:START -->\n${replacement}\n<!-- ${tag}:END -->`);
 }
 
 (async function main() {
@@ -211,17 +136,13 @@ function replaceSection(content, tag, replacement) {
   let progress = null;
 
   if (currentlyItems.length) {
-    const bookId = currentlyItems[0].book_id?.[0];
-    const bookPage = `https://www.goodreads.com/book/show/${bookId}`;
-    const bookHTML = await fetch(bookPage);
-
-    progress = extractProgressFromBookPage(bookHTML);
+    const description = currentlyItems[0].description?.[0] || "";
+    progress = extractProgress(description);
   }
 
   let readme = fs.readFileSync("README.md", "utf8");
 
   const sections = {
-    "GOODREADS-SPOTLIGHT": renderSpotlight(readItems),
     "CURRENTLY-READING-LIST": renderCurrentlyReading(currentlyItems),
     "GOODREADS-CURRENT-PROGRESS": renderProgress(progress),
     "GOODREADS-LIST": `✦ 📚 recent reads\n\n${renderRead(readItems)}`,
