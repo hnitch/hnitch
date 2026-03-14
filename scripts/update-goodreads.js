@@ -49,7 +49,10 @@ function pulseSymbol() {
 
 function progressBar(percent) {
   const total = 10;
-  const filled = Math.max(0, Math.min(total, Math.round((percent / 100) * total)));
+  const filled = Math.max(
+    0,
+    Math.min(total, Math.round((percent / 100) * total))
+  );
   const pulse = ["▰", "▮"][new Date().getMinutes() % 2];
   return pulse.repeat(filled) + "▱".repeat(total - filled);
 }
@@ -109,12 +112,12 @@ function extractProgressFromItem(item) {
     item.user_reading_progress && item.user_reading_progress[0],
     item.user_progress && item.user_progress[0],
     item.progress && item.progress[0],
-    item['gd:progress'] && item['gd:progress'][0],
-    item['atom:progress'] && item['atom:progress'][0],
-    item['media:progress'] && item['media:progress'][0],
-    item['percentage'] && item['percentage'][0],
+    item["gd:progress"] && item["gd:progress"][0],
+    item["atom:progress"] && item["atom:progress"][0],
+    item["media:progress"] && item["media:progress"][0],
+    item["percentage"] && item["percentage"][0],
     item.description && item.description[0],
-    item['content:encoded'] && item['content:encoded'][0],
+    item["content:encoded"] && item["content:encoded"][0],
   ];
 
   for (const val of tryFields) {
@@ -201,12 +204,11 @@ function renderProgress(items, shelfHTML) {
   const bar = progressBar(percent);
 
   if (progress.current && progress.total) {
-    return `${bar}
-${percent}% • page ${progress.current} / ${progress.total}`;
+    return `${bar} ${percent}%
+page ${progress.current} / ${progress.total}`;
   }
 
-  return `${bar}
-${percent}%`;
+  return `${bar} ${percent}%`;
 }
 
 function renderRead(items) {
@@ -281,35 +283,17 @@ function replaceSection(content, tag, replacement) {
 
   let readme = fs.readFileSync("README.md", "utf8");
 
-  readme = replaceSection(
-    readme,
-    "GOODREADS-SPOTLIGHT",
-    renderSpotlight(readItems)
-  );
+  const sections = {
+    "GOODREADS-SPOTLIGHT": renderSpotlight(readItems),
+    "CURRENTLY-READING-LIST": renderCurrentlyReading(currentlyItems),
+    "GOODREADS-CURRENT-PROGRESS": renderProgress(currentlyItems, shelfHTML),
+    "GOODREADS-LIST": `✦ 📚 recent reads\n\n${renderRead(readItems)}`,
+    "GOODREADS-LAST-UPDATED": renderLastUpdated(),
+  };
 
-  readme = replaceSection(
-    readme,
-    "CURRENTLY-READING-LIST",
-    renderCurrentlyReading(currentlyItems)
-  );
-
-  readme = replaceSection(
-    readme,
-    "GOODREADS-CURRENT-PROGRESS",
-    renderProgress(currentlyItems, shelfHTML)
-  );
-
-  readme = replaceSection(
-    readme,
-    "GOODREADS-LIST",
-    `✦ 📚 recent reads\n\n${renderRead(readItems)}`
-  );
-
-  readme = replaceSection(
-    readme,
-    "GOODREADS-LAST-UPDATED",
-    renderLastUpdated()
-  );
+  for (const tag in sections) {
+    readme = replaceSection(readme, tag, sections[tag]);
+  }
 
   fs.writeFileSync("README.md", readme);
 
