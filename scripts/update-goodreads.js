@@ -221,11 +221,16 @@ function replaceSection(content, tag, replacement) {
 
   let progress = null;
 
-  if (currentlyItems.length) {
-    const reviewLink = currentlyItems[0].link?.[0];
-    const reviewHTML = await fetch(reviewLink);
-    progress = extractProgressFromReviewPage(reviewHTML);
-  }
+ if (currentlyItems.length) {
+  const reviewLink = currentlyItems[0].link?.[0];
+  const reviewHTML = await fetch(reviewLink);
+
+  console.log("Review page fetched:", reviewLink);
+  console.log("HTML snippet:");
+  console.log(reviewHTML.slice(0, 2000));
+
+  progress = extractProgressFromReviewPage(reviewHTML);
+}
 
   let readme = fs.readFileSync("README.md", "utf8");
 
