@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-_Not currently reading anything_
+📘 **[You're Dead to Me](https://www.goodreads.com/review/show/8438186060?utm_medium=api&utm_source=rss) by Amy Christine Parker**
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-
+▱▱▱▱▱▱▱▱▱▱ _in progress…_
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -90,7 +90,7 @@ _Not currently reading anything_
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Mar 15 at 3:08 AM UTC_
+_⏳ last updated on Mar 15 at 4:50 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
