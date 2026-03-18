@@ -20,7 +20,7 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[Placeholder](https://www.goodreads.com/review/show/8436221092?utm_medium=api&utm_source=rss) by Chris Harnan**
+📘 **[You're Dead to Me](https://www.goodreads.com/review/show/8438186060?utm_medium=api&utm_source=rss) by Amy Christine Parker**
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
@@ -90,7 +90,7 @@
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Mar 14 at 3:28 PM UTC_
+_⏳ last updated on Mar 18 at 5:58 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
