@@ -36,7 +36,7 @@ _Not currently reading anything_
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8542810715?utm_medium=api&utm_source=rss">The Housemaid's Wedding (The Housemaid, #2.5)</a></strong><br/>
     <sub>Freida McFadden</sub><br/>
-    ⭐ 0
+    ⭐ 3
   </div>
 </td>
 <td style="padding:12px; vertical-align:top;">
@@ -76,21 +76,21 @@ _Not currently reading anything_
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-💫 recently finished
+✦ recently finished
 
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
       <strong>📕 <a href="https://www.goodreads.com/review/show/8542810715?utm_medium=api&utm_source=rss">The Housemaid's Wedding (The Housemaid, #2.5)</a></strong><br/>
       <sub>Freida McFadden</sub><br/><br/>
-       — no rating yet ❌
+      ★★★ — mixed feelings / good ish 🫠
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Apr 22 at 6:28 PM UTC_
+_⏳ last updated on Apr 22 at 7:32 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
