@@ -34,11 +34,25 @@ _Not currently reading anything_
 <table><tbody><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8542810715?utm_medium=api&utm_source=rss">The Housemaid's Wedding (The Housemaid, #2.5)</a></strong><br/>
+    <sub>Freida McFadden</sub><br/>
+    ⭐ 0
+  </div>
+</td>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8444219307?utm_medium=api&utm_source=rss">The Housemaid's Wedding (The Housemaid, #2.5)</a></strong><br/>
+    <sub>Freida McFadden</sub><br/>
+    ⭐ 3
+  </div>
+</td>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/7603297143?utm_medium=api&utm_source=rss">You Did Nothing Wrong</a></strong><br/>
     <sub>C.G. Drews</sub><br/>
     ⭐ 4 ✨
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8438186060?utm_medium=api&utm_source=rss">You're Dead to Me</a></strong><br/>
@@ -52,26 +66,12 @@ _Not currently reading anything_
     <sub>M.L. Rio</sub><br/>
     ⭐ 4 ✨
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8425171845?utm_medium=api&utm_source=rss">Nothing Can Hurt You Now</a></strong><br/>
     <sub>Simone Campos</sub><br/>
     ⭐ 1
-  </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8377624019?utm_medium=api&utm_source=rss">Someone Is Always Watching</a></strong><br/>
-    <sub>Kelley Armstrong</sub><br/>
-    ⭐ 2
-  </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8362823585?utm_medium=api&utm_source=rss">Alchemised</a></strong><br/>
-    <sub>SenLinYu</sub><br/>
-    ⭐ 5 ✨✨
   </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
@@ -81,16 +81,16 @@ _Not currently reading anything_
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/7603297143?utm_medium=api&utm_source=rss">You Did Nothing Wrong</a></strong><br/>
-      <sub>C.G. Drews</sub><br/><br/>
-      ★★★★ ✨ — this one cooked 🤭
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8542810715?utm_medium=api&utm_source=rss">The Housemaid's Wedding (The Housemaid, #2.5)</a></strong><br/>
+      <sub>Freida McFadden</sub><br/><br/>
+       — no rating yet ❌
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Apr 22 at 2:38 PM UTC_
+_⏳ last updated on Apr 22 at 3:32 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
