@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[The Ending Writes Itself](https://www.goodreads.com/review/show/8506229886?utm_medium=api&utm_source=rss) by Evelyn Clarke**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -32,6 +32,13 @@
 ✦ 📚 recent reads
 
 <table><tbody><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&utm_source=rss">The Ending Writes Itself</a></strong><br/>
+    <sub>Evelyn Clarke</sub><br/>
+    ⭐ 4 ✨
+  </div>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8444219307?utm_medium=api&utm_source=rss">The Housemaid's Wedding (The Housemaid, #2.5)</a></strong><br/>
@@ -45,14 +52,14 @@
     <sub>C.G. Drews</sub><br/>
     ⭐ 4 ✨
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8438186060?utm_medium=api&utm_source=rss">You're Dead to Me</a></strong><br/>
     <sub>Amy Christine Parker</sub><br/>
     ⭐ 3
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8425854096?utm_medium=api&utm_source=rss">If We Were Villains</a></strong><br/>
@@ -66,31 +73,24 @@
     <sub>Simone Campos</sub><br/>
     ⭐ 1
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8377624019?utm_medium=api&utm_source=rss">Someone Is Always Watching</a></strong><br/>
-    <sub>Kelley Armstrong</sub><br/>
-    ⭐ 2
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-✦ recently finished
+💫 recently finished
 
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8444219307?utm_medium=api&utm_source=rss">The Housemaid's Wedding (The Housemaid, #2.5)</a></strong><br/>
-      <sub>Freida McFadden</sub><br/><br/>
-      ★★★ — mixed feelings / good ish 🫠
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&utm_source=rss">The Ending Writes Itself</a></strong><br/>
+      <sub>Evelyn Clarke</sub><br/><br/>
+      ★★★★ ✨ — this one cooked 🤭
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Apr 26 at 7:35 AM UTC_
+_⏳ last updated on Apr 26 at 8:31 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
