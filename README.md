@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[Project Hail Mary](https://www.goodreads.com/review/show/8563151784?utm_medium=api&utm_source=rss) by Andy Weir**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -32,6 +32,13 @@
 ✦ 📚 recent reads
 
 <table><tbody><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8563151784?utm_medium=api&utm_source=rss">Project Hail Mary</a></strong><br/>
+    <sub>Andy Weir</sub><br/>
+    ⭐ 4 ✨
+  </div>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&utm_source=rss">The Ending Writes Itself</a></strong><br/>
@@ -45,14 +52,14 @@
     <sub>Freida McFadden</sub><br/>
     ⭐ 3
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/7603297143?utm_medium=api&utm_source=rss">You Did Nothing Wrong</a></strong><br/>
     <sub>C.G. Drews</sub><br/>
     ⭐ 4 ✨
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8438186060?utm_medium=api&utm_source=rss">You're Dead to Me</a></strong><br/>
@@ -66,13 +73,6 @@
     <sub>M.L. Rio</sub><br/>
     ⭐ 4 ✨
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8425171845?utm_medium=api&utm_source=rss">Nothing Can Hurt You Now</a></strong><br/>
-    <sub>Simone Campos</sub><br/>
-    ⭐ 1
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
@@ -81,8 +81,8 @@
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&utm_source=rss">The Ending Writes Itself</a></strong><br/>
-      <sub>Evelyn Clarke</sub><br/><br/>
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8563151784?utm_medium=api&utm_source=rss">Project Hail Mary</a></strong><br/>
+      <sub>Andy Weir</sub><br/><br/>
       ★★★★ ✨ — this one cooked 🤭
     </td>
   </tr>
@@ -90,7 +90,7 @@
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on May 3 at 5:12 AM UTC_
+_⏳ last updated on May 3 at 6:57 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
