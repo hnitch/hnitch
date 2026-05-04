@@ -34,6 +34,13 @@ _Not currently reading anything_
 <table><tbody><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8444219307?utm_medium=api&utm_source=rss">The Housemaid's Wedding (The Housemaid, #2.5)</a></strong><br/>
+    <sub>Freida McFadden</sub><br/>
+    ⭐ 2
+  </div>
+</td>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8563151784?utm_medium=api&utm_source=rss">Project Hail Mary</a></strong><br/>
     <sub>Andy Weir</sub><br/>
     ⭐ 4 ✨
@@ -44,13 +51,6 @@ _Not currently reading anything_
     <strong>📘 <a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&utm_source=rss">The Ending Writes Itself</a></strong><br/>
     <sub>Evelyn Clarke</sub><br/>
     ⭐ 4 ✨
-  </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8444219307?utm_medium=api&utm_source=rss">The Housemaid's Wedding (The Housemaid, #2.5)</a></strong><br/>
-    <sub>Freida McFadden</sub><br/>
-    ⭐ 3
   </div>
 </td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
@@ -81,16 +81,16 @@ _Not currently reading anything_
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8563151784?utm_medium=api&utm_source=rss">Project Hail Mary</a></strong><br/>
-      <sub>Andy Weir</sub><br/><br/>
-      ★★★★ ✨ — this one cooked 🤭
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8444219307?utm_medium=api&utm_source=rss">The Housemaid's Wedding (The Housemaid, #2.5)</a></strong><br/>
+      <sub>Freida McFadden</sub><br/><br/>
+      ★★ — not for me 😟
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on May 4 at 7:10 AM UTC_
+_⏳ last updated on May 4 at 8:55 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
