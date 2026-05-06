@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[The Irresistible Urge to Fall For Your Enemy (Dearly Beloathed, #1)](https://www.goodreads.com/review/show/8519338245?utm_medium=api&utm_source=rss) by Brigitte Knightley**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -32,6 +32,13 @@
 ✦ 📚 recent reads
 
 <table><tbody><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8519338245?utm_medium=api&utm_source=rss">The Irresistible Urge to Fall For Your Enemy (Dearly Beloathed, #1)</a></strong><br/>
+    <sub>Brigitte Knightley</sub><br/>
+    ⭐ 3
+  </div>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8444219307?utm_medium=api&utm_source=rss">The Housemaid's Wedding (The Housemaid, #2.5)</a></strong><br/>
@@ -45,14 +52,14 @@
     <sub>Andy Weir</sub><br/>
     ⭐ 4 ✨
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&utm_source=rss">The Ending Writes Itself</a></strong><br/>
     <sub>Evelyn Clarke</sub><br/>
     ⭐ 4 ✨
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/7603297143?utm_medium=api&utm_source=rss">You Did Nothing Wrong</a></strong><br/>
@@ -66,31 +73,24 @@
     <sub>Amy Christine Parker</sub><br/>
     ⭐ 3
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8425854096?utm_medium=api&utm_source=rss">If We Were Villains</a></strong><br/>
-    <sub>M.L. Rio</sub><br/>
-    ⭐ 4 ✨
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-💫 recently finished
+✦ recently finished
 
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8444219307?utm_medium=api&utm_source=rss">The Housemaid's Wedding (The Housemaid, #2.5)</a></strong><br/>
-      <sub>Freida McFadden</sub><br/><br/>
-      ★★ — not for me 😟
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8519338245?utm_medium=api&utm_source=rss">The Irresistible Urge to Fall For Your Enemy (Dearly Beloathed, #1)</a></strong><br/>
+      <sub>Brigitte Knightley</sub><br/><br/>
+      ★★★ — mixed feelings / good ish 🫠
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on May 6 at 1:40 PM UTC_
+_⏳ last updated on May 6 at 2:59 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
