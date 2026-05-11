@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[The Ghostwriter](https://www.goodreads.com/review/show/8444219213?utm_medium=api&utm_source=rss) by Julie   Clark**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -32,6 +32,13 @@
 ✦ 📚 recent reads
 
 <table><tbody><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8444219213?utm_medium=api&utm_source=rss">The Ghostwriter</a></strong><br/>
+    <sub>Julie   Clark</sub><br/>
+    ⭐ 2
+  </div>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8519338245?utm_medium=api&utm_source=rss">The Irresistible Urge to Fall For Your Enemy (Dearly Beloathed, #1)</a></strong><br/>
@@ -45,14 +52,14 @@
     <sub>Freida McFadden</sub><br/>
     ⭐ 2
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8563151784?utm_medium=api&utm_source=rss">Project Hail Mary</a></strong><br/>
     <sub>Andy Weir</sub><br/>
     ⭐ 4 ✨
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&utm_source=rss">The Ending Writes Itself</a></strong><br/>
@@ -66,31 +73,24 @@
     <sub>C.G. Drews</sub><br/>
     ⭐ 4 ✨
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8438186060?utm_medium=api&utm_source=rss">You're Dead to Me</a></strong><br/>
-    <sub>Amy Christine Parker</sub><br/>
-    ⭐ 3
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-✦ recently finished
+💫 recently finished
 
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8519338245?utm_medium=api&utm_source=rss">The Irresistible Urge to Fall For Your Enemy (Dearly Beloathed, #1)</a></strong><br/>
-      <sub>Brigitte Knightley</sub><br/><br/>
-      ★★★ — mixed feelings / good ish 🫠
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8444219213?utm_medium=api&utm_source=rss">The Ghostwriter</a></strong><br/>
+      <sub>Julie   Clark</sub><br/><br/>
+      ★★ — not for me 😟
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on May 11 at 3:08 PM UTC_
+_⏳ last updated on May 11 at 4:58 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
