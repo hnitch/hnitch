@@ -76,21 +76,21 @@ _Not currently reading anything_
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-💫 recently finished
+✨ recently finished
 
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
       <strong>📕 <a href="https://www.goodreads.com/review/show/8444219213?utm_medium=api&utm_source=rss">The Ghostwriter</a></strong><br/>
       <sub>Julie   Clark</sub><br/><br/>
-      ★★ — not for me 😟
+      ★★ — not for me / fine with a side eye 😟
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on May 12 at 3:13 AM UTC_
+_⏳ last updated on May 12 at 5:00 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
