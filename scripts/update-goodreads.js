@@ -65,9 +65,9 @@ function ratingLabel(rating) {
     case 4:
       return "this one cooked 🤭";
     case 3:
-      return "mixed feelings / good ish 🫠";
+      return "hmm this is alright 🫠";
     case 2:
-      return "not for me 😟";
+      return "not for me / fine with a side eye 😟";
     case 1:
       return "straight to jailll 😦";
     default:
@@ -105,7 +105,7 @@ function extractProgressFromItem(item) {
         const n = extractNumberFromString(val._);
         if (n != null) return n;
       } else {
-        // sometimes xml2js stores value as an array with text at [0]
+      
         const text = Array.isArray(val) ? val[0] : null;
         const n = extractNumberFromString(text);
         if (n != null) return n;
@@ -117,7 +117,7 @@ function extractProgressFromItem(item) {
   const nFromDesc = extractNumberFromString(description);
   if (nFromDesc != null) return nFromDesc;
 
-  // fallback: check title or other text fields for something like "58%"
+
   const otherText = (item.title && item.title[0]) || (item.link && item.link[0]) || "";
   const nFromOther = extractNumberFromString(otherText);
   if (nFromOther != null) return nFromOther;
