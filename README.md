@@ -105,7 +105,7 @@ _⏳ last updated on May 12 at 3:13 AM UTC_
 <div>
 <p>
 <a style="text-decoration: none;" href="https://letterboxd.com/hnitch/" target="_blank" rel="noopener noreferrer">
-<img width="380" src="https://letterboxd-badge.vercel.app/hnitch/svg" alt="( watched ) letterboxd last watched film">
+<img width="380" src="https://letterboxd-profile-github.netlify.app/api/png/hnitch" alt="( watched ) letterboxd last watched film">
 </a>
 </p>
 <p>
