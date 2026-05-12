@@ -109,7 +109,7 @@ _⏳ last updated on May 12 at 3:13 AM UTC_
 </a>
 </p>
 <p>
-<a style="text-decoration: none;" href="--" target="_blank" rel="noopener noreferrer">
+<a style="text-decoration: none;" href="" target="_blank" rel="noopener noreferrer">
 <img width="380" src="--" alt="blank space™">
 </a>
 </p>
