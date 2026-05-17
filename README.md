@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[Wolf Worm](https://www.goodreads.com/review/show/8371833465?utm_medium=api&utm_source=rss) by T. Kingfisher**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -32,6 +32,13 @@
 ✦ 📚 recent reads
 
 <table><tbody><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8371833465?utm_medium=api&utm_source=rss">Wolf Worm</a></strong><br/>
+    <sub>T. Kingfisher</sub><br/>
+    ⭐ 3
+  </div>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8539446333?utm_medium=api&utm_source=rss">Hallowed Be Thy Name</a></strong><br/>
@@ -45,14 +52,14 @@
     <sub>Julie   Clark</sub><br/>
     ⭐ 2
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8519338245?utm_medium=api&utm_source=rss">The Irresistible Urge to Fall For Your Enemy (Dearly Beloathed, #1)</a></strong><br/>
     <sub>Brigitte Knightley</sub><br/>
     ⭐ 3
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8444219307?utm_medium=api&utm_source=rss">The Housemaid's Wedding (The Housemaid, #2.5)</a></strong><br/>
@@ -66,13 +73,6 @@
     <sub>Andy Weir</sub><br/>
     ⭐ 4 ✨
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&utm_source=rss">The Ending Writes Itself</a></strong><br/>
-    <sub>Evelyn Clarke</sub><br/>
-    ⭐ 4 ✨
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
@@ -81,16 +81,16 @@
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8539446333?utm_medium=api&utm_source=rss">Hallowed Be Thy Name</a></strong><br/>
-      <sub>Brooke   Winters</sub><br/><br/>
-      ★★★★★ ✨✨ — literally obsesseddd !!! 😝
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8371833465?utm_medium=api&utm_source=rss">Wolf Worm</a></strong><br/>
+      <sub>T. Kingfisher</sub><br/><br/>
+      ★★★ — hmm this is alright 🫠
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on May 17 at 5:22 AM UTC_
+_⏳ last updated on May 17 at 7:04 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
