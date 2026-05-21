@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[Honour & Heresy](https://www.goodreads.com/review/show/7156890664?utm_medium=api&utm_source=rss) by Max Francis**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -32,6 +32,13 @@
 ✦ 📚 recent reads
 
 <table><tbody><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/7156890664?utm_medium=api&utm_source=rss">Honour & Heresy</a></strong><br/>
+    <sub>Max Francis</sub><br/>
+    ⭐ 4 ✨
+  </div>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8371833465?utm_medium=api&utm_source=rss">Wolf Worm</a></strong><br/>
@@ -45,14 +52,14 @@
     <sub>Brooke   Winters</sub><br/>
     ⭐ 5 ✨✨
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8444219213?utm_medium=api&utm_source=rss">The Ghostwriter</a></strong><br/>
     <sub>Julie   Clark</sub><br/>
     ⭐ 2
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8519338245?utm_medium=api&utm_source=rss">The Irresistible Urge to Fall For Your Enemy (Dearly Beloathed, #1)</a></strong><br/>
@@ -66,31 +73,24 @@
     <sub>Freida McFadden</sub><br/>
     ⭐ 2
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8563151784?utm_medium=api&utm_source=rss">Project Hail Mary</a></strong><br/>
-    <sub>Andy Weir</sub><br/>
-    ⭐ 4 ✨
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-✨ recently finished
+💫 recently finished
 
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8371833465?utm_medium=api&utm_source=rss">Wolf Worm</a></strong><br/>
-      <sub>T. Kingfisher</sub><br/><br/>
-      ★★★ — hmm this is alright 🫠
+      <strong>📕 <a href="https://www.goodreads.com/review/show/7156890664?utm_medium=api&utm_source=rss">Honour & Heresy</a></strong><br/>
+      <sub>Max Francis</sub><br/><br/>
+      ★★★★ ✨ — this one cooked 🤭
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on May 21 at 3:12 PM UTC_
+_⏳ last updated on May 21 at 4:58 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
