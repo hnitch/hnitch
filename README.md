@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-_Not currently reading anything_
+📘 **[What We Did to Survive](https://www.goodreads.com/review/show/8092351817?utm_medium=api&utm_source=rss) by Megan Lally**
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-
+▱▱▱▱▱▱▱▱▱▱ _in progress…_
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -90,7 +90,7 @@ _Not currently reading anything_
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on May 22 at 11:06 AM UTC_
+_⏳ last updated on May 22 at 12:57 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
