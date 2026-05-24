@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[What We Did to Survive](https://www.goodreads.com/review/show/8092351817?utm_medium=api&utm_source=rss) by Megan Lally**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -32,6 +32,13 @@
 ✦ 📚 recent reads
 
 <table><tbody><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8092351817?utm_medium=api&utm_source=rss">What We Did to Survive</a></strong><br/>
+    <sub>Megan Lally</sub><br/>
+    ⭐ 4 ✨
+  </div>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/7156890664?utm_medium=api&utm_source=rss">Honour & Heresy</a></strong><br/>
@@ -45,14 +52,14 @@
     <sub>T. Kingfisher</sub><br/>
     ⭐ 3
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8539446333?utm_medium=api&utm_source=rss">Hallowed Be Thy Name</a></strong><br/>
     <sub>Brooke   Winters</sub><br/>
     ⭐ 5 ✨✨
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8444219213?utm_medium=api&utm_source=rss">The Ghostwriter</a></strong><br/>
@@ -66,23 +73,16 @@
     <sub>Brigitte Knightley</sub><br/>
     ⭐ 3
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8444219307?utm_medium=api&utm_source=rss">The Housemaid's Wedding (The Housemaid, #2.5)</a></strong><br/>
-    <sub>Freida McFadden</sub><br/>
-    ⭐ 2
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-✦ recently finished
+✨ recently finished
 
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/7156890664?utm_medium=api&utm_source=rss">Honour & Heresy</a></strong><br/>
-      <sub>Max Francis</sub><br/><br/>
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8092351817?utm_medium=api&utm_source=rss">What We Did to Survive</a></strong><br/>
+      <sub>Megan Lally</sub><br/><br/>
       ★★★★ ✨ — this one cooked 🤭
     </td>
   </tr>
@@ -90,7 +90,7 @@
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on May 24 at 11:32 AM UTC_
+_⏳ last updated on May 24 at 12:30 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
