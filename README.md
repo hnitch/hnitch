@@ -34,16 +34,16 @@ _Not currently reading anything_
 <table><tbody><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8613504325?utm_medium=api&utm_source=rss">Starside</a></strong><br/>
+    <strong>📘 <a href="https://www.goodreads.com/review/show/6540154053?utm_medium=api&utm_source=rss">Lightlark (Lightlark, #1)</a></strong><br/>
     <sub>Alex Aster</sub><br/>
-    ⭐ 2
+    ⭐ 3
   </div>
 </td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/6540154053?utm_medium=api&utm_source=rss">Lightlark (Lightlark, #1)</a></strong><br/>
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8613504325?utm_medium=api&utm_source=rss">Starside</a></strong><br/>
     <sub>Alex Aster</sub><br/>
-    ⭐ 3
+    ⭐ 2
   </div>
 </td>
 <td style="padding:12px; vertical-align:top;">
@@ -76,21 +76,21 @@ _Not currently reading anything_
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-💫 recently finished
+✦ recently finished
 
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8613504325?utm_medium=api&utm_source=rss">Starside</a></strong><br/>
+      <strong>📕 <a href="https://www.goodreads.com/review/show/6540154053?utm_medium=api&utm_source=rss">Lightlark (Lightlark, #1)</a></strong><br/>
       <sub>Alex Aster</sub><br/><br/>
-      ★★ — not for me / fine with a side eye 😟
+      ★★★ — hmm this is alright 🫠
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on May 31 at 7:25 AM UTC_
+_⏳ last updated on May 31 at 9:08 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
