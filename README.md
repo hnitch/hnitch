@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-_Not currently reading anything_
+📘 **[The Girl with a Thousand Faces](https://www.goodreads.com/review/show/8581711066?utm_medium=api&utm_source=rss) by Sunyi Dean**
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-
+▱▱▱▱▱▱▱▱▱▱ _in progress…_
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -76,7 +76,7 @@ _Not currently reading anything_
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-✨ recently finished
+💫 recently finished
 
 <table>
   <tr>
@@ -90,7 +90,7 @@ _Not currently reading anything_
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Jun 3 at 11:36 PM UTC_
+_⏳ last updated on Jun 4 at 1:10 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
