@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[The Girl with a Thousand Faces](https://www.goodreads.com/review/show/8581711066?utm_medium=api&utm_source=rss) by Sunyi Dean**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -32,6 +32,13 @@
 ✦ 📚 recent reads
 
 <table><tbody><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8581711066?utm_medium=api&utm_source=rss">The Girl with a Thousand Faces</a></strong><br/>
+    <sub>Sunyi Dean</sub><br/>
+    ⭐ 5 ✨✨
+  </div>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8496728213?utm_medium=api&utm_source=rss">Deathbringer (Deathbringer, #1)</a></strong><br/>
@@ -45,14 +52,14 @@
     <sub>Alex Aster</sub><br/>
     ⭐ 3
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8613504325?utm_medium=api&utm_source=rss">Starside</a></strong><br/>
     <sub>Alex Aster</sub><br/>
     ⭐ 2
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8613503681?utm_medium=api&utm_source=rss">The Gravewood (The Gravewood, #1)</a></strong><br/>
@@ -66,31 +73,24 @@
     <sub>Kylie Lee Baker</sub><br/>
     ⭐ 5 ✨✨
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8092351817?utm_medium=api&utm_source=rss">What We Did to Survive</a></strong><br/>
-    <sub>Megan Lally</sub><br/>
-    ⭐ 4 ✨
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-💫 recently finished
+✦ recently finished
 
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8496728213?utm_medium=api&utm_source=rss">Deathbringer (Deathbringer, #1)</a></strong><br/>
-      <sub>Sonia Tagliareni</sub><br/><br/>
-      ★★★★ ✨ — this one cooked 🤭
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8581711066?utm_medium=api&utm_source=rss">The Girl with a Thousand Faces</a></strong><br/>
+      <sub>Sunyi Dean</sub><br/><br/>
+      ★★★★★ ✨✨ — literally obsesseddd !!! 😝
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Jun 7 at 7:31 AM UTC_
+_⏳ last updated on Jun 7 at 9:08 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
