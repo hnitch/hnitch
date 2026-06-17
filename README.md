@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[All That’s Left in the World](https://www.goodreads.com/review/show/8100007490?utm_medium=api&utm_source=rss) by Erik J. Brown**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -32,6 +32,13 @@
 ✦ 📚 recent reads
 
 <table><tbody><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8100007490?utm_medium=api&utm_source=rss">All That’s Left in the World</a></strong><br/>
+    <sub>Erik J. Brown</sub><br/>
+    ⭐ 5 ✨✨
+  </div>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8581711066?utm_medium=api&utm_source=rss">The Girl with a Thousand Faces</a></strong><br/>
@@ -45,14 +52,14 @@
     <sub>Sonia Tagliareni</sub><br/>
     ⭐ 4 ✨
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/6540154053?utm_medium=api&utm_source=rss">Lightlark (Lightlark, #1)</a></strong><br/>
     <sub>Alex Aster</sub><br/>
     ⭐ 3
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8613504325?utm_medium=api&utm_source=rss">Starside</a></strong><br/>
@@ -66,23 +73,16 @@
     <sub>Kelly Andrew</sub><br/>
     ⭐ 4 ✨
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8409259565?utm_medium=api&utm_source=rss">Japanese Gothic</a></strong><br/>
-    <sub>Kylie Lee Baker</sub><br/>
-    ⭐ 5 ✨✨
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-✨ recently finished
+✦ recently finished
 
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8581711066?utm_medium=api&utm_source=rss">The Girl with a Thousand Faces</a></strong><br/>
-      <sub>Sunyi Dean</sub><br/><br/>
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8100007490?utm_medium=api&utm_source=rss">All That’s Left in the World</a></strong><br/>
+      <sub>Erik J. Brown</sub><br/><br/>
       ★★★★★ ✨✨ — literally obsesseddd !!! 😝
     </td>
   </tr>
@@ -90,7 +90,7 @@
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Jun 17 at 10:36 AM UTC_
+_⏳ last updated on Jun 17 at 12:26 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
