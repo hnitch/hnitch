@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-_Not currently reading anything_
+📘 **[The Only Light Left Burning](https://www.goodreads.com/review/show/8696473288?utm_medium=api&utm_source=rss) by Erik J. Brown**
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-
+▱▱▱▱▱▱▱▱▱▱ _in progress…_
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -90,7 +90,7 @@ _Not currently reading anything_
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Jun 18 at 11:27 AM UTC_
+_⏳ last updated on Jun 18 at 1:18 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
