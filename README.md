@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[A Dark and Wild Wood](https://www.goodreads.com/review/show/8613529296?utm_medium=api&utm_source=rss) by Sarah Nicole Lemon**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -32,6 +32,13 @@
 ✦ 📚 recent reads
 
 <table><tbody><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8613529296?utm_medium=api&utm_source=rss">A Dark and Wild Wood</a></strong><br/>
+    <sub>Sarah Nicole Lemon</sub><br/>
+    ⭐ 3
+  </div>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8696473288?utm_medium=api&utm_source=rss">The Only Light Left Burning</a></strong><br/>
@@ -45,14 +52,14 @@
     <sub>Erik J. Brown</sub><br/>
     ⭐ 5 ✨✨
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8581711066?utm_medium=api&utm_source=rss">The Girl with a Thousand Faces</a></strong><br/>
     <sub>Sunyi Dean</sub><br/>
     ⭐ 5 ✨✨
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8496728213?utm_medium=api&utm_source=rss">Deathbringer (Deathbringer, #1)</a></strong><br/>
@@ -66,31 +73,24 @@
     <sub>Alex Aster</sub><br/>
     ⭐ 3
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8613504325?utm_medium=api&utm_source=rss">Starside</a></strong><br/>
-    <sub>Alex Aster</sub><br/>
-    ⭐ 2
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-✨ recently finished
+💫 recently finished
 
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8696473288?utm_medium=api&utm_source=rss">The Only Light Left Burning</a></strong><br/>
-      <sub>Erik J. Brown</sub><br/><br/>
-      ★★★★ ✨ — this one cooked 🤭
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8613529296?utm_medium=api&utm_source=rss">A Dark and Wild Wood</a></strong><br/>
+      <sub>Sarah Nicole Lemon</sub><br/><br/>
+      ★★★ — hmm this is alright 🫠
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Jun 25 at 9:12 AM UTC_
+_⏳ last updated on Jun 25 at 11:01 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
