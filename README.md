@@ -34,6 +34,13 @@
 <table><tbody><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8519338245?utm_medium=api&utm_source=rss">The Irresistible Urge to Fall For Your Enemy (Dearly Beloathed, #1)</a></strong><br/>
+    <sub>Brigitte Knightley</sub><br/>
+    ⭐ 3
+  </div>
+</td>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8496725667?utm_medium=api&utm_source=rss">Storm Breaker (Storm Breaker, #1)</a></strong><br/>
     <sub>Nisha J. Tuli</sub><br/>
     ⭐ 4 ✨
@@ -45,14 +52,14 @@
     <sub>Sarah Nicole Lemon</sub><br/>
     ⭐ 3
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8696473288?utm_medium=api&utm_source=rss">The Only Light Left Burning</a></strong><br/>
     <sub>Erik J. Brown</sub><br/>
     ⭐ 4 ✨
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8100007490?utm_medium=api&utm_source=rss">All That’s Left in the World</a></strong><br/>
@@ -66,13 +73,6 @@
     <sub>Sunyi Dean</sub><br/>
     ⭐ 5 ✨✨
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8496728213?utm_medium=api&utm_source=rss">Deathbringer (Deathbringer, #1)</a></strong><br/>
-    <sub>Sonia Tagliareni</sub><br/>
-    ⭐ 4 ✨
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
@@ -81,16 +81,16 @@
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8496725667?utm_medium=api&utm_source=rss">Storm Breaker (Storm Breaker, #1)</a></strong><br/>
-      <sub>Nisha J. Tuli</sub><br/><br/>
-      ★★★★ ✨ — this one cooked 🤭
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8519338245?utm_medium=api&utm_source=rss">The Irresistible Urge to Fall For Your Enemy (Dearly Beloathed, #1)</a></strong><br/>
+      <sub>Brigitte Knightley</sub><br/><br/>
+      ★★★ — hmm this is alright 🫠
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Jul 2 at 6:01 AM UTC_
+_⏳ last updated on Jul 2 at 10:10 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
