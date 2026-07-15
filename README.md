@@ -7,8 +7,8 @@
 ### 📂 projects
 
 <ul>
-<li><a href="https://sangetavadivelu.com" target="_blank" rel="noopener noreferrer">sangetavadivelu.com</a></li>
-<li>#3rd and #4th ( projects in the vault 🤐 )</li>
+
+<li> ( projects in the vault 🤐 )</li>
 </ul>
 
 <hr>
