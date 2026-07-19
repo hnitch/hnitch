@@ -34,6 +34,13 @@ _Not currently reading anything_
 <table><tbody><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8444219044?utm_medium=api&utm_source=rss">Half City (Harker Academy, #1)</a></strong><br/>
+    <sub>Kate  Golden</sub><br/>
+    ⭐ 3
+  </div>
+</td>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8684132266?utm_medium=api&utm_source=rss">Verity Guild</a></strong><br/>
     <sub>Mai Corland</sub><br/>
     ⭐ 2
@@ -45,14 +52,14 @@ _Not currently reading anything_
     <sub>Lynette Noni</sub><br/>
     ⭐ 5 ✨✨
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8728771663?utm_medium=api&utm_source=rss">The Night Is Not for You</a></strong><br/>
     <sub>Eman Quotah</sub><br/>
     ⭐ 1
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8519338245?utm_medium=api&utm_source=rss">The Irresistible Urge to Fall For Your Enemy (Dearly Beloathed, #1)</a></strong><br/>
@@ -66,31 +73,24 @@ _Not currently reading anything_
     <sub>Nisha J. Tuli</sub><br/>
     ⭐ 4 ✨
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8613529296?utm_medium=api&utm_source=rss">A Dark and Wild Wood</a></strong><br/>
-    <sub>Sarah Nicole Lemon</sub><br/>
-    ⭐ 3
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-💫 recently finished
+✦ recently finished
 
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8684132266?utm_medium=api&utm_source=rss">Verity Guild</a></strong><br/>
-      <sub>Mai Corland</sub><br/><br/>
-      ★★ — not for me / fine with a side eye 😟
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8444219044?utm_medium=api&utm_source=rss">Half City (Harker Academy, #1)</a></strong><br/>
+      <sub>Kate  Golden</sub><br/><br/>
+      ★★★ — hmm this is alright 🫠
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Jul 18 at 11:55 PM UTC_
+_⏳ last updated on Jul 19 at 2:53 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
