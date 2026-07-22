@@ -90,7 +90,7 @@
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Jul 22 at 6:30 AM UTC_
+_⏳ last updated on Jul 22 at 9:27 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
