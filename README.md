@@ -8,7 +8,7 @@
 
 <ul>
 
-<li>  https://mealos.hnitch.workers.dev/ <br >( many other projects in the vault 🤐 )</li>
+<li>  https://mealos.hnitch.workers.dev <br >( many other projects in the vault 🤐 )</li>
 </ul>
 
 <hr>
