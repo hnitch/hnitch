@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[The Unicorn Hunters](https://www.goodreads.com/review/show/8640771986?utm_medium=api&utm_source=rss) by Katherine Arden**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -90,7 +90,7 @@
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Jul 24 at 7:32 AM UTC_
+_⏳ last updated on Jul 24 at 10:20 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
