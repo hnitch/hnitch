@@ -34,6 +34,13 @@ _Not currently reading anything_
 <table><tbody><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8581711066?utm_medium=api&utm_source=rss">The Girl with a Thousand Faces</a></strong><br/>
+    <sub>Sunyi Dean</sub><br/>
+    ⭐ 5 ✨✨
+  </div>
+</td>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8725513237?utm_medium=api&utm_source=rss">Fellow Creatures</a></strong><br/>
     <sub>Emma Lowther</sub><br/>
     ⭐ 4 ✨
@@ -45,14 +52,14 @@ _Not currently reading anything_
     <sub>Kate  Golden</sub><br/>
     ⭐ 3
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8684132266?utm_medium=api&utm_source=rss">Verity Guild</a></strong><br/>
     <sub>Mai Corland</sub><br/>
     ⭐ 2
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8640770215?utm_medium=api&utm_source=rss">Shadow Reaper (Shadow Reaper, #1)</a></strong><br/>
@@ -66,31 +73,24 @@ _Not currently reading anything_
     <sub>Eman Quotah</sub><br/>
     ⭐ 1
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8519338245?utm_medium=api&utm_source=rss">The Irresistible Urge to Fall For Your Enemy (Dearly Beloathed, #1)</a></strong><br/>
-    <sub>Brigitte Knightley</sub><br/>
-    ⭐ 3
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-💫 recently finished
+✦ recently finished
 
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8725513237?utm_medium=api&utm_source=rss">Fellow Creatures</a></strong><br/>
-      <sub>Emma Lowther</sub><br/><br/>
-      ★★★★ ✨ — this one cooked 🤭
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8581711066?utm_medium=api&utm_source=rss">The Girl with a Thousand Faces</a></strong><br/>
+      <sub>Sunyi Dean</sub><br/><br/>
+      ★★★★★ ✨✨ — literally obsesseddd !!! 😝
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Jul 29 at 12:01 PM UTC_
+_⏳ last updated on Jul 29 at 3:08 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
