@@ -34,6 +34,13 @@ _Not currently reading anything_
 <table><tbody><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8409259565?utm_medium=api&utm_source=rss">Japanese Gothic</a></strong><br/>
+    <sub>Kylie Lee Baker</sub><br/>
+    ⭐ 5 ✨✨
+  </div>
+</td>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8581711066?utm_medium=api&utm_source=rss">The Girl with a Thousand Faces</a></strong><br/>
     <sub>Sunyi Dean</sub><br/>
     ⭐ 5 ✨✨
@@ -45,14 +52,14 @@ _Not currently reading anything_
     <sub>Emma Lowther</sub><br/>
     ⭐ 4 ✨
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8444219044?utm_medium=api&utm_source=rss">Half City (Harker Academy, #1)</a></strong><br/>
     <sub>Kate  Golden</sub><br/>
     ⭐ 3
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8684132266?utm_medium=api&utm_source=rss">Verity Guild</a></strong><br/>
@@ -66,23 +73,16 @@ _Not currently reading anything_
     <sub>Lynette Noni</sub><br/>
     ⭐ 5 ✨✨
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8728771663?utm_medium=api&utm_source=rss">The Night Is Not for You</a></strong><br/>
-    <sub>Eman Quotah</sub><br/>
-    ⭐ 1
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-✦ recently finished
+✨ recently finished
 
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8581711066?utm_medium=api&utm_source=rss">The Girl with a Thousand Faces</a></strong><br/>
-      <sub>Sunyi Dean</sub><br/><br/>
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8409259565?utm_medium=api&utm_source=rss">Japanese Gothic</a></strong><br/>
+      <sub>Kylie Lee Baker</sub><br/><br/>
       ★★★★★ ✨✨ — literally obsesseddd !!! 😝
     </td>
   </tr>
@@ -90,7 +90,7 @@ _Not currently reading anything_
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Aug 5 at 3:14 PM UTC_
+_⏳ last updated on Aug 5 at 5:39 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
