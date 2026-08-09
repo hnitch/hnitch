@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[Daggermouth (The Heart, #1)](https://www.goodreads.com/review/show/8648761636?utm_medium=api&utm_source=rss) by H.M.  Wolfe**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -32,6 +32,13 @@
 ✦ 📚 recent reads
 
 <table><tbody><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8648761636?utm_medium=api&utm_source=rss">Daggermouth (The Heart, #1)</a></strong><br/>
+    <sub>H.M.  Wolfe</sub><br/>
+    ⭐ 5 ✨✨
+  </div>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8409259565?utm_medium=api&utm_source=rss">Japanese Gothic</a></strong><br/>
@@ -45,14 +52,14 @@
     <sub>Sunyi Dean</sub><br/>
     ⭐ 5 ✨✨
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8725513237?utm_medium=api&utm_source=rss">Fellow Creatures</a></strong><br/>
     <sub>Emma Lowther</sub><br/>
     ⭐ 4 ✨
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8444219044?utm_medium=api&utm_source=rss">Half City (Harker Academy, #1)</a></strong><br/>
@@ -66,13 +73,6 @@
     <sub>Mai Corland</sub><br/>
     ⭐ 2
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8640770215?utm_medium=api&utm_source=rss">Shadow Reaper (Shadow Reaper, #1)</a></strong><br/>
-    <sub>Lynette Noni</sub><br/>
-    ⭐ 5 ✨✨
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
@@ -81,8 +81,8 @@
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8409259565?utm_medium=api&utm_source=rss">Japanese Gothic</a></strong><br/>
-      <sub>Kylie Lee Baker</sub><br/><br/>
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8648761636?utm_medium=api&utm_source=rss">Daggermouth (The Heart, #1)</a></strong><br/>
+      <sub>H.M.  Wolfe</sub><br/><br/>
       ★★★★★ ✨✨ — literally obsesseddd !!! 😝
     </td>
   </tr>
@@ -90,7 +90,7 @@
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Aug 9 at 12:53 PM UTC_
+_⏳ last updated on Aug 9 at 1:50 PM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
