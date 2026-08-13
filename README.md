@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[The Sea Hides Its Dead](https://www.goodreads.com/review/show/8579411842?utm_medium=api&utm_source=rss) by Megan Bontrager**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -32,6 +32,13 @@
 ✦ 📚 recent reads
 
 <table><tbody><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8579411842?utm_medium=api&utm_source=rss">The Sea Hides Its Dead</a></strong><br/>
+    <sub>Megan Bontrager</sub><br/>
+    ⭐ 2
+  </div>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8648761636?utm_medium=api&utm_source=rss">Daggermouth (The Heart, #1)</a></strong><br/>
@@ -45,14 +52,14 @@
     <sub>Kylie Lee Baker</sub><br/>
     ⭐ 5 ✨✨
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8581711066?utm_medium=api&utm_source=rss">The Girl with a Thousand Faces</a></strong><br/>
     <sub>Sunyi Dean</sub><br/>
     ⭐ 5 ✨✨
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8725513237?utm_medium=api&utm_source=rss">Fellow Creatures</a></strong><br/>
@@ -66,13 +73,6 @@
     <sub>Kate  Golden</sub><br/>
     ⭐ 3
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8684132266?utm_medium=api&utm_source=rss">Verity Guild</a></strong><br/>
-    <sub>Mai Corland</sub><br/>
-    ⭐ 2
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
@@ -81,16 +81,16 @@
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8648761636?utm_medium=api&utm_source=rss">Daggermouth (The Heart, #1)</a></strong><br/>
-      <sub>H.M.  Wolfe</sub><br/><br/>
-      ★★★★★ ✨✨ — literally obsesseddd !!! 😝
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8579411842?utm_medium=api&utm_source=rss">The Sea Hides Its Dead</a></strong><br/>
+      <sub>Megan Bontrager</sub><br/><br/>
+      ★★ — not for me / fine with a side eye 😟
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Aug 12 at 11:42 PM UTC_
+_⏳ last updated on Aug 13 at 2:06 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
