@@ -20,11 +20,11 @@
 <!-- CURRENTLY-READING-LIST:START -->
 ↳ 📖 currently reading
 
-📘 **[Mortedant's Peril (The Trials of Irody Hasp, #1)](https://www.goodreads.com/review/show/8745768934?utm_medium=api&utm_source=rss) by R.J.  Barker**
+_Not currently reading anything_
 <!-- CURRENTLY-READING-LIST:END -->
 
 <!-- GOODREADS-CURRENT-PROGRESS:START -->
-▱▱▱▱▱▱▱▱▱▱ _in progress…_
+
 <!-- GOODREADS-CURRENT-PROGRESS:END -->
 
 
@@ -32,6 +32,13 @@
 ✦ 📚 recent reads
 
 <table><tbody><tr>
+<td style="padding:12px; vertical-align:top;">
+  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
+    <strong>📘 <a href="https://www.goodreads.com/review/show/8745768934?utm_medium=api&utm_source=rss">Mortedant's Peril (The Trials of Irody Hasp, #1)</a></strong><br/>
+    <sub>R.J.  Barker</sub><br/>
+    ⭐ 4 ✨
+  </div>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8579411842?utm_medium=api&utm_source=rss">The Sea Hides Its Dead</a></strong><br/>
@@ -45,14 +52,14 @@
     <sub>H.M.  Wolfe</sub><br/>
     ⭐ 5 ✨✨
   </div>
-</td>
+</td></tr><tr>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8409259565?utm_medium=api&utm_source=rss">Japanese Gothic</a></strong><br/>
     <sub>Kylie Lee Baker</sub><br/>
     ⭐ 5 ✨✨
   </div>
-</td></tr><tr>
+</td>
 <td style="padding:12px; vertical-align:top;">
   <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
     <strong>📘 <a href="https://www.goodreads.com/review/show/8581711066?utm_medium=api&utm_source=rss">The Girl with a Thousand Faces</a></strong><br/>
@@ -66,31 +73,24 @@
     <sub>Emma Lowther</sub><br/>
     ⭐ 4 ✨
   </div>
-</td>
-<td style="padding:12px; vertical-align:top;">
-  <div style="border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px;">
-    <strong>📘 <a href="https://www.goodreads.com/review/show/8444219044?utm_medium=api&utm_source=rss">Half City (Harker Academy, #1)</a></strong><br/>
-    <sub>Kate  Golden</sub><br/>
-    ⭐ 3
-  </div>
 </td></tr></tbody></table>
 <!-- GOODREADS-LIST:END -->
 <!-- GOODREADS-SPOTLIGHT:START -->
-✨ recently finished
+✦ recently finished
 
 <table>
   <tr>
     <td style="padding:14px; border:1px solid rgba(255,255,255,0.14); border-radius:14px;">
-      <strong>📕 <a href="https://www.goodreads.com/review/show/8579411842?utm_medium=api&utm_source=rss">The Sea Hides Its Dead</a></strong><br/>
-      <sub>Megan Bontrager</sub><br/><br/>
-      ★★ — not for me / fine with a side eye 😟
+      <strong>📕 <a href="https://www.goodreads.com/review/show/8745768934?utm_medium=api&utm_source=rss">Mortedant's Peril (The Trials of Irody Hasp, #1)</a></strong><br/>
+      <sub>R.J.  Barker</sub><br/><br/>
+      ★★★★ ✨ — this one cooked 🤭
     </td>
   </tr>
 </table>
 <!-- GOODREADS-SPOTLIGHT:END -->
 
 <!-- GOODREADS-LAST-UPDATED:START -->
-_⏳ last updated on Aug 15 at 8:30 AM UTC_
+_⏳ last updated on Aug 15 at 9:26 AM UTC_
 <!-- GOODREADS-LAST-UPDATED:END -->
 
 <hr>
