@@ -1,6 +1,6 @@
 <div align="center">
 <h1 style="margin-top: 0px; margin-bottom: 0px;">hey , i'm hn 👋</h1>
-<p style="margin-top: 5px; font-size: 1.2em; font-weight: bold;">{ 🧑‍💻 developer + designer }</p>
+<p style="margin-top: 5px; font-size: 1.2em; font-weight: bold;">{ 🧑‍💻 }</p>
 <img src="https://komarev.com/ghpvc/?username=hnitch&style=flat-square" alt="profile views" style="margin-top: 15px;"/>
 </div>
 
