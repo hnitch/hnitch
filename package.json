@@ -1,10 +1,14 @@
 {
-  "name": "goodreads-rss-updater",
-  "version": "1.0.0",
+  "name": "hnitch-profile",
+  "version": "3.0.0",
   "private": true,
   "type": "module",
   "engines": {
     "node": ">=20"
+  },
+  "scripts": {
+    "update-profile": "node scripts/update-profile.js",
+    "check": "node --check scripts/update-profile.js"
   },
   "dependencies": {
     "xml2js": "^0.6.2"

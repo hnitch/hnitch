@@ -1,0 +1,72 @@
+{
+  "goodreads": {
+    "current": {
+      "title": "(Mostly) Human Resources (Entity Case Files, #1)",
+      "author": "Grace Viall",
+      "link": "https://www.goodreads.com/review/show/8806043567?utm_medium=api&utm_source=rss",
+      "rating": 0
+    },
+    "recent": [
+      {
+        "title": "The Caretaker",
+        "author": "Marcus Kliewer",
+        "link": "https://www.goodreads.com/review/show/8506583969?utm_medium=api&utm_source=rss",
+        "rating": 3
+      },
+      {
+        "title": "The Demon Star",
+        "author": "Jesse Aragon",
+        "link": "https://www.goodreads.com/review/show/8748356322?utm_medium=api&utm_source=rss",
+        "rating": 2
+      },
+      {
+        "title": "To Drown a Witch",
+        "author": "Lindsey Olsson",
+        "link": "https://www.goodreads.com/review/show/8669301761?utm_medium=api&utm_source=rss",
+        "rating": 2
+      },
+      {
+        "title": "Vengeful (Villains, #2)",
+        "author": "V.E. Schwab",
+        "link": "https://www.goodreads.com/review/show/8829778522?utm_medium=api&utm_source=rss",
+        "rating": 4
+      }
+    ]
+  },
+  "letterboxd": {
+    "recent": [
+      {
+        "title": "Insidious: Out of the Further",
+        "year": "2026",
+        "rating": 2,
+        "liked": false,
+        "link": "https://letterboxd.com/hnitch/film/insidious-out-of-the-further/"
+      },
+      {
+        "title": "Enola Holmes 3",
+        "year": "2026",
+        "rating": 3,
+        "liked": false,
+        "link": "https://letterboxd.com/hnitch/film/enola-holmes-3/"
+      },
+      {
+        "title": "Spider-Man: Brand New Day",
+        "year": "2026",
+        "rating": 4.5,
+        "liked": true,
+        "link": "https://letterboxd.com/hnitch/film/spider-man-brand-new-day/"
+      },
+      {
+        "title": "The Odyssey",
+        "year": "2026",
+        "rating": 4,
+        "liked": true,
+        "link": "https://letterboxd.com/hnitch/film/the-odyssey-2026/1/"
+      }
+    ]
+  },
+  "appleMusic": {
+    "title": "crank 2",
+    "artist": "Slayyyter"
+  }
+}

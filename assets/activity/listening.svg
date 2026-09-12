@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="148" viewBox="0 0 860 148" role="img" aria-label="crank 2 by Slayyyter">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#171427"/><stop offset="1" stop-color="#211c33"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#ff9f9a" stop-opacity=".26"/><stop offset="1" stop-color="#ff9f9a" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="860" height="148" rx="20" fill="url(#bg)"/>
+  <circle cx="842" cy="16" r="105" fill="url(#glow)"/>
+  <rect x=".5" y=".5" width="859" height="147" rx="19.5" fill="none" stroke="#3b3153"/>
+  <text x="34" y="38" fill="#ff9f9a" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="1.6">APPLE MUSIC / LAST HEARD</text>
+  <g transform="translate(36 65)" fill="#b9a4ff" opacity=".85"><rect x="0" y="20" width="8" height="24" rx="4"/><rect x="16" y="8" width="8" height="36" rx="4"/><rect x="32" y="0" width="8" height="44" rx="4"/><rect x="48" y="13" width="8" height="31" rx="4"/><rect x="64" y="25" width="8" height="19" rx="4"/></g>
+  <text x="134" y="88" fill="#fffaf5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="23" font-weight="700">crank 2</text>
+  <text x="134" y="116" fill="#b9aecf" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">Slayyyter</text>
+  <text x="826" y="103" fill="#ffe58c" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" text-anchor="end">♫</text>
+</svg>
