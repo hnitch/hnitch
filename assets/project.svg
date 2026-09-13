@@ -8,11 +8,13 @@
   </defs>
   <rect x="1" y="1" width="878" height="188" rx="24" fill="url(#bg)" stroke="#315557" stroke-width="2"/>
   <circle cx="802" cy="32" r="118" fill="#8edfd4" opacity=".06"/>
-  <g transform="translate(47 36)">
-    <rect width="116" height="116" rx="28" fill="url(#orb)" opacity=".16"/>
-    <circle cx="58" cy="58" r="34" fill="none" stroke="#8edfd4" stroke-width="5"/>
-    <circle cx="58" cy="58" r="17" fill="#8edfd4" opacity=".22"/>
-    <path d="M26 24v26c0 8 5 13 12 13V24M32 24v21M88 24v40M88 24c-10 9-10 25 0 28" fill="none" stroke="#e1fff9" stroke-width="4" stroke-linecap="round"/>
+  <g transform="translate(58 50)">
+    <rect width="90" height="90" rx="25" fill="#173c2b" stroke="#a9df46" stroke-opacity=".22"/>
+    <g transform="translate(13 12) scale(1.02)">
+      <path d="M16 30h32M20 30v18h24V30" fill="none" stroke="#a9df46" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M23 23c0-4 3-7 7-7 2 0 3 .5 4 1.5A7 7 0 0 1 45 23c0 3-2 6-5 7H28c-3-1-5-4-5-7Z" fill="none" stroke="#a9df46" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M34 9v6" stroke="#a9df46" stroke-width="5" stroke-linecap="round"/>
+    </g>
   </g>
   <g class="sans">
     <text x="199" y="54" fill="#8edfd4" font-size="11" font-weight="750" letter-spacing="2">OUT IN THE WORLD / FEATURED BUILD</text>
