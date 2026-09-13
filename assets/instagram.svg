@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="94" viewBox="0 0 860 94" role="img" aria-labelledby="title desc">
+  <title id="title">Instagram @hnitch</title>
+  <desc id="desc">photos , stories , and occasional proof of sunlight</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#211526"/><stop offset=".55" stop-color="#2b1725"/><stop offset="1" stop-color="#17252c"/></linearGradient>
+    <linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#ffdc80"/><stop offset=".35" stop-color="#fc5b55"/><stop offset=".68" stop-color="#c13584"/><stop offset="1" stop-color="#833ab4"/></linearGradient>
+    <style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.arrow{animation:nudge 1.8s ease-in-out infinite}@keyframes nudge{50%{transform:translateX(5px)}}</style>
+  </defs>
+  <rect x="1" y="1" width="858" height="92" rx="22" fill="url(#bg)" stroke="#59304d" stroke-width="2"/>
+  <circle cx="55" cy="47" r="28" fill="url(#ig)" opacity=".16"/>
+  <g fill="none" stroke="url(#ig)" stroke-width="3.5">
+    <rect x="36" y="28" width="38" height="38" rx="11"/>
+    <circle cx="55" cy="47" r="9"/>
+  </g>
+  <circle cx="67" cy="35" r="2.8" fill="#ffb56b"/>
+  <g class="sans">
+    <text x="101" y="42" fill="#fffaf5" font-size="20" font-weight="800">@hnitch</text>
+    <text x="101" y="64" fill="#c3aabd" font-size="12.5" font-weight="600">photos , stories , and occasional proof of sunlight.</text>
+    <rect x="710" y="25" width="112" height="44" rx="22" fill="#fffaf5" opacity=".92"/>
+    <text x="739" y="52" fill="#251720" font-size="11" font-weight="850" letter-spacing="1">OPEN</text>
+    <text class="arrow" x="784" y="54" fill="#251720" font-size="18" font-weight="850">↗</text>
+  </g>
+</svg>

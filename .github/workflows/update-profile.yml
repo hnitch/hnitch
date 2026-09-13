@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Refresh books, films, and music
+      - name: Refresh books , films , music , and presence
         run: npm run update-profile
 
       - name: Commit meaningful changes
