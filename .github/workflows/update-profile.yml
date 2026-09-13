@@ -35,13 +35,13 @@ jobs:
 
       - name: Commit meaningful changes
         run: |
-          if git diff --quiet -- assets/activity data/activity.json; then
+          if git diff --quiet -- README.md assets/activity data/activity.json; then
             echo "Nothing new in the rotation"
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/activity data/activity.json
+          git add README.md assets/activity data/activity.json
           git commit -m "chore: refresh profile activity"
           git push

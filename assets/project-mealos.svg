@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="190" viewBox="0 0 880 190" role="img" aria-labelledby="title desc">
+  <title id="title">mealOS</title>
+  <desc id="desc">meal planning minus the spreadsheet-induced spiral</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#101f26"/><stop offset="1" stop-color="#152f31"/></linearGradient>
+    <linearGradient id="orb" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8edfd4"/><stop offset="1" stop-color="#b9a4ff"/></linearGradient>
+    <style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.arrow{animation:nudge 1.8s ease-in-out infinite}@keyframes nudge{50%{transform:translateX(6px)}}</style>
+  </defs>
+  <rect x="1" y="1" width="878" height="188" rx="24" fill="url(#bg)" stroke="#315557" stroke-width="2"/>
+  <circle cx="802" cy="32" r="118" fill="#8edfd4" opacity=".06"/>
+  <g transform="translate(47 36)">
+    <rect width="116" height="116" rx="28" fill="url(#orb)" opacity=".16"/>
+    <circle cx="58" cy="58" r="34" fill="none" stroke="#8edfd4" stroke-width="5"/>
+    <circle cx="58" cy="58" r="17" fill="#8edfd4" opacity=".22"/>
+    <path d="M26 24v26c0 8 5 13 12 13V24M32 24v21M88 24v40M88 24c-10 9-10 25 0 28" fill="none" stroke="#e1fff9" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <g class="sans">
+    <text x="199" y="54" fill="#8edfd4" font-size="11" font-weight="750" letter-spacing="2">OUT IN THE WORLD / FEATURED BUILD</text>
+    <text x="197" y="104" fill="#fffaf5" font-size="38" font-weight="800" letter-spacing="-1.2">mealOS</text>
+    <text x="199" y="136" fill="#bcd2d1" font-size="16">meal planning minus the spreadsheet-induced spiral.</text>
+    <rect x="708" y="70" width="124" height="48" rx="24" fill="#8edfd4"/>
+    <text x="746" y="100" fill="#112429" font-size="13" font-weight="800" letter-spacing=".8">OPEN</text>
+    <text class="arrow" x="790" y="100" fill="#112429" font-size="19" font-weight="800">↗</text>
+    <text x="199" y="163" fill="#708b8c" font-size="11">more projects remain in the vault. the vault has declined to comment.</text>
+  </g>
+</svg>

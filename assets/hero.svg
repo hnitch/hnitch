@@ -1,29 +1,57 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="880" height="250" viewBox="0 0 880 250" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="300" viewBox="0 0 880 300" role="img" aria-labelledby="title desc">
   <title id="title">hey, i'm hn</title>
-  <desc id="desc">making things for the web and collecting stories everywhere else</desc>
+  <desc id="desc">a builder, reader, watcher, and professional tab hoarder</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#171427"/>
-      <stop offset="0.52" stop-color="#241a38"/>
-      <stop offset="1" stop-color="#122936"/>
+      <stop offset="0" stop-color="#151120"/><stop offset=".52" stop-color="#211832"/><stop offset="1" stop-color="#102a35"/>
     </linearGradient>
-    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-      <stop offset="0" stop-color="#b9a4ff" stop-opacity=".35"/>
-      <stop offset="1" stop-color="#b9a4ff" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="blur"><feGaussianBlur stdDeviation="20"/></filter>
+    <linearGradient id="stroke" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#b9a4ff"/><stop offset=".52" stop-color="#ff9f9a"/><stop offset="1" stop-color="#8edfd4"/>
+    </linearGradient>
+    <radialGradient id="glow"><stop stop-color="#b9a4ff" stop-opacity=".28"/><stop offset="1" stop-color="#b9a4ff" stop-opacity="0"/></radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#05030a" flood-opacity=".42"/></filter>
+    <style>
+      .sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+      .spark{animation:pulse 2.8s ease-in-out infinite;transform-origin:center}
+      @keyframes pulse{50%{opacity:.35}}
+    </style>
   </defs>
-  <rect width="880" height="250" rx="24" fill="url(#bg)"/>
-  <circle cx="82" cy="46" r="105" fill="url(#glow)" filter="url(#blur)"/>
-  <circle cx="806" cy="222" r="150" fill="#58d6c7" opacity=".08" filter="url(#blur)"/>
-  <path d="M0 204C134 166 223 233 365 198c151-37 250-91 515-35v87H0z" fill="#fff" opacity=".025"/>
-  <g fill="none" stroke="#e8ddff" stroke-linecap="round" opacity=".55">
-    <path d="M66 55h28M80 41v28"/><path d="M785 55h18M794 46v18"/><path d="M744 181h10M749 176v10"/>
+  <rect x="1" y="1" width="878" height="298" rx="28" fill="url(#bg)" stroke="url(#stroke)" stroke-opacity=".7" stroke-width="2"/>
+  <circle cx="86" cy="40" r="125" fill="url(#glow)"/>
+  <circle cx="836" cy="278" r="160" fill="#8edfd4" opacity=".06"/>
+  <path d="M0 251c151-52 252 31 400-8 143-38 269-78 480-26v82H0z" fill="#fff" opacity=".025"/>
+
+  <g class="sans">
+    <rect x="52" y="42" width="126" height="28" rx="14" fill="#fff" opacity=".075" stroke="#fff" stroke-opacity=".13"/>
+    <circle cx="70" cy="56" r="4" fill="#8edfd4"/>
+    <text x="82" y="61" fill="#d8d0e8" font-size="11" font-weight="600" letter-spacing="1.3">HN / ONLINE-ISH</text>
+    <text x="52" y="137" fill="#fffaf5" font-size="54" font-weight="800" letter-spacing="-2.2">hey, i'm hn.</text>
+    <text x="54" y="178" fill="#d0c6df" font-size="18" font-weight="500">i make things for the web, then disappear</text>
+    <text x="54" y="205" fill="#d0c6df" font-size="18" font-weight="500">into books, films, and suspiciously good playlists.</text>
+    <text x="54" y="254" fill="#8edfd4" font-size="13" font-weight="700" letter-spacing="1.5">BUILDING  ·  READING  ·  WATCHING  ·  LISTENING</text>
   </g>
-  <g fill="#ffe58c"><circle cx="121" cy="199" r="2"/><circle cx="761" cy="104" r="2"/><circle cx="822" cy="151" r="1.5"/></g>
-  <text x="440" y="103" fill="#fffaf5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="46" font-weight="700" text-anchor="middle">hey, i'm hn 👋</text>
-  <text x="440" y="145" fill="#cfc6e7" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" text-anchor="middle">making things for the web</text>
-  <text x="440" y="170" fill="#8edfd4" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" text-anchor="middle">+ collecting stories everywhere else</text>
-  <rect x="369" y="197" width="142" height="28" rx="14" fill="#ffffff" opacity=".07" stroke="#ffffff" stroke-opacity=".12"/>
-  <text x="440" y="216" fill="#e8ddff" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" text-anchor="middle">{ still at the restaurant }</text>
+
+  <g filter="url(#shadow)">
+    <g transform="translate(637 54) rotate(-5)"><g>
+      <animateTransform attributeName="transform" type="translate" values="0 0;0 -7;0 0" dur="5s" repeatCount="indefinite"/>
+      <rect width="112" height="156" rx="15" fill="#29203e" stroke="#b9a4ff" stroke-opacity=".6"/>
+      <rect x="17" y="18" width="78" height="96" rx="8" fill="#b9a4ff" opacity=".13"/>
+      <path d="M36 44h42M36 57h31M36 70h37" stroke="#d8ccff" stroke-width="4" stroke-linecap="round" opacity=".75"/>
+      <text x="18" y="137" fill="#fffaf5" class="sans" font-size="11" font-weight="700">one more?</text>
+    </g></g>
+    <g transform="translate(746 100) rotate(7)"><g>
+      <animateTransform attributeName="transform" type="translate" values="0 0;0 6;0 0" dur="6s" repeatCount="indefinite"/>
+      <rect width="92" height="126" rx="15" fill="#172f38" stroke="#8edfd4" stroke-opacity=".6"/>
+      <circle cx="46" cy="48" r="25" fill="#8edfd4" opacity=".14"/>
+      <path d="M39 35l23 13-23 13z" fill="#8edfd4"/>
+      <path d="M19 91h54M26 103h40" stroke="#c7f7f0" stroke-width="4" stroke-linecap="round" opacity=".55"/>
+    </g></g>
+    <g transform="translate(574 188) rotate(5)">
+      <rect width="154" height="62" rx="16" fill="#35202f" stroke="#ff9f9a" stroke-opacity=".55"/>
+      <g fill="#ff9f9a" transform="translate(20 17)"><rect width="6" height="27" rx="3"/><rect x="12" y="7" width="6" height="20" rx="3"/><rect x="24" y="2" width="6" height="25" rx="3"/><rect x="36" y="10" width="6" height="17" rx="3"/></g>
+      <text x="77" y="29" fill="#fffaf5" class="sans" font-size="11" font-weight="700">on repeat</text>
+      <text x="77" y="44" fill="#d8b9c9" class="sans" font-size="9">probably too loud</text>
+    </g>
+  </g>
+  <g class="spark" fill="#ffe58c"><circle cx="603" cy="50" r="3"/><circle cx="833" cy="64" r="2"/><circle cx="770" cy="251" r="2.5"/></g>
 </svg>

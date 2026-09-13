@@ -1,22 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="420" height="270" viewBox="0 0 420 270" role="img" aria-label="hn&apos;s Goodreads activity">
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="485" viewBox="0 0 420 485" role="img" aria-label="hn&apos;s Goodreads activity">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#171427"/><stop offset="1" stop-color="#211c33"/></linearGradient>
-    <radialGradient id="glow"><stop stop-color="#8edfd4" stop-opacity=".26"/><stop offset="1" stop-color="#8edfd4" stop-opacity="0"/></radialGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#151120"/><stop offset="1" stop-color="#211832"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#8edfd4" stop-opacity=".25"/><stop offset="1" stop-color="#8edfd4" stop-opacity="0"/></radialGradient>
+    <style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.pulse{animation:pulse 3s ease-in-out infinite}@keyframes pulse{50%{opacity:.4}}</style>
   </defs>
-  <rect width="420" height="270" rx="20" fill="url(#bg)"/>
-  <circle cx="402" cy="16" r="105" fill="url(#glow)"/>
-  <rect x=".5" y=".5" width="419" height="269" rx="19.5" fill="none" stroke="#3b3153"/>
-  <text x="28" y="36" fill="#8edfd4" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="1.6">GOODREADS / ON THE NIGHTSTAND</text>
-  <text x="28" y="77" fill="#fffaf5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" font-weight="700">(Mostly) Human Resources (Enti…</text>
-  <text x="28" y="101" fill="#b9aecf" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">by Grace Viall</text>
-  <path d="M28 126h364" stroke="#3b3153"/>
-  <text x="28" y="151" fill="#b9a4ff" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" letter-spacing="1.4">RECENTLY READ</text>
-  <text x="28" y="174" fill="#fffaf5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">The Caretaker</text>
-    <text x="392" y="174" fill="#ffe58c" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" text-anchor="end">★★★</text>
-<text x="28" y="195" fill="#fffaf5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">The Demon Star</text>
-    <text x="392" y="195" fill="#ffe58c" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" text-anchor="end">★★</text>
-<text x="28" y="216" fill="#fffaf5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">To Drown a Witch</text>
-    <text x="392" y="216" fill="#ffe58c" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" text-anchor="end">★★</text>
-<text x="28" y="237" fill="#fffaf5" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12">Vengeful (Villains, #2)</text>
-    <text x="392" y="237" fill="#ffe58c" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" text-anchor="end">★★★★</text>
+  <rect x="1" y="1" width="418" height="483" rx="23" fill="url(#bg)" stroke="#403454" stroke-width="2"/>
+  <circle cx="408" cy="12" r="120" fill="url(#glow)"/>
+  <g class="sans">
+    <text x="24" y="38" fill="#8edfd4" font-size="11" font-weight="800" letter-spacing="1.7">GOODREADS / NOW READING</text>
+    <g transform="translate(25 69)"><rect width="35" height="76" rx="6" fill="#8edfd4" opacity=".15" stroke="#8edfd4"/><path d="M11 0v76" stroke="#8edfd4" opacity=".5"/><path d="M18 22h9M18 30h9" stroke="#8edfd4" stroke-width="2" stroke-linecap="round"/></g>
+    <foreignObject x="76" y="67" width="315" height="79">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:21px;font-weight:800;line-height:1.08;color:#fffaf5;text-align:left;overflow-wrap:anywhere;word-break:normal;">(Mostly) Human Resources (Entity Case Files, #1)</div>
+  </foreignObject>
+    <text x="77" y="164" fill="#bdb1ca" font-size="12.5" font-weight="550">by Grace Viall</text>
+    <path d="M24 184h372" stroke="#403454"/>
+    <text x="24" y="204" fill="#b9a4ff" font-size="10" font-weight="800" letter-spacing="1.5">RECENTLY SHELVED</text>
+    <rect x="20" y="225" width="380" height="48" rx="12" fill="#251d35" opacity=".78"/>
+    <foreignObject x="35" y="235" width="274" height="38">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:650;line-height:1.18;color:#fffaf5;text-align:left;overflow-wrap:anywhere;word-break:normal;">The Caretaker</div>
+  </foreignObject>
+    <text x="385" y="253" fill="#ffe58c" class="sans" font-size="11" font-weight="700" text-anchor="end">★★★</text>
+<rect x="20" y="279" width="380" height="48" rx="12" fill="#282039" opacity=".78"/>
+    <foreignObject x="35" y="289" width="274" height="38">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:650;line-height:1.18;color:#fffaf5;text-align:left;overflow-wrap:anywhere;word-break:normal;">The Demon Star</div>
+  </foreignObject>
+    <text x="385" y="307" fill="#ffe58c" class="sans" font-size="11" font-weight="700" text-anchor="end">★★</text>
+<rect x="20" y="333" width="380" height="48" rx="12" fill="#251d35" opacity=".78"/>
+    <foreignObject x="35" y="343" width="274" height="38">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:650;line-height:1.18;color:#fffaf5;text-align:left;overflow-wrap:anywhere;word-break:normal;">To Drown a Witch</div>
+  </foreignObject>
+    <text x="385" y="361" fill="#ffe58c" class="sans" font-size="11" font-weight="700" text-anchor="end">★★</text>
+<rect x="20" y="387" width="380" height="48" rx="12" fill="#282039" opacity=".78"/>
+    <foreignObject x="35" y="397" width="274" height="38">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:12.5px;font-weight:650;line-height:1.18;color:#fffaf5;text-align:left;overflow-wrap:anywhere;word-break:normal;">Vengeful (Villains, #2)</div>
+  </foreignObject>
+    <text x="385" y="415" fill="#ffe58c" class="sans" font-size="11" font-weight="700" text-anchor="end">★★★★</text>
+    <text x="24" y="468" fill="#bdb1ca" font-size="9.5" font-weight="600">tap the card. inspect the reading receipts.</text>
+  </g>
 </svg>
