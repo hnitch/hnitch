@@ -15,6 +15,7 @@
     "music:uninstall": "zsh scripts/uninstall-music-bridge-macos.sh"
   },
   "dependencies": {
+    "puppeteer-core": "^25.10.0",
     "xml2js": "^0.6.2"
   }
 }

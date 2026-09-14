@@ -409,6 +409,7 @@ async function readLanyard() {
 
 async function readDiscord(source) {
   const user = source.discord_user;
+  const guild = user.primary_guild?.identity_enabled ? user.primary_guild : null;
   const validStatuses = new Set(["online", "idle", "dnd", "offline"]);
   const avatarExtension = user.avatar?.startsWith("a_") ? "gif" : "png";
   const avatarUrl = user.avatar
@@ -421,20 +422,28 @@ async function readDiscord(source) {
     source.active_on_discord_embedded && "embedded",
   ].filter(Boolean);
   const createdAt = Number((BigInt(user.id) >> 22n) + 1420070400000n);
-  const avatarData = await fetchDataUri(avatarUrl);
+  const guildBadgeUrl = guild?.badge
+    ? `https://cdn.discordapp.com/clan-badges/${guild.identity_guild_id}/${guild.badge}.png?size=64`
+    : "";
+  const [avatarData, guildBadgeData] = await Promise.all([
+    fetchDataUri(avatarUrl),
+    fetchDataUri(guildBadgeUrl),
+  ]);
   return {
     data: {
       id: user.id,
       displayName: user.display_name || user.global_name || user.username,
       username: user.username,
       status: validStatuses.has(source.discord_status) ? source.discord_status : "unknown",
-      guildTag: user.primary_guild?.tag || "",
+      guildTag: guild?.tag || "",
+      guildBadgeUrl,
       memberSince: new Date(createdAt).getUTCFullYear(),
       devices,
       activity: discordActivityLabel(source),
       avatarUrl,
     },
     avatarData,
+    guildBadgeData,
   };
 }
 
@@ -605,7 +614,7 @@ ${duration ? `  <rect x="724" y="168" width="78" height="27" rx="13.5" fill="#ff
   </svg>`;
 }
 
-function renderDiscord(data, avatar) {
+function renderDiscord(data, avatar, guildBadge) {
   const statuses = {
     online: { color: "#3ba55d", label: "online" },
     idle: { color: "#faa81a", label: "idle" },
@@ -619,6 +628,9 @@ function renderDiscord(data, avatar) {
   const avatarMarkup = avatar
     ? `<image href="${avatar}" x="34" y="32" width="132" height="132" preserveAspectRatio="xMidYMid slice" clip-path="url(#avatar)"/>`
     : `<circle cx="100" cy="98" r="66" fill="#4b3a67"/><text x="100" y="112" fill="#fffaf5" class="sans" font-size="38" font-weight="800" text-anchor="middle">HN</text>`;
+  const guildIdentity = data.guildTag
+    ? `<rect x="636" y="45" width="78" height="32" rx="16" fill="#fff" opacity=".08"/>${guildBadge ? `<image href="${guildBadge}" x="648" y="52" width="18" height="18" preserveAspectRatio="xMidYMid meet"/>` : `<path d="M656 51l8 9-8 9-8-9z" fill="#ded5e5" opacity=".9"/>`}<text x="687" y="66" fill="#ded5e5" font-size="11.5" font-weight="800" text-anchor="middle">${escapeDisplay(data.guildTag)}</text>`
+    : "";
   return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="206" viewBox="0 0 860 206" role="img" aria-label="Discord profile for ${escapeDisplay(data.username)} , status ${escapeDisplay(presence.label)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#171427"/><stop offset=".55" stop-color="#25203b"/><stop offset="1" stop-color="#172a35"/></linearGradient><linearGradient id="edge" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#5865f2"/><stop offset=".55" stop-color="#b9a4ff"/><stop offset="1" stop-color="#8edfd4"/></linearGradient><clipPath id="avatar"><circle cx="100" cy="98" r="66"/></clipPath><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.arrow{animation:nudge 1.8s ease-in-out infinite}@keyframes nudge{50%{transform:translateX(5px)}}</style></defs>
   <rect x="1" y="1" width="858" height="204" rx="25" fill="url(#bg)" stroke="url(#edge)" stroke-width="2"/>
@@ -629,9 +641,23 @@ function renderDiscord(data, avatar) {
   <text x="198" y="108" fill="#c8bdd3" font-size="14" font-weight="600">@${escapeDisplay(data.username)}</text>
   <rect x="196" y="124" width="${statusWidth.toFixed(1)}" height="30" rx="15" fill="${presence.color}" opacity=".15"/><circle cx="213" cy="139" r="4.5" fill="${presence.color}"/><text x="225" y="144" fill="#e5ddea" font-size="12" font-weight="800">${escapeDisplay(presence.label)}</text>
   ${wrappedText({ x: 198, y: 162, width: 405, height: 34, value: `${data.activity} · ${deviceText}`, size: 12, weight: 600, color: "#ada1ba", lineHeight: 1.15 })}
-  <text x="620" y="68" fill="#a497ae" font-size="11.5" font-weight="800" text-anchor="end">ON DISCORD SINCE ${data.memberSince}</text>${data.guildTag ? `<rect x="642" y="48" width="48" height="27" rx="13.5" fill="#fff" opacity=".08"/><text x="666" y="66" fill="#ded5e5" font-size="11.5" font-weight="800" text-anchor="middle">${escapeDisplay(data.guildTag)}</text>` : ""}
+  <text x="620" y="68" fill="#a497ae" font-size="11.5" font-weight="800" text-anchor="end">ON DISCORD SINCE ${data.memberSince}</text>${guildIdentity}
   <rect x="638" y="111" width="174" height="48" rx="24" fill="#5865f2"/><text x="669" y="140" fill="#fff" font-size="12" font-weight="800" letter-spacing=".7">OPEN PROFILE</text><text class="arrow" x="777" y="142" fill="#fff" font-size="18" font-weight="800">↗</text></g>
   </svg>`;
+}
+
+function renderInstagram(data, avatar) {
+  const avatarMarkup = avatar
+    ? `<image href="${avatar}" x="31" y="28" width="134" height="134" preserveAspectRatio="xMidYMid slice" clip-path="url(#instagram-avatar)"/>`
+    : `<circle cx="98" cy="95" r="67" fill="#39233d"/><text x="98" y="108" fill="#fffaf5" class="sans" font-size="35" font-weight="800" text-anchor="middle">HN</text>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="190" viewBox="0 0 860 190" role="img" aria-label="Instagram profile ${escapeDisplay(data.username)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#211526"/><stop offset=".55" stop-color="#2b1725"/><stop offset="1" stop-color="#17252c"/></linearGradient><linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#ffdc80"/><stop offset=".35" stop-color="#fc5b55"/><stop offset=".68" stop-color="#c13584"/><stop offset="1" stop-color="#833ab4"/></linearGradient><clipPath id="instagram-avatar"><circle cx="98" cy="95" r="67"/></clipPath><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.arrow{animation:nudge 1.8s ease-in-out infinite}@keyframes nudge{50%{transform:translateX(5px)}}</style></defs>
+  <rect x="1" y="1" width="858" height="188" rx="25" fill="url(#bg)" stroke="#59304d" stroke-width="2"/><circle cx="786" cy="8" r="142" fill="#c13584" opacity=".055"/><circle cx="720" cy="194" r="120" fill="#ffdc80" opacity=".035"/>
+  <circle cx="98" cy="95" r="70" fill="none" stroke="url(#ig)" stroke-width="4"/>${avatarMarkup}
+  <circle cx="148" cy="145" r="25" fill="#18121d" stroke="#241725" stroke-width="3"/><rect x="130" y="127" width="36" height="36" rx="10" fill="url(#ig)"/><rect x="138" y="135" width="20" height="20" rx="6" fill="none" stroke="#fff" stroke-width="2.2"/><circle cx="148" cy="145" r="4.7" fill="none" stroke="#fff" stroke-width="2"/><circle cx="155" cy="138" r="1.8" fill="#fff"/>
+  <g class="sans"><text x="195" y="47" fill="#ff9fcb" font-size="12" font-weight="800" letter-spacing="1.5">INSTAGRAM / PUBLIC CAMERA ROLL</text><text x="193" y="94" fill="#fffaf5" font-size="31" font-weight="800">@${escapeDisplay(data.username)}</text><text x="195" y="124" fill="#c3aabd" font-size="14.5" font-weight="600">photos , stories , and whatever made the grid.</text>
+  <g font-size="10.5" font-weight="800" letter-spacing=".75" text-anchor="middle"><rect x="195" y="143" width="78" height="25" rx="12.5" fill="#ffdc80" opacity=".1"/><text x="234" y="160" fill="#ffdc80">PHOTOS</text><rect x="281" y="143" width="82" height="25" rx="12.5" fill="#c13584" opacity=".14"/><text x="322" y="160" fill="#ff9fcb">STORIES</text></g>
+  <rect x="690" y="70" width="132" height="48" rx="24" fill="#fffaf5" opacity=".92"/><text x="723" y="99" fill="#251720" font-size="12" font-weight="800" letter-spacing=".9">OPEN</text><text class="arrow" x="778" y="101" fill="#251720" font-size="18" font-weight="800">↗</text></g></svg>`;
 }
 
 async function readPrevious() {
@@ -642,12 +668,107 @@ async function readPrevious() {
   }
 }
 
-async function readEmbeddedImage(filename) {
+async function readEmbeddedImage(filename, index = 0) {
   try {
     const svg = await fs.readFile(path.join(OUTPUT_DIR, filename), "utf8");
-    return svg.match(/<image[^>]+href="(data:[^"]+)"/)?.[1] || null;
+    return [...svg.matchAll(/<image[^>]+href="(data:[^"]+)"/g)][index]?.[1] || null;
   } catch {
     return null;
+  }
+}
+
+async function chromeExecutable() {
+  const candidates = [
+    process.env.PUPPETEER_EXECUTABLE_PATH,
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "/usr/bin/google-chrome",
+    "/usr/bin/google-chrome-stable",
+    "/usr/bin/chromium",
+    "/usr/bin/chromium-browser",
+  ].filter(Boolean);
+  for (const candidate of candidates) {
+    try {
+      await fs.access(candidate);
+      return candidate;
+    } catch {
+      // Keep looking for a browser already available on the runner.
+    }
+  }
+  throw new Error("no Chrome executable is available for the Instagram refresh");
+}
+
+async function readInstagramAvatar() {
+  const { default: puppeteer } = await import("puppeteer-core");
+  const browser = await puppeteer.launch({
+    executablePath: await chromeExecutable(),
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+  });
+  try {
+    const page = await browser.newPage();
+    await page.setViewport({ width: 900, height: 900, deviceScaleFactor: 1 });
+    await page.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36");
+    await page.goto("https://www.instagram.com/hnitch/", { waitUntil: "domcontentloaded", timeout: 30_000 });
+    await page.waitForSelector('img[alt*="profile picture"]', { visible: true, timeout: 20_000 });
+    await delay(1_500);
+    const candidates = await page.$$('img[alt*="profile picture"]');
+    let avatarUrl = "";
+    for (const candidate of candidates) {
+      const details = await candidate.evaluate((element) => {
+        const box = element.getBoundingClientRect();
+        return {
+          width: box.width,
+          height: box.height,
+          naturalWidth: element.naturalWidth,
+          source: element.currentSrc || element.src,
+        };
+      });
+      if (details.width >= 80 && details.height >= 80 && details.naturalWidth >= 80 && /cdninstagram\.com/.test(details.source)) {
+        avatarUrl = details.source;
+        break;
+      }
+    }
+    if (!avatarUrl) throw new Error("Instagram did not expose a usable profile image");
+    const imageResponse = await page.goto(avatarUrl, { waitUntil: "networkidle0", timeout: 20_000 });
+    const bytes = imageResponse ? await imageResponse.buffer() : null;
+    if (!imageResponse?.ok() || !bytes || bytes.length < 1_500) throw new Error("Instagram returned an empty profile-image placeholder");
+    const type = imageResponse.headers()["content-type"]?.split(";")[0] || "image/jpeg";
+    const avatarData = `data:${type};base64,${bytes.toString("base64")}`;
+    return {
+      data: {
+        username: "hnitch",
+        avatarHash: createHash("sha256").update(avatarData).digest("hex").slice(0, 12),
+      },
+      avatarData,
+    };
+  } finally {
+    await browser.close();
+  }
+}
+
+function instagramRefreshWindow() {
+  if (!process.env.GITHUB_ACTIONS) return true;
+  const now = new Date();
+  return now.getUTCHours() === 0 && now.getUTCMinutes() < 5;
+}
+
+async function readInstagramSource(previous, cachedAvatar) {
+  if (previous && cachedAvatar && !instagramRefreshWindow()) {
+    return { fresh: true, data: previous, avatarData: cachedAvatar };
+  }
+  try {
+    return { fresh: true, ...(await readInstagramAvatar()) };
+  } catch (error) {
+    if (!cachedAvatar) throw error;
+    console.warn(`warning: Instagram avatar refresh failed; keeping the last good image (${error.message})`);
+    return {
+      fresh: true,
+      data: {
+        username: "hnitch",
+        avatarHash: createHash("sha256").update(cachedAvatar).digest("hex").slice(0, 12),
+      },
+      avatarData: cachedAvatar,
+    };
   }
 }
 
@@ -680,6 +801,7 @@ async function readDiscordSource(previous, lanyardPromise) {
         activity: "presence temporarily unavailable",
       },
       avatarData: null,
+      guildBadgeData: null,
     };
   }
 }
@@ -722,6 +844,10 @@ function discordMarkup(data) {
   return `<a href="https://discord.com/users/${escapeXml(data.id)}"><img src="./assets/activity/discord.svg?v=${assetVersion(data)}" width="100%" alt="Discord profile @${escapeDisplay(data.username)} , ${escapeDisplay(data.status)}" /></a>`;
 }
 
+function instagramMarkup(data) {
+  return `<a href="https://www.instagram.com/${escapeXml(data.username)}/"><img src="./assets/activity/instagram.svg?v=${assetVersion(data)}" width="100%" alt="Instagram profile @${escapeDisplay(data.username)}" /></a>`;
+}
+
 function replaceSection(content, name, replacement) {
   const pattern = new RegExp(`(^[\\t ]*)<!-- ${name}:START -->[\\s\\S]*?<!-- ${name}:END -->`, "m");
   if (!pattern.test(content)) throw new Error(`README is missing the ${name} markers`);
@@ -737,35 +863,44 @@ async function updateReadme(data, updatedAt) {
   readme = replaceSection(readme, "LETTERBOXD-FEED", letterboxdMarkup(data.letterboxd));
   readme = replaceSection(readme, "APPLE-MUSIC-FEED", appleMusicMarkup(data.appleMusic));
   readme = replaceSection(readme, "DISCORD-FEED", discordMarkup(data.discord));
+  readme = replaceSection(readme, "INSTAGRAM-FEED", instagramMarkup(data.instagram));
   readme = replaceSection(readme, "PROFILE-LAST-UPDATED", `<relative-time datetime="${updatedAt}">a few seconds ago</relative-time>`);
   await fs.writeFile(README_FILE, readme);
 }
 
 function dataChanged(previous, current) {
-  const old = { goodreads: previous.goodreads, letterboxd: previous.letterboxd, appleMusic: previous.appleMusic, discord: previous.discord };
+  const old = { goodreads: previous.goodreads, letterboxd: previous.letterboxd, appleMusic: previous.appleMusic, discord: previous.discord, instagram: previous.instagram };
   return JSON.stringify(old) !== JSON.stringify(current);
 }
 
 async function main() {
   const previous = await readPrevious();
-  const [cachedAppleArtwork, cachedDiscordAvatar] = await Promise.all([
+  const [cachedAppleArtwork, cachedDiscordAvatar, cachedDiscordGuildBadge, generatedInstagramAvatar] = await Promise.all([
     readEmbeddedImage("apple-music.svg"),
     readEmbeddedImage("discord.svg"),
+    readEmbeddedImage("discord.svg", 1),
+    readEmbeddedImage("instagram.svg"),
   ]);
+  const generatedInstagramBytes = generatedInstagramAvatar
+    ? Buffer.from(generatedInstagramAvatar.split(",", 2)[1] || "", "base64").length
+    : 0;
+  const cachedInstagramAvatar = generatedInstagramBytes >= 1_500 ? generatedInstagramAvatar : null;
   // Start the shared request immediately before both consumers attach so a
   // fast network rejection can never become an unhandled promise.
   const lanyardPromise = readLanyard();
-  const [goodreadsResult, letterboxdResult, appleMusicResult, discordResult] = await Promise.all([
+  const [goodreadsResult, letterboxdResult, appleMusicResult, discordResult, instagramResult] = await Promise.all([
     readSource("goodreads", readGoodreads, previous),
     readSource("letterboxd", readLetterboxd, previous),
     readSource("appleMusic", () => readAppleMusic(previous.appleMusic), previous),
     readDiscordSource(previous.discord, lanyardPromise),
+    readInstagramSource(previous.instagram, cachedInstagramAvatar),
   ]);
   const current = {
     goodreads: goodreadsResult.data,
     letterboxd: letterboxdResult.data,
     appleMusic: appleMusicResult.data,
     discord: discordResult.data,
+    instagram: instagramResult.data,
   };
   const updatedAt = dataChanged(previous, current) || !previous.updatedAt ? new Date().toISOString() : previous.updatedAt;
 
@@ -783,7 +918,12 @@ async function main() {
   if (discordResult.fresh) {
     const sameAvatar = previous.discord?.avatarUrl === current.discord?.avatarUrl;
     const avatar = discordResult.avatarData || (sameAvatar ? cachedDiscordAvatar : null);
-    writes.push(fs.writeFile(path.join(OUTPUT_DIR, "discord.svg"), renderDiscord(current.discord, avatar)));
+    const sameGuildBadge = previous.discord?.guildBadgeUrl === current.discord?.guildBadgeUrl;
+    const guildBadge = discordResult.guildBadgeData || (sameGuildBadge ? cachedDiscordGuildBadge : null);
+    writes.push(fs.writeFile(path.join(OUTPUT_DIR, "discord.svg"), renderDiscord(current.discord, avatar, guildBadge)));
+  }
+  if (instagramResult.fresh) {
+    writes.push(fs.writeFile(path.join(OUTPUT_DIR, "instagram.svg"), renderInstagram(current.instagram, instagramResult.avatarData || cachedInstagramAvatar)));
   }
   await Promise.all(writes);
   await Promise.all([

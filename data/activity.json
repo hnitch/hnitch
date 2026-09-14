@@ -115,16 +115,15 @@
     ]
   },
   "appleMusic": {
-    "title": "stupid song",
-    "artist": "Olivia Rodrigo",
-    "album": "you seem pretty sad for a girl so in love",
-    "link": "https://music.apple.com/us/album/stupid-song/1889992111?i=1889992115&uo=4",
-    "duration": 209.679992675781,
-    "position": 0,
-    "source": "music-app-preview",
-    "playbackState": "paused",
+    "title": "crank 2",
+    "artist": "Slayyyter",
+    "album": "crank 2 - Single",
+    "link": "https://music.apple.com/us/album/crank-2/6808004133?i=6808004347",
+    "duration": 0,
+    "source": "apple-history",
+    "playbackState": "recent",
     "isNowPlaying": false,
-    "observedAt": "2026-09-14T08:48:15.802Z"
+    "observedAt": null
   },
   "discord": {
     "id": "690729789702537336",
@@ -132,12 +131,17 @@
     "username": "hnitch",
     "status": "online",
     "guildTag": "EN",
+    "guildBadgeUrl": "https://cdn.discordapp.com/clan-badges/1098645983577001994/fb7ebd9358a8c1f1e8d23547333a86f0.png?size=64",
     "memberSince": 2020,
     "devices": [
       "desktop"
     ],
-    "activity": "no public activity right now",
+    "activity": "listening to Tornado Warnings",
     "avatarUrl": "https://cdn.discordapp.com/avatars/690729789702537336/7077a608b3f569f6c3cca885b59baaa5.png?size=256"
   },
-  "updatedAt": "2026-09-14T08:48:17.651Z"
+  "instagram": {
+    "username": "hnitch",
+    "avatarHash": "15c99023141d"
+  },
+  "updatedAt": "2026-09-14T09:12:55.986Z"
 }

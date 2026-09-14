@@ -11,7 +11,9 @@
   <img src="./assets/project.svg?v=3.4.0" width="100%" alt="mealOS , cook more , waste less" />
 </a>
 
-<br/><br/>
+<div align="center">
+  <img src="./assets/divider.svg?v=3.6.0" width="320" alt="" />
+</div>
 
 <img src="./assets/stalk.svg?v=3.4.2" width="100%" alt="the legally-approved stalking zone" />
 
@@ -19,7 +21,7 @@
   <kbd>
     ● last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-14T08:48:17.651Z">a few seconds ago</relative-time>
+    <relative-time datetime="2026-09-14T09:12:55.986Z">a few seconds ago</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -61,17 +63,17 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/stupid-song/1889992111?i=1889992115&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=e7da9c775f" width="100%" alt="recently played stupid song by Olivia Rodrigo" /></a>
+<a href="https://music.apple.com/us/album/crank-2/6808004133?i=6808004347"><img src="./assets/activity/apple-music.svg?v=8b4279d428" width="100%" alt="recently played crank 2 by Slayyyter" /></a>
 <!-- APPLE-MUSIC-FEED:END -->
 
 <br/>
 
 <!-- DISCORD-FEED:START -->
-<a href="https://discord.com/users/690729789702537336"><img src="./assets/activity/discord.svg?v=4be97e494e" width="100%" alt="Discord profile @hnitch , online" /></a>
+<a href="https://discord.com/users/690729789702537336"><img src="./assets/activity/discord.svg?v=9f9407d48d" width="100%" alt="Discord profile @hnitch , online" /></a>
 <!-- DISCORD-FEED:END -->
 
 <br/>
 
-<a href="https://www.instagram.com/hnitch/">
-  <img src="./assets/instagram.svg?v=3.5.1" width="100%" alt="Instagram profile @hnitch" />
-</a>
+<!-- INSTAGRAM-FEED:START -->
+<a href="https://www.instagram.com/hnitch/"><img src="./assets/activity/instagram.svg?v=1775a0f293" width="100%" alt="Instagram profile @hnitch" /></a>
+<!-- INSTAGRAM-FEED:END -->
