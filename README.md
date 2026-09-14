@@ -11,11 +11,11 @@
   <img src="./assets/project.svg?v=3.4.0" width="100%" alt="mealOS , cook more , waste less" />
 </a>
 
-<img src="./assets/stalk.svg?v=3.4.0" width="100%" alt="the legally-approved stalking zone" />
+<br/>
+
+<img src="./assets/stalk.svg?v=3.4.1" width="100%" alt="the legally-approved stalking zone" />
 
 <div align="center">
-  <sub>books , films , and music. all the evidence , neatly arranged.</sub>
-  <br/><br/>
   <kbd>
     ● last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
