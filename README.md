@@ -19,7 +19,7 @@
   <kbd>
     ● last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-14T08:32:35.944Z">a few seconds ago</relative-time>
+    <relative-time datetime="2026-09-14T08:39:09.356Z">a few seconds ago</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -61,17 +61,17 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/album/silver-jubilee/1826574954?i=1826575442"><img src="./assets/activity/apple-music.svg?v=6def95b980" width="100%" alt="recently played Silver Jubilee by Audrey Hobert" /></a>
+<a href="https://music.apple.com/us/album/crank-2/6808004133?i=6808004347"><img src="./assets/activity/apple-music.svg?v=8b4279d428" width="100%" alt="recently played crank 2 by Slayyyter" /></a>
 <!-- APPLE-MUSIC-FEED:END -->
 
 <br/>
 
 <!-- DISCORD-FEED:START -->
-<a href="https://discord.com/users/690729789702537336"><img src="./assets/activity/discord.svg?v=4be97e494e" width="100%" alt="Discord profile @hnitch , online" /></a>
+<a href="https://discord.com/users/690729789702537336"><img src="./assets/activity/discord.svg?v=f063c84e32" width="100%" alt="Discord profile @hnitch , online" /></a>
 <!-- DISCORD-FEED:END -->
 
 <br/>
 
 <a href="https://www.instagram.com/hnitch/">
-  <img src="./assets/instagram.svg?v=3.5.0" width="100%" alt="Instagram profile @hnitch" />
+  <img src="./assets/instagram.svg?v=3.5.1" width="100%" alt="Instagram profile @hnitch" />
 </a>

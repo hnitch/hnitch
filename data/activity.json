@@ -115,15 +115,15 @@
     ]
   },
   "appleMusic": {
-    "title": "Silver Jubilee",
-    "artist": "Audrey Hobert",
-    "album": "Who's the Clown?",
-    "link": "https://music.apple.com/album/silver-jubilee/1826574954?i=1826575442",
-    "duration": 178,
-    "source": "discord-rich-presence",
-    "playbackState": "stopped",
+    "title": "crank 2",
+    "artist": "Slayyyter",
+    "album": "crank 2 - Single",
+    "link": "https://music.apple.com/us/album/crank-2/6808004133?i=6808004347",
+    "duration": 0,
+    "source": "apple-history",
+    "playbackState": "recent",
     "isNowPlaying": false,
-    "observedAt": "2026-09-14T02:56:53.000Z"
+    "observedAt": null
   },
   "discord": {
     "id": "690729789702537336",
@@ -135,8 +135,8 @@
     "devices": [
       "desktop"
     ],
-    "activity": "no public activity right now",
+    "activity": "listening to I Told You Things",
     "avatarUrl": "https://cdn.discordapp.com/avatars/690729789702537336/7077a608b3f569f6c3cca885b59baaa5.png?size=256"
   },
-  "updatedAt": "2026-09-14T08:32:35.944Z"
+  "updatedAt": "2026-09-14T08:39:09.356Z"
 }

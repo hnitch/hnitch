@@ -355,104 +355,9 @@ async function readMusicAppEvent(event, previous) {
   };
 }
 
-function appleMusicPresence(source) {
-  return source?.activities?.find((activity) =>
-    activity.type === 2
-    && /apple music/i.test(activity.name || "")
-    && activity.details
-    && activity.state
-  );
-}
-
-function discordArtworkUrl(value = "") {
-  const marker = "/https/";
-  const index = value.indexOf(marker);
-  if (index < 0) return "";
-  return `https://${value.slice(index + marker.length)}`.replace(/\/250x250bb\./, "/600x600bb.");
-}
-
-async function readDiscordAppleMusic(source) {
-  const activity = appleMusicPresence(source);
-  if (!activity) return null;
-  const presenceArtwork = discordArtworkUrl(activity.assets?.large_image);
-  const hasPresenceDetails = activity.assets?.large_text && activity.details_url && presenceArtwork;
-  const catalogue = hasPresenceDetails ? null : await lookupAppleMusic(activity.details, activity.state);
-  const artworkUrl = presenceArtwork || catalogue?.artwork;
-  return {
-    data: {
-      title: activity.details,
-      artist: activity.state,
-      album: activity.assets?.large_text || catalogue?.album || "album metadata not listed",
-      link: activity.details_url || catalogue?.link || MUSIC_PROFILE_URL,
-      duration: Math.max(0, ((Number(activity.timestamps?.end) || 0) - (Number(activity.timestamps?.start) || 0)) / 1_000),
-      source: "discord-rich-presence",
-      playbackState: "playing",
-      isNowPlaying: true,
-      observedAt: Number(activity.timestamps?.start) ? new Date(Number(activity.timestamps.start)).toISOString() : null,
-    },
-    artworkData: artworkUrl ? await fetchDataUri(artworkUrl) : null,
-  };
-}
-
-function localMusicSignalIsFresh(previous) {
-  if (previous?.source !== "music-app") return false;
-  const observedAt = Date.parse(previous.observedAt);
-  if (!Number.isFinite(observedAt)) return false;
-  const age = Date.now() - observedAt;
-  if (previous.playbackState === "playing") {
-    const remaining = previous.duration
-      ? Math.max(0, Number(previous.duration) - (Number(previous.position) || 0))
-      : 15 * 60;
-    return age <= (remaining * 1_000) + (5 * 60_000);
-  }
-  if (previous.playbackState === "paused") return age <= 24 * 60 * 60_000;
-  return age <= 6 * 60 * 60_000;
-}
-
-async function readAppleMusic(previous, lanyardPromise) {
+async function readAppleMusic(previous) {
   const musicEvent = parseMusicEvent();
   if (musicEvent) return readMusicAppEvent(musicEvent, previous);
-
-  let lanyard;
-  try {
-    lanyard = await lanyardPromise;
-    const live = await readDiscordAppleMusic(lanyard);
-    if (live) return live;
-  } catch (error) {
-    console.warn(`warning: Apple Music Rich Presence unavailable (${error.message})`);
-    if (previous?.source === "discord-rich-presence") {
-      return {
-        data: {
-          ...previous,
-          playbackState: "unknown",
-          isNowPlaying: false,
-        },
-      };
-    }
-  }
-
-  if (localMusicSignalIsFresh(previous)) return { fresh: false, data: previous };
-
-  if (previous?.source === "music-app") {
-    return {
-      data: {
-        ...previous,
-        source: "music-app-expired",
-        playbackState: "stopped",
-        isNowPlaying: false,
-      },
-    };
-  }
-
-  if (lanyard && previous?.source === "discord-rich-presence") {
-    return {
-      data: {
-        ...previous,
-        playbackState: "stopped",
-        isNowPlaying: false,
-      },
-    };
-  }
 
   const svg = await fetchText(cacheBusted(SOURCES.appleMusicRecent), { bypassCache: true });
   const title = decode(svg.match(/class="song-title[^>]*>([^<]+)</)?.[1]);
@@ -694,7 +599,7 @@ function renderAppleMusic(data, artwork) {
   ${wrappedText({ x: 357, y: 143, width: 445, height: 28, value: data.artist, size: 17, weight: 700, lineHeight: 1 })}
   <text x="357" y="181" fill="#9f8191" font-size="10.5" font-weight="800" letter-spacing="1">ALBUM</text>
   ${wrappedText({ x: 405, y: 166, width: duration ? 300 : 397, height: 35, value: data.album || "album metadata not listed", size: 12.5, weight: 600, color: "#c7a9b8", lineHeight: 1.06 })}
-  ${duration ? `<rect x="724" y="168" width="78" height="27" rx="13.5" fill="#fff" opacity=".07"/><text x="763" y="186" fill="#d9c2ce" font-size="11.5" font-weight="700" text-anchor="middle">${duration}</text>` : ""}
+${duration ? `  <rect x="724" y="168" width="78" height="27" rx="13.5" fill="#fff" opacity=".07"/><text x="763" y="186" fill="#d9c2ce" font-size="11.5" font-weight="700" text-anchor="middle">${duration}</text>` : ""}
   <rect x="357" y="211" width="${sourceWidth}" height="36" rx="18" fill="${playback.color}" opacity=".13"/><circle cx="378" cy="229" r="5" fill="${playback.color}"/>${data.isNowPlaying ? `<circle cx="378" cy="229" r="9" fill="none" stroke="${playback.color}" opacity=".35"><animate attributeName="r" values="7;12;7" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".45;0;.45" dur="1.8s" repeatCount="indefinite"/></circle>` : ""}<text x="391" y="233" fill="#eadce3" font-size="11.5" font-weight="800" letter-spacing=".55">${sourceLabel}</text>
   <text x="810" y="233" fill="#d6b8c6" font-size="12" font-weight="700" text-anchor="end">OPEN IN APPLE MUSIC  ↗</text></g>
   </svg>`;
@@ -853,7 +758,7 @@ async function main() {
   const [goodreadsResult, letterboxdResult, appleMusicResult, discordResult] = await Promise.all([
     readSource("goodreads", readGoodreads, previous),
     readSource("letterboxd", readLetterboxd, previous),
-    readSource("appleMusic", () => readAppleMusic(previous.appleMusic, lanyardPromise), previous),
+    readSource("appleMusic", () => readAppleMusic(previous.appleMusic), previous),
     readDiscordSource(previous.discord, lanyardPromise),
   ]);
   const current = {
@@ -872,7 +777,7 @@ async function main() {
   if (appleMusicResult.fresh) {
     const sameTrack = normaliseMatchText(previous.appleMusic?.title) === normaliseMatchText(current.appleMusic?.title)
       && normaliseMatchText(previous.appleMusic?.artist) === normaliseMatchText(current.appleMusic?.artist);
-    const artwork = appleMusicResult.artworkData || (sameTrack ? cachedAppleArtwork : null);
+    const artwork = (sameTrack ? cachedAppleArtwork : null) || appleMusicResult.artworkData;
     writes.push(fs.writeFile(path.join(OUTPUT_DIR, "apple-music.svg"), renderAppleMusic(current.appleMusic, artwork)));
   }
   if (discordResult.fresh) {

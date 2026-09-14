@@ -22,7 +22,6 @@
     <g font-size="10.5" font-weight="800" letter-spacing=".75" text-anchor="middle">
       <rect x="190" y="143" width="78" height="25" rx="12.5" fill="#ffdc80" opacity=".1"/><text x="229" y="160" fill="#ffdc80">PHOTOS</text>
       <rect x="276" y="143" width="82" height="25" rx="12.5" fill="#c13584" opacity=".14"/><text x="317" y="160" fill="#ff9fcb">STORIES</text>
-      <rect x="366" y="143" width="108" height="25" rx="12.5" fill="#fc5b55" opacity=".1"/><text x="420" y="160" fill="#ffaaa6">SUNLIGHT-ish</text>
     </g>
     <rect x="690" y="70" width="132" height="48" rx="24" fill="#fffaf5" opacity=".92"/>
     <text x="723" y="99" fill="#251720" font-size="12" font-weight="800" letter-spacing=".9">OPEN</text>
