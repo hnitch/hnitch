@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/hero.svg?v=3.4.0" width="100%" alt="hey , i'm hn , a builder , reader , watcher , and professional tab hoarder" />
+  <img src="./assets/hero.svg?v=3.5.1" width="100%" alt="hey , i'm hn , a builder , reader , watcher , and professional tab hoarder" />
   <br/><br/>
   <img src="https://komarev.com/ghpvc/?username=hnitch&style=for-the-badge&color=b9a4ff&label=curious+visitors" alt="profile views" />
   <img src="https://img.shields.io/badge/currently%20reading%20%2C%20probably-8edfd4?style=for-the-badge&labelColor=171427" alt="currently reading , probably" />
@@ -19,7 +19,7 @@
   <kbd>
     ● last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-14T08:39:09.356Z">a few seconds ago</relative-time>
+    <relative-time datetime="2026-09-14T08:42:51.459Z">a few seconds ago</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -67,7 +67,7 @@
 <br/>
 
 <!-- DISCORD-FEED:START -->
-<a href="https://discord.com/users/690729789702537336"><img src="./assets/activity/discord.svg?v=f063c84e32" width="100%" alt="Discord profile @hnitch , online" /></a>
+<a href="https://discord.com/users/690729789702537336"><img src="./assets/activity/discord.svg?v=bc162c96a4" width="100%" alt="Discord profile @hnitch , online" /></a>
 <!-- DISCORD-FEED:END -->
 
 <br/>

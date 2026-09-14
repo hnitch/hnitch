@@ -38,6 +38,8 @@ jobs:
       - name: Refresh books , films , music , and presence
         env:
           MUSIC_EVENT_JSON: ${{ toJson(github.event.client_payload) }}
+          APPLE_MUSIC_DEVELOPER_TOKEN: ${{ secrets.APPLE_MUSIC_DEVELOPER_TOKEN }}
+          APPLE_MUSIC_USER_TOKEN: ${{ secrets.APPLE_MUSIC_USER_TOKEN }}
         run: npm run update-profile
 
       - name: Commit meaningful changes
