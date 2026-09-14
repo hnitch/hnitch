@@ -13,7 +13,7 @@
 
 <br/>
 
-<img src="./assets/stalk.svg?v=3.4.1" width="100%" alt="the legally-approved stalking zone" />
+<img src="./assets/stalk.svg?v=3.4.2" width="100%" alt="the legally-approved stalking zone" />
 
 <div align="center">
   <kbd>
