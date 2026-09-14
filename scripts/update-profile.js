@@ -9,7 +9,7 @@ const DATA_FILE = path.join(ROOT, "data", "activity.json");
 const README_FILE = path.join(ROOT, "README.md");
 const DISCORD_USER_ID = "690729789702537336";
 const MUSIC_PROFILE_URL = "https://music.apple.com/profile/hnitch";
-const RENDER_VERSION = "3.4.0";
+const RENDER_VERSION = "3.5.0";
 
 const SOURCES = {
   goodreads: {
@@ -638,26 +638,31 @@ function renderBookCurrent(book, artwork) {
 
 function renderBookTile(book, artwork, index) {
   const facts = [book.pages && `${book.pages}p`, book.readAt && `read ${monthYear(book.readAt)}`].filter(Boolean).join(" · ");
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="420" height="172" viewBox="0 0 420 172" role="img" aria-label="${escapeDisplay(book.title)} by ${escapeDisplay(book.author)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="206" viewBox="0 0 860 206" role="img" aria-label="${escapeDisplay(book.title)} by ${escapeDisplay(book.author)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${theme.bg}"/><stop offset="1" stop-color="#251e2c"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
-  <rect x="1" y="1" width="418" height="170" rx="19" fill="url(#bg)" stroke="${theme.line}" stroke-width="2"/>
-  ${cover({ dataUri: artwork, x: 16, y: 16, width: 94, height: 140, radius: 9 })}
-  <g class="sans"><text x="130" y="28" fill="#e9c995" font-size="11" font-weight="800" letter-spacing="1.15">READ RECEIPT / 0${index + 1}</text>
-  ${wrappedText({ x: 130, y: 42, width: 266, height: 58, value: book.title, size: 18, weight: 800, lineHeight: 1.08 })}
-  <text x="130" y="109" fill="${theme.muted}" font-size="12" font-weight="600">${escapeDisplay(book.author)}</text><text x="130" y="129" fill="#978a9f" font-size="11" font-weight="600">${escapeDisplay(facts)}</text><text x="130" y="151" fill="${theme.yellow}" font-size="12" font-weight="800">${escapeDisplay(stars(book.rating))}</text><text x="396" y="151" fill="${theme.muted}" font-size="11" font-weight="600" text-anchor="end">${escapeDisplay(bookVerdict(book.rating))}</text></g>
+  <rect x="1" y="1" width="858" height="204" rx="25" fill="url(#bg)" stroke="${theme.line}" stroke-width="2"/>
+  <circle cx="820" cy="12" r="124" fill="#b9a4ff" opacity=".045"/>
+  ${cover({ dataUri: artwork, x: 24, y: 20, width: 110, height: 166, radius: 10 })}
+  <g class="sans"><text x="164" y="38" fill="#e9c995" font-size="12" font-weight="800" letter-spacing="1.25">READ RECEIPT / 0${index + 1}</text>
+  ${wrappedText({ x: 164, y: 51, width: 630, height: 63, value: book.title, size: 27, weight: 800, lineHeight: 1.04 })}
+  <text x="164" y="136" fill="${theme.muted}" font-size="14.5" font-weight="700">${escapeDisplay(book.author)}</text>
+  <text x="164" y="160" fill="#978a9f" font-size="12.5" font-weight="600">${escapeDisplay(facts)}</text>
+  <text x="164" y="184" fill="${theme.yellow}" font-size="14" font-weight="800">${escapeDisplay(stars(book.rating))}</text>
+  <text x="810" y="184" fill="${theme.muted}" font-size="12.5" font-weight="600" text-anchor="end">${escapeDisplay(bookVerdict(book.rating))}</text></g>
   </svg>`;
 }
 
 function renderFilmTile(film, artwork, index) {
   const note = film.review || (film.liked ? "liked. evidence duly noted." : "logged without further comment.");
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="420" height="198" viewBox="0 0 420 198" role="img" aria-label="${escapeDisplay(film.title)} (${escapeDisplay(film.year)})" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="220" viewBox="0 0 860 220" role="img" aria-label="${escapeDisplay(film.title)} (${escapeDisplay(film.year)})" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111820"/><stop offset="1" stop-color="#1d2731"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
-  <rect x="1" y="1" width="418" height="196" rx="19" fill="url(#bg)" stroke="#344654" stroke-width="2"/>
-  ${cover({ dataUri: artwork, x: 16, y: 16, width: 108, height: 166, radius: 9 })}
-  <g class="sans"><g transform="translate(144 21)"><circle cx="8" cy="8" r="8" fill="#ff8000"/><circle cx="22" cy="8" r="8" fill="#00e054"/><circle cx="36" cy="8" r="8" fill="#40bcf4"/></g><text x="400" y="32" fill="#8298a8" font-size="11" font-weight="800" text-anchor="end" letter-spacing="1">WATCH 0${index + 1}</text>
-  ${wrappedText({ x: 144, y: 52, width: 252, height: 54, value: film.title, size: 17, weight: 800, lineHeight: 1.08 })}
-  <text x="144" y="119" fill="${theme.muted}" font-size="12" font-weight="600">${escapeDisplay(film.year)}${film.liked ? "  ·  ♥ liked" : ""}</text><text x="396" y="119" fill="${theme.yellow}" font-size="12" font-weight="800" text-anchor="end">${escapeDisplay(stars(film.rating))}</text>
-  ${wrappedText({ x: 144, y: 137, width: 252, height: 45, value: `“${note}”`, size: 11.5, weight: 600, color: "#a7b7c2", lineHeight: 1.2, italic: true })}</g>
+  <rect x="1" y="1" width="858" height="218" rx="25" fill="url(#bg)" stroke="#344654" stroke-width="2"/>
+  <circle cx="815" cy="18" r="130" fill="#40bcf4" opacity=".04"/>
+  ${cover({ dataUri: artwork, x: 24, y: 20, width: 118, height: 180, radius: 10 })}
+  <g class="sans"><g transform="translate(168 25)"><circle cx="8" cy="8" r="8" fill="#ff8000"/><circle cx="22" cy="8" r="8" fill="#00e054"/><circle cx="36" cy="8" r="8" fill="#40bcf4"/></g><text x="808" y="38" fill="#8298a8" font-size="12" font-weight="800" text-anchor="end" letter-spacing="1.1">WATCH 0${index + 1}</text>
+  ${wrappedText({ x: 168, y: 55, width: 630, height: 63, value: film.title, size: 28, weight: 800, lineHeight: 1.04 })}
+  <text x="168" y="139" fill="${theme.muted}" font-size="14" font-weight="700">${escapeDisplay(film.year)}${film.liked ? "  ·  ♥ liked" : ""}</text><text x="808" y="139" fill="${theme.yellow}" font-size="14" font-weight="800" text-anchor="end">${escapeDisplay(stars(film.rating))}</text>
+  ${wrappedText({ x: 168, y: 154, width: 630, height: 44, value: `“${note}”`, size: 13, weight: 600, color: "#a7b7c2", lineHeight: 1.18, italic: true })}</g>
   </svg>`;
 }
 
@@ -671,17 +676,13 @@ function renderAppleMusic(data, artwork) {
   };
   const playback = states[data.playbackState] || states.recent;
   const duration = formatDuration(data.duration);
-  const fromDiscord = data.source === "discord-rich-presence";
-  const fromMusicApp = data.source?.startsWith("music-app");
-  const sourceLabel = data.playbackState === "recent"
-    ? "APPLE MUSIC HISTORY"
-    : data.playbackState === "unknown"
-      ? "PRESENCE UNAVAILABLE"
-      : fromDiscord
-        ? (data.isNowPlaying ? "LIVE VIA DISCORD" : "LAST SEEN VIA DISCORD")
-        : fromMusicApp
-          ? (data.playbackState === "paused" ? "PAUSED IN MUSIC.APP" : data.isNowPlaying ? "LIVE FROM MUSIC.APP" : "LAST SEEN IN MUSIC.APP")
-          : "LATEST APPLE MUSIC SIGNAL";
+  const sourceLabel = data.playbackState === "playing"
+    ? "PLAYING RIGHT NOW"
+    : data.playbackState === "paused"
+      ? "PAUSED FOR NOW"
+      : data.playbackState === "unknown"
+        ? "LISTENING STATUS UNAVAILABLE"
+        : "RECENTLY PLAYED";
   const sourceWidth = Math.min(226, Math.max(188, 62 + (sourceLabel.length * 6.25)));
   const spinClass = data.isNowPlaying ? "spin" : "";
   return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="270" viewBox="0 0 860 270" role="img" aria-label="${escapeDisplay(data.title)} by ${escapeDisplay(data.artist)} on Apple Music" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
@@ -791,25 +792,20 @@ async function writeLetterboxdAssets(data) {
   await Promise.all(data.recent.map((film, index) => fs.writeFile(path.join(OUTPUT_DIR, `letterboxd-${index + 1}.svg`), renderFilmTile(film, artwork[index], index))));
 }
 
-function grid(items, prefix, alt) {
-  const rows = [];
-  for (let index = 0; index < items.length; index += 2) {
-    const cards = items.slice(index, index + 2).map((item, offset) => {
-      const number = index + offset + 1;
-      return `<a href="${escapeXml(item.link)}"><img src="./assets/activity/${prefix}-${number}.svg?v=${assetVersion(item)}" width="420" alt="${escapeDisplay(`${alt}: ${item.title}`)}" /></a>`;
-    }).join("\n  ");
-    rows.push(cards);
-  }
-  return `<div align="center">\n  ${rows.join("\n  <br/>\n  ")}\n</div>`;
+function cardStack(items, prefix, alt) {
+  return items.map((item, index) => {
+    const number = index + 1;
+    return `<a href="${escapeXml(item.link)}"><img src="./assets/activity/${prefix}-${number}.svg?v=${assetVersion(item)}" width="100%" alt="${escapeDisplay(`${alt}: ${item.title}`)}" /></a>`;
+  }).join("\n\n");
 }
 
 function goodreadsMarkup(data) {
   const currentLink = data.current?.link || "https://www.goodreads.com/user/show/178629903";
-  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(data.current)}" width="100%" alt="currently reading ${escapeDisplay(data.current?.title || "nothing")}" /></a>\n\n${grid(data.recent, "goodreads", "Read")}`;
+  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(data.current)}" width="100%" alt="currently reading ${escapeDisplay(data.current?.title || "nothing")}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read")}`;
 }
 
 function letterboxdMarkup(data) {
-  return `<div align="center"><a href="https://letterboxd.com/hnitch/"><img src="./assets/brands/letterboxd.svg" width="230" alt="Letterboxd" /></a><br/><sub>films watched. stars assigned. feelings were involved.</sub></div>\n\n<br/>\n\n${grid(data.recent, "letterboxd", "Watched")}`;
+  return `<div align="center"><a href="https://letterboxd.com/hnitch/"><img src="./assets/brands/letterboxd.svg" width="230" alt="Letterboxd" /></a><br/><sub>films watched. stars assigned. feelings were involved.</sub></div>\n\n<br/>\n\n${cardStack(data.recent, "letterboxd", "Watched")}`;
 }
 
 function appleMusicMarkup(data) {

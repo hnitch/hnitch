@@ -121,8 +121,8 @@
     "link": "https://music.apple.com/album/silver-jubilee/1826574954?i=1826575442",
     "duration": 178,
     "source": "discord-rich-presence",
-    "playbackState": "playing",
-    "isNowPlaying": true,
+    "playbackState": "stopped",
+    "isNowPlaying": false,
     "observedAt": "2026-09-14T02:56:53.000Z"
   },
   "discord": {
@@ -135,8 +135,8 @@
     "devices": [
       "desktop"
     ],
-    "activity": "listening to Silver Jubilee",
+    "activity": "no public activity right now",
     "avatarUrl": "https://cdn.discordapp.com/avatars/690729789702537336/7077a608b3f569f6c3cca885b59baaa5.png?size=256"
   },
-  "updatedAt": "2026-09-14T02:58:43.138Z"
+  "updatedAt": "2026-09-14T08:32:35.944Z"
 }
