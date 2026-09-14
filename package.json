@@ -1,6 +1,6 @@
 {
   "name": "hnitch-profile",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -8,7 +8,11 @@
   },
   "scripts": {
     "update-profile": "node scripts/update-profile.js",
-    "check": "node --check scripts/update-profile.js"
+    "check": "node --check scripts/update-profile.js && node --check scripts/music-bridge-macos.js",
+    "music:preview": "node scripts/music-bridge-macos.js --preview",
+    "music:dispatch": "node scripts/music-bridge-macos.js --dispatch",
+    "music:install": "zsh scripts/install-music-bridge-macos.sh",
+    "music:uninstall": "zsh scripts/uninstall-music-bridge-macos.sh"
   },
   "dependencies": {
     "xml2js": "^0.6.2"

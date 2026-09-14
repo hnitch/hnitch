@@ -8,7 +8,7 @@
       "rating": 0,
       "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1788493559l/258342692._SY475_.jpg",
       "pages": 397,
-      "averageRating": 3.87,
+      "averageRating": 3.78,
       "published": "2026",
       "dateAdded": "Fri, 11 Sep 2026 05:53:30 -0700",
       "readAt": "",
@@ -52,7 +52,7 @@
         "rating": 2,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1787618872l/257428909._SY475_.jpg",
         "pages": 359,
-        "averageRating": 3.85,
+        "averageRating": 3.83,
         "published": "2026",
         "dateAdded": "Sat, 05 Sep 2026 03:51:31 -0700",
         "readAt": "Fri, 4 Sep 2026 00:00:00 +0000",
@@ -115,24 +115,28 @@
     ]
   },
   "appleMusic": {
-    "title": "crank 2",
-    "artist": "Slayyyter",
-    "album": "crank 2 - Single",
-    "link": "https://music.apple.com/us/album/crank-2/6808004133?i=6808004347",
-    "percentage": 33.33,
-    "elapsed": "1:07",
-    "remaining": "-2:14"
+    "title": "Silver Jubilee",
+    "artist": "Audrey Hobert",
+    "album": "Who's the Clown?",
+    "link": "https://music.apple.com/album/silver-jubilee/1826574954?i=1826575442",
+    "duration": 178,
+    "source": "discord-rich-presence",
+    "playbackState": "playing",
+    "isNowPlaying": true,
+    "observedAt": "2026-09-14T02:56:53.000Z"
   },
   "discord": {
     "id": "690729789702537336",
     "displayName": "hn",
     "username": "hnitch",
-    "status": "offline",
+    "status": "online",
     "guildTag": "EN",
     "memberSince": 2020,
-    "devices": [],
-    "activity": "no public activity right now",
+    "devices": [
+      "desktop"
+    ],
+    "activity": "listening to Silver Jubilee",
     "avatarUrl": "https://cdn.discordapp.com/avatars/690729789702537336/7077a608b3f569f6c3cca885b59baaa5.png?size=256"
   },
-  "updatedAt": "2026-09-13T14:29:53.844Z"
+  "updatedAt": "2026-09-14T02:58:43.138Z"
 }

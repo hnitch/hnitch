@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import { parseStringPromise } from "xml2js";
 
 const ROOT = process.cwd();
@@ -7,6 +8,8 @@ const OUTPUT_DIR = path.join(ROOT, "assets", "activity");
 const DATA_FILE = path.join(ROOT, "data", "activity.json");
 const README_FILE = path.join(ROOT, "README.md");
 const DISCORD_USER_ID = "690729789702537336";
+const MUSIC_PROFILE_URL = "https://music.apple.com/profile/hnitch";
+const RENDER_VERSION = "3.4.0";
 
 const SOURCES = {
   goodreads: {
@@ -15,7 +18,7 @@ const SOURCES = {
     progress: "https://www.goodreads.com/user_status/list/178629903?format=rss",
   },
   letterboxd: "https://letterboxd.com/hnitch/rss/",
-  appleMusic: "https://music-profile.rayriffy.com/theme/dark.svg?uid=000568.fa0178bfed7a4356a5b20a996b4824a4.1200",
+  appleMusicRecent: "https://music-profile.rayriffy.com/theme/dark.svg?uid=000568.fa0178bfed7a4356a5b20a996b4824a4.1200",
   discord: `https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`,
 };
 
@@ -64,20 +67,54 @@ function cleanText(value = "") {
   return decode(value).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
 }
 
-async function fetchResponse(url, accept) {
-  const response = await fetch(url, {
-    headers: {
-      Accept: accept,
-      "User-Agent": "hnitch-profile/3.3 (+https://github.com/hnitch/hnitch)",
-    },
-    signal: AbortSignal.timeout(20_000),
-  });
-  if (!response.ok) throw new Error(`${url} returned ${response.status}`);
-  return response;
+function delay(milliseconds) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
-async function fetchText(url) {
-  return (await fetchResponse(url, "application/rss+xml, application/xml, text/xml, text/html, image/svg+xml, application/json")).text();
+function cacheBusted(url) {
+  const target = new URL(url);
+  target.searchParams.set("refresh", String(Math.floor(Date.now() / 60_000)));
+  return target.toString();
+}
+
+async function fetchResponse(url, accept, { bypassCache = false } = {}) {
+  let lastError;
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    try {
+      const response = await fetch(url, {
+        headers: {
+          Accept: accept,
+          "Cache-Control": bypassCache ? "no-cache" : "max-age=0",
+          Pragma: bypassCache ? "no-cache" : "",
+          "User-Agent": "hnitch-profile/3.4 (+https://github.com/hnitch/hnitch)",
+        },
+        cache: "no-store",
+        signal: AbortSignal.timeout(20_000),
+      });
+      if (response.ok) return response;
+      const retryable = response.status === 408 || response.status === 429 || response.status >= 500;
+      lastError = new Error(`${url} returned ${response.status}`);
+      if (!retryable || attempt === 2) throw lastError;
+      const retryHeader = response.headers.get("retry-after");
+      const retrySeconds = retryHeader === null ? Number.NaN : Number(retryHeader);
+      const retryDate = retryHeader && !Number.isFinite(retrySeconds) ? Date.parse(retryHeader) : Number.NaN;
+      const retryDelay = Number.isFinite(retrySeconds)
+        ? retrySeconds * 1_000
+        : Number.isFinite(retryDate)
+          ? retryDate - Date.now()
+          : 500 * (2 ** attempt);
+      await delay(Math.max(250, Math.min(retryDelay, 5_000)));
+    } catch (error) {
+      lastError = error;
+      if (attempt === 2 || / returned 4\d\d$/.test(error.message)) throw error;
+      await delay(500 * (2 ** attempt));
+    }
+  }
+  throw lastError;
+}
+
+async function fetchText(url, options) {
+  return (await fetchResponse(url, "application/rss+xml, application/xml, text/xml, text/html, image/svg+xml, application/json", options)).text();
 }
 
 async function fetchDataUri(url) {
@@ -260,16 +297,170 @@ async function lookupAppleMusic(title, artist) {
   }
 }
 
-async function readAppleMusic() {
-  const svg = await fetchText(SOURCES.appleMusic);
+function parseMusicEvent() {
+  const raw = process.env.MUSIC_EVENT_JSON?.trim();
+  if (!raw || raw === "null" || raw === "{}") return null;
+  let event;
+  try {
+    event = JSON.parse(raw);
+  } catch {
+    throw new Error("MUSIC_EVENT_JSON is not valid JSON");
+  }
+  const states = new Set(["playing", "paused", "stopped"]);
+  const state = states.has(event.state) ? event.state : "stopped";
+  return {
+    state,
+    title: cleanText(event.title).slice(0, 240),
+    artist: cleanText(event.artist).slice(0, 240),
+    album: cleanText(event.album).slice(0, 240),
+    duration: Math.max(0, Number(event.duration) || 0),
+    position: Math.max(0, Number(event.position) || 0),
+    observedAt: Number.isNaN(Date.parse(event.observedAt)) ? new Date().toISOString() : new Date(event.observedAt).toISOString(),
+    preview: event.preview === true,
+  };
+}
+
+async function readMusicAppEvent(event, previous) {
+  if (event.state === "stopped" && !event.title) {
+    if (!previous?.title) throw new Error("Music.app stopped without a previous track");
+    return {
+      data: {
+        ...previous,
+        source: event.preview ? "music-app-preview" : "music-app",
+        playbackState: "stopped",
+        isNowPlaying: false,
+        observedAt: event.observedAt,
+      },
+    };
+  }
+  if (!event.title) throw new Error("Music.app event is missing its track title");
+  const sameTrack = normaliseMatchText(previous?.title) === normaliseMatchText(event.title)
+    && (!event.artist || normaliseMatchText(previous?.artist) === normaliseMatchText(event.artist));
+  const catalogue = event.artist ? await lookupAppleMusic(event.title, event.artist) : null;
+  const artworkData = catalogue?.artwork ? await fetchDataUri(catalogue.artwork) : null;
+  return {
+    data: {
+      title: event.title,
+      artist: event.artist || (sameTrack && previous?.artist) || "artist metadata not listed",
+      album: event.album || catalogue?.album || (sameTrack && previous?.album) || "album metadata not listed",
+      link: catalogue?.link || (sameTrack && previous?.link) || MUSIC_PROFILE_URL,
+      duration: event.duration,
+      position: event.position,
+      source: event.preview ? "music-app-preview" : "music-app",
+      playbackState: event.state,
+      isNowPlaying: event.state === "playing",
+      observedAt: event.observedAt,
+    },
+    artworkData,
+  };
+}
+
+function appleMusicPresence(source) {
+  return source?.activities?.find((activity) =>
+    activity.type === 2
+    && /apple music/i.test(activity.name || "")
+    && activity.details
+    && activity.state
+  );
+}
+
+function discordArtworkUrl(value = "") {
+  const marker = "/https/";
+  const index = value.indexOf(marker);
+  if (index < 0) return "";
+  return `https://${value.slice(index + marker.length)}`.replace(/\/250x250bb\./, "/600x600bb.");
+}
+
+async function readDiscordAppleMusic(source) {
+  const activity = appleMusicPresence(source);
+  if (!activity) return null;
+  const presenceArtwork = discordArtworkUrl(activity.assets?.large_image);
+  const hasPresenceDetails = activity.assets?.large_text && activity.details_url && presenceArtwork;
+  const catalogue = hasPresenceDetails ? null : await lookupAppleMusic(activity.details, activity.state);
+  const artworkUrl = presenceArtwork || catalogue?.artwork;
+  return {
+    data: {
+      title: activity.details,
+      artist: activity.state,
+      album: activity.assets?.large_text || catalogue?.album || "album metadata not listed",
+      link: activity.details_url || catalogue?.link || MUSIC_PROFILE_URL,
+      duration: Math.max(0, ((Number(activity.timestamps?.end) || 0) - (Number(activity.timestamps?.start) || 0)) / 1_000),
+      source: "discord-rich-presence",
+      playbackState: "playing",
+      isNowPlaying: true,
+      observedAt: Number(activity.timestamps?.start) ? new Date(Number(activity.timestamps.start)).toISOString() : null,
+    },
+    artworkData: artworkUrl ? await fetchDataUri(artworkUrl) : null,
+  };
+}
+
+function localMusicSignalIsFresh(previous) {
+  if (previous?.source !== "music-app") return false;
+  const observedAt = Date.parse(previous.observedAt);
+  if (!Number.isFinite(observedAt)) return false;
+  const age = Date.now() - observedAt;
+  if (previous.playbackState === "playing") {
+    const remaining = previous.duration
+      ? Math.max(0, Number(previous.duration) - (Number(previous.position) || 0))
+      : 15 * 60;
+    return age <= (remaining * 1_000) + (5 * 60_000);
+  }
+  if (previous.playbackState === "paused") return age <= 24 * 60 * 60_000;
+  return age <= 6 * 60 * 60_000;
+}
+
+async function readAppleMusic(previous, lanyardPromise) {
+  const musicEvent = parseMusicEvent();
+  if (musicEvent) return readMusicAppEvent(musicEvent, previous);
+
+  let lanyard;
+  try {
+    lanyard = await lanyardPromise;
+    const live = await readDiscordAppleMusic(lanyard);
+    if (live) return live;
+  } catch (error) {
+    console.warn(`warning: Apple Music Rich Presence unavailable (${error.message})`);
+    if (previous?.source === "discord-rich-presence") {
+      return {
+        data: {
+          ...previous,
+          playbackState: "unknown",
+          isNowPlaying: false,
+        },
+      };
+    }
+  }
+
+  if (localMusicSignalIsFresh(previous)) return { fresh: false, data: previous };
+
+  if (previous?.source === "music-app") {
+    return {
+      data: {
+        ...previous,
+        source: "music-app-expired",
+        playbackState: "stopped",
+        isNowPlaying: false,
+      },
+    };
+  }
+
+  if (lanyard && previous?.source === "discord-rich-presence") {
+    return {
+      data: {
+        ...previous,
+        playbackState: "stopped",
+        isNowPlaying: false,
+      },
+    };
+  }
+
+  const svg = await fetchText(cacheBusted(SOURCES.appleMusicRecent), { bypassCache: true });
   const title = decode(svg.match(/class="song-title[^>]*>([^<]+)</)?.[1]);
   const artist = decode(svg.match(/class="song-artist[^>]*>([^<]+)</)?.[1]);
   if (!title || !artist) throw new Error("Apple Music card did not contain track metadata");
   const embeddedArtwork = svg.match(/<img[^>]+class="cover-image"[^>]+src="([^"]+)"/)?.[1]
     || svg.match(/<img[^>]+src="([^"]+)"[^>]+class="cover-image"/)?.[1]
     || "";
-  const percentage = Number(svg.match(/slider-pill-inner" style="width:([\d.]+)%/)?.[1]) || 0;
-  const times = [...svg.matchAll(/class="slider-content[^>]*>([^<]+)</g)].map((match) => decode(match[1]));
   const catalogue = await lookupAppleMusic(title, artist);
   const artworkData = catalogue?.artwork
     ? await fetchDataUri(catalogue.artwork)
@@ -279,28 +470,41 @@ async function readAppleMusic() {
       title,
       artist,
       album: catalogue?.album || "album metadata not listed",
-      link: catalogue?.link || "https://music.apple.com/",
-      percentage,
-      elapsed: times[0] || "",
-      remaining: times[1] || "",
+      link: catalogue?.link || MUSIC_PROFILE_URL,
+      duration: 0,
+      source: "apple-history",
+      playbackState: "recent",
+      isNowPlaying: false,
+      observedAt: null,
     },
     artworkData,
   };
 }
 
-function discordActivityLabel(activity) {
+function discordActivityLabel(source) {
+  if (source.spotify?.song) {
+    return `listening to ${source.spotify.song}${source.spotify.artist ? ` by ${source.spotify.artist}` : ""}`;
+  }
+  const richActivity = source.activities?.find((item) => item.type !== 4);
+  const activity = richActivity || source.activities?.find((item) => item.type === 4);
   if (!activity) return "no public activity right now";
   const verbs = { 0: "playing", 2: "listening to", 3: "watching", 4: "status" };
   const verb = verbs[activity.type] || "doing";
-  const subject = activity.type === 4 ? activity.state : activity.name;
-  return subject ? `${verb} · ${subject}` : "activity is keeping a low profile";
+  const subject = activity.type === 4
+    ? activity.state
+    : activity.details || activity.state || activity.name;
+  return subject ? `${verb} ${subject}` : "activity is keeping a low profile";
 }
 
-async function readDiscord() {
+async function readLanyard() {
   const payload = JSON.parse(await fetchText(SOURCES.discord));
   if (!payload.success || !payload.data?.discord_user) throw new Error("Lanyard did not return a Discord profile");
-  const source = payload.data;
+  return payload.data;
+}
+
+async function readDiscord(source) {
   const user = source.discord_user;
+  const validStatuses = new Set(["online", "idle", "dnd", "offline"]);
   const avatarExtension = user.avatar?.startsWith("a_") ? "gif" : "png";
   const avatarUrl = user.avatar
     ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${avatarExtension}?size=256`
@@ -309,21 +513,20 @@ async function readDiscord() {
     source.active_on_discord_desktop && "desktop",
     source.active_on_discord_mobile && "mobile",
     source.active_on_discord_web && "web",
+    source.active_on_discord_embedded && "embedded",
   ].filter(Boolean);
   const createdAt = Number((BigInt(user.id) >> 22n) + 1420070400000n);
-  const activity = source.activities?.find((item) => item.type !== 4) || source.activities?.find((item) => item.type === 4);
   const avatarData = await fetchDataUri(avatarUrl);
-  if (!avatarData) throw new Error("Discord avatar could not be refreshed");
   return {
     data: {
       id: user.id,
       displayName: user.display_name || user.global_name || user.username,
       username: user.username,
-      status: source.discord_status || "unknown",
+      status: validStatuses.has(source.discord_status) ? source.discord_status : "unknown",
       guildTag: user.primary_guild?.tag || "",
       memberSince: new Date(createdAt).getUTCFullYear(),
       devices,
-      activity: discordActivityLabel(activity),
+      activity: discordActivityLabel(source),
       avatarUrl,
     },
     avatarData,
@@ -346,7 +549,10 @@ function monthYear(value) {
 }
 
 function wrapLines(value, maxChars) {
-  const words = String(value).trim().split(/\s+/);
+  const words = String(value).trim().split(/\s+/).flatMap((word) => {
+    if (word.length <= maxChars) return [word];
+    return word.match(new RegExp(`.{1,${maxChars}}`, "g")) || [word];
+  });
   const lines = [];
   let line = "";
   for (const word of words) {
@@ -371,13 +577,27 @@ function wrappedText({ x, y, width, height, value, size, weight = 600, color = t
   while (fittedSize >= 10) {
     step = fittedSize * lineHeight;
     maxLines = Math.max(1, Math.floor(height / step));
-    const maxChars = Math.max(8, Math.floor(width / (fittedSize * .56)));
+    const maxChars = Math.max(8, Math.floor(width / (fittedSize * .62)));
     lines = wrapLines(value, maxChars);
     if (lines.length <= maxLines) break;
+    if (fittedSize === 10) {
+      lines = lines.slice(0, maxLines);
+      break;
+    }
     fittedSize -= 1;
   }
-  const tspans = lines.map((line, index) => `<tspan x="${x}" y="${(y + fittedSize + (index * step)).toFixed(1)}">${escapeDisplay(line)}</tspan>`).join("");
+  const tspans = lines.map((line, index) => `<tspan x="${x}" y="${Math.round(y + fittedSize + (index * step))}">${escapeDisplay(line)}</tspan>`).join("");
   return `<text fill="${color}" font-size="${fittedSize}" font-weight="${weight}" font-style="${italic ? "italic" : "normal"}">${tspans}</text>`;
+}
+
+function assetVersion(value) {
+  return createHash("sha256").update(JSON.stringify([RENDER_VERSION, value])).digest("hex").slice(0, 10);
+}
+
+function formatDuration(seconds) {
+  const total = Math.max(0, Math.round(Number(seconds) || 0));
+  if (!total) return "";
+  return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, "0")}`;
 }
 
 function cover({ dataUri, x, y, width, height, radius = 12, id = "cover" }) {
@@ -402,55 +622,80 @@ function renderBookCurrent(book, artwork) {
   const progressBar = progress
     ? `<rect x="190" y="224" width="610" height="6" rx="3" fill="#4a3e35"/><rect x="190" y="224" width="${progressWidth.toFixed(1)}" height="6" rx="3" fill="#e9c995"/>`
     : `<path d="M190 227H800" stroke="#756352" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 9" opacity=".7"/>`;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="246" viewBox="0 0 860 246" role="img" aria-label="Currently reading ${escapeDisplay(item.title)}">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="246" viewBox="0 0 860 246" role="img" aria-label="Currently reading ${escapeDisplay(item.title)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#18131f"/><stop offset="1" stop-color="#282019"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
   <rect x="1" y="1" width="858" height="244" rx="24" fill="url(#bg)" stroke="#5b4937" stroke-width="2"/>
   <circle cx="817" cy="16" r="140" fill="#e9c995" opacity=".055"/>
   ${cover({ dataUri: artwork, x: 24, y: 24, width: 132, height: 198, radius: 10 })}
-  <g class="sans"><rect x="188" y="24" width="190" height="30" rx="15" fill="#e9c995" opacity=".12"/><circle cx="207" cy="39" r="4" fill="#e9c995"/><text x="220" y="44" fill="#e9c995" font-size="11" font-weight="800" letter-spacing="1.2">CURRENTLY READING</text>
-  ${wrappedText({ x: 188, y: 65, width: 610, height: 86, value: item.title, size: 30, weight: 820, lineHeight: 1.04 })}
-  <text x="190" y="170" fill="${theme.muted}" font-size="14.5" font-weight="650">by ${escapeDisplay(item.author)}</text>
-  <text x="190" y="193" fill="#9f91aa" font-size="11" font-weight="650">${escapeDisplay(facts)}</text>
-  <text x="190" y="215" fill="#e9c995" font-size="10.5" font-weight="800" letter-spacing=".5">${escapeDisplay(progressLabel)}</text>
+  <g class="sans"><rect x="188" y="24" width="205" height="30" rx="15" fill="#e9c995" opacity=".12"/><circle cx="207" cy="39" r="4" fill="#e9c995"/><text x="220" y="44" fill="#e9c995" font-size="12" font-weight="800" letter-spacing="1.05">CURRENTLY READING</text>
+  ${wrappedText({ x: 188, y: 65, width: 610, height: 86, value: item.title, size: 30, weight: 800, lineHeight: 1.04 })}
+  <text x="190" y="170" fill="${theme.muted}" font-size="14.5" font-weight="600">by ${escapeDisplay(item.author)}</text>
+  <text x="190" y="193" fill="#a99bb4" font-size="12" font-weight="600">${escapeDisplay(facts)}</text>
+  <text x="190" y="215" fill="#e9c995" font-size="12" font-weight="800" letter-spacing=".35">${escapeDisplay(progressLabel)}</text>
   ${progressBar}</g>
   </svg>`;
 }
 
 function renderBookTile(book, artwork, index) {
   const facts = [book.pages && `${book.pages}p`, book.readAt && `read ${monthYear(book.readAt)}`].filter(Boolean).join(" · ");
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="420" height="172" viewBox="0 0 420 172" role="img" aria-label="${escapeDisplay(book.title)} by ${escapeDisplay(book.author)}">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="420" height="172" viewBox="0 0 420 172" role="img" aria-label="${escapeDisplay(book.title)} by ${escapeDisplay(book.author)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${theme.bg}"/><stop offset="1" stop-color="#251e2c"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
   <rect x="1" y="1" width="418" height="170" rx="19" fill="url(#bg)" stroke="${theme.line}" stroke-width="2"/>
   ${cover({ dataUri: artwork, x: 16, y: 16, width: 94, height: 140, radius: 9 })}
-  <g class="sans"><text x="130" y="27" fill="#e9c995" font-size="9.5" font-weight="800" letter-spacing="1.4">READ RECEIPT / 0${index + 1}</text>
-  ${wrappedText({ x: 130, y: 42, width: 266, height: 58, value: book.title, size: 17, weight: 790, lineHeight: 1.08 })}
-  <text x="130" y="109" fill="${theme.muted}" font-size="11.5" font-weight="600">${escapeDisplay(book.author)}</text><text x="130" y="128" fill="#83778e" font-size="9.5" font-weight="650">${escapeDisplay(facts)}</text><text x="130" y="151" fill="${theme.yellow}" font-size="12" font-weight="800">${escapeDisplay(stars(book.rating))}</text><text x="396" y="151" fill="${theme.muted}" font-size="10.5" font-weight="650" text-anchor="end">${escapeDisplay(bookVerdict(book.rating))}</text></g>
+  <g class="sans"><text x="130" y="28" fill="#e9c995" font-size="11" font-weight="800" letter-spacing="1.15">READ RECEIPT / 0${index + 1}</text>
+  ${wrappedText({ x: 130, y: 42, width: 266, height: 58, value: book.title, size: 18, weight: 800, lineHeight: 1.08 })}
+  <text x="130" y="109" fill="${theme.muted}" font-size="12" font-weight="600">${escapeDisplay(book.author)}</text><text x="130" y="129" fill="#978a9f" font-size="11" font-weight="600">${escapeDisplay(facts)}</text><text x="130" y="151" fill="${theme.yellow}" font-size="12" font-weight="800">${escapeDisplay(stars(book.rating))}</text><text x="396" y="151" fill="${theme.muted}" font-size="11" font-weight="600" text-anchor="end">${escapeDisplay(bookVerdict(book.rating))}</text></g>
   </svg>`;
 }
 
 function renderFilmTile(film, artwork, index) {
   const note = film.review || (film.liked ? "liked. evidence duly noted." : "logged without further comment.");
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="420" height="198" viewBox="0 0 420 198" role="img" aria-label="${escapeDisplay(film.title)} (${escapeDisplay(film.year)})">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="420" height="198" viewBox="0 0 420 198" role="img" aria-label="${escapeDisplay(film.title)} (${escapeDisplay(film.year)})" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111820"/><stop offset="1" stop-color="#1d2731"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
   <rect x="1" y="1" width="418" height="196" rx="19" fill="url(#bg)" stroke="#344654" stroke-width="2"/>
   ${cover({ dataUri: artwork, x: 16, y: 16, width: 108, height: 166, radius: 9 })}
-  <g class="sans"><g transform="translate(144 21)"><circle cx="8" cy="8" r="8" fill="#ff8000"/><circle cx="22" cy="8" r="8" fill="#00e054"/><circle cx="36" cy="8" r="8" fill="#40bcf4"/></g><text x="400" y="32" fill="#718696" font-size="9.5" font-weight="800" text-anchor="end" letter-spacing="1.2">WATCH 0${index + 1}</text>
+  <g class="sans"><g transform="translate(144 21)"><circle cx="8" cy="8" r="8" fill="#ff8000"/><circle cx="22" cy="8" r="8" fill="#00e054"/><circle cx="36" cy="8" r="8" fill="#40bcf4"/></g><text x="400" y="32" fill="#8298a8" font-size="11" font-weight="800" text-anchor="end" letter-spacing="1">WATCH 0${index + 1}</text>
   ${wrappedText({ x: 144, y: 52, width: 252, height: 54, value: film.title, size: 17, weight: 800, lineHeight: 1.08 })}
-  <text x="144" y="119" fill="${theme.muted}" font-size="11.5" font-weight="650">${escapeDisplay(film.year)}${film.liked ? "  ·  ♥ liked" : ""}</text><text x="396" y="119" fill="${theme.yellow}" font-size="12" font-weight="800" text-anchor="end">${escapeDisplay(stars(film.rating))}</text>
-  ${wrappedText({ x: 144, y: 137, width: 252, height: 45, value: `“${note}”`, size: 10.5, weight: 560, color: "#94a5b1", lineHeight: 1.2, italic: true })}</g>
+  <text x="144" y="119" fill="${theme.muted}" font-size="12" font-weight="600">${escapeDisplay(film.year)}${film.liked ? "  ·  ♥ liked" : ""}</text><text x="396" y="119" fill="${theme.yellow}" font-size="12" font-weight="800" text-anchor="end">${escapeDisplay(stars(film.rating))}</text>
+  ${wrappedText({ x: 144, y: 137, width: 252, height: 45, value: `“${note}”`, size: 11.5, weight: 600, color: "#a7b7c2", lineHeight: 1.2, italic: true })}</g>
   </svg>`;
 }
 
 function renderAppleMusic(data, artwork) {
-  const progress = Math.max(0, Math.min(100, data.percentage || 0));
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="270" viewBox="0 0 860 270" role="img" aria-label="${escapeDisplay(data.title)} by ${escapeDisplay(data.artist)} on Apple Music">
+  const states = {
+    playing: { heading: "APPLE MUSIC / NOW PLAYING", color: "#fa243c" },
+    paused: { heading: "APPLE MUSIC / PAUSED", color: "#ff9f9a" },
+    stopped: { heading: "APPLE MUSIC / LAST PLAYED", color: "#b9a4ff" },
+    recent: { heading: "APPLE MUSIC / RECENTLY PLAYED", color: "#b9a4ff" },
+    unknown: { heading: "APPLE MUSIC / LAST SIGNAL", color: "#8f859b" },
+  };
+  const playback = states[data.playbackState] || states.recent;
+  const duration = formatDuration(data.duration);
+  const fromDiscord = data.source === "discord-rich-presence";
+  const fromMusicApp = data.source?.startsWith("music-app");
+  const sourceLabel = data.playbackState === "recent"
+    ? "APPLE MUSIC HISTORY"
+    : data.playbackState === "unknown"
+      ? "PRESENCE UNAVAILABLE"
+      : fromDiscord
+        ? (data.isNowPlaying ? "LIVE VIA DISCORD" : "LAST SEEN VIA DISCORD")
+        : fromMusicApp
+          ? (data.playbackState === "paused" ? "PAUSED IN MUSIC.APP" : data.isNowPlaying ? "LIVE FROM MUSIC.APP" : "LAST SEEN IN MUSIC.APP")
+          : "LATEST APPLE MUSIC SIGNAL";
+  const sourceWidth = Math.min(226, Math.max(188, 62 + (sourceLabel.length * 6.25)));
+  const spinClass = data.isNowPlaying ? "spin" : "";
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="270" viewBox="0 0 860 270" role="img" aria-label="${escapeDisplay(data.title)} by ${escapeDisplay(data.artist)} on Apple Music" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1a111b"/><stop offset=".55" stop-color="#24162b"/><stop offset="1" stop-color="#2d1421"/></linearGradient><radialGradient id="disc"><stop stop-color="#342a38"/><stop offset=".28" stop-color="#0a080c"/><stop offset=".32" stop-color="#fa243c"/><stop offset=".38" stop-color="#0a080c"/><stop offset="1" stop-color="#17131a"/></radialGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.spin{animation:spin 12s linear infinite;transform-origin:243px 135px}@keyframes spin{to{transform:rotate(360deg)}}</style></defs>
-  <rect x="1" y="1" width="858" height="268" rx="25" fill="url(#bg)" stroke="#623247" stroke-width="2"/><circle class="spin" cx="243" cy="135" r="91" fill="url(#disc)" stroke="#453a49"/><circle cx="243" cy="135" r="10" fill="#ffe8ee"/>
+  <rect x="1" y="1" width="858" height="268" rx="25" fill="url(#bg)" stroke="#623247" stroke-width="2"/><circle class="${spinClass}" cx="243" cy="135" r="91" fill="url(#disc)" stroke="#453a49"/><circle cx="243" cy="135" r="10" fill="#ffe8ee"/>
   ${cover({ dataUri: artwork, x: 28, y: 45, width: 180, height: 180, radius: 15, id: "artwork" })}
-  <g class="sans"><g transform="translate(356 27) scale(1.08)"><path d="${appleMusicPath}" fill="#fa243c"/></g><text x="390" y="48" fill="#ff8293" font-size="12" font-weight="800" letter-spacing="1.4">APPLE MUSIC / NOW SPINNING</text>
-  ${wrappedText({ x: 356, y: 73, width: 458, height: 67, value: data.title, size: 30, weight: 830, lineHeight: 1.03 })}
-  <text x="357" y="158" fill="${theme.text}" font-size="17" font-weight="720">${escapeDisplay(data.artist)}</text><text x="357" y="184" fill="#bd9eae" font-size="12.5" font-weight="600">album · ${escapeDisplay(data.album)}</text>
-  <rect x="357" y="213" width="445" height="5" rx="2.5" fill="#493242"/><rect x="357" y="213" width="${(445 * progress / 100).toFixed(1)}" height="5" rx="2.5" fill="#fa243c"/><text x="357" y="240" fill="#9e8190" font-size="10.5" font-weight="650">${escapeXml(data.elapsed || "last heard")}</text><text x="802" y="240" fill="#9e8190" font-size="10.5" font-weight="650" text-anchor="end">${escapeXml(data.remaining || "open in music ↗")}</text></g>
+  <g class="sans"><g transform="translate(356 27) scale(1.08)"><path d="${appleMusicPath}" fill="#fa243c"/></g><text x="390" y="48" fill="#ff8293" font-size="12" font-weight="800" letter-spacing="1.25">${playback.heading}</text>
+  ${wrappedText({ x: 356, y: 73, width: 458, height: 67, value: data.title, size: 30, weight: 800, lineHeight: 1.03 })}
+  ${wrappedText({ x: 357, y: 143, width: 445, height: 28, value: data.artist, size: 17, weight: 700, lineHeight: 1 })}
+  <text x="357" y="181" fill="#9f8191" font-size="10.5" font-weight="800" letter-spacing="1">ALBUM</text>
+  ${wrappedText({ x: 405, y: 166, width: duration ? 300 : 397, height: 35, value: data.album || "album metadata not listed", size: 12.5, weight: 600, color: "#c7a9b8", lineHeight: 1.06 })}
+  ${duration ? `<rect x="724" y="168" width="78" height="27" rx="13.5" fill="#fff" opacity=".07"/><text x="763" y="186" fill="#d9c2ce" font-size="11.5" font-weight="700" text-anchor="middle">${duration}</text>` : ""}
+  <rect x="357" y="211" width="${sourceWidth}" height="36" rx="18" fill="${playback.color}" opacity=".13"/><circle cx="378" cy="229" r="5" fill="${playback.color}"/>${data.isNowPlaying ? `<circle cx="378" cy="229" r="9" fill="none" stroke="${playback.color}" opacity=".35"><animate attributeName="r" values="7;12;7" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".45;0;.45" dur="1.8s" repeatCount="indefinite"/></circle>` : ""}<text x="391" y="233" fill="#eadce3" font-size="11.5" font-weight="800" letter-spacing=".55">${sourceLabel}</text>
+  <text x="810" y="233" fill="#d6b8c6" font-size="12" font-weight="700" text-anchor="end">OPEN IN APPLE MUSIC  ↗</text></g>
   </svg>`;
 }
 
@@ -463,22 +708,23 @@ function renderDiscord(data, avatar) {
     unknown: { color: "#747f8d", label: "presence unavailable" },
   };
   const presence = statuses[data.status] || statuses.unknown;
+  const statusWidth = Math.min(190, Math.max(142, 48 + (presence.label.length * 6.8)));
   const deviceText = data.devices.length ? `active on ${data.devices.join(" + ")}` : "no active device showing";
   const avatarMarkup = avatar
     ? `<image href="${avatar}" x="34" y="32" width="132" height="132" preserveAspectRatio="xMidYMid slice" clip-path="url(#avatar)"/>`
     : `<circle cx="100" cy="98" r="66" fill="#4b3a67"/><text x="100" y="112" fill="#fffaf5" class="sans" font-size="38" font-weight="800" text-anchor="middle">HN</text>`;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="206" viewBox="0 0 860 206" role="img" aria-label="Discord profile for ${escapeDisplay(data.username)} , status ${escapeDisplay(presence.label)}">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="206" viewBox="0 0 860 206" role="img" aria-label="Discord profile for ${escapeDisplay(data.username)} , status ${escapeDisplay(presence.label)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#171427"/><stop offset=".55" stop-color="#25203b"/><stop offset="1" stop-color="#172a35"/></linearGradient><linearGradient id="edge" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#5865f2"/><stop offset=".55" stop-color="#b9a4ff"/><stop offset="1" stop-color="#8edfd4"/></linearGradient><clipPath id="avatar"><circle cx="100" cy="98" r="66"/></clipPath><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.arrow{animation:nudge 1.8s ease-in-out infinite}@keyframes nudge{50%{transform:translateX(5px)}}</style></defs>
   <rect x="1" y="1" width="858" height="204" rx="25" fill="url(#bg)" stroke="url(#edge)" stroke-width="2"/>
   <circle cx="780" cy="20" r="138" fill="#5865f2" opacity=".07"/><circle cx="710" cy="215" r="118" fill="#8edfd4" opacity=".045"/>
   ${avatarMarkup}<circle cx="148" cy="147" r="17" fill="#171427"/><circle cx="148" cy="147" r="11" fill="${presence.color}" stroke="#fffaf5" stroke-opacity=".3" stroke-width="1"/>
-  <g class="sans"><text x="198" y="42" fill="#8f98ff" font-size="10.5" font-weight="850" letter-spacing="1.6">DISCORD / PUBLIC PRESENCE</text>
-  ${wrappedText({ x: 196, y: 51, width: 390, height: 43, value: data.displayName, size: 31, weight: 830, lineHeight: 1 })}
-  <text x="198" y="108" fill="#bdb1ca" font-size="14" font-weight="650">@${escapeDisplay(data.username)}</text>
-  <rect x="196" y="124" width="142" height="28" rx="14" fill="${presence.color}" opacity=".15"/><circle cx="213" cy="138" r="4.5" fill="${presence.color}"/><text x="225" y="143" fill="#ddd5e7" font-size="11" font-weight="780">${escapeDisplay(presence.label)}</text>
-  ${wrappedText({ x: 198, y: 161, width: 405, height: 34, value: `${data.activity} · ${deviceText}`, size: 11.5, weight: 650, color: "#9e92ac", lineHeight: 1.15 })}
-  <text x="620" y="68" fill="#8f849d" font-size="10" font-weight="800" text-anchor="end">ON DISCORD SINCE ${data.memberSince}</text>${data.guildTag ? `<rect x="642" y="48" width="48" height="27" rx="13.5" fill="#fff" opacity=".08"/><text x="666" y="66" fill="#d7ccdf" font-size="10.5" font-weight="850" text-anchor="middle">${escapeDisplay(data.guildTag)}</text>` : ""}
-  <rect x="638" y="111" width="174" height="48" rx="24" fill="#5865f2"/><text x="669" y="140" fill="#fff" font-size="11" font-weight="850" letter-spacing=".8">OPEN PROFILE</text><text class="arrow" x="777" y="142" fill="#fff" font-size="18" font-weight="850">↗</text></g>
+  <g class="sans"><text x="198" y="42" fill="#9ba3ff" font-size="11.5" font-weight="800" letter-spacing="1.35">DISCORD / PUBLIC PRESENCE</text>
+  ${wrappedText({ x: 196, y: 51, width: 390, height: 43, value: data.displayName, size: 31, weight: 800, lineHeight: 1 })}
+  <text x="198" y="108" fill="#c8bdd3" font-size="14" font-weight="600">@${escapeDisplay(data.username)}</text>
+  <rect x="196" y="124" width="${statusWidth.toFixed(1)}" height="30" rx="15" fill="${presence.color}" opacity=".15"/><circle cx="213" cy="139" r="4.5" fill="${presence.color}"/><text x="225" y="144" fill="#e5ddea" font-size="12" font-weight="800">${escapeDisplay(presence.label)}</text>
+  ${wrappedText({ x: 198, y: 162, width: 405, height: 34, value: `${data.activity} · ${deviceText}`, size: 12, weight: 600, color: "#ada1ba", lineHeight: 1.15 })}
+  <text x="620" y="68" fill="#a497ae" font-size="11.5" font-weight="800" text-anchor="end">ON DISCORD SINCE ${data.memberSince}</text>${data.guildTag ? `<rect x="642" y="48" width="48" height="27" rx="13.5" fill="#fff" opacity=".08"/><text x="666" y="66" fill="#ded5e5" font-size="11.5" font-weight="800" text-anchor="middle">${escapeDisplay(data.guildTag)}</text>` : ""}
+  <rect x="638" y="111" width="174" height="48" rx="24" fill="#5865f2"/><text x="669" y="140" fill="#fff" font-size="12" font-weight="800" letter-spacing=".7">OPEN PROFILE</text><text class="arrow" x="777" y="142" fill="#fff" font-size="18" font-weight="800">↗</text></g>
   </svg>`;
 }
 
@@ -487,6 +733,15 @@ async function readPrevious() {
     return JSON.parse(await fs.readFile(DATA_FILE, "utf8"));
   } catch {
     return {};
+  }
+}
+
+async function readEmbeddedImage(filename) {
+  try {
+    const svg = await fs.readFile(path.join(OUTPUT_DIR, filename), "utf8");
+    return svg.match(/<image[^>]+href="(data:[^"]+)"/)?.[1] || null;
+  } catch {
+    return null;
   }
 }
 
@@ -500,6 +755,26 @@ async function readSource(name, reader, previous) {
       return { fresh: false, data: previous[name] };
     }
     throw error;
+  }
+}
+
+async function readDiscordSource(previous, lanyardPromise) {
+  try {
+    const result = await readDiscord(await lanyardPromise);
+    return { fresh: true, ...result };
+  } catch (error) {
+    if (!previous) throw error;
+    console.warn(`warning: Discord presence refresh failed; rendering an unavailable state (${error.message})`);
+    return {
+      fresh: true,
+      data: {
+        ...previous,
+        status: "unknown",
+        devices: [],
+        activity: "presence temporarily unavailable",
+      },
+      avatarData: null,
+    };
   }
 }
 
@@ -519,18 +794,18 @@ async function writeLetterboxdAssets(data) {
 function grid(items, prefix, alt) {
   const rows = [];
   for (let index = 0; index < items.length; index += 2) {
-    const cells = items.slice(index, index + 2).map((item, offset) => {
+    const cards = items.slice(index, index + 2).map((item, offset) => {
       const number = index + offset + 1;
-      return `<td width="50%" valign="top"><a href="${escapeXml(item.link)}"><img src="./assets/activity/${prefix}-${number}.svg" width="100%" alt="${escapeDisplay(`${alt}: ${item.title}`)}" /></a></td>`;
-    }).join("\n    ");
-    rows.push(`<tr>\n    ${cells}\n  </tr>`);
+      return `<a href="${escapeXml(item.link)}"><img src="./assets/activity/${prefix}-${number}.svg?v=${assetVersion(item)}" width="420" alt="${escapeDisplay(`${alt}: ${item.title}`)}" /></a>`;
+    }).join("\n  ");
+    rows.push(cards);
   }
-  return `<table>\n  ${rows.join("\n  ")}\n</table>`;
+  return `<div align="center">\n  ${rows.join("\n  <br/>\n  ")}\n</div>`;
 }
 
 function goodreadsMarkup(data) {
   const currentLink = data.current?.link || "https://www.goodreads.com/user/show/178629903";
-  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg" width="100%" alt="currently reading ${escapeDisplay(data.current?.title || "nothing")}" /></a>\n\n${grid(data.recent, "goodreads", "Read")}`;
+  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(data.current)}" width="100%" alt="currently reading ${escapeDisplay(data.current?.title || "nothing")}" /></a>\n\n${grid(data.recent, "goodreads", "Read")}`;
 }
 
 function letterboxdMarkup(data) {
@@ -538,11 +813,12 @@ function letterboxdMarkup(data) {
 }
 
 function appleMusicMarkup(data) {
-  return `<a href="${escapeXml(data.link || "https://music.apple.com/")}"><img src="./assets/activity/apple-music.svg" width="100%" alt="listening to ${escapeDisplay(data.title)} by ${escapeDisplay(data.artist)}" /></a>`;
+  const action = data.isNowPlaying ? "now playing" : "recently played";
+  return `<a href="${escapeXml(data.link || MUSIC_PROFILE_URL)}"><img src="./assets/activity/apple-music.svg?v=${assetVersion(data)}" width="100%" alt="${action} ${escapeDisplay(data.title)} by ${escapeDisplay(data.artist)}" /></a>`;
 }
 
 function discordMarkup(data) {
-  return `<a href="https://discord.com/users/${escapeXml(data.id)}"><img src="./assets/activity/discord.svg" width="100%" alt="Discord profile @${escapeDisplay(data.username)} , ${escapeDisplay(data.status)}" /></a>`;
+  return `<a href="https://discord.com/users/${escapeXml(data.id)}"><img src="./assets/activity/discord.svg?v=${assetVersion(data)}" width="100%" alt="Discord profile @${escapeDisplay(data.username)} , ${escapeDisplay(data.status)}" /></a>`;
 }
 
 function replaceSection(content, name, replacement) {
@@ -571,11 +847,18 @@ function dataChanged(previous, current) {
 
 async function main() {
   const previous = await readPrevious();
+  const [cachedAppleArtwork, cachedDiscordAvatar] = await Promise.all([
+    readEmbeddedImage("apple-music.svg"),
+    readEmbeddedImage("discord.svg"),
+  ]);
+  // Start the shared request immediately before both consumers attach so a
+  // fast network rejection can never become an unhandled promise.
+  const lanyardPromise = readLanyard();
   const [goodreadsResult, letterboxdResult, appleMusicResult, discordResult] = await Promise.all([
     readSource("goodreads", readGoodreads, previous),
     readSource("letterboxd", readLetterboxd, previous),
-    readSource("appleMusic", readAppleMusic, previous),
-    readSource("discord", readDiscord, previous),
+    readSource("appleMusic", () => readAppleMusic(previous.appleMusic, lanyardPromise), previous),
+    readDiscordSource(previous.discord, lanyardPromise),
   ]);
   const current = {
     goodreads: goodreadsResult.data,
@@ -590,8 +873,17 @@ async function main() {
   const writes = [];
   if (goodreadsResult.fresh) writes.push(writeGoodreadsAssets(current.goodreads));
   if (letterboxdResult.fresh) writes.push(writeLetterboxdAssets(current.letterboxd));
-  if (appleMusicResult.fresh) writes.push(fs.writeFile(path.join(OUTPUT_DIR, "apple-music.svg"), renderAppleMusic(current.appleMusic, appleMusicResult.artworkData)));
-  if (discordResult.fresh) writes.push(fs.writeFile(path.join(OUTPUT_DIR, "discord.svg"), renderDiscord(current.discord, discordResult.avatarData)));
+  if (appleMusicResult.fresh) {
+    const sameTrack = normaliseMatchText(previous.appleMusic?.title) === normaliseMatchText(current.appleMusic?.title)
+      && normaliseMatchText(previous.appleMusic?.artist) === normaliseMatchText(current.appleMusic?.artist);
+    const artwork = appleMusicResult.artworkData || (sameTrack ? cachedAppleArtwork : null);
+    writes.push(fs.writeFile(path.join(OUTPUT_DIR, "apple-music.svg"), renderAppleMusic(current.appleMusic, artwork)));
+  }
+  if (discordResult.fresh) {
+    const sameAvatar = previous.discord?.avatarUrl === current.discord?.avatarUrl;
+    const avatar = discordResult.avatarData || (sameAvatar ? cachedDiscordAvatar : null);
+    writes.push(fs.writeFile(path.join(OUTPUT_DIR, "discord.svg"), renderDiscord(current.discord, avatar)));
+  }
   await Promise.all(writes);
   await Promise.all([
     fs.writeFile(DATA_FILE, `${JSON.stringify({ ...current, updatedAt }, null, 2)}\n`),
