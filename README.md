@@ -19,7 +19,7 @@
   <kbd>
     ● last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-14T08:42:51.459Z">a few seconds ago</relative-time>
+    <relative-time datetime="2026-09-14T08:48:17.651Z">a few seconds ago</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -61,13 +61,13 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/crank-2/6808004133?i=6808004347"><img src="./assets/activity/apple-music.svg?v=8b4279d428" width="100%" alt="recently played crank 2 by Slayyyter" /></a>
+<a href="https://music.apple.com/us/album/stupid-song/1889992111?i=1889992115&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=e7da9c775f" width="100%" alt="recently played stupid song by Olivia Rodrigo" /></a>
 <!-- APPLE-MUSIC-FEED:END -->
 
 <br/>
 
 <!-- DISCORD-FEED:START -->
-<a href="https://discord.com/users/690729789702537336"><img src="./assets/activity/discord.svg?v=bc162c96a4" width="100%" alt="Discord profile @hnitch , online" /></a>
+<a href="https://discord.com/users/690729789702537336"><img src="./assets/activity/discord.svg?v=4be97e494e" width="100%" alt="Discord profile @hnitch , online" /></a>
 <!-- DISCORD-FEED:END -->
 
 <br/>

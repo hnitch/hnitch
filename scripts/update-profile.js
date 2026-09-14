@@ -77,7 +77,7 @@ function cacheBusted(url) {
   return target.toString();
 }
 
-async function fetchResponse(url, accept, { bypassCache = false, headers = {} } = {}) {
+async function fetchResponse(url, accept, { bypassCache = false } = {}) {
   let lastError;
   for (let attempt = 0; attempt < 3; attempt += 1) {
     try {
@@ -87,7 +87,6 @@ async function fetchResponse(url, accept, { bypassCache = false, headers = {} } 
           "Cache-Control": bypassCache ? "no-cache" : "max-age=0",
           Pragma: bypassCache ? "no-cache" : "",
           "User-Agent": "hnitch-profile/3.4 (+https://github.com/hnitch/hnitch)",
-          ...headers,
         },
         cache: "no-store",
         signal: AbortSignal.timeout(20_000),
@@ -356,57 +355,9 @@ async function readMusicAppEvent(event, previous) {
   };
 }
 
-async function readOfficialAppleMusic() {
-  const developerToken = process.env.APPLE_MUSIC_DEVELOPER_TOKEN?.trim();
-  const musicUserToken = process.env.APPLE_MUSIC_USER_TOKEN?.trim();
-  if (!developerToken || !musicUserToken) return null;
-
-  const response = await fetchResponse(
-    "https://api.music.apple.com/v1/me/recent/played/tracks?types=songs&limit=1",
-    "application/json",
-    {
-      bypassCache: true,
-      headers: {
-        Authorization: `Bearer ${developerToken}`,
-        "Music-User-Token": musicUserToken,
-      },
-    },
-  );
-  const item = (await response.json())?.data?.[0];
-  const attributes = item?.attributes;
-  if (!attributes?.name || !attributes?.artistName) {
-    throw new Error("Apple Music API did not return a recently played track");
-  }
-
-  const artworkUrl = attributes.artwork?.url
-    ?.replace("{w}", "600")
-    .replace("{h}", "600");
-  return {
-    data: {
-      title: attributes.name,
-      artist: attributes.artistName,
-      album: attributes.albumName || "album metadata not listed",
-      link: attributes.url || MUSIC_PROFILE_URL,
-      duration: Math.max(0, Number(attributes.durationInMillis) / 1_000 || 0),
-      source: "apple-music-api",
-      playbackState: "recent",
-      isNowPlaying: false,
-      observedAt: null,
-    },
-    artworkData: artworkUrl ? await fetchDataUri(artworkUrl) : null,
-  };
-}
-
 async function readAppleMusic(previous) {
   const musicEvent = parseMusicEvent();
   if (musicEvent) return readMusicAppEvent(musicEvent, previous);
-
-  try {
-    const official = await readOfficialAppleMusic();
-    if (official) return official;
-  } catch (error) {
-    console.warn(`warning: official Apple Music API unavailable; using public profile history (${error.message})`);
-  }
 
   const svg = await fetchText(cacheBusted(SOURCES.appleMusicRecent), { bypassCache: true });
   const title = decode(svg.match(/class="song-title[^>]*>([^<]+)</)?.[1]);

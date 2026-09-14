@@ -115,15 +115,16 @@
     ]
   },
   "appleMusic": {
-    "title": "crank 2",
-    "artist": "Slayyyter",
-    "album": "crank 2 - Single",
-    "link": "https://music.apple.com/us/album/crank-2/6808004133?i=6808004347",
-    "duration": 0,
-    "source": "apple-history",
-    "playbackState": "recent",
+    "title": "stupid song",
+    "artist": "Olivia Rodrigo",
+    "album": "you seem pretty sad for a girl so in love",
+    "link": "https://music.apple.com/us/album/stupid-song/1889992111?i=1889992115&uo=4",
+    "duration": 209.679992675781,
+    "position": 0,
+    "source": "music-app-preview",
+    "playbackState": "paused",
     "isNowPlaying": false,
-    "observedAt": null
+    "observedAt": "2026-09-14T08:48:15.802Z"
   },
   "discord": {
     "id": "690729789702537336",
@@ -135,8 +136,8 @@
     "devices": [
       "desktop"
     ],
-    "activity": "listening to Father Figure",
+    "activity": "no public activity right now",
     "avatarUrl": "https://cdn.discordapp.com/avatars/690729789702537336/7077a608b3f569f6c3cca885b59baaa5.png?size=256"
   },
-  "updatedAt": "2026-09-14T08:42:51.459Z"
+  "updatedAt": "2026-09-14T08:48:17.651Z"
 }
