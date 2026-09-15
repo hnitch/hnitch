@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "entries": {
+    "goodreads:235993046": {
+      "fingerprint": "65d3c3a5f2908999063ae3118b648b45349e5dc63b37c4af1ec568a194b9b0a7",
+      "reviewHash": "fb59b7b7b598bb3040f1b05600524baf62f98cba2d57d3da89de1f4f53abde2e",
+      "model": "auto",
+      "summary": "macy ignored every red flag , and i still inhaled the entire book",
+      "title": "The Caretaker",
+      "link": "https://www.goodreads.com/review/show/8506583969",
+      "updatedAt": "2026-09-14T13:19:25.215Z"
+    },
+    "goodreads:256240967": {
+      "fingerprint": "d3ed5c1a1c71995ec1dedf1fb90d20477aafc89531a809dab529995242eb8039",
+      "reviewHash": "c351b6847ec13bfaddc72aae860d252f5c9b2cce98154936f694fc4680e554bc",
+      "model": "auto",
+      "summary": "demons were crawling into people's ears , and somehow i was still bored",
+      "title": "The Demon Star",
+      "link": "https://www.goodreads.com/review/show/8748356322",
+      "updatedAt": "2026-09-14T13:19:25.219Z"
+    },
+    "goodreads:257428909": {
+      "fingerprint": "39d3e45c6fee39c927b38c0390c5987f44e8dc9bbdbbb94d1a9daa8ba0231e93",
+      "reviewHash": "92f5442b8b2dced59594cd73d077b0c1972fb4d7010e891a262ad0ea6c9382fb",
+      "model": "auto",
+      "summary": "i guessed the witch immediately , then waited an entire book for everyone else to catch up",
+      "title": "To Drown a Witch",
+      "link": "https://www.goodreads.com/review/show/8669301761",
+      "updatedAt": "2026-09-14T13:19:25.219Z"
+    }
+  }
+}

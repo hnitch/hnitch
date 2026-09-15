@@ -1,0 +1,55 @@
+name: prepare Goodreads review summaries
+
+# This workflow deliberately does not call a hosted AI provider. It only
+# validates the pipeline and packages pending review prompts for inspection.
+# A local Mac Mini runner can be connected later without changing the profile
+# card renderer or the cached-summary format.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prepare-goodreads-review-summaries
+  cancel-in-progress: true
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+
+    steps:
+      - name: Check out profile
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate summary pipeline
+        run: npm run check
+
+      - name: Find new or changed written reviews
+        id: reviews
+        run: npm run reviews:prepare
+
+      - name: Package pending prompts without sending them anywhere
+        if: steps.reviews.outputs.pending == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pending-goodreads-review-prompts
+          path: |
+            .tmp/goodreads-review-system.txt
+            .tmp/goodreads-review-prompt.txt
+          if-no-files-found: error
+          retention-days: 1
+
+      - name: Confirm there is nothing to summarize
+        if: steps.reviews.outputs.pending != 'true'
+        run: echo "All written Goodreads reviews already have current summaries"

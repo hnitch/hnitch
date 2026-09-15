@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="880" height="300" viewBox="0 0 880 300" role="img" aria-labelledby="title desc" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
-  <title id="title">hey , i'm hn</title>
+  <title id="title">hii , i'm hn</title>
   <desc id="desc">a builder , reader , watcher , and professional tab hoarder</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
@@ -11,7 +11,7 @@
     <radialGradient id="glow"><stop stop-color="#b9a4ff" stop-opacity=".28"/><stop offset="1" stop-color="#b9a4ff" stop-opacity="0"/></radialGradient>
     <style>
       .sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
-      .display{font-family:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif}
+      .display{font-family:Baskerville,"Iowan Old Style",Georgia,serif}
       .spark{animation:pulse 2.8s ease-in-out infinite;transform-origin:center}
       @keyframes pulse{50%{opacity:.35}}
     </style>
@@ -25,7 +25,7 @@
     <rect x="52" y="42" width="194" height="28" rx="14" fill="#fff" opacity=".075" stroke="#fff" stroke-opacity=".13"/>
     <circle cx="70" cy="56" r="4" fill="#8edfd4"/>
     <text x="82" y="61" fill="#d8d0e8" font-size="11" font-weight="600" letter-spacing="1.3">HN / ONLINE-ISH</text>
-    <text x="52" y="139" fill="#fffaf5" class="display" font-size="60" font-weight="700" font-style="italic" letter-spacing="-2.1">hey , i'm hn</text>
+    <text x="52" y="139" fill="#fffaf5" class="display" font-size="59" font-weight="600" font-style="italic" letter-spacing="-1.45">hii , i'm hn</text>
     <text x="54" y="174" fill="#d0c6df" font-size="18" font-weight="500">i make things for the web , then disappear</text>
     <text x="54" y="199" fill="#d0c6df" font-size="18" font-weight="500">into books , films , music , and whatever</text>
     <text x="54" y="224" fill="#d0c6df" font-size="18" font-weight="500">catches my eye next.</text>

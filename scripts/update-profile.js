@@ -2,14 +2,18 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { parseStringPromise } from "xml2js";
+import { prepareReviewSummaryCandidates } from "./review-summary.js";
 
 const ROOT = process.cwd();
 const OUTPUT_DIR = path.join(ROOT, "assets", "activity");
 const DATA_FILE = path.join(ROOT, "data", "activity.json");
 const README_FILE = path.join(ROOT, "README.md");
+const REVIEW_SUMMARY_CACHE_FILE = path.join(ROOT, "data", "review-summaries.json");
+const REVIEW_VOICE_FILE = path.join(ROOT, ".github", "prompts", "goodreads-voice.md");
 const DISCORD_USER_ID = "690729789702537336";
 const MUSIC_PROFILE_URL = "https://music.apple.com/profile/hnitch";
-const RENDER_VERSION = "3.5.0";
+const RENDER_VERSION = "3.6.0";
+const SIGNAL_FRESH_MS = 15 * 60_000;
 
 const SOURCES = {
   goodreads: {
@@ -456,6 +460,12 @@ function bookVerdict(rating) {
   return ["no rating yet", "straight to jail", "fine, with a side eye", "hmm, this is alright", "this one cooked", "literally obsessed"][rating] || "read and filed away";
 }
 
+function reviewFallback(book = {}) {
+  return cleanText(book.review)
+    ? bookVerdict(book.rating)
+    : "no written statement was left at the scene";
+}
+
 function monthYear(value) {
   const date = new Date(value);
   if (Number.isNaN(date.valueOf())) return "";
@@ -534,11 +544,11 @@ function renderBookCurrent(book, artwork) {
     : "progress not shared yet";
   const progressWidth = progress ? Math.max(0, Math.min(100, progress.percent)) * 6.1 : 0;
   const progressBar = progress
-    ? `<rect x="190" y="224" width="610" height="6" rx="3" fill="#4a3e35"/><rect x="190" y="224" width="${progressWidth.toFixed(1)}" height="6" rx="3" fill="#e9c995"/>`
-    : `<path d="M190 227H800" stroke="#756352" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 9" opacity=".7"/>`;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="246" viewBox="0 0 860 246" role="img" aria-label="Currently reading ${escapeDisplay(item.title)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+    ? `<rect x="190" y="230" width="610" height="6" rx="3" fill="#4a3e35"/><rect x="190" y="230" width="${progressWidth.toFixed(1)}" height="6" rx="3" fill="#e9c995"/>`
+    : `<path d="M190 233H800" stroke="#756352" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 9" opacity=".7"/>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="252" viewBox="0 0 860 252" role="img" aria-label="Currently reading ${escapeDisplay(item.title)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#18131f"/><stop offset="1" stop-color="#282019"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
-  <rect x="1" y="1" width="858" height="244" rx="24" fill="url(#bg)" stroke="#5b4937" stroke-width="2"/>
+  <rect x="1" y="1" width="858" height="250" rx="24" fill="url(#bg)" stroke="#5b4937" stroke-width="2"/>
   <circle cx="817" cy="16" r="140" fill="#e9c995" opacity=".055"/>
   ${cover({ dataUri: artwork, x: 24, y: 24, width: 132, height: 198, radius: 10 })}
   <g class="sans"><rect x="188" y="24" width="205" height="30" rx="15" fill="#e9c995" opacity=".12"/><circle cx="207" cy="39" r="4" fill="#e9c995"/><text x="220" y="44" fill="#e9c995" font-size="12" font-weight="800" letter-spacing="1.05">CURRENTLY READING</text>
@@ -552,17 +562,19 @@ function renderBookCurrent(book, artwork) {
 
 function renderBookTile(book, artwork, index) {
   const facts = [book.pages && `${book.pages}p`, book.readAt && `read ${monthYear(book.readAt)}`].filter(Boolean).join(" · ");
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="206" viewBox="0 0 860 206" role="img" aria-label="${escapeDisplay(book.title)} by ${escapeDisplay(book.author)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+  const reaction = book.reviewSummary || reviewFallback(book);
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="242" viewBox="0 0 860 242" role="img" aria-label="${escapeDisplay(book.title)} by ${escapeDisplay(book.author)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${theme.bg}"/><stop offset="1" stop-color="#251e2c"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
-  <rect x="1" y="1" width="858" height="204" rx="25" fill="url(#bg)" stroke="${theme.line}" stroke-width="2"/>
+  <rect x="1" y="1" width="858" height="240" rx="25" fill="url(#bg)" stroke="${theme.line}" stroke-width="2"/>
   <circle cx="820" cy="12" r="124" fill="#b9a4ff" opacity=".045"/>
-  ${cover({ dataUri: artwork, x: 24, y: 20, width: 110, height: 166, radius: 10 })}
+  ${cover({ dataUri: artwork, x: 24, y: 21, width: 130, height: 198, radius: 10 })}
   <g class="sans"><text x="164" y="38" fill="#e9c995" font-size="12" font-weight="800" letter-spacing="1.25">READ RECEIPT / 0${index + 1}</text>
   ${wrappedText({ x: 164, y: 51, width: 630, height: 63, value: book.title, size: 27, weight: 800, lineHeight: 1.04 })}
   <text x="164" y="136" fill="${theme.muted}" font-size="14.5" font-weight="700">${escapeDisplay(book.author)}</text>
   <text x="164" y="160" fill="#978a9f" font-size="12.5" font-weight="600">${escapeDisplay(facts)}</text>
   <text x="164" y="184" fill="${theme.yellow}" font-size="14" font-weight="800">${escapeDisplay(stars(book.rating))}</text>
-  <text x="810" y="184" fill="${theme.muted}" font-size="12.5" font-weight="600" text-anchor="end">${escapeDisplay(bookVerdict(book.rating))}</text></g>
+  <path d="M164 194H810" stroke="#746684" stroke-width="1" opacity=".24"/>
+  ${wrappedText({ x: 164, y: 198, width: 600, height: 34, value: reaction, size: 13.5, weight: 600, color: "#c8bdd3", lineHeight: 1.12, italic: true })}</g>
   </svg>`;
 }
 
@@ -665,6 +677,24 @@ async function readPrevious() {
     return JSON.parse(await fs.readFile(DATA_FILE, "utf8"));
   } catch {
     return {};
+  }
+}
+
+async function readReviewSummaryCache() {
+  try {
+    return JSON.parse(await fs.readFile(REVIEW_SUMMARY_CACHE_FILE, "utf8"));
+  } catch (error) {
+    if (error.code === "ENOENT") return {};
+    throw error;
+  }
+}
+
+async function readReviewVoice() {
+  try {
+    return await fs.readFile(REVIEW_VOICE_FILE, "utf8");
+  } catch (error) {
+    if (error.code === "ENOENT") return "";
+    throw error;
   }
 }
 
@@ -791,24 +821,20 @@ async function readDiscordSource(previous, lanyardPromise) {
     return { fresh: true, ...result };
   } catch (error) {
     if (!previous) throw error;
-    console.warn(`warning: Discord presence refresh failed; rendering an unavailable state (${error.message})`);
+    console.warn(`warning: Discord presence refresh failed; keeping the last good data (${error.message})`);
     return {
-      fresh: true,
-      data: {
-        ...previous,
-        status: "unknown",
-        devices: [],
-        activity: "presence temporarily unavailable",
-      },
+      fresh: false,
+      data: previous,
       avatarData: null,
       guildBadgeData: null,
     };
   }
 }
 
-async function writeGoodreadsAssets(data) {
-  const currentArt = await fetchDataUri(data.current?.cover);
-  const recentArt = await Promise.all(data.recent.map((book) => fetchDataUri(book.cover)));
+async function writeGoodreadsAssets(data, cachedArtwork = {}) {
+  const currentArt = (await fetchDataUri(data.current?.cover)) || cachedArtwork.current || null;
+  const downloadedRecentArt = await Promise.all(data.recent.map((book) => fetchDataUri(book.cover)));
+  const recentArt = downloadedRecentArt.map((artwork, index) => artwork || cachedArtwork.recent?.[index] || null);
   const writes = [fs.writeFile(path.join(OUTPUT_DIR, "goodreads-current.svg"), renderBookCurrent(data.current, currentArt))];
   data.recent.forEach((book, index) => writes.push(fs.writeFile(path.join(OUTPUT_DIR, `goodreads-${index + 1}.svg`), renderBookTile(book, recentArt[index], index))));
   await Promise.all(writes);
@@ -848,6 +874,15 @@ function instagramMarkup(data) {
   return `<a href="https://www.instagram.com/${escapeXml(data.username)}/"><img src="./assets/activity/instagram.svg?v=${assetVersion(data)}" width="100%" alt="Instagram profile @${escapeDisplay(data.username)}" /></a>`;
 }
 
+function signalState(updatedAt) {
+  const age = Date.now() - Date.parse(updatedAt);
+  return Number.isFinite(age) && age >= 0 && age < SIGNAL_FRESH_MS ? "fresh" : "idle";
+}
+
+function signalMarkup(state) {
+  return `<img src="./assets/signal-${state}.svg?v=3.6.0" height="14" alt="" />`;
+}
+
 function replaceSection(content, name, replacement) {
   const pattern = new RegExp(`(^[\\t ]*)<!-- ${name}:START -->[\\s\\S]*?<!-- ${name}:END -->`, "m");
   if (!pattern.test(content)) throw new Error(`README is missing the ${name} markers`);
@@ -864,6 +899,7 @@ async function updateReadme(data, updatedAt) {
   readme = replaceSection(readme, "APPLE-MUSIC-FEED", appleMusicMarkup(data.appleMusic));
   readme = replaceSection(readme, "DISCORD-FEED", discordMarkup(data.discord));
   readme = replaceSection(readme, "INSTAGRAM-FEED", instagramMarkup(data.instagram));
+  readme = replaceSection(readme, "PROFILE-SIGNAL-STATE", signalMarkup(signalState(updatedAt)));
   readme = replaceSection(readme, "PROFILE-LAST-UPDATED", `<relative-time datetime="${updatedAt}">a few seconds ago</relative-time>`);
   await fs.writeFile(README_FILE, readme);
 }
@@ -874,12 +910,25 @@ function dataChanged(previous, current) {
 }
 
 async function main() {
-  const previous = await readPrevious();
-  const [cachedAppleArtwork, cachedDiscordAvatar, cachedDiscordGuildBadge, generatedInstagramAvatar] = await Promise.all([
+  const [previous, reviewSummaryCache, reviewVoiceInstructions] = await Promise.all([
+    readPrevious(),
+    readReviewSummaryCache(),
+    readReviewVoice(),
+  ]);
+  const [
+    cachedAppleArtwork,
+    cachedDiscordAvatar,
+    cachedDiscordGuildBadge,
+    generatedInstagramAvatar,
+    cachedGoodreadsCurrentArtwork,
+    ...cachedGoodreadsRecentArtwork
+  ] = await Promise.all([
     readEmbeddedImage("apple-music.svg"),
     readEmbeddedImage("discord.svg"),
     readEmbeddedImage("discord.svg", 1),
     readEmbeddedImage("instagram.svg"),
+    readEmbeddedImage("goodreads-current.svg"),
+    ...Array.from({ length: 4 }, (_value, index) => readEmbeddedImage(`goodreads-${index + 1}.svg`)),
   ]);
   const generatedInstagramBytes = generatedInstagramAvatar
     ? Buffer.from(generatedInstagramAvatar.split(",", 2)[1] || "", "base64").length
@@ -902,12 +951,34 @@ async function main() {
     discord: discordResult.data,
     instagram: instagramResult.data,
   };
+  const reviewSummaryPlan = prepareReviewSummaryCandidates(current.goodreads?.recent || [], {
+    cache: reviewSummaryCache,
+    voiceInstructions: reviewVoiceInstructions,
+    fallback: reviewFallback,
+  });
+  current.goodreads = {
+    ...current.goodreads,
+    recent: reviewSummaryPlan.books,
+  };
+  const cachedGoodreadsArtwork = {
+    current: previous.goodreads?.current?.bookId === current.goodreads?.current?.bookId
+      ? cachedGoodreadsCurrentArtwork
+      : null,
+    recent: current.goodreads.recent.map((book, index) => (
+      previous.goodreads?.recent?.[index]?.bookId === book.bookId
+        ? cachedGoodreadsRecentArtwork[index]
+        : null
+    )),
+  };
+  for (const item of reviewSummaryPlan.warnings) {
+    console.warn(`warning: ${item.code}${item.title ? ` (${item.title})` : ""}: ${item.message}`);
+  }
   const updatedAt = dataChanged(previous, current) || !previous.updatedAt ? new Date().toISOString() : previous.updatedAt;
 
   await fs.mkdir(OUTPUT_DIR, { recursive: true });
   await fs.mkdir(path.dirname(DATA_FILE), { recursive: true });
   const writes = [];
-  if (goodreadsResult.fresh) writes.push(writeGoodreadsAssets(current.goodreads));
+  writes.push(writeGoodreadsAssets(current.goodreads, cachedGoodreadsArtwork));
   if (letterboxdResult.fresh) writes.push(writeLetterboxdAssets(current.letterboxd));
   if (appleMusicResult.fresh) {
     const sameTrack = normaliseMatchText(previous.appleMusic?.title) === normaliseMatchText(current.appleMusic?.title)

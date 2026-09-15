@@ -8,7 +8,9 @@
   },
   "scripts": {
     "update-profile": "node scripts/update-profile.js",
-    "check": "node --check scripts/update-profile.js && node --check scripts/music-bridge-macos.js",
+    "check": "node --check scripts/update-profile.js && node --check scripts/music-bridge-macos.js && node --check scripts/review-summary.js && node --check scripts/prepare-review-summaries.js && node --check scripts/apply-review-summaries.js && node --test scripts/review-summary.test.js",
+    "reviews:prepare": "node scripts/prepare-review-summaries.js",
+    "reviews:apply": "node scripts/apply-review-summaries.js",
     "music:preview": "node scripts/music-bridge-macos.js --preview",
     "music:dispatch": "node scripts/music-bridge-macos.js --dispatch",
     "music:install": "zsh scripts/install-music-bridge-macos.sh",
