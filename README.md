@@ -15,7 +15,7 @@
   <img src="./assets/divider.svg?v=3.6.0" width="320" alt="" />
 </div>
 
-<img src="./assets/stalk.svg?v=3.6.0" width="100%" alt="the legally-approved stalking zone" />
+<img src="./assets/stalk.svg?v=3.7.0" width="100%" alt="the legally-approved stalking zone" />
 
 <div align="center">
   <kbd>
@@ -67,12 +67,13 @@
 
 <!-- APPLE-MUSIC-FEED:START -->
 <a href="https://music.apple.com/us/album/be-the-one/1228739599?i=1228739603&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=13af7f2c2d" width="100%" alt="recently played Be the One by Dua Lipa" /></a>
+<div align="center"><sub>a little behind the beat. Apple Music updates arrive in batches , not live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 
 <br/>
 
 <!-- DISCORD-FEED:START -->
-<a href="https://discord.com/users/690729789702537336"><img src="./assets/activity/discord.svg?v=f9c1a7ae8a" width="100%" alt="Discord profile @hnitch , offline" /></a>
+<a href="https://discord.com/users/690729789702537336"><img src="https://lanyard.cnrad.dev/api/690729789702537336?theme=dark&amp;bg=171427&amp;borderRadius=25px&amp;showDisplayName=true&amp;hideTimestamp=true&amp;idleMessage=no%20public%20activity%20right%20now" width="100%" alt="live Discord presence for @hnitch" /></a>
 <!-- DISCORD-FEED:END -->
 
 <br/>

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="880" height="190" viewBox="0 0 880 190" role="img" aria-labelledby="title desc" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <title id="title">stalk me , but keep it legal</title>
-  <desc id="desc">five approved public trails across books , films , music , presence , and photos</desc>
+  <desc id="desc">four approved public trails across books , films , music , and presence</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop stop-color="#171427"/><stop offset=".58" stop-color="#241a36"/><stop offset="1" stop-color="#132932"/>
@@ -41,12 +41,11 @@
       <rect x="268" y="143" width="68" height="25" rx="12.5" fill="#40bcf4" opacity=".1"/><text x="302" y="160" fill="#8fcfee">FILMS</text>
       <rect x="344" y="143" width="72" height="25" rx="12.5" fill="#fa243c" opacity=".1"/><text x="380" y="160" fill="#ff8293">MUSIC</text>
       <rect x="424" y="143" width="90" height="25" rx="12.5" fill="#5865f2" opacity=".1"/><text x="469" y="160" fill="#9ba3ff">PRESENCE</text>
-      <rect x="522" y="143" width="82" height="25" rx="12.5" fill="#ff9f9a" opacity=".1"/><text x="563" y="160" fill="#ffb2ae">PHOTOS</text>
     </g>
 
     <path d="M690 38v114" stroke="#b9a4ff" stroke-opacity=".2" stroke-width="2"/>
-    <text x="783" y="88" fill="#fffaf5" font-size="48" font-weight="800" text-anchor="middle">05</text>
+    <text x="783" y="88" fill="#fffaf5" font-size="48" font-weight="800" text-anchor="middle">04</text>
     <text x="783" y="111" fill="#a99db7" font-size="10.5" font-weight="800" letter-spacing="1.6" text-anchor="middle">PUBLIC TRAILS</text>
-    <g transform="translate(745 137)"><circle cx="0" cy="0" r="4" fill="#e9c995"/><circle cx="19" cy="0" r="4" fill="#40bcf4"/><circle cx="38" cy="0" r="4" fill="#fa243c"/><circle cx="57" cy="0" r="4" fill="#5865f2"/><circle cx="76" cy="0" r="4" fill="#ff9f9a"/></g>
+    <g transform="translate(754 137)"><circle cx="0" cy="0" r="4" fill="#e9c995"/><circle cx="19" cy="0" r="4" fill="#40bcf4"/><circle cx="38" cy="0" r="4" fill="#fa243c"/><circle cx="57" cy="0" r="4" fill="#5865f2"/></g>
   </g>
 </svg>
