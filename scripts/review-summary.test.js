@@ -68,6 +68,13 @@ test("sanitises structured output that fits the card limits", () => {
   assert.doesNotMatch(summary, /https|\*\*/u);
 });
 
+test("normalises commas to hn's spaced-comma style", () => {
+  assert.equal(
+    sanitiseReviewSummary("the premise worked,but the ending absolutely did not"),
+    "the premise worked , but the ending absolutely did not",
+  );
+});
+
 test("rejects over-limit output instead of displaying a sentence fragment", () => {
   const summary = sanitiseReviewSummary(
     "Loved the weird little ending and its nerve plus several extra words",

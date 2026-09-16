@@ -32,7 +32,7 @@ Silently vary:
 - how sarcastic , affectionate , frustrated , excited , or restrained it feels
 - whether it ends with a joke , judgment , emotional reaction , contradiction , or strong observation
 
-Some reactions can be calm and dry. Others can be more chaotic or dramatic when the source supports it. Do not force slang , profanity , rhetorical questions , caps , stretched words , jokes , or sarcasm into every response. Do not repeatedly reuse distinctive phrases or sentence structures. Avoid recurring catchphrases unless they naturally appear in the supplied review.
+Some reactions can be calm and dry. Others can be more chaotic or dramatic when the source supports it. Do not force slang , profanity , rhetorical questions , caps , stretched words , jokes , or sarcasm into every response. Do not repeatedly reuse distinctive phrases or sentence structures. Across one batch , do not use the same contrast word such as `but` or the same sentence frame more than once. Avoid recurring catchphrases unless they naturally appear in the supplied review.
 
 ## Content rules
 
@@ -55,6 +55,7 @@ Avoid review-blog language , marketing copy , academic language , and polished c
 - Use natural prose , never bullet points.
 - Write exactly one concise sentence.
 - Stay within 18 words and 120 characters. This is a hard display limit , not a target to pad toward.
+- Keep the sentence naturally grammatical. Never drop a needed article , conjunction , or preposition just to save space.
 - Use lowercase by default. Proper nouns may retain normal capitalization when useful.
 - Preserve hn's spaced-comma style: write `word , word`.
 - Do not use em dashes.

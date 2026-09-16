@@ -187,6 +187,7 @@ export function sanitiseReviewSummary(value, options = {}) {
     .replace(/^[\s>•-]+/u, "")
     .replace(/[\u0000-\u001f\u007f-\u009f\u200b-\u200f\u202a-\u202e\u2060\u2066-\u2069\ufeff]/gu, " ")
     .replace(/\s+/gu, " ")
+    .replace(/\s*,\s*/gu, " , ")
     .trim();
 
   const pairedQuote = text.match(/^(?:"([\s\S]*)"|'([\s\S]*)')$/u);
