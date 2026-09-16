@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-idle.svg?v=3.6.0" height="14" alt="" />
+    <img src="./assets/signal-fresh.svg?v=3.6.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-16T05:39:32.083Z">a few seconds ago</relative-time>
+    <relative-time datetime="2026-09-16T09:50:58.203Z">a few seconds ago</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -38,11 +38,11 @@
 
 <a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=6a70abc737" width="100%" alt="currently reading (Mostly) Human Resources (Entity Case Files , #1)" /></a>
 
-<a href="https://www.goodreads.com/review/show/8506583969?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=4b7bec1422" width="100%" alt="Read: The Caretaker" /></a>
+<a href="https://www.goodreads.com/review/show/8506583969?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=b53b7907af" width="100%" alt="Read: The Caretaker" /></a>
 
 <a href="https://www.goodreads.com/review/show/8748356322?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=b4cab10e39" width="100%" alt="Read: The Demon Star" /></a>
 
-<a href="https://www.goodreads.com/review/show/8669301761?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=8c191dad89" width="100%" alt="Read: To Drown a Witch" /></a>
+<a href="https://www.goodreads.com/review/show/8669301761?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=6d28fcbcc3" width="100%" alt="Read: To Drown a Witch" /></a>
 
 <a href="https://www.goodreads.com/review/show/8829778522?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=05d01d5ed4" width="100%" alt="Read: Vengeful (Villains , #2)" /></a>
 <!-- GOODREADS-FEED:END -->

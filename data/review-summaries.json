@@ -2,13 +2,13 @@
   "version": 1,
   "entries": {
     "goodreads:235993046": {
-      "fingerprint": "1f1efecf44003962ba18ca336b0a1728a917a495031eb959ff6999fdddb1d6d9",
+      "fingerprint": "b4652432ac8837b15981864a2f08615b1582ed322f0d9f2a54f0440f22802e6e",
       "reviewHash": "fb59b7b7b598bb3040f1b05600524baf62f98cba2d57d3da89de1f4f53abde2e",
       "model": "gpt-oss:20b",
-      "summary": "i binged it , loved the creepy vibe , but maddeningly left many questions hanging",
+      "summary": "i binge-read loved the tension but left hanging questions made it a bittersweet thrill",
       "title": "The Caretaker",
       "link": "https://www.goodreads.com/review/show/8506583969",
-      "updatedAt": "2026-09-16T04:35:19.078Z"
+      "updatedAt": "2026-09-16T09:50:51.769Z"
     },
     "goodreads:256240967": {
       "fingerprint": "7d4a234a7f3b5154b59112d252d1733f91bad2c34676254e67607d817f71bdff",
@@ -20,13 +20,13 @@
       "updatedAt": "2026-09-16T05:39:26.320Z"
     },
     "goodreads:257428909": {
-      "fingerprint": "983bb97cc20fedd14ff45ee6dc78ab9ba985ac1af5331959ff424b2aa87a9b03",
+      "fingerprint": "559853b0a4390be137c85fa6c564d51c93f94b88bb4533f472f393dce7ea4f11",
       "reviewHash": "92f5442b8b2dced59594cd73d077b0c1972fb4d7010e891a262ad0ea6c9382fb",
       "model": "gpt-oss:20b",
-      "summary": "i figured out the witch fast , then the plot stalled and left me craving more",
+      "summary": "i figured out the witch instantly then the plot fell apart-confusing but still curious",
       "title": "To Drown a Witch",
       "link": "https://www.goodreads.com/review/show/8669301761",
-      "updatedAt": "2026-09-16T04:35:19.090Z"
+      "updatedAt": "2026-09-16T09:50:51.779Z"
     }
   }
 }
