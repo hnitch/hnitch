@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-16T18:12:36.348Z">a few seconds ago</relative-time>
+    <relative-time datetime="2026-09-16T18:47:19.893Z">a few seconds ago</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -42,7 +42,7 @@
 
 <a href="https://www.goodreads.com/review/show/8506583969?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=b53b7907af" width="100%" alt="Read: The Caretaker" /></a>
 
-<a href="https://www.goodreads.com/review/show/8748356322?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=185518e3cc" width="100%" alt="Read: The Demon Star" /></a>
+<a href="https://www.goodreads.com/review/show/8748356322?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=b4cab10e39" width="100%" alt="Read: The Demon Star" /></a>
 
 <a href="https://www.goodreads.com/review/show/8669301761?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=6d28fcbcc3" width="100%" alt="Read: To Drown a Witch" /></a>
 <!-- GOODREADS-FEED:END -->
