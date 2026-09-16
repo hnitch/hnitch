@@ -27,6 +27,15 @@
       "title": "To Drown a Witch",
       "link": "https://www.goodreads.com/review/show/8669301761",
       "updatedAt": "2026-09-16T09:50:51.779Z"
+    },
+    "goodreads:258342692": {
+      "fingerprint": "0331935aeacf3da29d5d8a9656c7a3760e2b8cab908f4f095345a2dd60949e89",
+      "reviewHash": "3e99a188f01ddb61c48ee12104932ed74d80b313531288f95394260ae7120efa",
+      "model": "gpt-oss:20b",
+      "summary": "i was blown away by the spooky pink aesthetic and genre‑mixing mystery‑fantasy romance",
+      "title": "(Mostly) Human Resources (Entity Case Files, #1)",
+      "link": "https://www.goodreads.com/review/show/8806043567",
+      "updatedAt": "2026-09-16T14:50:16.342Z"
     }
   }
 }
