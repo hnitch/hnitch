@@ -16,6 +16,14 @@ const DEFAULT_MODEL = "gpt-oss:20b";
 const DEFAULT_BASE_URL = "http://127.0.0.1:11434";
 const DEFAULT_TIMEOUT_MS = 10 * 60_000;
 
+export function normaliseLocalModelName(value = DEFAULT_MODEL) {
+  const model = String(value || DEFAULT_MODEL).trim();
+  if (!/^[a-z0-9][a-z0-9._:/-]{0,127}$/iu.test(model)) {
+    throw new Error("The local model name contains unsupported characters");
+  }
+  return model;
+}
+
 async function readJson(filename, fallback) {
   try {
     return JSON.parse(await fs.readFile(filename, "utf8"));
@@ -63,12 +71,13 @@ export async function callLocalReviewModel({
   fetchImpl = fetch,
 } = {}) {
   const safeBaseUrl = normaliseLocalModelUrl(baseUrl, allowRemote);
+  const safeModel = normaliseLocalModelName(model);
   const response = await fetchImpl(`${safeBaseUrl}/api/chat`, {
     method: "POST",
     headers: { "content-type": "application/json" },
     signal: AbortSignal.timeout(timeoutMs),
     body: JSON.stringify({
-      model,
+      model: safeModel,
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: prompt },
@@ -92,7 +101,7 @@ export async function callLocalReviewModel({
 }
 
 export async function main() {
-  const model = String(process.env.GOODREADS_LOCAL_MODEL || DEFAULT_MODEL).trim();
+  const model = normaliseLocalModelName(process.env.GOODREADS_LOCAL_MODEL || DEFAULT_MODEL);
   const baseUrl = process.env.GOODREADS_LOCAL_MODEL_URL || DEFAULT_BASE_URL;
   const allowRemote = process.env.GOODREADS_ALLOW_REMOTE_MODEL === "true";
   const [activity, cache, voiceInstructions] = await Promise.all([

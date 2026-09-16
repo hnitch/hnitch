@@ -40,6 +40,8 @@ The GitHub runner makes an outbound connection to GitHub and calls Ollama over l
 6. Merge the `3.0` branch , then manually run **write Goodreads summaries locally** once.
 7. After that run is verified , add the schedule trigger. Keeping the first run manual prevents silent queueing before the runner is ready.
 
-The runner must use a dedicated , non-admin macOS account and should not contain unrelated secrets. This workflow has no pull-request trigger , so untrusted fork code cannot start it.
+The runner must use a dedicated , non-admin macOS account and should not contain unrelated secrets. The local workflow has no pull-request trigger and also refuses to run unless all four trust checks match: the canonical `hnitch/hnitch` repository , the `main` branch , the `hnitch` actor , and the `hnitch` triggering actor. Public forks cannot satisfy those checks. Its two GitHub-owned Actions are pinned to immutable commit SHAs , dependency lifecycle scripts are disabled , and the Ollama model choice is constrained to the two reviewed local models.
+
+The repository-level Actions policy should remain limited to GitHub-owned Actions with SHA pinning required. Default workflow token access should remain read-only; this workflow requests `contents: write` explicitly because its final step commits the validated cache and regenerated cards. The `local-ai` environment accepts deployments from protected branches only. `main` blocks force-pushes and deletion while allowing the profile refresh bots to make ordinary commits.
 
 `GOODREADS_LOCAL_MODEL` records the exact Ollama model identifier in each fingerprint , so changing the workflow model automatically queues fresh summaries.

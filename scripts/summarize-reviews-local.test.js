@@ -4,8 +4,18 @@ import test from "node:test";
 import {
   callLocalReviewModel,
   extractOllamaContent,
+  normaliseLocalModelName,
   normaliseLocalModelUrl,
 } from "./summarize-reviews-local.js";
+
+test("accepts normal Ollama model identifiers and rejects control syntax", () => {
+  assert.equal(normaliseLocalModelName("gpt-oss:20b"), "gpt-oss:20b");
+  assert.equal(normaliseLocalModelName(" qwen3:8b "), "qwen3:8b");
+  assert.throws(
+    () => normaliseLocalModelName("gpt-oss:20b\nrun something else"),
+    /unsupported characters/u,
+  );
+});
 
 test("keeps the default model endpoint on loopback", () => {
   assert.equal(normaliseLocalModelUrl(), "http://127.0.0.1:11434");
