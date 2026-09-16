@@ -2,31 +2,31 @@
   "version": 1,
   "entries": {
     "goodreads:235993046": {
-      "fingerprint": "65d3c3a5f2908999063ae3118b648b45349e5dc63b37c4af1ec568a194b9b0a7",
+      "fingerprint": "21f9a092daaf95bd273677f33d7c8ddee6a9a386a7245e4bd6d499b9c907e520",
       "reviewHash": "fb59b7b7b598bb3040f1b05600524baf62f98cba2d57d3da89de1f4f53abde2e",
-      "model": "auto",
-      "summary": "macy ignored every red flag , and i still inhaled the entire book",
+      "model": "gpt-oss:20b",
+      "summary": "macy kept failing simple tasks, driving me insane while her inner survival voice screamed to escape",
       "title": "The Caretaker",
       "link": "https://www.goodreads.com/review/show/8506583969",
-      "updatedAt": "2026-09-14T13:19:25.215Z"
+      "updatedAt": "2026-09-16T04:11:14.490Z"
     },
     "goodreads:256240967": {
-      "fingerprint": "d3ed5c1a1c71995ec1dedf1fb90d20477aafc89531a809dab529995242eb8039",
+      "fingerprint": "c117556d2607b4487fe0c59c7b3db1f077b0a887c6b878393d086f758da43a32",
       "reviewHash": "c351b6847ec13bfaddc72aae860d252f5c9b2cce98154936f694fc4680e554bc",
-      "model": "auto",
-      "summary": "demons were crawling into people's ears , and somehow i was still bored",
+      "model": "gpt-oss:20b",
+      "summary": "the demon star drowned me in world lore, leaving the tense horror feeling oddly tame at the end",
       "title": "The Demon Star",
       "link": "https://www.goodreads.com/review/show/8748356322",
-      "updatedAt": "2026-09-14T13:19:25.219Z"
+      "updatedAt": "2026-09-16T04:11:14.502Z"
     },
     "goodreads:257428909": {
-      "fingerprint": "39d3e45c6fee39c927b38c0390c5987f44e8dc9bbdbbb94d1a9daa8ba0231e93",
+      "fingerprint": "920c86168929c9dc88c2b763a76cf3c580e5bce4cff39912bcae4d63ccb243ee",
       "reviewHash": "92f5442b8b2dced59594cd73d077b0c1972fb4d7010e891a262ad0ea6c9382fb",
-      "model": "auto",
-      "summary": "i guessed the witch immediately , then waited an entire book for everyone else to catch up",
+      "model": "gpt-oss:20b",
+      "summary": "i figured out the witch yet the magic stayed vague and the romance felt more toxic than tender",
       "title": "To Drown a Witch",
       "link": "https://www.goodreads.com/review/show/8669301761",
-      "updatedAt": "2026-09-14T13:19:25.219Z"
+      "updatedAt": "2026-09-16T04:11:14.503Z"
     }
   }
 }

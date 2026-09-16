@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-idle.svg?v=3.6.0" height="14" alt="" />
+    <img src="./assets/signal-fresh.svg?v=3.6.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-14T13:23:09.157Z">a few seconds ago</relative-time>
+    <relative-time datetime="2026-09-16T04:11:21.899Z">a few seconds ago</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -38,11 +38,11 @@
 
 <a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=6a70abc737" width="100%" alt="currently reading (Mostly) Human Resources (Entity Case Files , #1)" /></a>
 
-<a href="https://www.goodreads.com/review/show/8506583969?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=1178bd3d0a" width="100%" alt="Read: The Caretaker" /></a>
+<a href="https://www.goodreads.com/review/show/8506583969?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=42f70f4a14" width="100%" alt="Read: The Caretaker" /></a>
 
-<a href="https://www.goodreads.com/review/show/8748356322?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=4cc242bf02" width="100%" alt="Read: The Demon Star" /></a>
+<a href="https://www.goodreads.com/review/show/8748356322?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=5eb8d35224" width="100%" alt="Read: The Demon Star" /></a>
 
-<a href="https://www.goodreads.com/review/show/8669301761?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=f4599a24f3" width="100%" alt="Read: To Drown a Witch" /></a>
+<a href="https://www.goodreads.com/review/show/8669301761?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=b960f95312" width="100%" alt="Read: To Drown a Witch" /></a>
 
 <a href="https://www.goodreads.com/review/show/8829778522?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=05d01d5ed4" width="100%" alt="Read: Vengeful (Villains , #2)" /></a>
 <!-- GOODREADS-FEED:END -->
@@ -66,7 +66,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/you-need-to-calm-down/1468058165?i=1468058704&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=b63146c190" width="100%" alt="recently played You Need To Calm Down by Taylor Swift" /></a>
+<a href="https://music.apple.com/us/album/be-the-one/1228739599?i=1228739603&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=13af7f2c2d" width="100%" alt="recently played Be the One by Dua Lipa" /></a>
 <!-- APPLE-MUSIC-FEED:END -->
 
 <br/>
