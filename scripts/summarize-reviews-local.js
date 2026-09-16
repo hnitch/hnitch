@@ -15,6 +15,7 @@ const VOICE_FILE = path.join(ROOT, ".github", "prompts", "goodreads-voice.md");
 const DEFAULT_MODEL = "gpt-oss:20b";
 const DEFAULT_BASE_URL = "http://127.0.0.1:11434";
 const DEFAULT_TIMEOUT_MS = 10 * 60_000;
+const DEFAULT_MAX_OUTPUT_TOKENS = 1_600;
 
 export function normaliseLocalModelName(value = DEFAULT_MODEL) {
   const model = String(value || DEFAULT_MODEL).trim();
@@ -88,7 +89,10 @@ export async function callLocalReviewModel({
       options: {
         temperature: 0.35,
         num_ctx: 8192,
-        num_predict: 700,
+        // gpt-oss uses this budget for both internal reasoning and the final
+        // structured response. The full voice guide can exhaust a 700-token
+        // budget before content is emitted.
+        num_predict: DEFAULT_MAX_OUTPUT_TOKENS,
       },
     }),
   });

@@ -60,5 +60,6 @@ test("sends a non-streaming JSON request to the selected local model", async () 
   assert.equal(request.body.model, "gpt-oss:20b");
   assert.equal(request.body.stream, false);
   assert.equal(request.body.format, "json");
+  assert.equal(request.body.options.num_predict, 1600);
   assert.deepEqual(request.body.messages.map(({ role }) => role), ["system", "user"]);
 });
