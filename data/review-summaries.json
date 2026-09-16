@@ -2,31 +2,31 @@
   "version": 1,
   "entries": {
     "goodreads:235993046": {
-      "fingerprint": "21f9a092daaf95bd273677f33d7c8ddee6a9a386a7245e4bd6d499b9c907e520",
+      "fingerprint": "77b00d5bd565edeeba653569cbb4239a71127cc0cd9be491dabcdb5d1e3cbc8b",
       "reviewHash": "fb59b7b7b598bb3040f1b05600524baf62f98cba2d57d3da89de1f4f53abde2e",
       "model": "gpt-oss:20b",
-      "summary": "macy kept failing simple tasks, driving me insane while her inner survival voice screamed to escape",
+      "summary": "i binged it loved tension, but endless red flags and unanswered mysteries left me craving a sequel",
       "title": "The Caretaker",
       "link": "https://www.goodreads.com/review/show/8506583969",
-      "updatedAt": "2026-09-16T04:11:14.490Z"
+      "updatedAt": "2026-09-16T04:29:50.469Z"
     },
     "goodreads:256240967": {
-      "fingerprint": "c117556d2607b4487fe0c59c7b3db1f077b0a887c6b878393d086f758da43a32",
+      "fingerprint": "9a10e029e06b5237065033c4b38a1efc0a90abc1fdee2b14e8311e64d4830cab",
       "reviewHash": "c351b6847ec13bfaddc72aae860d252f5c9b2cce98154936f694fc4680e554bc",
       "model": "gpt-oss:20b",
-      "summary": "the demon star drowned me in world lore, leaving the tense horror feeling oddly tame at the end",
+      "summary": "the premise was killer, but info overload killed my hype, leaving a bland, anticlimactic finish",
       "title": "The Demon Star",
       "link": "https://www.goodreads.com/review/show/8748356322",
-      "updatedAt": "2026-09-16T04:11:14.502Z"
+      "updatedAt": "2026-09-16T04:29:50.482Z"
     },
     "goodreads:257428909": {
-      "fingerprint": "920c86168929c9dc88c2b763a76cf3c580e5bce4cff39912bcae4d63ccb243ee",
+      "fingerprint": "3bd45fdfea0ff064ef1f7a71b4df6fcc49217b238a22248ec10b46205c85700e",
       "reviewHash": "92f5442b8b2dced59594cd73d077b0c1972fb4d7010e891a262ad0ea6c9382fb",
       "model": "gpt-oss:20b",
-      "summary": "i figured out the witch yet the magic stayed vague and the romance felt more toxic than tender",
+      "summary": "i figured out the witch fast, but the shaky ending and weak worldbuilding left me wanting more",
       "title": "To Drown a Witch",
       "link": "https://www.goodreads.com/review/show/8669301761",
-      "updatedAt": "2026-09-16T04:11:14.503Z"
+      "updatedAt": "2026-09-16T04:29:50.482Z"
     }
   }
 }
