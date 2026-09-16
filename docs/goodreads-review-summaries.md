@@ -6,7 +6,7 @@ The profile renderer supports short , review-specific reactions without being ti
 
 - The public cards use the validated cache in `data/review-summaries.json`.
 - `npm run update-profile` keeps a matching cached reaction visible while Goodreads data refreshes.
-- `.github/workflows/summarize-goodreads.yml` is manual-only until the Mac Mini passes its first live run.
+- `.github/workflows/summarize-goodreads.yml` checks hourly now that the Mac Mini has passed its live runs. Manual dispatch remains available for testing or prompt changes.
 - The workflow targets only a self-hosted `macOS` / `ARM64` runner carrying the custom `hnitch-ai` label.
 - The model request goes to Ollama at `127.0.0.1:11434`. It never calls OpenAI , GitHub Copilot , or another hosted model provider.
 - A book with no written Goodreads review gets the neutral fallback `no written statement was left at the scene`.
@@ -37,10 +37,10 @@ The GitHub runner makes an outbound connection to GitHub and calls Ollama over l
 3. In the GitHub repository , open **Settings → Actions → Runners → New self-hosted runner** and follow the macOS ARM64 commands.
 4. Add the custom runner label `hnitch-ai` and install the runner as a background service.
 5. Prevent the Mac Mini from sleeping while connected to power. The display may sleep.
-6. Merge the `3.0` branch , then manually run **write Goodreads summaries locally** once.
-7. After that run is verified , add the schedule trigger. Keeping the first run manual prevents silent queueing before the runner is ready.
+6. Manually run **write Goodreads summaries locally** once and verify the output before enabling its schedule.
+7. The verified workflow now checks at minute 17 of every hour. With no pending review it exits before contacting Ollama.
 
-The runner must use a dedicated , non-admin macOS account and should not contain unrelated secrets. The local workflow has no pull-request trigger and also refuses to run unless all four trust checks match: the canonical `hnitch/hnitch` repository , the `main` branch , the `hnitch` actor , and the `hnitch` triggering actor. Public forks cannot satisfy those checks. Its two GitHub-owned Actions are pinned to immutable commit SHAs , dependency lifecycle scripts are disabled , and the Ollama model choice is constrained to the two reviewed local models.
+The runner must use a dedicated , non-admin macOS account and should not contain unrelated secrets. The local workflow has no pull-request trigger. Every run requires the canonical `hnitch/hnitch` repository and `main` branch; manual dispatches additionally require the `hnitch` actor and triggering actor. Public forks cannot satisfy those checks. Its two GitHub-owned Actions are pinned to immutable commit SHAs , dependency lifecycle scripts are disabled , and the Ollama model choice is constrained to the two reviewed local models.
 
 The repository-level Actions policy should remain limited to GitHub-owned Actions with SHA pinning required. Default workflow token access should remain read-only; this workflow requests `contents: write` explicitly because its final step commits the validated cache and regenerated cards. The `local-ai` environment accepts deployments from protected branches only. `main` blocks force-pushes and deletion while allowing the profile refresh bots to make ordinary commits.
 
