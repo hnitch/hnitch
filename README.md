@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-16T04:42:49.535Z">a few seconds ago</relative-time>
+    <relative-time datetime="2026-09-16T05:39:32.083Z">a few seconds ago</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -40,7 +40,7 @@
 
 <a href="https://www.goodreads.com/review/show/8506583969?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=4b7bec1422" width="100%" alt="Read: The Caretaker" /></a>
 
-<a href="https://www.goodreads.com/review/show/8748356322?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=47c95d1586" width="100%" alt="Read: The Demon Star" /></a>
+<a href="https://www.goodreads.com/review/show/8748356322?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=b4cab10e39" width="100%" alt="Read: The Demon Star" /></a>
 
 <a href="https://www.goodreads.com/review/show/8669301761?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=8c191dad89" width="100%" alt="Read: To Drown a Witch" /></a>
 
