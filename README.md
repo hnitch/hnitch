@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-16T04:29:56.845Z">a few seconds ago</relative-time>
+    <relative-time datetime="2026-09-16T04:35:24.835Z">a few seconds ago</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -38,11 +38,11 @@
 
 <a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=6a70abc737" width="100%" alt="currently reading (Mostly) Human Resources (Entity Case Files , #1)" /></a>
 
-<a href="https://www.goodreads.com/review/show/8506583969?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=f26f1d8eb0" width="100%" alt="Read: The Caretaker" /></a>
+<a href="https://www.goodreads.com/review/show/8506583969?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=528c984392" width="100%" alt="Read: The Caretaker" /></a>
 
-<a href="https://www.goodreads.com/review/show/8748356322?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=e0448de763" width="100%" alt="Read: The Demon Star" /></a>
+<a href="https://www.goodreads.com/review/show/8748356322?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=b7b607cd78" width="100%" alt="Read: The Demon Star" /></a>
 
-<a href="https://www.goodreads.com/review/show/8669301761?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=cf9b89c963" width="100%" alt="Read: To Drown a Witch" /></a>
+<a href="https://www.goodreads.com/review/show/8669301761?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=3b08190e04" width="100%" alt="Read: To Drown a Witch" /></a>
 
 <a href="https://www.goodreads.com/review/show/8829778522?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=05d01d5ed4" width="100%" alt="Read: Vengeful (Villains , #2)" /></a>
 <!-- GOODREADS-FEED:END -->

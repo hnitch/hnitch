@@ -2,31 +2,31 @@
   "version": 1,
   "entries": {
     "goodreads:235993046": {
-      "fingerprint": "77b00d5bd565edeeba653569cbb4239a71127cc0cd9be491dabcdb5d1e3cbc8b",
+      "fingerprint": "1f1efecf44003962ba18ca336b0a1728a917a495031eb959ff6999fdddb1d6d9",
       "reviewHash": "fb59b7b7b598bb3040f1b05600524baf62f98cba2d57d3da89de1f4f53abde2e",
       "model": "gpt-oss:20b",
-      "summary": "i binged it loved tension, but endless red flags and unanswered mysteries left me craving a sequel",
+      "summary": "i binged it , loved the creepy vibe , but maddeningly left many questions hanging",
       "title": "The Caretaker",
       "link": "https://www.goodreads.com/review/show/8506583969",
-      "updatedAt": "2026-09-16T04:29:50.469Z"
+      "updatedAt": "2026-09-16T04:35:19.078Z"
     },
     "goodreads:256240967": {
-      "fingerprint": "9a10e029e06b5237065033c4b38a1efc0a90abc1fdee2b14e8311e64d4830cab",
+      "fingerprint": "9eab067fd639e879d5edfa7a4c745dd6346ae4848354ce947a5959647e7c2946",
       "reviewHash": "c351b6847ec13bfaddc72aae860d252f5c9b2cce98154936f694fc4680e554bc",
       "model": "gpt-oss:20b",
-      "summary": "the premise was killer, but info overload killed my hype, leaving a bland, anticlimactic finish",
+      "summary": "i was hyped by the concept , but endless info dumps killed the tension",
       "title": "The Demon Star",
       "link": "https://www.goodreads.com/review/show/8748356322",
-      "updatedAt": "2026-09-16T04:29:50.482Z"
+      "updatedAt": "2026-09-16T04:35:19.089Z"
     },
     "goodreads:257428909": {
-      "fingerprint": "3bd45fdfea0ff064ef1f7a71b4df6fcc49217b238a22248ec10b46205c85700e",
+      "fingerprint": "983bb97cc20fedd14ff45ee6dc78ab9ba985ac1af5331959ff424b2aa87a9b03",
       "reviewHash": "92f5442b8b2dced59594cd73d077b0c1972fb4d7010e891a262ad0ea6c9382fb",
       "model": "gpt-oss:20b",
-      "summary": "i figured out the witch fast, but the shaky ending and weak worldbuilding left me wanting more",
+      "summary": "i figured out the witch fast , then the plot stalled and left me craving more",
       "title": "To Drown a Witch",
       "link": "https://www.goodreads.com/review/show/8669301761",
-      "updatedAt": "2026-09-16T04:29:50.482Z"
+      "updatedAt": "2026-09-16T04:35:19.090Z"
     }
   }
 }
