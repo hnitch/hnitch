@@ -1,23 +1,31 @@
-name: prepare Goodreads review summaries
+name: write Goodreads summaries locally
 
-# This workflow deliberately does not call a hosted AI provider. It only
-# validates the pipeline and packages pending review prompts for inspection.
-# A local Mac Mini runner can be connected later without changing the profile
-# card renderer or the cached-summary format.
+# The job runs only on hn's private Mac Mini runner. Ollama stays bound to
+# localhost , so no hosted model account or remotely exposed inference API is
+# involved. Keep this manual until the runner and model have passed a live test.
 on:
   workflow_dispatch:
+    inputs:
+      model:
+        description: Local Ollama model
+        required: true
+        default: gpt-oss:20b
+        type: string
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
-  group: prepare-goodreads-review-summaries
-  cancel-in-progress: true
+  group: refresh-profile-activity
+  cancel-in-progress: false
 
 jobs:
-  prepare:
-    runs-on: ubuntu-latest
-    timeout-minutes: 8
+  summarize:
+    runs-on: [self-hosted, macOS, ARM64, hnitch-ai]
+    timeout-minutes: 25
+    env:
+      GOODREADS_LOCAL_MODEL: ${{ inputs.model }}
+      GOODREADS_LOCAL_MODEL_URL: http://127.0.0.1:11434
 
     steps:
       - name: Check out profile
@@ -32,24 +40,27 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Validate summary pipeline
+      - name: Validate profile and local-model bridge
         run: npm run check
 
-      - name: Find new or changed written reviews
-        id: reviews
-        run: npm run reviews:prepare
+      - name: Refresh Goodreads before summarizing
+        run: npm run update-profile
 
-      - name: Package pending prompts without sending them anywhere
-        if: steps.reviews.outputs.pending == 'true'
-        uses: actions/upload-artifact@v4
-        with:
-          name: pending-goodreads-review-prompts
-          path: |
-            .tmp/goodreads-review-system.txt
-            .tmp/goodreads-review-prompt.txt
-          if-no-files-found: error
-          retention-days: 1
+      - name: Write review-specific reactions on the Mac Mini
+        run: npm run reviews:local
 
-      - name: Confirm there is nothing to summarize
-        if: steps.reviews.outputs.pending != 'true'
-        run: echo "All written Goodreads reviews already have current summaries"
+      - name: Re-render the profile with validated reactions
+        run: npm run update-profile
+
+      - name: Commit meaningful changes
+        run: |
+          if git diff --quiet -- README.md assets/activity data/activity.json data/review-summaries.json; then
+            echo "No new Goodreads reaction to publish"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md assets/activity data/activity.json data/review-summaries.json
+          git commit -m "chore: write local Goodreads micro-reviews"
+          git push
