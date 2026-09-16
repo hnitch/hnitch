@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/hero.svg?v=3.6.0" width="100%" alt="hii , i'm hn , a builder , reader , watcher , and professional tab hoarder" />
+  <img src="./assets/hero.svg?v=3.7.0" width="100%" alt="hii , i'm hn. i build things for screens. off-screen , there’s usually a book involved and music playing somewhere." />
   <br/><br/>
   <img src="https://komarev.com/ghpvc/?username=hnitch&style=for-the-badge&color=b9a4ff&label=curious+visitors" alt="profile views" />
   <img src="https://img.shields.io/badge/currently%20reading%20%2C%20probably-8edfd4?style=for-the-badge&labelColor=171427" alt="currently reading , probably" />
