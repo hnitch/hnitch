@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import {
+  DEFAULT_REVIEW_SUMMARY_LIMITS,
   buildReviewSummaryBatchRequest,
   mergeReviewSummaryResults,
   prepareReviewSummaryCandidates,
@@ -10,6 +11,15 @@ import {
   sanitiseReviewSummary,
   stableReviewBookKey,
 } from "./review-summary.js";
+
+test("keeps default reactions compact enough for the card", () => {
+  assert.deepEqual(DEFAULT_REVIEW_SUMMARY_LIMITS, {
+    maxWords: 14,
+    maxCharacters: 96,
+    maxSentences: 1,
+    maxReviewCharacters: 6_000,
+  });
+});
 
 const voiceInstructions = "Dry , specific , playful , and written like hn.";
 const book = {

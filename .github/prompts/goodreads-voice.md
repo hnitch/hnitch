@@ -54,7 +54,7 @@ Avoid review-blog language , marketing copy , academic language , and polished c
 
 - Use natural prose , never bullet points.
 - Write exactly one concise sentence.
-- Stay within 18 words and 120 characters. This is a hard display limit , not a target to pad toward.
+- Stay within 14 words and 96 characters. This is a hard display limit , not a target to pad toward.
 - Keep the sentence naturally grammatical. Never drop a needed article , conjunction , or preposition just to save space.
 - Use lowercase by default. Proper nouns may retain normal capitalization when useful.
 - Preserve hn's spaced-comma style: write `word , word`.

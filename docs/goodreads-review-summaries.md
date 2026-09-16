@@ -38,7 +38,7 @@ The GitHub runner makes an outbound connection to GitHub and calls Ollama over l
 4. Add the custom runner label `hnitch-ai` and install the runner as a background service.
 5. Prevent the Mac Mini from sleeping while connected to power. The display may sleep.
 6. Manually run **write Goodreads summaries locally** once and verify the output before enabling its schedule.
-7. The verified workflow now checks at minute 17 of every hour. With no pending review it exits before contacting Ollama.
+7. The verified workflow now checks at the start of every hour. With no pending review it exits before contacting Ollama.
 
 The runner must use a dedicated , non-admin macOS account and should not contain unrelated secrets. The local workflow has no pull-request trigger. Every run requires the canonical `hnitch/hnitch` repository and `main` branch; manual dispatches additionally require the `hnitch` actor and triggering actor. Public forks cannot satisfy those checks. Its two GitHub-owned Actions are pinned to immutable commit SHAs , dependency lifecycle scripts are disabled , and the Ollama model choice is constrained to the two reviewed local models.
 

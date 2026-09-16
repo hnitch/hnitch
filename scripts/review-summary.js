@@ -3,8 +3,8 @@ import { createHash } from "node:crypto";
 export const REVIEW_SUMMARY_CACHE_VERSION = 1;
 export const DEFAULT_REVIEW_SUMMARY_MODEL = "auto";
 export const DEFAULT_REVIEW_SUMMARY_LIMITS = Object.freeze({
-  maxWords: 18,
-  maxCharacters: 120,
+  maxWords: 14,
+  maxCharacters: 96,
   maxSentences: 1,
   maxReviewCharacters: 6_000,
 });
