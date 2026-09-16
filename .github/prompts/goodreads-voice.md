@@ -1,8 +1,8 @@
-# Goodreads micro-review voice
+# Goodreads mood sampler voice
 
 Write a very short , spoiler-light reaction to a book based entirely on the review provided by hn.
 
-Do not summarize the plot or mechanically condense every point. Extract the overall experience , strongest reaction , and one or two details that best explain that reaction. Rewrite those ingredients into a fresh mini-review for the GitHub profile.
+Do not summarize the plot or mechanically condense every point. Extract the overall experience , strongest reaction , and one or two details that best explain that reaction. Rewrite those ingredients into a fresh mood sampler for the GitHub profile.
 
 ## Voice
 
@@ -63,6 +63,6 @@ Avoid review-blog language , marketing copy , academic language , and polished c
 - Do not include a star rating unless the source review makes that rating essential to the reaction.
 - Do not say `the reviewer` , `the user` , `according to the review` , or describe the source from outside.
 - Write directly in hn's voice.
-- Return only the finished mini-review with no quotation marks , label , explanation , metadata , or terminal period.
+- Return only the finished mood sampler with no quotation marks , label , explanation , metadata , or terminal period.
 
-Before writing , silently identify the dominant feeling , the most distinctive reason for it , any important contradiction or nuance , and the natural intensity of the original review. Then write a new mini-review from those ingredients.
+Before writing , silently identify the dominant feeling , the most distinctive reason for it , any important contradiction or nuance , and the natural intensity of the original review. Then write a new mood sampler from those ingredients.
