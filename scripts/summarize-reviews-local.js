@@ -15,7 +15,7 @@ const VOICE_FILE = path.join(ROOT, ".github", "prompts", "goodreads-voice.md");
 const DEFAULT_MODEL = "gpt-oss:20b";
 const DEFAULT_BASE_URL = "http://127.0.0.1:11434";
 const DEFAULT_TIMEOUT_MS = 10 * 60_000;
-const DEFAULT_MAX_OUTPUT_TOKENS = 1_600;
+const DEFAULT_MAX_OUTPUT_TOKENS = 2_400;
 
 export function normaliseLocalModelName(value = DEFAULT_MODEL) {
   const model = String(value || DEFAULT_MODEL).trim();
