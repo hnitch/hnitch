@@ -12,7 +12,6 @@ const REVIEW_SUMMARY_CACHE_FILE = path.join(ROOT, "data", "review-summaries.json
 const REVIEW_VOICE_FILE = path.join(ROOT, ".github", "prompts", "goodreads-voice.md");
 const DISCORD_USER_ID = "690729789702537336";
 const MUSIC_PROFILE_URL = "https://music.apple.com/profile/hnitch";
-const LANYARD_CARD_URL = `https://lanyard.cnrad.dev/api/${DISCORD_USER_ID}?theme=dark&bg=171427&borderRadius=25px&showDisplayName=true&hideTimestamp=true&idleMessage=no%20public%20activity%20right%20now`;
 const RENDER_VERSION = "3.6.0";
 const SIGNAL_FRESH_MS = 15 * 60_000;
 
@@ -868,7 +867,7 @@ function appleMusicMarkup(data) {
 }
 
 function discordMarkup(data) {
-  return `<a href="https://discord.com/users/${escapeXml(data.id)}"><img src="${escapeXml(LANYARD_CARD_URL)}" width="100%" alt="live Discord presence for @${escapeDisplay(data.username)}" /></a>`;
+  return `<a href="https://discord.com/users/${escapeXml(data.id)}"><img src="./assets/activity/discord.svg?v=${assetVersion(["discord-status-plain", data])}" width="100%" alt="Discord profile @${escapeDisplay(data.username)} , ${escapeDisplay(data.status)}" /></a>`;
 }
 
 function instagramMarkup(data) {

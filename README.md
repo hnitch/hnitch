@@ -73,7 +73,7 @@
 <br/>
 
 <!-- DISCORD-FEED:START -->
-<a href="https://discord.com/users/690729789702537336"><img src="https://lanyard.cnrad.dev/api/690729789702537336?theme=dark&amp;bg=171427&amp;borderRadius=25px&amp;showDisplayName=true&amp;hideTimestamp=true&amp;idleMessage=no%20public%20activity%20right%20now" width="100%" alt="live Discord presence for @hnitch" /></a>
+<a href="https://discord.com/users/690729789702537336"><img src="./assets/activity/discord.svg?v=f9c1a7ae8a" width="100%" alt="Discord profile @hnitch , offline" /></a>
 <!-- DISCORD-FEED:END -->
 
 <br/>
