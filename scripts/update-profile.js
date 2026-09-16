@@ -631,7 +631,7 @@ function renderDiscord(data, avatar, guildBadge) {
     online: { color: "#3ba55d", label: "online" },
     idle: { color: "#faa81a", label: "idle" },
     dnd: { color: "#ed4245", label: "do not disturb" },
-    offline: { color: "#747f8d", label: "offline-ish" },
+    offline: { color: "#747f8d", label: "offline" },
     unknown: { color: "#747f8d", label: "presence unavailable" },
   };
   const presence = statuses[data.status] || statuses.unknown;
@@ -867,7 +867,7 @@ function appleMusicMarkup(data) {
 }
 
 function discordMarkup(data) {
-  return `<a href="https://discord.com/users/${escapeXml(data.id)}"><img src="./assets/activity/discord.svg?v=${assetVersion(data)}" width="100%" alt="Discord profile @${escapeDisplay(data.username)} , ${escapeDisplay(data.status)}" /></a>`;
+  return `<a href="https://discord.com/users/${escapeXml(data.id)}"><img src="./assets/activity/discord.svg?v=${assetVersion(["discord-status-plain", data])}" width="100%" alt="Discord profile @${escapeDisplay(data.username)} , ${escapeDisplay(data.status)}" /></a>`;
 }
 
 function instagramMarkup(data) {

@@ -72,7 +72,7 @@
 <br/>
 
 <!-- DISCORD-FEED:START -->
-<a href="https://discord.com/users/690729789702537336"><img src="./assets/activity/discord.svg?v=358024315b" width="100%" alt="Discord profile @hnitch , offline" /></a>
+<a href="https://discord.com/users/690729789702537336"><img src="./assets/activity/discord.svg?v=f9c1a7ae8a" width="100%" alt="Discord profile @hnitch , offline" /></a>
 <!-- DISCORD-FEED:END -->
 
 <br/>
