@@ -1,6 +1,20 @@
 {
   "goodreads": {
-    "current": null,
+    "current": {
+      "bookId": "60282373",
+      "title": "Verity",
+      "author": "Colleen Hoover",
+      "link": "https://www.goodreads.com/review/show/8125432492?utm_medium=api&utm_source=rss",
+      "rating": 0,
+      "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1674813998l/60282373._SY475_.jpg",
+      "pages": 341,
+      "averageRating": 4.29,
+      "published": "2018",
+      "dateAdded": "Thu, 17 Sep 2026 08:58:12 -0700",
+      "readAt": "",
+      "review": "",
+      "progress": null
+    },
     "recent": [
       {
         "bookId": "258342692",
@@ -42,7 +56,7 @@
         "rating": 2,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1786088398l/256240967._SY475_.jpg",
         "pages": 445,
-        "averageRating": 3.71,
+        "averageRating": 3.7,
         "published": "2026",
         "dateAdded": "Sat, 05 Sep 2026 03:57:09 -0700",
         "readAt": "Sun, 30 Aug 2026 00:00:00 +0000",
@@ -109,10 +123,10 @@
     ]
   },
   "appleMusic": {
-    "title": "obsessed",
-    "artist": "Olivia Rodrigo",
-    "album": "GUTS (spilled)",
-    "link": "https://music.apple.com/us/album/obsessed/1736994853?i=1736995329&uo=4",
+    "title": "die first",
+    "artist": "Nessa Barrett",
+    "album": "die first - Single",
+    "link": "https://music.apple.com/us/album/die-first/1625179103?i=1625179105&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -123,19 +137,19 @@
     "id": "690729789702537336",
     "displayName": "hn",
     "username": "hnitch",
-    "status": "online",
+    "status": "idle",
     "guildTag": "EN",
     "guildBadgeUrl": "https://cdn.discordapp.com/clan-badges/1098645983577001994/fb7ebd9358a8c1f1e8d23547333a86f0.png?size=64",
     "memberSince": 2020,
     "devices": [
       "desktop"
     ],
-    "activity": "no public activity right now",
+    "activity": "status resident evil week yess lawd",
     "avatarUrl": "https://cdn.discordapp.com/avatars/690729789702537336/7077a608b3f569f6c3cca885b59baaa5.png?size=256"
   },
   "instagram": {
     "username": "hnitch",
     "avatarHash": "15c99023141d"
   },
-  "updatedAt": "2026-09-17T12:05:34.009Z"
+  "updatedAt": "2026-09-17T16:41:42.284Z"
 }
