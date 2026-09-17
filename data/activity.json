@@ -123,11 +123,13 @@
     "id": "690729789702537336",
     "displayName": "hn",
     "username": "hnitch",
-    "status": "offline",
+    "status": "online",
     "guildTag": "EN",
     "guildBadgeUrl": "https://cdn.discordapp.com/clan-badges/1098645983577001994/fb7ebd9358a8c1f1e8d23547333a86f0.png?size=64",
     "memberSince": 2020,
-    "devices": [],
+    "devices": [
+      "mobile"
+    ],
     "activity": "no public activity right now",
     "avatarUrl": "https://cdn.discordapp.com/avatars/690729789702537336/7077a608b3f569f6c3cca885b59baaa5.png?size=256"
   },
@@ -135,5 +137,5 @@
     "username": "hnitch",
     "avatarHash": "15c99023141d"
   },
-  "updatedAt": "2026-09-16T21:59:50.329Z"
+  "updatedAt": "2026-09-17T01:42:22.126Z"
 }
