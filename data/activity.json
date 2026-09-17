@@ -10,7 +10,7 @@
         "rating": 4,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1788493559l/258342692._SY475_.jpg",
         "pages": 397,
-        "averageRating": 3.79,
+        "averageRating": 3.8,
         "published": "2026",
         "dateAdded": "Wed, 16 Sep 2026 07:10:34 -0700",
         "readAt": "Wed, 16 Sep 2026 00:00:00 +0000",
@@ -109,10 +109,10 @@
     ]
   },
   "appleMusic": {
-    "title": "Be the One",
-    "artist": "Dua Lipa",
-    "album": "Dua Lipa (Deluxe)",
-    "link": "https://music.apple.com/us/album/be-the-one/1228739599?i=1228739603&uo=4",
+    "title": "obsessed",
+    "artist": "Olivia Rodrigo",
+    "album": "GUTS (spilled)",
+    "link": "https://music.apple.com/us/album/obsessed/1736994853?i=1736995329&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -128,14 +128,14 @@
     "guildBadgeUrl": "https://cdn.discordapp.com/clan-badges/1098645983577001994/fb7ebd9358a8c1f1e8d23547333a86f0.png?size=64",
     "memberSince": 2020,
     "devices": [
-      "mobile"
+      "desktop"
     ],
-    "activity": "no public activity right now",
+    "activity": "listening to Von dutch",
     "avatarUrl": "https://cdn.discordapp.com/avatars/690729789702537336/7077a608b3f569f6c3cca885b59baaa5.png?size=256"
   },
   "instagram": {
     "username": "hnitch",
     "avatarHash": "15c99023141d"
   },
-  "updatedAt": "2026-09-17T01:42:22.126Z"
+  "updatedAt": "2026-09-17T05:56:44.768Z"
 }

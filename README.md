@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-17T01:42:22.126Z">a few seconds ago</relative-time>
+    <relative-time datetime="2026-09-17T05:56:44.768Z">a few seconds ago</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -38,7 +38,7 @@
 
 <a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=ab2809c4de" width="100%" alt="currently reading nothing" /></a>
 
-<a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=d9587b5ad1" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
+<a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=7211d30244" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
 
 <a href="https://www.goodreads.com/review/show/8506583969?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=60957b077e" width="100%" alt="Read: The Caretaker" /></a>
 
@@ -66,7 +66,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/be-the-one/1228739599?i=1228739603&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=13af7f2c2d" width="100%" alt="recently played Be the One by Dua Lipa" /></a>
+<a href="https://music.apple.com/us/album/obsessed/1736994853?i=1736995329&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=9d20cd5073" width="100%" alt="recently played obsessed by Olivia Rodrigo" /></a>
 <div align="center"><sub>a little behind the beat. Apple Music updates arrive in batches , not live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 
