@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-idle.svg?v=3.6.0" height="14" alt="" />
+    <img src="./assets/signal-fresh.svg?v=3.6.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-17T19:56:22.955Z">a few seconds ago</relative-time>
+    <relative-time datetime="2026-09-18T04:11:19.688Z">a few seconds ago</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -66,7 +66,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/die-first/1625179103?i=1625179105&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=12e32c4ca6" width="100%" alt="recently played die first by Nessa Barrett" /></a>
+<a href="https://music.apple.com/us/album/good-4-u/1582277315?i=1582277652&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=4db5ff33b6" width="100%" alt="recently played good 4 u by Olivia Rodrigo" /></a>
 <div align="center"><sub>a little behind the beat. Apple Music updates arrive in batches , not live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 
