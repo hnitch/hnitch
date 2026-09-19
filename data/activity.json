@@ -72,7 +72,7 @@
         "rating": 2,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1787618872l/257428909._SY475_.jpg",
         "pages": 359,
-        "averageRating": 3.83,
+        "averageRating": 3.82,
         "published": "2026",
         "dateAdded": "Sat, 05 Sep 2026 03:51:31 -0700",
         "readAt": "Fri, 4 Sep 2026 00:00:00 +0000",
@@ -149,5 +149,5 @@
     "username": "hnitch",
     "avatarHash": "15c99023141d"
   },
-  "updatedAt": "2026-09-19T14:44:40.207Z"
+  "updatedAt": "2026-09-19T17:28:01.024Z"
 }
