@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-19T14:16:10.536Z">a few seconds ago</relative-time>
+    <relative-time datetime="2026-09-19T14:44:40.207Z">a few seconds ago</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -54,7 +54,7 @@
 
 <br/>
 
-<a href="https://letterboxd.com/hnitch/film/resident-evil-2026/"><img src="./assets/activity/letterboxd-1.svg?v=f61c096ceb" width="100%" alt="Watched: Resident Evil" /></a>
+<a href="https://letterboxd.com/hnitch/film/resident-evil-2026/"><img src="./assets/activity/letterboxd-1.svg?v=d369fffd02" width="100%" alt="Watched: Resident Evil" /></a>
 
 <a href="https://letterboxd.com/hnitch/film/insidious-out-of-the-further/"><img src="./assets/activity/letterboxd-2.svg?v=4955103d36" width="100%" alt="Watched: Insidious: Out of the Further" /></a>
 
