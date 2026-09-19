@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-idle.svg?v=3.6.0" height="14" alt="" />
+    <img src="./assets/signal-fresh.svg?v=3.6.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-18T23:52:50.268Z">a few seconds ago</relative-time>
+    <relative-time datetime="2026-09-19T14:16:10.536Z">a few seconds ago</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -44,7 +44,7 @@
 
 <a href="https://www.goodreads.com/review/show/8748356322?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=1be0960ed0" width="100%" alt="Read: The Demon Star" /></a>
 
-<a href="https://www.goodreads.com/review/show/8669301761?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=852a574cd7" width="100%" alt="Read: To Drown a Witch" /></a>
+<a href="https://www.goodreads.com/review/show/8669301761?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=9f48ebd5ad" width="100%" alt="Read: To Drown a Witch" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
@@ -54,13 +54,13 @@
 
 <br/>
 
-<a href="https://letterboxd.com/hnitch/film/insidious-out-of-the-further/"><img src="./assets/activity/letterboxd-1.svg?v=4955103d36" width="100%" alt="Watched: Insidious: Out of the Further" /></a>
+<a href="https://letterboxd.com/hnitch/film/resident-evil-2026/"><img src="./assets/activity/letterboxd-1.svg?v=f61c096ceb" width="100%" alt="Watched: Resident Evil" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/enola-holmes-3/"><img src="./assets/activity/letterboxd-2.svg?v=e569d6666d" width="100%" alt="Watched: Enola Holmes 3" /></a>
+<a href="https://letterboxd.com/hnitch/film/insidious-out-of-the-further/"><img src="./assets/activity/letterboxd-2.svg?v=4955103d36" width="100%" alt="Watched: Insidious: Out of the Further" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/spider-man-brand-new-day/"><img src="./assets/activity/letterboxd-3.svg?v=a7979cecb3" width="100%" alt="Watched: Spider-Man: Brand New Day" /></a>
+<a href="https://letterboxd.com/hnitch/film/enola-holmes-3/"><img src="./assets/activity/letterboxd-3.svg?v=e569d6666d" width="100%" alt="Watched: Enola Holmes 3" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/the-odyssey-2026/1/"><img src="./assets/activity/letterboxd-4.svg?v=1cc5e8e5e1" width="100%" alt="Watched: The Odyssey" /></a>
+<a href="https://letterboxd.com/hnitch/film/spider-man-brand-new-day/"><img src="./assets/activity/letterboxd-4.svg?v=a7979cecb3" width="100%" alt="Watched: Spider-Man: Brand New Day" /></a>
 <!-- LETTERBOXD-FEED:END -->
 
 <br/>

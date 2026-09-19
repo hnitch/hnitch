@@ -72,7 +72,7 @@
         "rating": 2,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1787618872l/257428909._SY475_.jpg",
         "pages": 359,
-        "averageRating": 3.87,
+        "averageRating": 3.83,
         "published": "2026",
         "dateAdded": "Sat, 05 Sep 2026 03:51:31 -0700",
         "readAt": "Fri, 4 Sep 2026 00:00:00 +0000",
@@ -84,6 +84,15 @@
   },
   "letterboxd": {
     "recent": [
+      {
+        "title": "Resident Evil",
+        "year": "2026",
+        "rating": 4,
+        "liked": false,
+        "link": "https://letterboxd.com/hnitch/film/resident-evil-2026/",
+        "poster": "https://a.ltrbxd.com/resized/film-poster/1/3/0/2/7/1/7/1302717-untitled-resident-evil-reboot-0-600-0-900-crop.jpg?v=a688bf1bc7",
+        "review": "peak ragebait ahshsjnd"
+      },
       {
         "title": "Insidious: Out of the Further",
         "year": "2026",
@@ -110,15 +119,6 @@
         "link": "https://letterboxd.com/hnitch/film/spider-man-brand-new-day/",
         "poster": "https://a.ltrbxd.com/resized/film-poster/8/7/2/8/7/1/872871-spider-man-brand-new-day-0-600-0-900-crop.jpg?v=ebe6beb4fc",
         "review": "TOMDAYA SUMMER w/ special mentions to sadie because she ateeee her role up"
-      },
-      {
-        "title": "The Odyssey",
-        "year": "2026",
-        "rating": 4,
-        "liked": true,
-        "link": "https://letterboxd.com/hnitch/film/the-odyssey-2026/1/",
-        "poster": "https://a.ltrbxd.com/resized/film-poster/1/2/5/5/3/9/4/1255394-the-odyssey-2026-0-600-0-900-crop.jpg?v=1eed046d0c",
-        "review": ""
       }
     ]
   },
@@ -149,5 +149,5 @@
     "username": "hnitch",
     "avatarHash": "15c99023141d"
   },
-  "updatedAt": "2026-09-18T23:52:50.268Z"
+  "updatedAt": "2026-09-19T14:16:10.536Z"
 }
