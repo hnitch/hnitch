@@ -4,14 +4,14 @@ import { createHash } from "node:crypto";
 import { pathToFileURL } from "node:url";
 import { parseStringPromise } from "xml2js";
 import { extractReviewMoods, ratingMood } from "./review-moods.js";
-import { matchFableProgress } from "./fable-progress.js";
+import { progressForCurrentBook } from "./reading-progress.js";
 
 const ROOT = process.cwd();
 const OUTPUT_DIR = path.join(ROOT, "assets", "activity");
 const DATA_FILE = path.join(ROOT, "data", "activity.json");
+const READING_PROGRESS_FILE = path.join(ROOT, "data", "reading-progress.json");
 const README_FILE = path.join(ROOT, "README.md");
 const DISCORD_USER_ID = "690729789702537336";
-const FABLE_USER_ID = "d877f8f6-893e-4dfa-a37f-8ec0c3848f1f";
 const MUSIC_PROFILE_URL = "https://music.apple.com/profile/hnitch";
 const LIVE_DISCORD_CARD_URL = "https://hnitch-discord-card.haarshaan.workers.dev/discord.svg";
 const RENDER_VERSION = "3.7.0";
@@ -27,7 +27,6 @@ const SOURCES = {
   },
   letterboxd: "https://letterboxd.com/hnitch/rss/",
   appleMusicRecent: "https://music-profile.rayriffy.com/theme/dark.svg?uid=000568.fa0178bfed7a4356a5b20a996b4824a4.1200",
-  fableLists: `https://api.fable.co/api/v2/users/${FABLE_USER_ID}/book_lists/?media_type=book`,
 };
 
 const theme = {
@@ -242,31 +241,6 @@ async function readGoodreads() {
     current,
     recent: readItems.slice(0, 4).map(normaliseBook),
   };
-}
-
-export async function readFableProgress(currentBook) {
-  if (!currentBook) return null;
-  const token = process.env.FABLE_AUTH_TOKEN?.trim().replace(/^(JWT|Bearer|Token)\s+/i, "");
-  if (!token) return null;
-  const options = { headers: { Authorization: `JWT ${token}` } };
-  const lists = JSON.parse(await fetchText(SOURCES.fableLists, options));
-  const currentList = lists.results?.find((list) => list.system_type === "current_reading");
-  if (!currentList?.id) return null;
-
-  const booksPath = `/api/v2/users/${FABLE_USER_ID}/book_lists/${encodeURIComponent(currentList.id)}/books`;
-  let url = `https://api.fable.co${booksPath}?limit=100&offset=0`;
-  const entries = [];
-  for (let page = 0; url && page < 5; page += 1) {
-    const payload = JSON.parse(await fetchText(url, options));
-    entries.push(...(payload.results || []));
-    if (!payload.next) break;
-    const next = new URL(payload.next, "https://api.fable.co");
-    if (next.origin !== "https://api.fable.co" || next.pathname !== booksPath) {
-      throw new Error("Fable pagination left the expected list");
-    }
-    url = next.toString();
-  }
-  return matchFableProgress(currentBook, entries);
 }
 
 function normaliseFilm(item = {}) {
@@ -509,12 +483,12 @@ export function renderBookCurrent(book, artwork) {
   <rect x="188" y="198" width="189" height="30" rx="15" fill="#b9a4ff" opacity=".12"/><text x="207" y="218" fill="#d4c1ff" font-size="11" font-weight="800" letter-spacing=".8">NEXT CHAPTER PENDING</text></g></svg>`;
   }
   const item = book;
+  const progress = item.progress;
   const facts = [
-    item.pages && `${item.pages} pages`,
+    (progress?.total || item.pages) && `${progress?.total || item.pages} pages`,
     item.published,
     item.averageRating && `GR avg ${item.averageRating.toFixed(2)}`,
   ].filter(Boolean).join(" · ");
-  const progress = item.progress;
   const progressLabel = progress
     ? (progress.page !== null && progress.total !== null
       ? `page ${progress.page} of ${progress.total} · ${progress.percent}%`
@@ -890,6 +864,12 @@ function dataChanged(previous, current) {
 
 async function main() {
   const previous = await readPrevious();
+  let savedReadingProgress = null;
+  try {
+    savedReadingProgress = JSON.parse(await fs.readFile(READING_PROGRESS_FILE, "utf8"));
+  } catch (error) {
+    if (error.code !== "ENOENT") console.warn(`warning: saved reading progress unavailable (${error.message})`);
+  }
   const [
     cachedAppleArtwork,
     generatedInstagramAvatar,
@@ -908,12 +888,8 @@ async function main() {
   const [goodreadsResult, letterboxdResult, appleMusicResult, instagramResult] = await Promise.all([
     readSource("goodreads", async () => {
       const books = await readGoodreads();
-      try {
-        const fableProgress = await readFableProgress(books.current);
-        if (fableProgress) books.current.progress = fableProgress;
-      } catch (error) {
-        console.warn(`warning: Fable progress unavailable; using Goodreads progress (${error.message})`);
-      }
+      const manuallyLogged = progressForCurrentBook(savedReadingProgress, books.current);
+      if (manuallyLogged) books.current.progress = manuallyLogged;
       return books;
     }, previous),
     readSource("letterboxd", readLetterboxd, previous),

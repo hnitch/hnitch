@@ -4,6 +4,15 @@ on:
   schedule:
     - cron: "2-59/5 * * * *"
   workflow_dispatch:
+    inputs:
+      reading_book_id:
+        description: "Current Goodreads book ID (leave blank for a normal refresh)"
+        required: false
+        type: string
+      reading_progress:
+        description: "Page, page/total, or percentage (for example 148, 148/320, 42%)"
+        required: false
+        type: string
   repository_dispatch:
     types: [music_now_playing]
 
@@ -35,21 +44,33 @@ jobs:
       - name: Validate profile generator
         run: npm run check
 
+      - name: Save manually logged reading progress
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        env:
+          READING_BOOK_ID: ${{ inputs.reading_book_id }}
+          READING_PROGRESS: ${{ inputs.reading_progress }}
+        run: node scripts/save-reading-progress.js
+
       - name: Refresh books , films , music , and Instagram
         env:
           MUSIC_EVENT_JSON: ${{ toJson(github.event.client_payload) }}
-          FABLE_AUTH_TOKEN: ${{ secrets.FABLE_AUTH_TOKEN }}
         run: npm run update-profile
+
+      - name: Confirm the update reached the same book
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.reading_progress != '' }}
+        env:
+          READING_BOOK_ID: ${{ inputs.reading_book_id }}
+        run: node scripts/save-reading-progress.js --verify
 
       - name: Commit meaningful changes
         run: |
-          if git diff --quiet -- README.md assets/activity data/activity.json; then
+          git add README.md assets/activity data/activity.json data/reading-progress.json
+          if git diff --cached --quiet; then
             echo "Nothing new in the rotation"
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md assets/activity data/activity.json
           git commit -m "chore: refresh profile activity"
           git push

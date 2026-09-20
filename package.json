@@ -8,7 +8,7 @@
   },
   "scripts": {
     "update-profile": "node scripts/update-profile.js",
-    "check": "node --check scripts/update-profile.js && node --check scripts/music-bridge-macos.js && node --check scripts/review-moods.js && node --check scripts/fable-progress.js && node --check workers/discord-card.js && node --test scripts/review-moods.test.js scripts/fable-progress.test.js scripts/update-profile.test.js workers/discord-card.test.js",
+    "check": "node --check scripts/update-profile.js && node --check scripts/music-bridge-macos.js && node --check scripts/review-moods.js && node --check scripts/reading-progress.js && node --check scripts/save-reading-progress.js && node --check workers/discord-card.js && node --test scripts/review-moods.test.js scripts/reading-progress.test.js scripts/update-profile.test.js workers/discord-card.test.js",
     "music:preview": "node scripts/music-bridge-macos.js --preview",
     "music:dispatch": "node scripts/music-bridge-macos.js --dispatch",
     "music:install": "zsh scripts/install-music-bridge-macos.sh",
