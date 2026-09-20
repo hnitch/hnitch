@@ -35,9 +35,10 @@ jobs:
       - name: Validate profile generator
         run: npm run check
 
-      - name: Refresh books , films , music , and presence
+      - name: Refresh books , films , music , and Instagram
         env:
           MUSIC_EVENT_JSON: ${{ toJson(github.event.client_payload) }}
+          FABLE_AUTH_TOKEN: ${{ secrets.FABLE_AUTH_TOKEN }}
         run: npm run update-profile
 
       - name: Commit meaningful changes

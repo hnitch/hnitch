@@ -4,16 +4,20 @@ import { createHash } from "node:crypto";
 import { pathToFileURL } from "node:url";
 import { parseStringPromise } from "xml2js";
 import { extractReviewMoods, ratingMood } from "./review-moods.js";
+import { matchFableProgress } from "./fable-progress.js";
 
 const ROOT = process.cwd();
 const OUTPUT_DIR = path.join(ROOT, "assets", "activity");
 const DATA_FILE = path.join(ROOT, "data", "activity.json");
 const README_FILE = path.join(ROOT, "README.md");
 const DISCORD_USER_ID = "690729789702537336";
+const FABLE_USER_ID = "d877f8f6-893e-4dfa-a37f-8ec0c3848f1f";
 const MUSIC_PROFILE_URL = "https://music.apple.com/profile/hnitch";
 const LIVE_DISCORD_CARD_URL = "https://hnitch-discord-card.haarshaan.workers.dev/discord.svg";
 const RENDER_VERSION = "3.7.0";
-const SIGNAL_FRESH_MS = 15 * 60_000;
+const INSTAGRAM_REFRESH_MS = 24 * 60 * 60_000;
+const INSTAGRAM_RETRY_MS = 6 * 60 * 60_000;
+const CHECKPOINT_MS = 60 * 60_000;
 
 const SOURCES = {
   goodreads: {
@@ -23,7 +27,7 @@ const SOURCES = {
   },
   letterboxd: "https://letterboxd.com/hnitch/rss/",
   appleMusicRecent: "https://music-profile.rayriffy.com/theme/dark.svg?uid=000568.fa0178bfed7a4356a5b20a996b4824a4.1200",
-  discord: `https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`,
+  fableLists: `https://api.fable.co/api/v2/users/${FABLE_USER_ID}/book_lists/?media_type=book`,
 };
 
 const theme = {
@@ -45,6 +49,12 @@ function decode(value = "") {
   return String(value)
     .replaceAll("&amp;", "&")
     .replaceAll("&#039;", "'")
+    .replace(/&#(?:x([0-9a-f]+)|([0-9]+));/gi, (entity, hex, decimal) => {
+      const codePoint = Number.parseInt(hex || decimal, hex ? 16 : 10);
+      return codePoint <= 0x10ffff && !(codePoint >= 0xd800 && codePoint <= 0xdfff)
+        ? String.fromCodePoint(codePoint)
+        : entity;
+    })
     .replaceAll("&quot;", '"')
     .replaceAll("&lt;", "<")
     .replaceAll("&gt;", ">");
@@ -81,7 +91,7 @@ function cacheBusted(url) {
   return target.toString();
 }
 
-async function fetchResponse(url, accept, { bypassCache = false } = {}) {
+async function fetchResponse(url, accept, { bypassCache = false, headers = {} } = {}) {
   let lastError;
   for (let attempt = 0; attempt < 3; attempt += 1) {
     try {
@@ -91,6 +101,7 @@ async function fetchResponse(url, accept, { bypassCache = false } = {}) {
           "Cache-Control": bypassCache ? "no-cache" : "max-age=0",
           Pragma: bypassCache ? "no-cache" : "",
           "User-Agent": "hnitch-profile/3.4 (+https://github.com/hnitch/hnitch)",
+          ...headers,
         },
         cache: "no-store",
         signal: AbortSignal.timeout(20_000),
@@ -231,6 +242,31 @@ async function readGoodreads() {
     current,
     recent: readItems.slice(0, 4).map(normaliseBook),
   };
+}
+
+export async function readFableProgress(currentBook) {
+  if (!currentBook) return null;
+  const token = process.env.FABLE_AUTH_TOKEN?.trim().replace(/^(JWT|Bearer|Token)\s+/i, "");
+  if (!token) return null;
+  const options = { headers: { Authorization: `JWT ${token}` } };
+  const lists = JSON.parse(await fetchText(SOURCES.fableLists, options));
+  const currentList = lists.results?.find((list) => list.system_type === "current_reading");
+  if (!currentList?.id) return null;
+
+  const booksPath = `/api/v2/users/${FABLE_USER_ID}/book_lists/${encodeURIComponent(currentList.id)}/books`;
+  let url = `https://api.fable.co${booksPath}?limit=100&offset=0`;
+  const entries = [];
+  for (let page = 0; url && page < 5; page += 1) {
+    const payload = JSON.parse(await fetchText(url, options));
+    entries.push(...(payload.results || []));
+    if (!payload.next) break;
+    const next = new URL(payload.next, "https://api.fable.co");
+    if (next.origin !== "https://api.fable.co" || next.pathname !== booksPath) {
+      throw new Error("Fable pagination left the expected list");
+    }
+    url = next.toString();
+  }
+  return matchFableProgress(currentBook, entries);
 }
 
 function normaliseFilm(item = {}) {
@@ -390,67 +426,6 @@ async function readAppleMusic(previous) {
   };
 }
 
-function discordActivityLabel(source) {
-  if (source.spotify?.song) {
-    return `listening to ${source.spotify.song}${source.spotify.artist ? ` by ${source.spotify.artist}` : ""}`;
-  }
-  const richActivity = source.activities?.find((item) => item.type !== 4);
-  const activity = richActivity || source.activities?.find((item) => item.type === 4);
-  if (!activity) return "no public activity right now";
-  const verbs = { 0: "playing", 2: "listening to", 3: "watching", 4: "status" };
-  const verb = verbs[activity.type] || "doing";
-  const subject = activity.type === 4
-    ? activity.state
-    : activity.details || activity.state || activity.name;
-  return subject ? `${verb} ${subject}` : "activity is keeping a low profile";
-}
-
-async function readLanyard() {
-  const payload = JSON.parse(await fetchText(SOURCES.discord));
-  if (!payload.success || !payload.data?.discord_user) throw new Error("Lanyard did not return a Discord profile");
-  return payload.data;
-}
-
-async function readDiscord(source) {
-  const user = source.discord_user;
-  const guild = user.primary_guild?.identity_enabled ? user.primary_guild : null;
-  const validStatuses = new Set(["online", "idle", "dnd", "offline"]);
-  const avatarExtension = user.avatar?.startsWith("a_") ? "gif" : "png";
-  const avatarUrl = user.avatar
-    ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${avatarExtension}?size=256`
-    : `https://cdn.discordapp.com/embed/avatars/${Number(BigInt(user.id) >> 22n) % 6}.png`;
-  const devices = [
-    source.active_on_discord_desktop && "desktop",
-    source.active_on_discord_mobile && "mobile",
-    source.active_on_discord_web && "web",
-    source.active_on_discord_embedded && "embedded",
-  ].filter(Boolean);
-  const createdAt = Number((BigInt(user.id) >> 22n) + 1420070400000n);
-  const guildBadgeUrl = guild?.badge
-    ? `https://cdn.discordapp.com/clan-badges/${guild.identity_guild_id}/${guild.badge}.png?size=64`
-    : "";
-  const [avatarData, guildBadgeData] = await Promise.all([
-    fetchDataUri(avatarUrl),
-    fetchDataUri(guildBadgeUrl),
-  ]);
-  return {
-    data: {
-      id: user.id,
-      displayName: user.display_name || user.global_name || user.username,
-      username: user.username,
-      status: validStatuses.has(source.discord_status) ? source.discord_status : "unknown",
-      guildTag: guild?.tag || "",
-      guildBadgeUrl,
-      memberSince: new Date(createdAt).getUTCFullYear(),
-      devices,
-      activity: discordActivityLabel(source),
-      avatarUrl,
-    },
-    avatarData,
-    guildBadgeData,
-  };
-}
-
 function stars(rating) {
   if (!rating) return "unrated";
   return `${"★".repeat(Math.floor(rating))}${rating % 1 ? "½" : ""}`;
@@ -541,7 +516,11 @@ export function renderBookCurrent(book, artwork) {
   ].filter(Boolean).join(" · ");
   const progress = item.progress;
   const progressLabel = progress
-    ? (progress.page ? `page ${progress.page} of ${progress.total} · ${progress.percent}%` : `${progress.percent}% read`)
+    ? (progress.page !== null && progress.total !== null
+      ? `page ${progress.page} of ${progress.total} · ${progress.percent}%`
+      : progress.page !== null
+        ? `page ${progress.page} · ${progress.percent}%`
+        : `${progress.percent}% read`)
     : "progress not shared yet";
   const progressWidth = progress ? Math.max(0, Math.min(100, progress.percent)) * 6.1 : 0;
   const progressBar = progress
@@ -644,38 +623,6 @@ ${duration ? `  <rect x="724" y="168" width="78" height="27" rx="13.5" fill="#ff
   </svg>`;
 }
 
-function renderDiscord(data, avatar, guildBadge) {
-  const statuses = {
-    online: { color: "#3ba55d", label: "online" },
-    idle: { color: "#faa81a", label: "idle" },
-    dnd: { color: "#ed4245", label: "do not disturb" },
-    offline: { color: "#747f8d", label: "offline" },
-    unknown: { color: "#747f8d", label: "presence unavailable" },
-  };
-  const presence = statuses[data.status] || statuses.unknown;
-  const statusWidth = Math.min(190, Math.max(142, 48 + (presence.label.length * 6.8)));
-  const deviceText = data.devices.length ? `active on ${data.devices.join(" + ")}` : "no active device showing";
-  const avatarMarkup = avatar
-    ? `<image href="${avatar}" x="34" y="32" width="132" height="132" preserveAspectRatio="xMidYMid slice" clip-path="url(#avatar)"/>`
-    : `<circle cx="100" cy="98" r="66" fill="#4b3a67"/><text x="100" y="112" fill="#fffaf5" class="sans" font-size="38" font-weight="800" text-anchor="middle">HN</text>`;
-  const guildIdentity = data.guildTag
-    ? `<rect x="636" y="45" width="78" height="32" rx="16" fill="#fff" opacity=".08"/>${guildBadge ? `<image href="${guildBadge}" x="648" y="52" width="18" height="18" preserveAspectRatio="xMidYMid meet"/>` : `<path d="M656 51l8 9-8 9-8-9z" fill="#ded5e5" opacity=".9"/>`}<text x="687" y="66" fill="#ded5e5" font-size="11.5" font-weight="800" text-anchor="middle">${escapeDisplay(data.guildTag)}</text>`
-    : "";
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="206" viewBox="0 0 860 206" role="img" aria-label="Discord profile for ${escapeDisplay(data.username)} , status ${escapeDisplay(presence.label)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
-  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#171427"/><stop offset=".55" stop-color="#25203b"/><stop offset="1" stop-color="#172a35"/></linearGradient><linearGradient id="edge" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#5865f2"/><stop offset=".55" stop-color="#b9a4ff"/><stop offset="1" stop-color="#8edfd4"/></linearGradient><clipPath id="avatar"><circle cx="100" cy="98" r="66"/></clipPath><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.arrow{animation:nudge 1.8s ease-in-out infinite}@keyframes nudge{50%{transform:translateX(5px)}}</style></defs>
-  <rect x="1" y="1" width="858" height="204" rx="25" fill="url(#bg)" stroke="url(#edge)" stroke-width="2"/>
-  <circle cx="780" cy="20" r="138" fill="#5865f2" opacity=".07"/><circle cx="710" cy="215" r="118" fill="#8edfd4" opacity=".045"/>
-  ${avatarMarkup}<circle cx="148" cy="147" r="17" fill="#171427"/><circle cx="148" cy="147" r="11" fill="${presence.color}" stroke="#fffaf5" stroke-opacity=".3" stroke-width="1"/>
-  <g class="sans"><text x="198" y="42" fill="#9ba3ff" font-size="11.5" font-weight="800" letter-spacing="1.35">DISCORD / PUBLIC PRESENCE</text>
-  ${wrappedText({ x: 196, y: 51, width: 390, height: 43, value: data.displayName, size: 31, weight: 800, lineHeight: 1 })}
-  <text x="198" y="108" fill="#c8bdd3" font-size="14" font-weight="600">@${escapeDisplay(data.username)}</text>
-  <rect x="196" y="124" width="${statusWidth.toFixed(1)}" height="30" rx="15" fill="${presence.color}" opacity=".15"/><circle cx="213" cy="139" r="4.5" fill="${presence.color}"/><text x="225" y="144" fill="#e5ddea" font-size="12" font-weight="800">${escapeDisplay(presence.label)}</text>
-  ${wrappedText({ x: 198, y: 162, width: 405, height: 34, value: `${data.activity} · ${deviceText}`, size: 12, weight: 600, color: "#ada1ba", lineHeight: 1.15 })}
-  <text x="620" y="68" fill="#a497ae" font-size="11.5" font-weight="800" text-anchor="end">ON DISCORD SINCE ${data.memberSince}</text>${guildIdentity}
-  <rect x="638" y="111" width="174" height="48" rx="24" fill="#5865f2"/><text x="669" y="140" fill="#fff" font-size="12" font-weight="800" letter-spacing=".7">OPEN PROFILE</text><text class="arrow" x="777" y="142" fill="#fff" font-size="18" font-weight="800">↗</text></g>
-  </svg>`;
-}
-
 function renderInstagram(data, avatar) {
   const avatarMarkup = avatar
     ? `<image href="${avatar}" x="31" y="28" width="134" height="134" preserveAspectRatio="xMidYMid slice" clip-path="url(#instagram-avatar)"/>`
@@ -727,7 +674,35 @@ async function chromeExecutable() {
   throw new Error("no Chrome executable is available for the Instagram refresh");
 }
 
-async function readInstagramAvatar() {
+export function instagramOgAvatarUrl(html) {
+  const title = decode(html.match(/<meta\s+property=["']og:title["']\s+content=["']([^"']+)["']/i)?.[1] || "");
+  if (!title.toLowerCase().includes("@hnitch")) return null;
+  const rawUrl = decode(html.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i)?.[1] || "");
+  try {
+    const url = new URL(rawUrl);
+    if (url.protocol !== "https:" || !url.hostname.endsWith(".cdninstagram.com")) return null;
+    return url.toString();
+  } catch {
+    return null;
+  }
+}
+
+export async function readInstagramAvatarFromPage() {
+  const html = await fetchText("https://www.instagram.com/hnitch/");
+  const avatarUrl = instagramOgAvatarUrl(html);
+  if (!avatarUrl) throw new Error("Instagram did not publish this profile's image metadata");
+  const response = await fetchResponse(avatarUrl, "image/jpeg,image/*");
+  const type = response.headers.get("content-type")?.split(";")[0] || "";
+  const bytes = Buffer.from(await response.arrayBuffer());
+  if (!type.startsWith("image/") || bytes.length < 1_500) throw new Error("Instagram published an unusable profile image");
+  const avatarData = `data:${type};base64,${bytes.toString("base64")}`;
+  return {
+    data: { username: "hnitch", avatarHash: createHash("sha256").update(bytes).digest("hex").slice(0, 12) },
+    avatarData,
+  };
+}
+
+async function readInstagramAvatarWithBrowser() {
   const { default: puppeteer } = await import("puppeteer-core");
   const browser = await puppeteer.launch({
     executablePath: await chromeExecutable(),
@@ -776,26 +751,46 @@ async function readInstagramAvatar() {
   }
 }
 
-function instagramRefreshWindow() {
-  if (!process.env.GITHUB_ACTIONS) return true;
-  const now = new Date();
-  return now.getUTCHours() === 0 && now.getUTCMinutes() < 5;
+async function readInstagramAvatar() {
+  try {
+    return await readInstagramAvatarFromPage();
+  } catch (error) {
+    console.warn(`warning: Instagram image metadata unavailable; trying browser (${error.message})`);
+    return readInstagramAvatarWithBrowser();
+  }
+}
+
+export function shouldRefreshInstagram(previous, cachedAvatar, now = Date.now()) {
+  if (!previous || !cachedAvatar) return true;
+  const lastSuccess = Date.parse(previous.lastSuccessAt);
+  const lastAttempt = Date.parse(previous.lastAttemptAt);
+  if (Number.isFinite(lastSuccess) && now - lastSuccess < INSTAGRAM_REFRESH_MS) return false;
+  if (Number.isFinite(lastAttempt) && now - lastAttempt < INSTAGRAM_RETRY_MS) return false;
+  return true;
 }
 
 async function readInstagramSource(previous, cachedAvatar) {
-  if (previous && cachedAvatar && !instagramRefreshWindow()) {
-    return { fresh: true, data: previous, avatarData: cachedAvatar };
+  if (process.env.FORCE_INSTAGRAM_REFRESH !== "1" && !shouldRefreshInstagram(previous, cachedAvatar)) {
+    return { fresh: false, data: previous, avatarData: cachedAvatar };
   }
+  const attemptedAt = new Date().toISOString();
   try {
-    return { fresh: true, ...(await readInstagramAvatar()) };
+    const result = await readInstagramAvatar();
+    return {
+      fresh: true,
+      data: { ...result.data, lastSuccessAt: attemptedAt, lastAttemptAt: attemptedAt },
+      avatarData: result.avatarData,
+    };
   } catch (error) {
     if (!cachedAvatar) throw error;
     console.warn(`warning: Instagram avatar refresh failed; keeping the last good image (${error.message})`);
     return {
-      fresh: true,
+      fresh: false,
       data: {
+        ...previous,
         username: "hnitch",
         avatarHash: createHash("sha256").update(cachedAvatar).digest("hex").slice(0, 12),
+        lastAttemptAt: attemptedAt,
       },
       avatarData: cachedAvatar,
     };
@@ -812,22 +807,6 @@ async function readSource(name, reader, previous) {
       return { fresh: false, data: previous[name] };
     }
     throw error;
-  }
-}
-
-async function readDiscordSource(previous, lanyardPromise) {
-  try {
-    const result = await readDiscord(await lanyardPromise);
-    return { fresh: true, ...result };
-  } catch (error) {
-    if (!previous) throw error;
-    console.warn(`warning: Discord presence refresh failed; keeping the last good data (${error.message})`);
-    return {
-      fresh: false,
-      data: previous,
-      avatarData: null,
-      guildBadgeData: null,
-    };
   }
 }
 
@@ -866,21 +845,12 @@ function appleMusicMarkup(data) {
   return `<a href="${escapeXml(data.link || MUSIC_PROFILE_URL)}"><img src="./assets/activity/apple-music.svg?v=${assetVersion(data)}" width="100%" alt="${action} ${escapeDisplay(data.title)} by ${escapeDisplay(data.artist)}" /></a>\n<div align="center"><sub>a little behind the beat. Apple Music updates arrive in batches , not live.</sub></div>`;
 }
 
-function discordMarkup(data) {
-  return `<a href="https://discord.com/users/${escapeXml(data.id)}"><img src="${escapeXml(LIVE_DISCORD_CARD_URL)}" width="100%" alt="live Discord presence for @${escapeDisplay(data.username)}" /></a>`;
+function discordMarkup() {
+  return `<a href="https://discord.com/users/${DISCORD_USER_ID}"><img src="${LIVE_DISCORD_CARD_URL}" width="100%" alt="live Discord presence for @hnitch" /></a>`;
 }
 
 function instagramMarkup(data) {
-  return `<a href="https://www.instagram.com/${escapeXml(data.username)}/"><img src="./assets/activity/instagram.svg?v=${assetVersion(data)}" width="100%" alt="Instagram profile @${escapeDisplay(data.username)}" /></a>`;
-}
-
-function signalState(updatedAt) {
-  const age = Date.now() - Date.parse(updatedAt);
-  return Number.isFinite(age) && age >= 0 && age < SIGNAL_FRESH_MS ? "fresh" : "idle";
-}
-
-function signalMarkup(state) {
-  return `<img src="./assets/signal-${state}.svg?v=3.7.0" height="14" alt="" />`;
+  return `<a href="https://www.instagram.com/${escapeXml(data.username)}/"><img src="./assets/activity/instagram.svg?v=${escapeXml(data.avatarHash || "1")}" width="100%" alt="Instagram profile @${escapeDisplay(data.username)}" /></a>`;
 }
 
 function replaceSection(content, name, replacement) {
@@ -892,36 +862,41 @@ function replaceSection(content, name, replacement) {
   });
 }
 
-async function updateReadme(data, updatedAt) {
+async function updateReadme(data, checkedAt) {
   let readme = await fs.readFile(README_FILE, "utf8");
   readme = replaceSection(readme, "GOODREADS-FEED", goodreadsMarkup(data.goodreads));
   readme = replaceSection(readme, "LETTERBOXD-FEED", letterboxdMarkup(data.letterboxd));
   readme = replaceSection(readme, "APPLE-MUSIC-FEED", appleMusicMarkup(data.appleMusic));
-  readme = replaceSection(readme, "DISCORD-FEED", discordMarkup(data.discord));
+  readme = replaceSection(readme, "DISCORD-FEED", discordMarkup());
   readme = replaceSection(readme, "INSTAGRAM-FEED", instagramMarkup(data.instagram));
-  readme = replaceSection(readme, "PROFILE-SIGNAL-STATE", signalMarkup(signalState(updatedAt)));
-  readme = replaceSection(readme, "PROFILE-LAST-UPDATED", `<relative-time datetime="${updatedAt}">a few seconds ago</relative-time>`);
+  readme = replaceSection(readme, "PROFILE-SIGNAL-STATE", `<img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />`);
+  readme = replaceSection(readme, "PROFILE-LAST-UPDATED", `<relative-time datetime="${checkedAt}">recently</relative-time>`);
   await fs.writeFile(README_FILE, readme);
 }
 
 function dataChanged(previous, current) {
-  const old = { goodreads: previous.goodreads, letterboxd: previous.letterboxd, appleMusic: previous.appleMusic, discord: previous.discord, instagram: previous.instagram };
-  return JSON.stringify(old) !== JSON.stringify(current);
+  const old = {
+    goodreads: previous.goodreads,
+    letterboxd: previous.letterboxd,
+    appleMusic: previous.appleMusic,
+    instagram: { username: previous.instagram?.username, avatarHash: previous.instagram?.avatarHash },
+  };
+  const latest = {
+    ...current,
+    instagram: { username: current.instagram?.username, avatarHash: current.instagram?.avatarHash },
+  };
+  return JSON.stringify(old) !== JSON.stringify(latest);
 }
 
 async function main() {
   const previous = await readPrevious();
   const [
     cachedAppleArtwork,
-    cachedDiscordAvatar,
-    cachedDiscordGuildBadge,
     generatedInstagramAvatar,
     cachedGoodreadsCurrentArtwork,
     ...cachedGoodreadsRecentArtwork
   ] = await Promise.all([
     readEmbeddedImage("apple-music.svg"),
-    readEmbeddedImage("discord.svg"),
-    readEmbeddedImage("discord.svg", 1),
     readEmbeddedImage("instagram.svg"),
     readEmbeddedImage("goodreads-current.svg"),
     ...Array.from({ length: 4 }, (_value, index) => readEmbeddedImage(`goodreads-${index + 1}.svg`)),
@@ -930,21 +905,25 @@ async function main() {
     ? Buffer.from(generatedInstagramAvatar.split(",", 2)[1] || "", "base64").length
     : 0;
   const cachedInstagramAvatar = generatedInstagramBytes >= 1_500 ? generatedInstagramAvatar : null;
-  // Start the shared request immediately before both consumers attach so a
-  // fast network rejection can never become an unhandled promise.
-  const lanyardPromise = readLanyard();
-  const [goodreadsResult, letterboxdResult, appleMusicResult, discordResult, instagramResult] = await Promise.all([
-    readSource("goodreads", readGoodreads, previous),
+  const [goodreadsResult, letterboxdResult, appleMusicResult, instagramResult] = await Promise.all([
+    readSource("goodreads", async () => {
+      const books = await readGoodreads();
+      try {
+        const fableProgress = await readFableProgress(books.current);
+        if (fableProgress) books.current.progress = fableProgress;
+      } catch (error) {
+        console.warn(`warning: Fable progress unavailable; using Goodreads progress (${error.message})`);
+      }
+      return books;
+    }, previous),
     readSource("letterboxd", readLetterboxd, previous),
     readSource("appleMusic", () => readAppleMusic(previous.appleMusic), previous),
-    readDiscordSource(previous.discord, lanyardPromise),
     readInstagramSource(previous.instagram, cachedInstagramAvatar),
   ]);
   const current = {
     goodreads: goodreadsResult.data,
     letterboxd: letterboxdResult.data,
     appleMusic: appleMusicResult.data,
-    discord: discordResult.data,
     instagram: instagramResult.data,
   };
   const cachedGoodreadsArtwork = {
@@ -957,7 +936,13 @@ async function main() {
         : null
     )),
   };
-  const updatedAt = dataChanged(previous, current) || !previous.updatedAt ? new Date().toISOString() : previous.updatedAt;
+  const now = new Date();
+  const changed = dataChanged(previous, current);
+  const updatedAt = changed || !previous.updatedAt ? now.toISOString() : previous.updatedAt;
+  const previousCheck = Date.parse(previous.lastCheckedAt);
+  const lastCheckedAt = changed || !Number.isFinite(previousCheck) || now.valueOf() - previousCheck >= CHECKPOINT_MS
+    ? now.toISOString()
+    : previous.lastCheckedAt;
 
   await fs.mkdir(OUTPUT_DIR, { recursive: true });
   await fs.mkdir(path.dirname(DATA_FILE), { recursive: true });
@@ -970,20 +955,13 @@ async function main() {
     const artwork = (sameTrack ? cachedAppleArtwork : null) || appleMusicResult.artworkData;
     writes.push(fs.writeFile(path.join(OUTPUT_DIR, "apple-music.svg"), renderAppleMusic(current.appleMusic, artwork)));
   }
-  if (discordResult.fresh) {
-    const sameAvatar = previous.discord?.avatarUrl === current.discord?.avatarUrl;
-    const avatar = discordResult.avatarData || (sameAvatar ? cachedDiscordAvatar : null);
-    const sameGuildBadge = previous.discord?.guildBadgeUrl === current.discord?.guildBadgeUrl;
-    const guildBadge = discordResult.guildBadgeData || (sameGuildBadge ? cachedDiscordGuildBadge : null);
-    writes.push(fs.writeFile(path.join(OUTPUT_DIR, "discord.svg"), renderDiscord(current.discord, avatar, guildBadge)));
-  }
   if (instagramResult.fresh) {
     writes.push(fs.writeFile(path.join(OUTPUT_DIR, "instagram.svg"), renderInstagram(current.instagram, instagramResult.avatarData || cachedInstagramAvatar)));
   }
   await Promise.all(writes);
   await Promise.all([
-    fs.writeFile(DATA_FILE, `${JSON.stringify({ ...current, updatedAt }, null, 2)}\n`),
-    updateReadme(current, updatedAt),
+    fs.writeFile(DATA_FILE, `${JSON.stringify({ ...current, updatedAt, lastCheckedAt }, null, 2)}\n`),
+    updateReadme(current, lastCheckedAt),
   ]);
   console.log("profile activity refreshed ✨");
 }

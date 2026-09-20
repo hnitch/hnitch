@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-fresh.svg?v=3.7.0" height="14" alt="" />
+    <img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
-    last signal received ·
+    last checked ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-20T09:19:07.821Z">a few seconds ago</relative-time>
+    <relative-time datetime="2026-09-20T10:53:35.712Z">recently</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -79,5 +79,5 @@
 <br/>
 
 <!-- INSTAGRAM-FEED:START -->
-<a href="https://www.instagram.com/hnitch/"><img src="./assets/activity/instagram.svg?v=0857f53286" width="100%" alt="Instagram profile @hnitch" /></a>
+<a href="https://www.instagram.com/hnitch/"><img src="./assets/activity/instagram.svg?v=b756767aa230" width="100%" alt="Instagram profile @hnitch" /></a>
 <!-- INSTAGRAM-FEED:END -->
