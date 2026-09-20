@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-idle.svg?v=3.6.0" height="14" alt="" />
+    <img src="./assets/signal-fresh.svg?v=3.7.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-20T05:56:53.664Z">a few seconds ago</relative-time>
+    <relative-time datetime="2026-09-20T09:19:07.821Z">a few seconds ago</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -36,15 +36,15 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/review/show/8125432492?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=0c5f73c8cd" width="100%" alt="currently reading Verity" /></a>
+<a href="https://www.goodreads.com/review/show/8125432492?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=195654d44b" width="100%" alt="currently reading Verity" /></a>
 
-<a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=5884d359d9" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
+<a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=82d768050b" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
 
-<a href="https://www.goodreads.com/review/show/8506583969?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=60957b077e" width="100%" alt="Read: The Caretaker" /></a>
+<a href="https://www.goodreads.com/review/show/8506583969?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=75b735e33c" width="100%" alt="Read: The Caretaker" /></a>
 
-<a href="https://www.goodreads.com/review/show/8748356322?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=1be0960ed0" width="100%" alt="Read: The Demon Star" /></a>
+<a href="https://www.goodreads.com/review/show/8748356322?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=48a0595e4e" width="100%" alt="Read: The Demon Star" /></a>
 
-<a href="https://www.goodreads.com/review/show/8669301761?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=d0e63fbe4e" width="100%" alt="Read: To Drown a Witch" /></a>
+<a href="https://www.goodreads.com/review/show/8669301761?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=41b94da6d9" width="100%" alt="Read: To Drown a Witch" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
@@ -54,19 +54,19 @@
 
 <br/>
 
-<a href="https://letterboxd.com/hnitch/film/resident-evil-2026/"><img src="./assets/activity/letterboxd-1.svg?v=d369fffd02" width="100%" alt="Watched: Resident Evil" /></a>
+<a href="https://letterboxd.com/hnitch/film/resident-evil-2026/"><img src="./assets/activity/letterboxd-1.svg?v=ae26b76e1f" width="100%" alt="Watched: Resident Evil" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/insidious-out-of-the-further/"><img src="./assets/activity/letterboxd-2.svg?v=4955103d36" width="100%" alt="Watched: Insidious: Out of the Further" /></a>
+<a href="https://letterboxd.com/hnitch/film/insidious-out-of-the-further/"><img src="./assets/activity/letterboxd-2.svg?v=940af30e34" width="100%" alt="Watched: Insidious: Out of the Further" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/enola-holmes-3/"><img src="./assets/activity/letterboxd-3.svg?v=e569d6666d" width="100%" alt="Watched: Enola Holmes 3" /></a>
+<a href="https://letterboxd.com/hnitch/film/enola-holmes-3/"><img src="./assets/activity/letterboxd-3.svg?v=1696d487ff" width="100%" alt="Watched: Enola Holmes 3" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/spider-man-brand-new-day/"><img src="./assets/activity/letterboxd-4.svg?v=a7979cecb3" width="100%" alt="Watched: Spider-Man: Brand New Day" /></a>
+<a href="https://letterboxd.com/hnitch/film/spider-man-brand-new-day/"><img src="./assets/activity/letterboxd-4.svg?v=0fa11381f8" width="100%" alt="Watched: Spider-Man: Brand New Day" /></a>
 <!-- LETTERBOXD-FEED:END -->
 
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/good-4-u/1582277315?i=1582277652&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=4db5ff33b6" width="100%" alt="recently played good 4 u by Olivia Rodrigo" /></a>
+<a href="https://music.apple.com/us/album/good-4-u/1582277315?i=1582277652&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=7a4c8497fd" width="100%" alt="recently played good 4 u by Olivia Rodrigo" /></a>
 <div align="center"><sub>a little behind the beat. Apple Music updates arrive in batches , not live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 
@@ -79,5 +79,5 @@
 <br/>
 
 <!-- INSTAGRAM-FEED:START -->
-<a href="https://www.instagram.com/hnitch/"><img src="./assets/activity/instagram.svg?v=7e9a9e7439" width="100%" alt="Instagram profile @hnitch" /></a>
+<a href="https://www.instagram.com/hnitch/"><img src="./assets/activity/instagram.svg?v=0857f53286" width="100%" alt="Instagram profile @hnitch" /></a>
 <!-- INSTAGRAM-FEED:END -->

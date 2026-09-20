@@ -1,19 +1,18 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { createHash } from "node:crypto";
+import { pathToFileURL } from "node:url";
 import { parseStringPromise } from "xml2js";
-import { prepareReviewSummaryCandidates } from "./review-summary.js";
+import { extractReviewMoods, ratingMood } from "./review-moods.js";
 
 const ROOT = process.cwd();
 const OUTPUT_DIR = path.join(ROOT, "assets", "activity");
 const DATA_FILE = path.join(ROOT, "data", "activity.json");
 const README_FILE = path.join(ROOT, "README.md");
-const REVIEW_SUMMARY_CACHE_FILE = path.join(ROOT, "data", "review-summaries.json");
-const REVIEW_VOICE_FILE = path.join(ROOT, ".github", "prompts", "goodreads-voice.md");
 const DISCORD_USER_ID = "690729789702537336";
 const MUSIC_PROFILE_URL = "https://music.apple.com/profile/hnitch";
 const LIVE_DISCORD_CARD_URL = "https://hnitch-discord-card.haarshaan.workers.dev/discord.svg";
-const RENDER_VERSION = "3.6.0";
+const RENDER_VERSION = "3.7.0";
 const SIGNAL_FRESH_MS = 15 * 60_000;
 
 const SOURCES = {
@@ -457,16 +456,6 @@ function stars(rating) {
   return `${"★".repeat(Math.floor(rating))}${rating % 1 ? "½" : ""}`;
 }
 
-function bookVerdict(rating) {
-  return ["no rating yet", "straight to jail", "fine, with a side eye", "hmm, this is alright", "this one cooked", "literally obsessed"][rating] || "read and filed away";
-}
-
-function reviewFallback(book = {}) {
-  return cleanText(book.review)
-    ? bookVerdict(book.rating)
-    : "no written statement was left at the scene";
-}
-
 function monthYear(value) {
   const date = new Date(value);
   if (Number.isNaN(date.valueOf())) return "";
@@ -532,8 +521,19 @@ function cover({ dataUri, x, y, width, height, radius = 12, id = "cover" }) {
   return `<defs><clipPath id="${id}"><rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${radius}"/></clipPath></defs><image href="${dataUri}" x="${x}" y="${y}" width="${width}" height="${height}" preserveAspectRatio="xMidYMid slice" clip-path="url(#${id})"/>`;
 }
 
-function renderBookCurrent(book, artwork) {
-  const item = book || { title: "between books", author: "the next obsession is loading", rating: 0 };
+export function renderBookCurrent(book, artwork) {
+  if (!book) {
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="252" viewBox="0 0 860 252" role="img" aria-label="Not reading anything right now. It never stays this way for long." text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#18131f"/><stop offset="1" stop-color="#262033"/></linearGradient><linearGradient id="book" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d4c1ff"/><stop offset="1" stop-color="#8edfd4"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
+  <rect x="1" y="1" width="858" height="250" rx="24" fill="url(#bg)" stroke="#625479" stroke-width="2"/>
+  <circle cx="820" cy="7" r="150" fill="#b9a4ff" opacity=".055"/>
+  <g transform="translate(24 24)"><rect width="132" height="198" rx="12" fill="#302943" stroke="#685781"/><path d="M27 35h73v126H27z" fill="#211b31" stroke="#756599" stroke-width="2"/><path d="M34 42h65v114H34z" fill="#362a4d"/><path d="M49 82h35M49 94h27" stroke="url(#book)" stroke-width="4" stroke-linecap="round"/><path d="M28 35q-11 4-11 15v103q0 11 11 12" fill="none" stroke="#9e8aca" stroke-width="3"/><path d="M73 35v27l9-8 9 8V35" fill="#8edfd4" opacity=".9"/><circle cx="66" cy="119" r="17" fill="#8edfd4" opacity=".12"/><path d="M60 119h12M66 113v12" stroke="#8edfd4" stroke-width="2" stroke-linecap="round"/></g>
+  <g class="sans"><rect x="188" y="24" width="168" height="30" rx="15" fill="#8edfd4" opacity=".12"/><circle cx="207" cy="39" r="4" fill="#8edfd4"/><text x="220" y="44" fill="#a9e7de" font-size="12" font-weight="800" letter-spacing="1.05">SHELF STATUS</text>
+  <text x="188" y="104" fill="#fffaf5" font-size="32" font-weight="800">not reading anything</text><text x="188" y="143" fill="#fffaf5" font-size="32" font-weight="800">right now.</text>
+  <text x="190" y="180" fill="#c9bed4" font-size="17" font-weight="600">it never stays this way for long.</text>
+  <rect x="188" y="198" width="189" height="30" rx="15" fill="#b9a4ff" opacity=".12"/><text x="207" y="218" fill="#d4c1ff" font-size="11" font-weight="800" letter-spacing=".8">NEXT CHAPTER PENDING</text></g></svg>`;
+  }
+  const item = book;
   const facts = [
     item.pages && `${item.pages} pages`,
     item.published,
@@ -561,9 +561,26 @@ function renderBookCurrent(book, artwork) {
   </svg>`;
 }
 
-function renderBookTile(book, artwork, index) {
+export function renderBookTile(book, artwork, index) {
   const facts = [book.pages && `${book.pages}p`, book.readAt && `read ${monthYear(book.readAt)}`].filter(Boolean).join(" · ");
-  const reaction = book.reviewSummary || reviewFallback(book);
+  const mood = ratingMood(book.rating);
+  const ratingText = stars(book.rating);
+  const ratingWidth = Math.max(78, 32 + ratingText.length * 16);
+  const moods = extractReviewMoods(book.review);
+  let chipX = 164 + ratingWidth + 29;
+  const chipColors = [
+    { fill: "#332b4a", text: "#dccdff" },
+    { fill: "#36302d", text: "#f3d4aa" },
+    { fill: "#243a3a", text: "#b1e9e1" },
+  ];
+  const chips = moods.map((label, chipIndex) => {
+    const width = Math.min(158, 27 + label.length * 7.1);
+    const x = chipX;
+    chipX += width + 10;
+    const palette = chipColors[chipIndex];
+    return `<rect x="${x}" y="183" width="${width}" height="34" rx="17" fill="${palette.fill}"/><text x="${x + width / 2}" y="205" fill="${palette.text}" font-size="12" font-weight="750" text-anchor="middle">${escapeDisplay(label)}</text>`;
+  }).join("");
+  const emptyReview = moods.length ? "" : `<rect x="${chipX}" y="183" width="178" height="34" rx="17" fill="#302a3d"/><text x="${chipX + 89}" y="205" fill="#bdb1ca" font-size="12" font-weight="700" text-anchor="middle">${book.review ? "read the full review ↗" : "no written review"}</text>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="242" viewBox="0 0 860 242" role="img" aria-label="${escapeDisplay(book.title)} by ${escapeDisplay(book.author)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${theme.bg}"/><stop offset="1" stop-color="#251e2c"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
   <rect x="1" y="1" width="858" height="240" rx="25" fill="url(#bg)" stroke="${theme.line}" stroke-width="2"/>
@@ -573,9 +590,9 @@ function renderBookTile(book, artwork, index) {
   ${wrappedText({ x: 164, y: 51, width: 630, height: 63, value: book.title, size: 27, weight: 800, lineHeight: 1.04 })}
   <text x="164" y="136" fill="${theme.muted}" font-size="14.5" font-weight="700">${escapeDisplay(book.author)}</text>
   <text x="164" y="160" fill="#978a9f" font-size="12.5" font-weight="600">${escapeDisplay(facts)}</text>
-  <text x="164" y="184" fill="${theme.yellow}" font-size="14" font-weight="800">${escapeDisplay(stars(book.rating))}</text>
-  <path d="M164 194H810" stroke="#746684" stroke-width="1" opacity=".24"/>
-  ${wrappedText({ x: 164, y: 198, width: 600, height: 34, value: reaction, size: 13.5, weight: 600, color: "#c8bdd3", lineHeight: 1.12, italic: true })}</g>
+  <rect x="164" y="183" width="${ratingWidth}" height="34" rx="17" fill="${mood.background}"/><text x="${164 + ratingWidth / 2}" y="205" fill="${mood.color}" font-size="16" font-weight="800" text-anchor="middle">${escapeDisplay(ratingText)}</text>
+  <path d="M${174 + ratingWidth} 187v26" stroke="#776a88" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+  ${chips}${emptyReview}</g>
   </svg>`;
 }
 
@@ -678,24 +695,6 @@ async function readPrevious() {
     return JSON.parse(await fs.readFile(DATA_FILE, "utf8"));
   } catch {
     return {};
-  }
-}
-
-async function readReviewSummaryCache() {
-  try {
-    return JSON.parse(await fs.readFile(REVIEW_SUMMARY_CACHE_FILE, "utf8"));
-  } catch (error) {
-    if (error.code === "ENOENT") return {};
-    throw error;
-  }
-}
-
-async function readReviewVoice() {
-  try {
-    return await fs.readFile(REVIEW_VOICE_FILE, "utf8");
-  } catch (error) {
-    if (error.code === "ENOENT") return "";
-    throw error;
   }
 }
 
@@ -855,7 +854,7 @@ function cardStack(items, prefix, alt) {
 
 function goodreadsMarkup(data) {
   const currentLink = data.current?.link || "https://www.goodreads.com/user/show/178629903";
-  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(data.current)}" width="100%" alt="currently reading ${escapeDisplay(data.current?.title || "nothing")}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read")}`;
+  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(data.current)}" width="100%" alt="${data.current ? `currently reading ${escapeDisplay(data.current.title)}` : "not reading anything right now"}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read")}`;
 }
 
 function letterboxdMarkup(data) {
@@ -881,7 +880,7 @@ function signalState(updatedAt) {
 }
 
 function signalMarkup(state) {
-  return `<img src="./assets/signal-${state}.svg?v=3.6.0" height="14" alt="" />`;
+  return `<img src="./assets/signal-${state}.svg?v=3.7.0" height="14" alt="" />`;
 }
 
 function replaceSection(content, name, replacement) {
@@ -911,11 +910,7 @@ function dataChanged(previous, current) {
 }
 
 async function main() {
-  const [previous, reviewSummaryCache, reviewVoiceInstructions] = await Promise.all([
-    readPrevious(),
-    readReviewSummaryCache(),
-    readReviewVoice(),
-  ]);
+  const previous = await readPrevious();
   const [
     cachedAppleArtwork,
     cachedDiscordAvatar,
@@ -952,15 +947,6 @@ async function main() {
     discord: discordResult.data,
     instagram: instagramResult.data,
   };
-  const reviewSummaryPlan = prepareReviewSummaryCandidates(current.goodreads?.recent || [], {
-    cache: reviewSummaryCache,
-    voiceInstructions: reviewVoiceInstructions,
-    fallback: reviewFallback,
-  });
-  current.goodreads = {
-    ...current.goodreads,
-    recent: reviewSummaryPlan.books,
-  };
   const cachedGoodreadsArtwork = {
     current: previous.goodreads?.current?.bookId === current.goodreads?.current?.bookId
       ? cachedGoodreadsCurrentArtwork
@@ -971,9 +957,6 @@ async function main() {
         : null
     )),
   };
-  for (const item of reviewSummaryPlan.warnings) {
-    console.warn(`warning: ${item.code}${item.title ? ` (${item.title})` : ""}: ${item.message}`);
-  }
   const updatedAt = dataChanged(previous, current) || !previous.updatedAt ? new Date().toISOString() : previous.updatedAt;
 
   await fs.mkdir(OUTPUT_DIR, { recursive: true });
@@ -1005,7 +988,9 @@ async function main() {
   console.log("profile activity refreshed ✨");
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

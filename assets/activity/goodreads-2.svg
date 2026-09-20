@@ -7,7 +7,7 @@
   <text fill="#fffaf5" font-size="27" font-weight="800" font-style="normal"><tspan x="164" y="78">The Caretaker</tspan></text>
   <text x="164" y="136" fill="#bdb1ca" font-size="14.5" font-weight="700">Marcus Kliewer</text>
   <text x="164" y="160" fill="#978a9f" font-size="12.5" font-weight="600">295p · read Sep 2026</text>
-  <text x="164" y="184" fill="#ffe58c" font-size="14" font-weight="800">★★★</text>
-  <path d="M164 194H810" stroke="#746684" stroke-width="1" opacity=".24"/>
-  <text fill="#c8bdd3" font-size="13.5" font-weight="600" font-style="italic"><tspan x="164" y="212">i binge-read loved the tension but left hanging questions made it a</tspan><tspan x="164" y="227">bittersweet thrill</tspan></text></g>
+  <rect x="164" y="183" width="80" height="34" rx="17" fill="#3d3726"/><text x="204" y="205" fill="#ffe58c" font-size="16" font-weight="800" text-anchor="middle">★★★</text>
+  <path d="M254 187v26" stroke="#776a88" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+  <rect x="273" y="183" width="133.5" height="34" rx="17" fill="#332b4a"/><text x="339.75" y="205" fill="#dccdff" font-size="12" font-weight="750" text-anchor="middle">breezed through</text><rect x="416.5" y="183" width="69.6" height="34" rx="17" fill="#36302d"/><text x="451.3" y="205" fill="#f3d4aa" font-size="12" font-weight="750" text-anchor="middle">gloomy</text><rect x="496.1" y="183" width="69.6" height="34" rx="17" fill="#243a3a"/><text x="530.9" y="205" fill="#b1e9e1" font-size="12" font-weight="750" text-anchor="middle">horror</text></g>
   </svg>
