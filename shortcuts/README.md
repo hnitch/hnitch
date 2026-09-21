@@ -1,9 +1,9 @@
 # Update reading progress shortcut
 
-`Update reading progress.shortcut` is an unsigned-credential template for the
-native Apple Shortcuts app. It contains **no token**. The live shortcut was built
-in Shortcuts on macOS and can sync to the same Apple ID on iPhone; the exported
-file is a reviewable backup.
+`Update reading progress.shortcut` is a credential-free template for the native
+Apple Shortcuts app. It contains **no token**. Your personal copy may be named
+**Read Me Book Progress**; the exported file is a reviewable backup, not the
+credential-bearing copy on your devices.
 
 The shortcut reads the current Goodreads book from the profile branch, asks for
 one input (`148`, `148/320`, or `42%`), and dispatches the profile workflow for
@@ -26,12 +26,13 @@ book information. When the book changes, the old value is ignored.
    `Bearer ` prefix. Never paste the token into this repository, an issue, a
    screenshot, or a message. Anyone who can edit or view your synced shortcut
    may be able to see the token. Revoke it from GitHub if the device is lost.
-4. During review, its `ref` is `3.1`; it updates that branch,
-   **not the public `main` profile**. Once the branch is merged, change the
-   JSON body `ref` from `3.1` to `main` and the first URL from
-   `/3.1/data/activity.json` to `/main/data/activity.json`.
+4. The template's JSON body `ref` is `main`, and its first URL reads
+   `/main/data/activity.json`. If your personal Shortcut still points to the
+   old review branch, update those two fields to `main` without changing its
+   Authorization header.
 5. On iPhone, add the shortcut to Control Center using **Add a Control →
-   Shortcut**, then choose **Update reading progress**. The shortcut prompts for
+   Shortcut**, then choose **Read Me Book Progress** (or **Update reading
+   progress** if you imported the template). The shortcut prompts for
    one value and confirms only that GitHub accepted the queued workflow; if the
    subsequent job fails, inspect the run in the repository's Actions tab.
 
