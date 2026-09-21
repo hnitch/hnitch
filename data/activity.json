@@ -10,7 +10,7 @@
         "rating": 2,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1674813998l/60282373._SY475_.jpg",
         "pages": 341,
-        "averageRating": 4.29,
+        "averageRating": 4.28,
         "published": "2018",
         "dateAdded": "Sun, 20 Sep 2026 09:12:25 -0700",
         "readAt": "Sun, 20 Sep 2026 00:00:00 +0000",
@@ -113,8 +113,9 @@
   },
   "instagram": {
     "username": "hnitch",
-    "avatarHash": "15c99023141d"
+    "avatarHash": "67c094a759b0",
+    "lastAttemptAt": "2026-09-21T05:21:31.691Z"
   },
-  "updatedAt": "2026-09-20T18:10:35.392Z",
-  "lastSignalRenderAt": "2026-09-20T18:10:35.392Z"
+  "updatedAt": "2026-09-21T05:22:33.191Z",
+  "lastSignalRenderAt": "2026-09-21T05:22:33.191Z"
 }
