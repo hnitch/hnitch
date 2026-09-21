@@ -31,5 +31,3 @@
 a smaller update than 3.0 , but a more honest one. the profile should feel a little more like me and ask a little less of my Mac mini.
 
 full changelog: [3.0.0...3.1.0](https://github.com/hnitch/hnitch/compare/3.0.0...3.1.0)
-
-_draft for review. do not publish until the shortcut and branch are tested._
