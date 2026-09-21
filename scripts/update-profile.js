@@ -743,6 +743,16 @@ export function shouldRefreshInstagram(previous, cachedAvatar, now = Date.now())
   return true;
 }
 
+export function staleInstagramData(previous, cachedAvatar, attemptedAt) {
+  return {
+    ...previous,
+    username: "hnitch",
+    // Retrying a failed fetch is not a new avatar or a profile signal.
+    avatarHash: previous?.avatarHash || createHash("sha256").update(cachedAvatar).digest("hex").slice(0, 12),
+    lastAttemptAt: attemptedAt,
+  };
+}
+
 async function readInstagramSource(previous, cachedAvatar) {
   if (process.env.FORCE_INSTAGRAM_REFRESH !== "1" && !shouldRefreshInstagram(previous, cachedAvatar)) {
     return { fresh: false, data: previous, avatarData: cachedAvatar };
@@ -760,12 +770,7 @@ async function readInstagramSource(previous, cachedAvatar) {
     console.warn(`warning: Instagram avatar refresh failed; keeping the last good image (${error.message})`);
     return {
       fresh: false,
-      data: {
-        ...previous,
-        username: "hnitch",
-        avatarHash: createHash("sha256").update(cachedAvatar).digest("hex").slice(0, 12),
-        lastAttemptAt: attemptedAt,
-      },
+      data: staleInstagramData(previous, cachedAvatar, attemptedAt),
       avatarData: cachedAvatar,
     };
   }
@@ -798,16 +803,16 @@ async function writeLetterboxdAssets(data) {
   await Promise.all(data.recent.map((film, index) => fs.writeFile(path.join(OUTPUT_DIR, `letterboxd-${index + 1}.svg`), renderFilmTile(film, artwork[index], index))));
 }
 
-function cardStack(items, prefix, alt) {
+function cardStack(items, prefix, alt, versionData = (item) => item) {
   return items.map((item, index) => {
     const number = index + 1;
-    return `<a href="${escapeXml(item.link)}"><img src="./assets/activity/${prefix}-${number}.svg?v=${assetVersion(item)}" width="100%" alt="${escapeDisplay(`${alt}: ${item.title}`)}" /></a>`;
+    return `<a href="${escapeXml(item.link)}"><img src="./assets/activity/${prefix}-${number}.svg?v=${assetVersion(versionData(item))}" width="100%" alt="${escapeDisplay(`${alt}: ${item.title}`)}" /></a>`;
   }).join("\n\n");
 }
 
 function goodreadsMarkup(data) {
   const currentLink = data.current?.link || "https://www.goodreads.com/user/show/178629903";
-  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(data.current)}" width="100%" alt="${data.current ? `currently reading ${escapeDisplay(data.current.title)}` : "not reading anything right now"}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read")}`;
+  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(data.current)}" width="100%" alt="${data.current ? `currently reading ${escapeDisplay(data.current.title)}` : "not reading anything right now"}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read", (book) => [book, extractReviewMoods(book.review)])}`;
 }
 
 function letterboxdMarkup(data) {

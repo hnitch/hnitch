@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { instagramOgAvatarUrl, renderBookCurrent, shouldRefreshInstagram, signalPresentation } from "./update-profile.js";
+import { instagramOgAvatarUrl, renderBookCurrent, shouldRefreshInstagram, signalPresentation, staleInstagramData } from "./update-profile.js";
 
 const now = Date.parse("2026-09-20T12:00:00.000Z");
 
@@ -23,6 +23,14 @@ test("Instagram refresh is elapsed-time based, not tied to a five-minute UTC win
   assert.equal(shouldRefreshInstagram({ lastSuccessAt: "2026-09-19T11:59:00.000Z" }, cached, now), true);
   assert.equal(shouldRefreshInstagram({ lastSuccessAt: "2026-09-18T00:00:00.000Z", lastAttemptAt: "2026-09-20T10:00:00.000Z" }, cached, now), false);
   assert.equal(shouldRefreshInstagram({ lastSuccessAt: "2026-09-18T00:00:00.000Z", lastAttemptAt: "2026-09-20T05:00:00.000Z" }, cached, now), true);
+});
+
+test("a failed Instagram retry preserves the last verified avatar hash", () => {
+  const previous = { username: "hnitch", avatarHash: "verified-avatar-hash" };
+  assert.deepEqual(staleInstagramData(previous, "data:image/jpeg;base64,abc", "2026-09-20T12:00:00.000Z"), {
+    ...previous,
+    lastAttemptAt: "2026-09-20T12:00:00.000Z",
+  });
 });
 
 test("Instagram metadata uses the named profile and a constrained image host", () => {

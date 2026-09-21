@@ -1,8 +1,10 @@
 // These chips are deliberately extractive: every label must be supported by
 // words in the public review. Ratings control only the colour of the stars.
 const PHRASES = [
+  { group: "reaction", pattern: /\bcompletely hooked me\b/iu },
+  { group: "reaction", pattern: /\bgrossed me out\b/iu },
+  { group: "reaction", pattern: /\bpissed me off\b/iu },
   { group: "reaction", pattern: /\bblindsided me\b/iu },
-  { group: "reaction", pattern: /\bno regrets\b/iu },
   { group: "reaction", pattern: /\bbreezed through\b/iu },
   { group: "reaction", pattern: /\bbinge[ -]?read\b/iu },
   { group: "reaction", pattern: /\bdevoured it\b/iu },
@@ -15,7 +17,9 @@ const PHRASES = [
   { group: "reaction", pattern: /\bstill thinking\b/iu },
   { group: "reaction", pattern: /\bnot for me\b/iu },
   { group: "reaction", pattern: /\bi loved it\b/iu },
-  { group: "reaction", pattern: /\bi was bored\b/iu },
+  { group: "reaction", pattern: /\bi was bored\b/iu, negationSensitive: true },
+  { group: "craft", pattern: /\bdefinition of TMI\b/iu },
+  { group: "craft", pattern: /\bthird wheeling\b/iu },
   { group: "craft", pattern: /\bspooky aesthetic\b/iu },
   { group: "craft", pattern: /\bgloomy\b/iu },
   { group: "craft", pattern: /\bunsettling\b/iu },
@@ -34,7 +38,6 @@ const PHRASES = [
   { group: "craft", pattern: /\bheartbreaking\b/iu },
   { group: "craft", pattern: /\bchaotic\b/iu },
   { group: "craft", pattern: /\bcreepy\b/iu },
-  { group: "craft", pattern: /\bromance\b/iu },
   { group: "genre", pattern: /\bmystery\s*\/\s*thriller\b/iu },
   { group: "genre", pattern: /\bhorror\b/iu },
   { group: "genre", pattern: /\bfantasy\b/iu },
@@ -42,6 +45,7 @@ const PHRASES = [
   { group: "genre", pattern: /\bthriller\b/iu },
   { group: "genre", pattern: /\bsci[ -]?fi\b/iu },
   { group: "genre", pattern: /\bdystopian\b/iu },
+  { group: "genre", pattern: /\bromance\b/iu },
 ];
 
 function cleanReview(review) {
@@ -55,27 +59,32 @@ function cleanReview(review) {
 export function extractReviewMoods(review, limit = 3) {
   const source = cleanReview(review);
   if (!source) return [];
-  const selected = [];
-  const groups = new Set();
-  for (const { group, pattern } of PHRASES) {
-    if (selected.length >= limit) break;
-    if (groups.has(group)) continue;
+  const candidates = { reaction: [], craft: [], genre: [] };
+  for (const { group, pattern, negationSensitive } of PHRASES) {
     const match = source.match(pattern);
     if (!match) continue;
     const label = match[0].toLocaleLowerCase("en").replace(/\s+/gu, " ").trim();
-    if (label.length > 22 || selected.includes(label)) continue;
-    selected.push(label);
-    groups.add(group);
+    if (label.length > 22 || candidates[group].includes(label)) continue;
+    // A literal substring is not an endorsement: "cannot even pretend i was
+    // bored" must never be displayed as "i was bored".
+    if (negationSensitive) {
+      const clause = source.slice(Math.max(0, match.index - 90), match.index).split(/[.!?;…]/u).at(-1);
+      const lead = clause.trim().split(/\s+/u).slice(-6).join(" ");
+      if (/\b(?:not|never|cannot|can't|couldn't|didn't|did\s+not)\b/iu.test(lead)) continue;
+    }
+    candidates[group].push(label);
   }
-  // A second pass can add another distinct reaction or craft note before we
-  // ever infer anything. A review with no clear match receives no fake tags.
-  for (const { pattern } of PHRASES) {
+  // Start with the reading experience and a concrete reason. More personal
+  // reactions or craft notes outrank generic genre labels for the last chip.
+  const selected = [];
+  const ranked = [
+    candidates.reaction[0], candidates.craft[0],
+    ...candidates.reaction.slice(1), ...candidates.craft.slice(1),
+    ...candidates.genre,
+  ];
+  for (const label of ranked) {
     if (selected.length >= limit) break;
-    const match = source.match(pattern);
-    if (!match) continue;
-    const label = match[0].toLocaleLowerCase("en").replace(/\s+/gu, " ").trim();
-    if (label.length > 22 || selected.includes(label)) continue;
-    selected.push(label);
+    if (label && !selected.includes(label)) selected.push(label);
   }
   return selected;
 }

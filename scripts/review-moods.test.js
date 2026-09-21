@@ -6,8 +6,15 @@ import { renderBookCurrent, renderBookTile } from "./update-profile.js";
 test("pulls short evidence-backed moods from a mixed review", () => {
   const review = "i BREEZED through it. the atmosphere was gloomy , but i wanted more explanation. horror nonstop.";
   const moods = extractReviewMoods(review);
-  assert.deepEqual(moods, ["breezed through", "gloomy", "horror"]);
+  assert.deepEqual(moods, ["breezed through", "gloomy", "more explanation"]);
   for (const mood of moods) assert.match(review.toLowerCase(), new RegExp(mood));
+});
+
+test("Verity's explicitly denied boredom does not erase its actual mixed reaction", () => {
+  const review = "i was flying through chapters because i needed to know. this book is literally the definition of TMI. yet i cannot even pretend i was bored because i read this ridiculously fast. you completely hooked me , grossed me out , pissed me off.";
+  assert.deepEqual(extractReviewMoods(review), ["completely hooked me", "definition of tmi", "grossed me out"]);
+  assert.deepEqual(extractReviewMoods("i cannot even pretend i was bored"), []);
+  assert.deepEqual(extractReviewMoods("i was bored"), ["i was bored"]);
 });
 
 test("does not invent moods without written evidence", () => {
