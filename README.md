@@ -36,7 +36,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=3ba2314a22" width="100%" alt="not reading anything right now" /></a>
+<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=6bd7880b58" width="100%" alt="not reading anything right now" /></a>
 
 <a href="https://www.goodreads.com/review/show/8125432492?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=5190928529" width="100%" alt="Read: Verity" /></a>
 

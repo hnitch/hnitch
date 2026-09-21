@@ -38,7 +38,8 @@ test("empty shelf is honest and fully designed", () => {
   const svg = renderBookCurrent(null, null);
   assert.match(svg, /not reading anything/);
   assert.match(svg, /it never stays this way for long/);
-  assert.match(svg, /NEXT CHAPTER PENDING/);
+  assert.match(svg, />\.\.\.<\/text>/);
+  assert.doesNotMatch(svg, /NEXT CHAPTER PENDING/);
   assert.doesNotMatch(svg, /between books|obsession is loading|progress not shared/);
 });
 

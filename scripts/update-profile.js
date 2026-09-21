@@ -480,7 +480,7 @@ export function renderBookCurrent(book, artwork) {
   <g class="sans"><rect x="188" y="24" width="168" height="30" rx="15" fill="#8edfd4" opacity=".12"/><circle cx="207" cy="39" r="4" fill="#8edfd4"/><text x="220" y="44" fill="#a9e7de" font-size="12" font-weight="800" letter-spacing="1.05">SHELF STATUS</text>
   <text x="188" y="104" fill="#fffaf5" font-size="32" font-weight="800">not reading anything</text><text x="188" y="143" fill="#fffaf5" font-size="32" font-weight="800">right now.</text>
   <text x="190" y="180" fill="#c9bed4" font-size="17" font-weight="600">it never stays this way for long.</text>
-  <rect x="188" y="198" width="189" height="30" rx="15" fill="#b9a4ff" opacity=".12"/><text x="207" y="218" fill="#d4c1ff" font-size="11" font-weight="800" letter-spacing=".8">NEXT CHAPTER PENDING</text></g></svg>`;
+  <rect x="188" y="198" width="189" height="30" rx="15" fill="#b9a4ff" opacity=".12"/><text x="282.5" y="218" fill="#d4c1ff" font-size="14" font-weight="800" letter-spacing="2" text-anchor="middle">...</text></g></svg>`;
   }
   const item = book;
   const progress = item.progress;
@@ -812,7 +812,8 @@ function cardStack(items, prefix, alt, versionData = (item) => item) {
 
 function goodreadsMarkup(data) {
   const currentLink = data.current?.link || "https://www.goodreads.com/user/show/178629903";
-  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(data.current)}" width="100%" alt="${data.current ? `currently reading ${escapeDisplay(data.current.title)}` : "not reading anything right now"}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read", (book) => [book, extractReviewMoods(book.review)])}`;
+  const currentVersion = data.current ? data.current : ["empty shelf", "..."];
+  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(currentVersion)}" width="100%" alt="${data.current ? `currently reading ${escapeDisplay(data.current.title)}` : "not reading anything right now"}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read", (book) => [book, extractReviewMoods(book.review)])}`;
 }
 
 function letterboxdMarkup(data) {
