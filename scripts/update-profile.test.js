@@ -1,8 +1,20 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { instagramOgAvatarUrl, renderBookCurrent, shouldRefreshInstagram } from "./update-profile.js";
+import { instagramOgAvatarUrl, renderBookCurrent, shouldRefreshInstagram, signalPresentation } from "./update-profile.js";
 
 const now = Date.parse("2026-09-20T12:00:00.000Z");
+
+test("signal reflects the last actual feed change, not the last scheduled check", () => {
+  const changedAt = "2026-09-20T11:50:00.000Z";
+  assert.deepEqual(signalPresentation(changedAt, new Date(now)), {
+    fresh: true,
+    datetime: changedAt,
+    fallback: "20 Sept 2026, 11:50 UTC",
+  });
+  assert.equal(signalPresentation(changedAt, new Date(now + 5 * 60_000)).fresh, false);
+  assert.equal(signalPresentation("not a date", new Date(now)).fallback, "awaiting a signal");
+  assert.equal(signalPresentation("2026-09-20T12:01:00.000Z", new Date(now)).fresh, false);
+});
 
 test("Instagram refresh is elapsed-time based, not tied to a five-minute UTC window", () => {
   const cached = "data:image/jpeg;base64,abc";

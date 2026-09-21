@@ -3,7 +3,7 @@
 ## 📚 reading
 
 - the "currently reading" card has an actual in-between-books state now. no empty-looking placeholder when the shelf is taking a breath.
-- a new iPhone shortcut lets me log a page , page/total , or percentage straight from Control Center. it updates the current book card on this branch without posting another Goodreads status.
+- a new iPhone shortcut lets me log a page , page/total , or percentage straight from Control Center. it updates the current book card without posting another Goodreads status.
 - Goodreads still supplies the book , cover , author , reviews , and recent reads. the shortcut changes reading progress only.
 - progress is checked against the current book and reading session , so a late update cannot land on a different book.
 
@@ -18,6 +18,7 @@
 
 - Discord keeps the custom card , but its status and profile details are now fetched by a live endpoint instead of waiting for a repository commit.
 - Instagram's profile picture refresh is less dependent on a fixed time window.
+- "last signal received" now means the last actual feed change , not the last scheduled check. the indicator glows green briefly after an update and then settles back down.
 - the activity refresh is set to check every five minutes on the default branch and only commits meaningful changes. Apple Music still arrives in batches , so it isn't advertised as live.
 
 ## ⚙️ under the hood

@@ -17,7 +17,7 @@ const LIVE_DISCORD_CARD_URL = "https://hnitch-discord-card.haarshaan.workers.dev
 const RENDER_VERSION = "3.7.0";
 const INSTAGRAM_REFRESH_MS = 24 * 60 * 60_000;
 const INSTAGRAM_RETRY_MS = 6 * 60 * 60_000;
-const CHECKPOINT_MS = 60 * 60_000;
+const SIGNAL_FRESH_MS = 15 * 60_000;
 
 const SOURCES = {
   goodreads: {
@@ -836,15 +836,36 @@ function replaceSection(content, name, replacement) {
   });
 }
 
-async function updateReadme(data, checkedAt) {
+export function signalPresentation(updatedAt, now = new Date()) {
+  const signalAt = Date.parse(updatedAt);
+  if (!Number.isFinite(signalAt)) {
+    return { fresh: false, datetime: null, fallback: "awaiting a signal" };
+  }
+  const age = now.valueOf() - signalAt;
+  const fallback = new Intl.DateTimeFormat("en-GB", {
+    day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit",
+    hour12: false, timeZone: "UTC",
+  }).format(signalAt);
+  return {
+    fresh: age >= 0 && age < SIGNAL_FRESH_MS,
+    datetime: new Date(signalAt).toISOString(),
+    fallback: `${fallback} UTC`,
+  };
+}
+
+async function updateReadme(data, updatedAt, now) {
   let readme = await fs.readFile(README_FILE, "utf8");
   readme = replaceSection(readme, "GOODREADS-FEED", goodreadsMarkup(data.goodreads));
   readme = replaceSection(readme, "LETTERBOXD-FEED", letterboxdMarkup(data.letterboxd));
   readme = replaceSection(readme, "APPLE-MUSIC-FEED", appleMusicMarkup(data.appleMusic));
   readme = replaceSection(readme, "DISCORD-FEED", discordMarkup());
   readme = replaceSection(readme, "INSTAGRAM-FEED", instagramMarkup(data.instagram));
-  readme = replaceSection(readme, "PROFILE-SIGNAL-STATE", `<img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />`);
-  readme = replaceSection(readme, "PROFILE-LAST-UPDATED", `<relative-time datetime="${checkedAt}">recently</relative-time>`);
+  const signal = signalPresentation(updatedAt, now);
+  const signalIcon = signal.fresh ? "signal-fresh" : "signal-idle";
+  readme = replaceSection(readme, "PROFILE-SIGNAL-STATE", `<img src="./assets/${signalIcon}.svg?v=3.7.0" height="14" alt="" />`);
+  readme = replaceSection(readme, "PROFILE-LAST-UPDATED", signal.datetime
+    ? `<relative-time datetime="${signal.datetime}">${signal.fallback}</relative-time>`
+    : signal.fallback);
   await fs.writeFile(README_FILE, readme);
 }
 
@@ -915,10 +936,12 @@ async function main() {
   const now = new Date();
   const changed = dataChanged(previous, current);
   const updatedAt = changed || !previous.updatedAt ? now.toISOString() : previous.updatedAt;
-  const previousCheck = Date.parse(previous.lastCheckedAt);
-  const lastCheckedAt = changed || !Number.isFinite(previousCheck) || now.valueOf() - previousCheck >= CHECKPOINT_MS
+  const previousSignalRenderAt = Date.parse(previous.lastSignalRenderAt || previous.lastCheckedAt);
+  const signalChanged = signalPresentation(previous.updatedAt, new Date(previousSignalRenderAt)).fresh
+    !== signalPresentation(updatedAt, now).fresh;
+  const lastSignalRenderAt = changed || !Number.isFinite(previousSignalRenderAt) || signalChanged
     ? now.toISOString()
-    : previous.lastCheckedAt;
+    : new Date(previousSignalRenderAt).toISOString();
 
   await fs.mkdir(OUTPUT_DIR, { recursive: true });
   await fs.mkdir(path.dirname(DATA_FILE), { recursive: true });
@@ -936,8 +959,8 @@ async function main() {
   }
   await Promise.all(writes);
   await Promise.all([
-    fs.writeFile(DATA_FILE, `${JSON.stringify({ ...current, updatedAt, lastCheckedAt }, null, 2)}\n`),
-    updateReadme(current, lastCheckedAt),
+    fs.writeFile(DATA_FILE, `${JSON.stringify({ ...current, updatedAt, lastSignalRenderAt }, null, 2)}\n`),
+    updateReadme(current, updatedAt, now),
   ]);
   console.log("profile activity refreshed ✨");
 }

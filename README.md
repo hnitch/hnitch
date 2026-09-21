@@ -22,9 +22,9 @@
     <!-- PROFILE-SIGNAL-STATE:START -->
     <img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
-    last checked ·
+    last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-20T14:16:04.693Z">recently</relative-time>
+    <relative-time datetime="2026-09-20T10:55:37.054Z">20 Sept 2026, 10:55 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
