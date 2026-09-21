@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-20T18:10:35.392Z">20 Sept 2026, 18:10 UTC</relative-time>
+    <relative-time datetime="2026-09-21T05:22:33.191Z">21 Sept 2026, 05:22 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -38,7 +38,7 @@
 
 <a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=3ba2314a22" width="100%" alt="not reading anything right now" /></a>
 
-<a href="https://www.goodreads.com/review/show/8125432492?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=c3665a841f" width="100%" alt="Read: Verity" /></a>
+<a href="https://www.goodreads.com/review/show/8125432492?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=5190928529" width="100%" alt="Read: Verity" /></a>
 
 <a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=8ee8692828" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
 
@@ -79,5 +79,5 @@
 <br/>
 
 <!-- INSTAGRAM-FEED:START -->
-<a href="https://www.instagram.com/hnitch/"><img src="./assets/activity/instagram.svg?v=15c99023141d" width="100%" alt="Instagram profile @hnitch" /></a>
+<a href="https://www.instagram.com/hnitch/"><img src="./assets/activity/instagram.svg?v=67c094a759b0" width="100%" alt="Instagram profile @hnitch" /></a>
 <!-- INSTAGRAM-FEED:END -->
