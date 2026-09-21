@@ -26,10 +26,10 @@ book information. When the book changes, the old value is ignored.
    `Bearer ` prefix. Never paste the token into this repository, an issue, a
    screenshot, or a message. Anyone who can edit or view your synced shortcut
    may be able to see the token. Revoke it from GitHub if the device is lost.
-4. During review, its `ref` is `fable-progress-refresh`; it updates that branch,
+4. During review, its `ref` is `3.1`; it updates that branch,
    **not the public `main` profile**. Once the branch is merged, change the
-   JSON body `ref` from `fable-progress-refresh` to `main` and the first URL from
-   `/fable-progress-refresh/data/activity.json` to `/main/data/activity.json`.
+   JSON body `ref` from `3.1` to `main` and the first URL from
+   `/3.1/data/activity.json` to `/main/data/activity.json`.
 5. On iPhone, add the shortcut to Control Center using **Add a Control →
    Shortcut**, then choose **Update reading progress**. The shortcut prompts for
    one value and confirms only that GitHub accepted the queued workflow; if the
