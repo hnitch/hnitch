@@ -24,7 +24,7 @@
         "rating": 4,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1788493559l/258342692._SY475_.jpg",
         "pages": 397,
-        "averageRating": 3.84,
+        "averageRating": 3.85,
         "published": "2026",
         "dateAdded": "Wed, 16 Sep 2026 07:10:34 -0700",
         "readAt": "Wed, 16 Sep 2026 00:00:00 +0000",
@@ -52,7 +52,7 @@
         "rating": 2,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1786088398l/256240967._SY475_.jpg",
         "pages": 445,
-        "averageRating": 3.73,
+        "averageRating": 3.72,
         "published": "2026",
         "dateAdded": "Sat, 05 Sep 2026 03:57:09 -0700",
         "readAt": "Sun, 30 Aug 2026 00:00:00 +0000",
@@ -114,8 +114,8 @@
   "instagram": {
     "username": "hnitch",
     "avatarHash": "67c094a759b0",
-    "lastAttemptAt": "2026-09-21T23:33:28.793Z"
+    "lastAttemptAt": "2026-09-22T06:50:36.704Z"
   },
-  "updatedAt": "2026-09-22T01:47:56.763Z",
-  "lastSignalRenderAt": "2026-09-22T01:47:56.763Z"
+  "updatedAt": "2026-09-22T06:51:10.409Z",
+  "lastSignalRenderAt": "2026-09-22T06:51:10.409Z"
 }
