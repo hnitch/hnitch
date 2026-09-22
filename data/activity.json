@@ -1,6 +1,20 @@
 {
   "goodreads": {
-    "current": null,
+    "current": {
+      "bookId": "250155395",
+      "title": "A Stage Set for Villains",
+      "author": "Shannon J. Spann",
+      "link": "https://www.goodreads.com/review/show/8495966803?utm_medium=api&utm_source=rss",
+      "rating": 0,
+      "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1774312099l/250155395._SY475_.jpg",
+      "pages": 419,
+      "averageRating": 4.11,
+      "published": "2026",
+      "dateAdded": "Tue, 22 Sep 2026 00:15:06 -0700",
+      "readAt": "",
+      "review": "",
+      "progress": null
+    },
     "recent": [
       {
         "bookId": "60282373",
@@ -116,6 +130,6 @@
     "avatarHash": "67c094a759b0",
     "lastAttemptAt": "2026-09-22T06:50:36.704Z"
   },
-  "updatedAt": "2026-09-22T06:51:10.409Z",
-  "lastSignalRenderAt": "2026-09-22T06:51:10.409Z"
+  "updatedAt": "2026-09-22T12:06:27.625Z",
+  "lastSignalRenderAt": "2026-09-22T12:06:27.625Z"
 }
