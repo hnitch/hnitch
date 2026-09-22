@@ -1,1 +1,11 @@
-null
+{
+  "bookId": "250155395",
+  "dateAdded": "Tue, 22 Sep 2026 00:15:06 -0700",
+  "progress": {
+    "page": 170,
+    "total": 419,
+    "percent": 41,
+    "source": "shortcut"
+  },
+  "updatedAt": "2026-09-22T16:16:27.755Z"
+}

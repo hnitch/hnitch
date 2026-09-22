@@ -13,7 +13,12 @@
       "dateAdded": "Tue, 22 Sep 2026 00:15:06 -0700",
       "readAt": "",
       "review": "",
-      "progress": null
+      "progress": {
+        "page": 170,
+        "total": 419,
+        "percent": 41,
+        "source": "shortcut"
+      }
     },
     "recent": [
       {
@@ -128,8 +133,8 @@
   "instagram": {
     "username": "hnitch",
     "avatarHash": "67c094a759b0",
-    "lastAttemptAt": "2026-09-22T06:50:36.704Z"
+    "lastAttemptAt": "2026-09-22T16:16:27.999Z"
   },
-  "updatedAt": "2026-09-22T12:06:27.625Z",
-  "lastSignalRenderAt": "2026-09-22T12:06:27.625Z"
+  "updatedAt": "2026-09-22T16:16:53.320Z",
+  "lastSignalRenderAt": "2026-09-22T16:16:53.320Z"
 }

@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-22T12:06:27.625Z">22 Sept 2026, 12:06 UTC</relative-time>
+    <relative-time datetime="2026-09-22T16:16:53.320Z">22 Sept 2026, 16:16 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -36,7 +36,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/review/show/8495966803?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=f72c985f5e" width="100%" alt="currently reading A Stage Set for Villains" /></a>
+<a href="https://www.goodreads.com/review/show/8495966803?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=30239ceeea" width="100%" alt="currently reading A Stage Set for Villains" /></a>
 
 <a href="https://www.goodreads.com/review/show/8125432492?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=5190928529" width="100%" alt="Read: Verity" /></a>
 
