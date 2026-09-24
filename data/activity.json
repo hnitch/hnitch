@@ -120,10 +120,10 @@
     ]
   },
   "appleMusic": {
-    "title": "good 4 u",
-    "artist": "Olivia Rodrigo",
-    "album": "SOUR (Video Version)",
-    "link": "https://music.apple.com/us/album/good-4-u/1582277315?i=1582277652&uo=4",
+    "title": "Pink Pony Club",
+    "artist": "Chappell Roan",
+    "album": "Pink Pony Club - Single",
+    "link": "https://music.apple.com/us/album/pink-pony-club/1675173434?i=1675173768&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -133,8 +133,8 @@
   "instagram": {
     "username": "hnitch",
     "avatarHash": "67c094a759b0",
-    "lastAttemptAt": "2026-09-24T05:12:05.872Z"
+    "lastAttemptAt": "2026-09-24T14:53:26.204Z"
   },
-  "updatedAt": "2026-09-23T10:12:55.191Z",
-  "lastSignalRenderAt": "2026-09-23T15:02:48.096Z"
+  "updatedAt": "2026-09-24T14:53:59.967Z",
+  "lastSignalRenderAt": "2026-09-24T14:53:59.967Z"
 }
