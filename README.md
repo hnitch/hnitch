@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-24T14:53:59.967Z">24 Sept 2026, 14:53 UTC</relative-time>
+    <relative-time datetime="2026-09-24T18:44:23.250Z">24 Sept 2026, 18:44 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -66,7 +66,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/pink-pony-club/1675173434?i=1675173768&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=b841798c5c" width="100%" alt="recently played Pink Pony Club by Chappell Roan" /></a>
+<a href="https://music.apple.com/us/album/good-boy/6802917476?i=6802917962&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=37b9886b8a" width="100%" alt="recently played Good Boy by &amp;TEAM" /></a>
 <div align="center"><sub>a little behind the beat. Apple Music updates arrive in batches , not live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 

@@ -120,10 +120,10 @@
     ]
   },
   "appleMusic": {
-    "title": "Pink Pony Club",
-    "artist": "Chappell Roan",
-    "album": "Pink Pony Club - Single",
-    "link": "https://music.apple.com/us/album/pink-pony-club/1675173434?i=1675173768&uo=4",
+    "title": "Good Boy",
+    "artist": "&TEAM",
+    "album": "Mark on Me - EP",
+    "link": "https://music.apple.com/us/album/good-boy/6802917476?i=6802917962&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -135,6 +135,6 @@
     "avatarHash": "67c094a759b0",
     "lastAttemptAt": "2026-09-24T14:53:26.204Z"
   },
-  "updatedAt": "2026-09-24T14:53:59.967Z",
-  "lastSignalRenderAt": "2026-09-24T14:53:59.967Z"
+  "updatedAt": "2026-09-24T18:44:23.250Z",
+  "lastSignalRenderAt": "2026-09-24T18:44:23.250Z"
 }
