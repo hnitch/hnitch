@@ -14,7 +14,7 @@ const README_FILE = path.join(ROOT, "README.md");
 const DISCORD_USER_ID = "690729789702537336";
 const MUSIC_PROFILE_URL = "https://music.apple.com/profile/hnitch";
 const LIVE_DISCORD_CARD_URL = "https://hnitch-discord-card.haarshaan.workers.dev/discord.svg";
-const RENDER_VERSION = "3.8.0";
+const RENDER_VERSION = "3.9.0";
 const INSTAGRAM_REFRESH_MS = 24 * 60 * 60_000;
 const INSTAGRAM_RETRY_MS = 6 * 60 * 60_000;
 const SIGNAL_FRESH_MS = 15 * 60_000;
@@ -482,10 +482,10 @@ function cover({ dataUri, x, y, width, height, radius = 12, id = "cover" }) {
 export function renderBookCurrent(book, artwork) {
   if (!book) {
     return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="252" viewBox="0 0 860 252" role="img" aria-label="Not reading anything right now. It never stays this way for long." text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
-  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#18131f"/><stop offset="1" stop-color="#262033"/></linearGradient><linearGradient id="book" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d4c1ff"/><stop offset="1" stop-color="#8edfd4"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
-  <rect x="1" y="1" width="858" height="250" rx="24" fill="url(#bg)" stroke="#625479" stroke-width="2"/>
-  <circle cx="820" cy="7" r="150" fill="#b9a4ff" opacity=".055"/>
-  <g transform="translate(24 24)"><rect width="132" height="198" rx="12" fill="#302943" stroke="#685781"/><path d="M27 35h73v126H27z" fill="#211b31" stroke="#756599" stroke-width="2"/><path d="M34 42h65v114H34z" fill="#362a4d"/><path d="M49 82h35M49 94h27" stroke="url(#book)" stroke-width="4" stroke-linecap="round"/><path d="M28 35q-11 4-11 15v103q0 11 11 12" fill="none" stroke="#9e8aca" stroke-width="3"/><path d="M73 35v27l9-8 9 8V35" fill="#8edfd4" opacity=".9"/><circle cx="66" cy="119" r="17" fill="#8edfd4" opacity=".12"/><path d="M60 119h12M66 113v12" stroke="#8edfd4" stroke-width="2" stroke-linecap="round"/></g>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#19232e"/><stop offset="1" stop-color="#263244"/></linearGradient><linearGradient id="book" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a7d1f0"/><stop offset="1" stop-color="#8edfd4"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
+  <rect x="1" y="1" width="858" height="250" rx="24" fill="url(#bg)" stroke="#53738b" stroke-width="2"/>
+  <circle cx="820" cy="7" r="150" fill="#89c9f8" opacity=".055"/>
+  <g transform="translate(24 24)"><rect width="132" height="198" rx="12" fill="#2d3c4e" stroke="#607a91"/><path d="M27 35h73v126H27z" fill="#202b3a" stroke="#7999b5" stroke-width="2"/><path d="M34 42h65v114H34z" fill="#354b5e"/><path d="M49 82h35M49 94h27" stroke="url(#book)" stroke-width="4" stroke-linecap="round"/><path d="M28 35q-11 4-11 15v103q0 11 11 12" fill="none" stroke="#9cc7df" stroke-width="3"/><path d="M73 35v27l9-8 9 8V35" fill="#8edfd4" opacity=".9"/><circle cx="66" cy="119" r="17" fill="#8edfd4" opacity=".12"/><path d="M60 119h12M66 113v12" stroke="#8edfd4" stroke-width="2" stroke-linecap="round"/></g>
   <g class="sans"><rect x="188" y="24" width="168" height="30" rx="15" fill="#8edfd4" opacity=".12"/><circle cx="207" cy="39" r="4" fill="#8edfd4"/><text x="220" y="44" fill="#a9e7de" font-size="12" font-weight="800" letter-spacing="1.05">SHELF STATUS</text>
   <text x="188" y="104" fill="#fffaf5" font-size="32" font-weight="800">not reading anything</text><text x="188" y="143" fill="#fffaf5" font-size="32" font-weight="800">right now.</text>
   <text x="190" y="180" fill="#c9bed4" font-size="17" font-weight="600">it never stays this way for long.</text>
@@ -510,9 +510,9 @@ export function renderBookCurrent(book, artwork) {
     ? `<rect x="190" y="230" width="610" height="6" rx="3" fill="#4a3e35"/><rect x="190" y="230" width="${progressWidth.toFixed(1)}" height="6" rx="3" fill="#e9c995"/>`
     : `<path d="M190 233H800" stroke="#756352" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 9" opacity=".7"/>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="252" viewBox="0 0 860 252" role="img" aria-label="Currently reading ${escapeDisplay(item.title)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
-  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#18131f"/><stop offset="1" stop-color="#282019"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
-  <rect x="1" y="1" width="858" height="250" rx="24" fill="url(#bg)" stroke="#5b4937" stroke-width="2"/>
-  <circle cx="817" cy="16" r="140" fill="#e9c995" opacity=".055"/>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#19222b"/><stop offset="1" stop-color="#29251f"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
+  <rect x="1" y="1" width="858" height="250" rx="24" fill="url(#bg)" stroke="#58616b" stroke-width="2"/>
+  <circle cx="817" cy="16" r="140" fill="#89c9f8" opacity=".04"/>
   ${cover({ dataUri: artwork, x: 24, y: 24, width: 132, height: 198, radius: 10 })}
   <g class="sans"><rect x="188" y="24" width="205" height="30" rx="15" fill="#e9c995" opacity=".12"/><circle cx="207" cy="39" r="4" fill="#e9c995"/><text x="220" y="44" fill="#e9c995" font-size="12" font-weight="800" letter-spacing="1.05">CURRENTLY READING</text>
   ${wrappedText({ x: 188, y: 65, width: 610, height: 86, value: item.title, size: 30, weight: 800, lineHeight: 1.04 })}
@@ -548,9 +548,9 @@ export function renderBookTile(book, artwork, index) {
   }).join("");
   const emptyReview = moods.length ? "" : `<rect x="${chipX}" y="183" width="178" height="34" rx="17" fill="#302a3d"/><text x="${chipX + 89}" y="205" fill="#bdb1ca" font-size="12" font-weight="700" text-anchor="middle">${book.review ? "read the full review ↗" : "no written review"}</text>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="242" viewBox="0 0 860 242" role="img" aria-label="${escapeDisplay(book.title)} by ${escapeDisplay(book.author)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
-  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${theme.bg}"/><stop offset="1" stop-color="#251e2c"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
-  <rect x="1" y="1" width="858" height="240" rx="25" fill="url(#bg)" stroke="${theme.line}" stroke-width="2"/>
-  <circle cx="820" cy="12" r="124" fill="#b9a4ff" opacity=".045"/>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#19222d"/><stop offset="1" stop-color="#252532"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
+  <rect x="1" y="1" width="858" height="240" rx="25" fill="url(#bg)" stroke="#526378" stroke-width="2"/>
+  <circle cx="820" cy="12" r="124" fill="#89c9f8" opacity=".045"/>
   ${cover({ dataUri: artwork, x: 24, y: 21, width: 130, height: 198, radius: 10 })}
   <g class="sans"><text x="164" y="38" fill="#e9c995" font-size="12" font-weight="800" letter-spacing="1.25">READ RECEIPT / 0${index + 1}</text>
   ${wrappedText({ x: 164, y: 51, width: bookFacts.length ? 450 : 630, height: 68, value: book.title, size: 27, weight: 800, lineHeight: 1.04 })}
@@ -566,9 +566,9 @@ export function renderBookTile(book, artwork, index) {
 function renderFilmTile(film, artwork, index) {
   const note = film.review || (film.liked ? "liked. evidence duly noted." : "logged without further comment.");
   return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="220" viewBox="0 0 860 220" role="img" aria-label="${escapeDisplay(film.title)} (${escapeDisplay(film.year)})" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
-  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111820"/><stop offset="1" stop-color="#1d2731"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
-  <rect x="1" y="1" width="858" height="218" rx="25" fill="url(#bg)" stroke="#344654" stroke-width="2"/>
-  <circle cx="815" cy="18" r="130" fill="#40bcf4" opacity=".04"/>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#17232e"/><stop offset="1" stop-color="#21313d"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
+  <rect x="1" y="1" width="858" height="218" rx="25" fill="url(#bg)" stroke="#45657b" stroke-width="2"/>
+  <circle cx="815" cy="18" r="130" fill="#89c9f8" opacity=".05"/>
   ${cover({ dataUri: artwork, x: 24, y: 20, width: 118, height: 180, radius: 10 })}
   <g class="sans"><g transform="translate(168 25)"><circle cx="8" cy="8" r="8" fill="#ff8000"/><circle cx="22" cy="8" r="8" fill="#00e054"/><circle cx="36" cy="8" r="8" fill="#40bcf4"/></g><text x="808" y="38" fill="#8298a8" font-size="12" font-weight="800" text-anchor="end" letter-spacing="1.1">WATCH 0${index + 1}</text>
   ${wrappedText({ x: 168, y: 55, width: 630, height: 63, value: film.title, size: 28, weight: 800, lineHeight: 1.04 })}
@@ -597,8 +597,8 @@ function renderAppleMusic(data, artwork) {
   const sourceWidth = Math.min(226, Math.max(188, 62 + (sourceLabel.length * 6.25)));
   const spinClass = data.isNowPlaying ? "spin" : "";
   return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="270" viewBox="0 0 860 270" role="img" aria-label="${escapeDisplay(data.title)} by ${escapeDisplay(data.artist)} on Apple Music" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
-  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1a111b"/><stop offset=".55" stop-color="#24162b"/><stop offset="1" stop-color="#2d1421"/></linearGradient><radialGradient id="disc"><stop stop-color="#342a38"/><stop offset=".28" stop-color="#0a080c"/><stop offset=".32" stop-color="#fa243c"/><stop offset=".38" stop-color="#0a080c"/><stop offset="1" stop-color="#17131a"/></radialGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.spin{animation:spin 12s linear infinite;transform-origin:243px 135px}@keyframes spin{to{transform:rotate(360deg)}}</style></defs>
-  <rect x="1" y="1" width="858" height="268" rx="25" fill="url(#bg)" stroke="#623247" stroke-width="2"/><circle class="${spinClass}" cx="243" cy="135" r="91" fill="url(#disc)" stroke="#453a49"/><circle cx="243" cy="135" r="10" fill="#ffe8ee"/>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1b2530"/><stop offset=".55" stop-color="#272334"/><stop offset="1" stop-color="#2d1d2a"/></linearGradient><radialGradient id="disc"><stop stop-color="#342a38"/><stop offset=".28" stop-color="#0a080c"/><stop offset=".32" stop-color="#fa243c"/><stop offset=".38" stop-color="#0a080c"/><stop offset="1" stop-color="#17131a"/></radialGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.spin{animation:spin 12s linear infinite;transform-origin:243px 135px}@keyframes spin{to{transform:rotate(360deg)}}</style></defs>
+  <rect x="1" y="1" width="858" height="268" rx="25" fill="url(#bg)" stroke="#5d526d" stroke-width="2"/><circle class="${spinClass}" cx="243" cy="135" r="91" fill="url(#disc)" stroke="#453a49"/><circle cx="243" cy="135" r="10" fill="#ffe8ee"/>
   ${cover({ dataUri: artwork, x: 28, y: 45, width: 180, height: 180, radius: 15, id: "artwork" })}
   <g class="sans"><g transform="translate(356 27) scale(1.08)"><path d="${appleMusicPath}" fill="#fa243c"/></g><text x="390" y="48" fill="#ff8293" font-size="12" font-weight="800" letter-spacing="1.25">${playback.heading}</text>
   ${wrappedText({ x: 356, y: 73, width: 458, height: 67, value: data.title, size: 30, weight: 800, lineHeight: 1.03 })}
@@ -616,8 +616,8 @@ function renderInstagram(data, avatar) {
     ? `<image href="${avatar}" x="31" y="28" width="134" height="134" preserveAspectRatio="xMidYMid slice" clip-path="url(#instagram-avatar)"/>`
     : `<circle cx="98" cy="95" r="67" fill="#39233d"/><text x="98" y="108" fill="#fffaf5" class="sans" font-size="35" font-weight="800" text-anchor="middle">HN</text>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="190" viewBox="0 0 860 190" role="img" aria-label="Instagram profile ${escapeDisplay(data.username)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
-  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#211526"/><stop offset=".55" stop-color="#2b1725"/><stop offset="1" stop-color="#17252c"/></linearGradient><linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#ffdc80"/><stop offset=".35" stop-color="#fc5b55"/><stop offset=".68" stop-color="#c13584"/><stop offset="1" stop-color="#833ab4"/></linearGradient><clipPath id="instagram-avatar"><circle cx="98" cy="95" r="67"/></clipPath><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.arrow{animation:nudge 1.8s ease-in-out infinite}@keyframes nudge{50%{transform:translateX(5px)}}</style></defs>
-  <rect x="1" y="1" width="858" height="188" rx="25" fill="url(#bg)" stroke="#59304d" stroke-width="2"/><circle cx="786" cy="8" r="142" fill="#c13584" opacity=".055"/><circle cx="720" cy="194" r="120" fill="#ffdc80" opacity=".035"/>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1b2631"/><stop offset=".55" stop-color="#292434"/><stop offset="1" stop-color="#20313b"/></linearGradient><linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#ffdc80"/><stop offset=".35" stop-color="#fc5b55"/><stop offset=".68" stop-color="#c13584"/><stop offset="1" stop-color="#833ab4"/></linearGradient><clipPath id="instagram-avatar"><circle cx="98" cy="95" r="67"/></clipPath><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.arrow{animation:nudge 1.8s ease-in-out infinite}@keyframes nudge{50%{transform:translateX(5px)}}</style></defs>
+  <rect x="1" y="1" width="858" height="188" rx="25" fill="url(#bg)" stroke="#63566d" stroke-width="2"/><circle cx="786" cy="8" r="142" fill="#89c9f8" opacity=".045"/><circle cx="720" cy="194" r="120" fill="#ffdc80" opacity=".035"/>
   <circle cx="98" cy="95" r="70" fill="none" stroke="url(#ig)" stroke-width="4"/>${avatarMarkup}
   <circle cx="148" cy="145" r="25" fill="#18121d" stroke="#241725" stroke-width="3"/><rect x="130" y="127" width="36" height="36" rx="10" fill="url(#ig)"/><rect x="138" y="135" width="20" height="20" rx="6" fill="none" stroke="#fff" stroke-width="2.2"/><circle cx="148" cy="145" r="4.7" fill="none" stroke="#fff" stroke-width="2"/><circle cx="155" cy="138" r="1.8" fill="#fff"/>
   <g class="sans"><text x="195" y="47" fill="#ff9fcb" font-size="12" font-weight="800" letter-spacing="1.5">INSTAGRAM / PUBLIC CAMERA ROLL</text><text x="193" y="94" fill="#fffaf5" font-size="31" font-weight="800">@${escapeDisplay(data.username)}</text><text x="195" y="124" fill="#c3aabd" font-size="14.5" font-weight="600">photos , stories , and whatever made the grid.</text>
@@ -844,7 +844,7 @@ function discordMarkup() {
 }
 
 function instagramMarkup(data) {
-  return `<a href="https://www.instagram.com/${escapeXml(data.username)}/"><img src="./assets/activity/instagram.svg?v=${escapeXml(data.avatarHash || "1")}" width="100%" alt="Instagram profile @${escapeDisplay(data.username)}" /></a>`;
+  return `<a href="https://www.instagram.com/${escapeXml(data.username)}/"><img src="./assets/activity/instagram.svg?v=${assetVersion(data.avatarHash || "1")}" width="100%" alt="Instagram profile @${escapeDisplay(data.username)}" /></a>`;
 }
 
 function replaceSection(content, name, replacement) {
@@ -985,8 +985,33 @@ async function main() {
   console.log("profile activity refreshed ✨");
 }
 
+// Restyle the last-known feed without fetching or changing its signal timestamp.
+async function renderCached() {
+  const snapshot = await readPrevious();
+  if (!snapshot.goodreads || !snapshot.letterboxd || !snapshot.appleMusic || !snapshot.instagram) {
+    throw new Error("Cannot render cached cards: data/activity.json is incomplete");
+  }
+  const imageFrom = (svg) => readEmbeddedImage(svg);
+  const cards = [
+    ["goodreads-current.svg", renderBookCurrent(snapshot.goodreads.current, await imageFrom("goodreads-current.svg"))],
+    ["apple-music.svg", renderAppleMusic(snapshot.appleMusic, await imageFrom("apple-music.svg"))],
+    ["instagram.svg", renderInstagram(snapshot.instagram, await imageFrom("instagram.svg"))],
+  ];
+  for (const [index, book] of snapshot.goodreads.recent.entries()) {
+    const filename = `goodreads-${index + 1}.svg`;
+    cards.push([filename, renderBookTile(book, await imageFrom(filename), index)]);
+  }
+  for (const [index, film] of snapshot.letterboxd.recent.entries()) {
+    const filename = `letterboxd-${index + 1}.svg`;
+    cards.push([filename, renderFilmTile(film, await imageFrom(filename), index)]);
+  }
+  await Promise.all(cards.map(([filename, svg]) => fs.writeFile(path.join(OUTPUT_DIR, filename), svg)));
+  await updateReadme(snapshot, snapshot.updatedAt, new Date());
+  console.log("cached profile cards restyled ✨");
+}
+
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  main().catch((error) => {
+  (process.argv.includes("--render-cached") ? renderCached() : main()).catch((error) => {
     console.error(error);
     process.exitCode = 1;
   });

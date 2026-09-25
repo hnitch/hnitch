@@ -3,13 +3,13 @@
   <desc id="desc">four approved public trails across books , films , music , and presence</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#171427"/><stop offset=".58" stop-color="#241a36"/><stop offset="1" stop-color="#132932"/>
+      <stop stop-color="#1b2531"/><stop offset=".58" stop-color="#292a3b"/><stop offset="1" stop-color="#1f3945"/>
     </linearGradient>
     <linearGradient id="edge" x1="0" y1="0" x2="1" y2="0">
-      <stop stop-color="#b9a4ff"/><stop offset=".54" stop-color="#ff9f9a"/><stop offset="1" stop-color="#8edfd4"/>
+      <stop stop-color="#a7d1f0"/><stop offset=".54" stop-color="#789bd2"/><stop offset="1" stop-color="#9ddce9"/>
     </linearGradient>
     <linearGradient id="eye" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#b9a4ff"/><stop offset="1" stop-color="#8edfd4"/>
+      <stop stop-color="#a7d1f0"/><stop offset="1" stop-color="#8edfd4"/>
     </linearGradient>
     <style>
       .sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
@@ -19,17 +19,17 @@
   </defs>
 
   <rect x="1" y="1" width="878" height="188" rx="26" fill="url(#bg)" stroke="url(#edge)" stroke-opacity=".7" stroke-width="2"/>
-  <circle cx="832" cy="20" r="142" fill="#b9a4ff" opacity=".055"/>
+  <circle cx="832" cy="20" r="142" fill="#89c9f8" opacity=".055"/>
   <circle cx="785" cy="188" r="118" fill="#8edfd4" opacity=".045"/>
   <path d="M650 0h230v190H735c18-45 2-92-85-190z" fill="#fff" opacity=".018"/>
 
-  <rect x="32" y="30" width="126" height="130" rx="29" fill="#b9a4ff" opacity=".08" stroke="#b9a4ff" stroke-opacity=".28"/>
+  <rect x="32" y="30" width="126" height="130" rx="29" fill="#89c9f8" opacity=".08" stroke="#a7d1f0" stroke-opacity=".28"/>
   <g class="blink">
     <path d="M52 87s17-24 43-24 43 24 43 24-17 24-43 24-43-24-43-24z" fill="none" stroke="url(#eye)" stroke-width="3"/>
     <circle cx="95" cy="87" r="12" fill="#8edfd4"/>
     <circle cx="99" cy="82" r="3.5" fill="#fffaf5"/>
   </g>
-  <text x="95" y="140" fill="#b9a4ff" class="sans" font-size="10.5" font-weight="800" letter-spacing="1.7" text-anchor="middle">PUBLIC</text>
+  <text x="95" y="140" fill="#a7d1f0" class="sans" font-size="10.5" font-weight="800" letter-spacing="1.7" text-anchor="middle">PUBLIC</text>
 
   <g class="sans">
     <text x="190" y="48" fill="#8edfd4" font-size="12" font-weight="800" letter-spacing="1.75">SOCIAL DIRECTORY / APPROVED CHANNELS</text>
@@ -43,7 +43,7 @@
       <rect x="424" y="143" width="90" height="25" rx="12.5" fill="#5865f2" opacity=".1"/><text x="469" y="160" fill="#9ba3ff">PRESENCE</text>
     </g>
 
-    <path d="M690 38v114" stroke="#b9a4ff" stroke-opacity=".2" stroke-width="2"/>
+    <path d="M690 38v114" stroke="#a7d1f0" stroke-opacity=".2" stroke-width="2"/>
     <text x="783" y="88" fill="#fffaf5" font-size="48" font-weight="800" text-anchor="middle">04</text>
     <text x="783" y="111" fill="#a99db7" font-size="10.5" font-weight="800" letter-spacing="1.6" text-anchor="middle">PUBLIC TRAILS</text>
     <g transform="translate(754 137)"><circle cx="0" cy="0" r="4" fill="#e9c995"/><circle cx="19" cy="0" r="4" fill="#40bcf4"/><circle cx="38" cy="0" r="4" fill="#fa243c"/><circle cx="57" cy="0" r="4" fill="#5865f2"/></g>
