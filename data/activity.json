@@ -43,7 +43,7 @@
         "rating": 4,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1788493559l/258342692._SY475_.jpg",
         "pages": 397,
-        "averageRating": 3.85,
+        "averageRating": 3.81,
         "published": "2026",
         "dateAdded": "Wed, 16 Sep 2026 07:10:34 -0700",
         "readAt": "Wed, 16 Sep 2026 00:00:00 +0000",
@@ -135,6 +135,6 @@
     "avatarHash": "67c094a759b0",
     "lastAttemptAt": "2026-09-25T04:48:45.494Z"
   },
-  "updatedAt": "2026-09-25T05:33:35.897Z",
-  "lastSignalRenderAt": "2026-09-25T05:33:35.897Z"
+  "updatedAt": "2026-09-25T09:51:10.300Z",
+  "lastSignalRenderAt": "2026-09-25T09:51:10.300Z"
 }
