@@ -3,12 +3,12 @@
   <desc id="desc">i build things for screens. off-screen , there’s usually a book involved and music playing somewhere.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#151120"/><stop offset=".52" stop-color="#211832"/><stop offset="1" stop-color="#102a35"/>
+      <stop offset="0" stop-color="#1b2531"/><stop offset=".52" stop-color="#294054"/><stop offset="1" stop-color="#364d60"/>
     </linearGradient>
     <linearGradient id="stroke" x1="0" y1="0" x2="1" y2="0">
-      <stop stop-color="#b9a4ff"/><stop offset=".52" stop-color="#ff9f9a"/><stop offset="1" stop-color="#8edfd4"/>
+      <stop stop-color="#a7d1f0"/><stop offset=".52" stop-color="#6ca9d4"/><stop offset="1" stop-color="#9ddce9"/>
     </linearGradient>
-    <radialGradient id="glow"><stop stop-color="#b9a4ff" stop-opacity=".28"/><stop offset="1" stop-color="#b9a4ff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="glow"><stop stop-color="#89c9f8" stop-opacity=".27"/><stop offset="1" stop-color="#89c9f8" stop-opacity="0"/></radialGradient>
     <style>
       .sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
       .display{font-family:"Avenir Next","Helvetica Neue",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
@@ -18,41 +18,41 @@
   </defs>
   <rect x="1" y="1" width="878" height="298" rx="28" fill="url(#bg)" stroke="url(#stroke)" stroke-opacity=".7" stroke-width="2"/>
   <circle cx="86" cy="40" r="125" fill="url(#glow)"/>
-  <circle cx="836" cy="278" r="160" fill="#8edfd4" opacity=".06"/>
+  <circle cx="836" cy="278" r="160" fill="#8ad6ee" opacity=".1"/>
   <path d="M0 251c151-52 252 31 400-8 143-38 269-78 480-26v82H0z" fill="#fff" opacity=".025"/>
 
   <g class="sans">
-    <rect x="52" y="42" width="194" height="28" rx="14" fill="#fff" opacity=".075" stroke="#fff" stroke-opacity=".13"/>
-    <circle cx="70" cy="56" r="4" fill="#8edfd4"/>
-    <text x="82" y="61" fill="#d8d0e8" font-size="11" font-weight="600" letter-spacing="1.3">HN / ONLINE-ISH</text>
-    <text x="52" y="139" fill="#fffaf5" class="display" font-size="57" font-weight="700" font-style="italic" letter-spacing="-1.15">hii , i'm hn</text>
-    <text x="54" y="180" fill="#d0c6df" font-size="18" font-weight="500">i build things for screens.</text>
-    <text x="54" y="207" fill="#d0c6df" font-size="18" font-weight="500">off-screen , there’s usually a book involved</text>
-    <text x="54" y="234" fill="#d0c6df" font-size="18" font-weight="500">and music playing somewhere.</text>
+    <rect x="52" y="42" width="194" height="28" rx="14" fill="#d3e3f1" opacity=".1" stroke="#b5cde3" stroke-opacity=".2"/>
+    <circle cx="70" cy="56" r="4" fill="#74cba4"/>
+    <text x="82" y="61" fill="#d0dfec" font-size="11" font-weight="600" letter-spacing="1.3">HN / ONLINE-ISH</text>
+    <text x="52" y="139" fill="#f7f9fc" class="display" font-size="57" font-weight="700" font-style="italic" letter-spacing="-1.15">hii , i'm hn</text>
+    <text x="54" y="180" fill="#d5e0eb" font-size="18" font-weight="500">i build things for screens.</text>
+    <text x="54" y="207" fill="#d5e0eb" font-size="18" font-weight="500">off-screen , there’s usually a book involved</text>
+    <text x="54" y="234" fill="#d5e0eb" font-size="18" font-weight="500">and music playing somewhere.</text>
   </g>
 
   <g>
     <g transform="translate(637 54) rotate(-5)"><g>
       <rect x="4" y="7" width="112" height="156" rx="15" fill="#05030a" opacity=".2"/>
-      <rect width="112" height="156" rx="15" fill="#29203e" stroke="#b9a4ff" stroke-opacity=".6"/>
-      <rect x="17" y="18" width="78" height="96" rx="8" fill="#b9a4ff" opacity=".13"/>
-      <path d="M36 44h42M36 57h31M36 70h37" stroke="#d8ccff" stroke-width="4" stroke-linecap="round" opacity=".75"/>
-      <text x="18" y="137" fill="#fffaf5" class="sans" font-size="12.5" font-weight="700">one more?</text>
+      <rect width="112" height="156" rx="15" fill="#30445d" stroke="#acd5f0" stroke-opacity=".72"/>
+      <rect x="17" y="18" width="78" height="96" rx="8" fill="#bad3e8" opacity=".15"/>
+      <path d="M36 44h42M36 57h31M36 70h37" stroke="#d0e5f4" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+      <text x="18" y="137" fill="#f7f9fc" class="sans" font-size="12.5" font-weight="700">one more?</text>
     </g></g>
     <g transform="translate(746 100) rotate(7)"><g>
       <rect x="4" y="7" width="92" height="126" rx="15" fill="#05030a" opacity=".2"/>
-      <rect width="92" height="126" rx="15" fill="#172f38" stroke="#8edfd4" stroke-opacity=".6"/>
-      <circle cx="46" cy="48" r="25" fill="#8edfd4" opacity=".14"/>
-      <path d="M39 35l23 13-23 13z" fill="#8edfd4"/>
-      <path d="M19 91h54M26 103h40" stroke="#c7f7f0" stroke-width="4" stroke-linecap="round" opacity=".55"/>
+      <rect width="92" height="126" rx="15" fill="#214352" stroke="#8bd4e7" stroke-opacity=".72"/>
+      <circle cx="46" cy="48" r="25" fill="#9ce3ed" opacity=".19"/>
+      <path d="M39 35l23 13-23 13z" fill="#a4e5ee"/>
+      <path d="M19 91h54M26 103h40" stroke="#cbeaf3" stroke-width="4" stroke-linecap="round" opacity=".6"/>
     </g></g>
     <g transform="translate(540 188) rotate(5)">
       <rect x="4" y="7" width="204" height="62" rx="16" fill="#05030a" opacity=".2"/>
-      <rect width="204" height="62" rx="16" fill="#35202f" stroke="#ff9f9a" stroke-opacity=".55"/>
-      <g fill="#ff9f9a" transform="translate(20 17)"><rect width="6" height="27" rx="3"/><rect x="12" y="7" width="6" height="20" rx="3"/><rect x="24" y="2" width="6" height="25" rx="3"/><rect x="36" y="10" width="6" height="17" rx="3"/></g>
-      <text x="83" y="29" fill="#fffaf5" class="sans" font-size="12.5" font-weight="700">on repeat</text>
-      <text x="83" y="46" fill="#d8b9c9" class="sans" font-size="11" font-weight="500">probably too loud</text>
+      <rect width="204" height="62" rx="16" fill="#324252" stroke="#9bcbe8" stroke-opacity=".72"/>
+      <g fill="#aedcf4" transform="translate(20 17)"><rect width="6" height="27" rx="3"/><rect x="12" y="7" width="6" height="20" rx="3"/><rect x="24" y="2" width="6" height="25" rx="3"/><rect x="36" y="10" width="6" height="17" rx="3"/></g>
+      <text x="83" y="29" fill="#f7f9fc" class="sans" font-size="12.5" font-weight="700">on repeat</text>
+      <text x="83" y="46" fill="#c9d6e2" class="sans" font-size="11" font-weight="500">probably too loud</text>
     </g>
   </g>
-  <g class="spark" fill="#ffe58c"><circle cx="603" cy="50" r="3"/><circle cx="833" cy="64" r="2"/><circle cx="770" cy="251" r="2.5"/></g>
+  <g class="spark" fill="#d6e6f3"><circle cx="603" cy="50" r="3"/><circle cx="833" cy="64" r="2"/><circle cx="770" cy="251" r="2.5"/></g>
 </svg>

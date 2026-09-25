@@ -14,7 +14,7 @@ const README_FILE = path.join(ROOT, "README.md");
 const DISCORD_USER_ID = "690729789702537336";
 const MUSIC_PROFILE_URL = "https://music.apple.com/profile/hnitch";
 const LIVE_DISCORD_CARD_URL = "https://hnitch-discord-card.haarshaan.workers.dev/discord.svg";
-const RENDER_VERSION = "3.7.0";
+const RENDER_VERSION = "3.8.0";
 const INSTAGRAM_REFRESH_MS = 24 * 60 * 60_000;
 const INSTAGRAM_RETRY_MS = 6 * 60 * 60_000;
 const SIGNAL_FRESH_MS = 15 * 60_000;
@@ -411,6 +411,15 @@ function monthYear(value) {
   return new Intl.DateTimeFormat("en", { month: "short", year: "numeric", timeZone: "UTC" }).format(date);
 }
 
+function publicationLabel(value) {
+  const published = String(value || "").trim();
+  if (/^\d{4}$/.test(published)) return `published ${published}`;
+  const date = new Date(published);
+  if (!published || Number.isNaN(date.valueOf())) return "";
+  const monthAndYear = new Intl.DateTimeFormat("en", { month: "long", year: "numeric", timeZone: "UTC" }).format(date);
+  return `published ${monthAndYear}`;
+}
+
 function wrapLines(value, maxChars) {
   const words = String(value).trim().split(/\s+/).flatMap((word) => {
     if (word.length <= maxChars) return [word];
@@ -516,6 +525,10 @@ export function renderBookCurrent(book, artwork) {
 
 export function renderBookTile(book, artwork, index) {
   const facts = [book.pages && `${book.pages}p`, book.readAt && `read ${monthYear(book.readAt)}`].filter(Boolean).join(" · ");
+  const publication = publicationLabel(book.published);
+  const communityRating = book.averageRating && `GR avg ${Number(book.averageRating).toFixed(2)}`;
+  const bookFacts = [publication, communityRating].filter(Boolean);
+  const titleSidecar = bookFacts.length ? `<path d="M632 65v52" stroke="#756b80" stroke-width="2" stroke-linecap="round" opacity=".8"/>${bookFacts.map((fact, factIndex) => `<text x="649" y="${80 + factIndex * 23}" fill="#a99daf" font-size="12" font-weight="650">${escapeDisplay(fact)}</text>`).join("")}` : "";
   const mood = ratingMood(book.rating);
   const ratingText = stars(book.rating);
   const ratingWidth = Math.max(78, 32 + ratingText.length * 16);
@@ -540,7 +553,8 @@ export function renderBookTile(book, artwork, index) {
   <circle cx="820" cy="12" r="124" fill="#b9a4ff" opacity=".045"/>
   ${cover({ dataUri: artwork, x: 24, y: 21, width: 130, height: 198, radius: 10 })}
   <g class="sans"><text x="164" y="38" fill="#e9c995" font-size="12" font-weight="800" letter-spacing="1.25">READ RECEIPT / 0${index + 1}</text>
-  ${wrappedText({ x: 164, y: 51, width: 630, height: 63, value: book.title, size: 27, weight: 800, lineHeight: 1.04 })}
+  ${wrappedText({ x: 164, y: 51, width: bookFacts.length ? 450 : 630, height: 68, value: book.title, size: 27, weight: 800, lineHeight: 1.04 })}
+  ${titleSidecar}
   <text x="164" y="136" fill="${theme.muted}" font-size="14.5" font-weight="700">${escapeDisplay(book.author)}</text>
   <text x="164" y="160" fill="#978a9f" font-size="12.5" font-weight="600">${escapeDisplay(facts)}</text>
   <rect x="164" y="183" width="${ratingWidth}" height="34" rx="17" fill="${mood.background}"/><text x="${164 + ratingWidth / 2}" y="205" fill="${mood.color}" font-size="16" font-weight="800" text-anchor="middle">${escapeDisplay(ratingText)}</text>

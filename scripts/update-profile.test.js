@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { instagramOgAvatarUrl, renderBookCurrent, shouldRefreshInstagram, signalPresentation, staleInstagramData } from "./update-profile.js";
+import { instagramOgAvatarUrl, renderBookCurrent, renderBookTile, shouldRefreshInstagram, signalPresentation, staleInstagramData } from "./update-profile.js";
 
 const now = Date.parse("2026-09-20T12:00:00.000Z");
 
@@ -48,4 +48,23 @@ test("current-book card handles percentage-only progress", () => {
   }, null);
   assert.match(svg, /23% read/);
   assert.doesNotMatch(svg, /null/);
+});
+
+test("finished-book card separates source publication facts from personal reading facts", () => {
+  const svg = renderBookTile({
+    title: "A Very Long Book Title That Needs Space to Wrap Beside Its Publication Details",
+    author: "Example Author",
+    pages: 341,
+    readAt: "2026-09-20T00:00:00Z",
+    published: "2018",
+    averageRating: 4.28,
+    rating: 2,
+    review: "",
+  }, null, 0);
+  assert.match(svg, /published 2018/);
+  assert.match(svg, /GR avg 4\.28/);
+  assert.match(svg, /341p · read Sep 2026/);
+  assert.match(svg, /M632 65v52/);
+  assert.doesNotMatch(svg, /published Sep 2026/);
+  assert.match(renderBookTile({ title: "Example", published: "2026-10-12" }, null, 1), /published October 2026/);
 });

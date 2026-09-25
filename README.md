@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/hero.svg?v=3.7.0" width="100%" alt="hii , i'm hn. i build things for screens. off-screen , there’s usually a book involved and music playing somewhere." />
+  <img src="./assets/hero.svg?v=3.8.0" width="100%" alt="hii , i'm hn. i build things for screens. off-screen , there’s usually a book involved and music playing somewhere." />
   <br/><br/>
   <img src="https://komarev.com/ghpvc/?username=hnitch&style=for-the-badge&color=b9a4ff&label=curious+visitors" alt="profile views" />
   <img src="https://img.shields.io/badge/currently%20reading%20%2C%20probably-8edfd4?style=for-the-badge&labelColor=171427" alt="currently reading , probably" />
@@ -38,13 +38,13 @@
 
 <a href="https://www.goodreads.com/review/show/8495966803?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=6e7ad2df69" width="100%" alt="currently reading A Stage Set for Villains" /></a>
 
-<a href="https://www.goodreads.com/review/show/8125432492?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=5190928529" width="100%" alt="Read: Verity" /></a>
+<a href="https://www.goodreads.com/review/show/8125432492?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=233f544052" width="100%" alt="Read: Verity" /></a>
 
-<a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=01c3848bb9" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
+<a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=9d9dcce3f7" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
 
-<a href="https://www.goodreads.com/review/show/8506583969?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=0e31fb1da5" width="100%" alt="Read: The Caretaker" /></a>
+<a href="https://www.goodreads.com/review/show/8506583969?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=f4b35dcaeb" width="100%" alt="Read: The Caretaker" /></a>
 
-<a href="https://www.goodreads.com/review/show/8748356322?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=e5a1dc33de" width="100%" alt="Read: The Demon Star" /></a>
+<a href="https://www.goodreads.com/review/show/8748356322?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=3080222dc9" width="100%" alt="Read: The Demon Star" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
