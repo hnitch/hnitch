@@ -120,10 +120,10 @@
     ]
   },
   "appleMusic": {
-    "title": "Good Boy",
-    "artist": "&TEAM",
-    "album": "Mark on Me - EP",
-    "link": "https://music.apple.com/us/album/good-boy/6802917476?i=6802917962&uo=4",
+    "title": "Babylon",
+    "artist": "Taylor Swift",
+    "album": "The Life of a Showgirl: The Encore",
+    "link": "https://music.apple.com/us/album/babylon/6814995859?i=6814996163&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -133,8 +133,8 @@
   "instagram": {
     "username": "hnitch",
     "avatarHash": "67c094a759b0",
-    "lastAttemptAt": "2026-09-24T21:50:28.321Z"
+    "lastAttemptAt": "2026-09-25T04:48:45.494Z"
   },
-  "updatedAt": "2026-09-24T18:44:23.250Z",
-  "lastSignalRenderAt": "2026-09-24T21:51:01.294Z"
+  "updatedAt": "2026-09-25T04:49:17.728Z",
+  "lastSignalRenderAt": "2026-09-25T04:49:17.728Z"
 }

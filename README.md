@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />
+    <img src="./assets/signal-fresh.svg?v=3.7.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-24T18:44:23.250Z">24 Sept 2026, 18:44 UTC</relative-time>
+    <relative-time datetime="2026-09-25T04:49:17.728Z">25 Sept 2026, 04:49 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -66,7 +66,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/good-boy/6802917476?i=6802917962&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=37b9886b8a" width="100%" alt="recently played Good Boy by &amp;TEAM" /></a>
+<a href="https://music.apple.com/us/album/babylon/6814995859?i=6814996163&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=c2b408fc7b" width="100%" alt="recently played Babylon by Taylor Swift" /></a>
 <div align="center"><sub>a little behind the beat. Apple Music updates arrive in batches , not live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 
