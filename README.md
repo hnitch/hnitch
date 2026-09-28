@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-28T06:54:52.237Z">28 Sept 2026, 06:54 UTC</relative-time>
+    <relative-time datetime="2026-09-28T14:48:44.323Z">28 Sept 2026, 14:48 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -66,7 +66,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/new-trick/6812894902?i=6812894907&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=cab9611a79" width="100%" alt="recently played new trick by ROSÉ" /></a>
+<a href="https://music.apple.com/us/album/fashion/1832031331?i=1832031345&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=e609dbeea5" width="100%" alt="recently played FaSHioN by CORTIS" /></a>
 <div align="center"><sub>a little behind the beat. Apple Music updates arrive in batches , not live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 

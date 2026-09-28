@@ -120,10 +120,10 @@
     ]
   },
   "appleMusic": {
-    "title": "new trick",
-    "artist": "ROSÉ",
-    "album": "new trick - Single",
-    "link": "https://music.apple.com/us/album/new-trick/6812894902?i=6812894907&uo=4",
+    "title": "FaSHioN",
+    "artist": "CORTIS",
+    "album": "COLOR OUTSIDE THE LINES - EP",
+    "link": "https://music.apple.com/us/album/fashion/1832031331?i=1832031345&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -133,8 +133,8 @@
   "instagram": {
     "username": "hnitch",
     "avatarHash": "67c094a759b0",
-    "lastAttemptAt": "2026-09-28T01:12:39.015Z"
+    "lastAttemptAt": "2026-09-28T14:48:17.200Z"
   },
-  "updatedAt": "2026-09-28T06:54:52.237Z",
-  "lastSignalRenderAt": "2026-09-28T06:54:52.237Z"
+  "updatedAt": "2026-09-28T14:48:44.323Z",
+  "lastSignalRenderAt": "2026-09-28T14:48:44.323Z"
 }
