@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-28T14:48:44.323Z">28 Sept 2026, 14:48 UTC</relative-time>
+    <relative-time datetime="2026-09-28T20:51:39.765Z">28 Sept 2026, 20:51 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -36,15 +36,15 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/review/show/8495966803?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=58f7661b9f" width="100%" alt="currently reading A Stage Set for Villains" /></a>
+<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=69335de587" width="100%" alt="not reading anything right now" /></a>
 
-<a href="https://www.goodreads.com/review/show/8125432492?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=69b23ce93d" width="100%" alt="Read: Verity" /></a>
+<a href="https://www.goodreads.com/review/show/8495966803?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=e013943674" width="100%" alt="Read: A Stage Set for Villains" /></a>
 
-<a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=0e882e15c3" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
+<a href="https://www.goodreads.com/review/show/8125432492?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=69b23ce93d" width="100%" alt="Read: Verity" /></a>
 
-<a href="https://www.goodreads.com/review/show/8506583969?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=fb389793d1" width="100%" alt="Read: The Caretaker" /></a>
+<a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=0e882e15c3" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
 
-<a href="https://www.goodreads.com/review/show/8748356322?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=8b3296209f" width="100%" alt="Read: The Demon Star" /></a>
+<a href="https://www.goodreads.com/review/show/8506583969?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=fb389793d1" width="100%" alt="Read: The Caretaker" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
@@ -54,13 +54,13 @@
 
 <br/>
 
-<a href="https://letterboxd.com/hnitch/film/resident-evil-2026/"><img src="./assets/activity/letterboxd-1.svg?v=bff2f8ec46" width="100%" alt="Watched: Resident Evil" /></a>
+<a href="https://letterboxd.com/hnitch/film/heart-of-the-beast-2026/"><img src="./assets/activity/letterboxd-1.svg?v=302fc5d1e9" width="100%" alt="Watched: Heart of the Beast" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/insidious-out-of-the-further/"><img src="./assets/activity/letterboxd-2.svg?v=901dad36b1" width="100%" alt="Watched: Insidious: Out of the Further" /></a>
+<a href="https://letterboxd.com/hnitch/film/resident-evil-2026/"><img src="./assets/activity/letterboxd-2.svg?v=bff2f8ec46" width="100%" alt="Watched: Resident Evil" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/enola-holmes-3/"><img src="./assets/activity/letterboxd-3.svg?v=8e7c02d3b5" width="100%" alt="Watched: Enola Holmes 3" /></a>
+<a href="https://letterboxd.com/hnitch/film/insidious-out-of-the-further/"><img src="./assets/activity/letterboxd-3.svg?v=901dad36b1" width="100%" alt="Watched: Insidious: Out of the Further" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/spider-man-brand-new-day/"><img src="./assets/activity/letterboxd-4.svg?v=78e093645d" width="100%" alt="Watched: Spider-Man: Brand New Day" /></a>
+<a href="https://letterboxd.com/hnitch/film/enola-holmes-3/"><img src="./assets/activity/letterboxd-4.svg?v=8e7c02d3b5" width="100%" alt="Watched: Enola Holmes 3" /></a>
 <!-- LETTERBOXD-FEED:END -->
 
 <br/>
