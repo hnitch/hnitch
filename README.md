@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />
+    <img src="./assets/signal-fresh.svg?v=3.7.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-27T12:02:12.190Z">27 Sept 2026, 12:02 UTC</relative-time>
+    <relative-time datetime="2026-09-28T06:54:52.237Z">28 Sept 2026, 06:54 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -44,7 +44,7 @@
 
 <a href="https://www.goodreads.com/review/show/8506583969?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=fb389793d1" width="100%" alt="Read: The Caretaker" /></a>
 
-<a href="https://www.goodreads.com/review/show/8748356322?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=b70da755d2" width="100%" alt="Read: The Demon Star" /></a>
+<a href="https://www.goodreads.com/review/show/8748356322?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=8b3296209f" width="100%" alt="Read: The Demon Star" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
@@ -66,7 +66,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/babylon/6814995859?i=6814996163&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=6081b5f830" width="100%" alt="recently played Babylon by Taylor Swift" /></a>
+<a href="https://music.apple.com/us/album/new-trick/6812894902?i=6812894907&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=cab9611a79" width="100%" alt="recently played new trick by ROSÉ" /></a>
 <div align="center"><sub>a little behind the beat. Apple Music updates arrive in batches , not live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 

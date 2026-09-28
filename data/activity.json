@@ -71,7 +71,7 @@
         "rating": 2,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1786088398l/256240967._SY475_.jpg",
         "pages": 449,
-        "averageRating": 3.71,
+        "averageRating": 3.7,
         "published": "2026",
         "dateAdded": "Sat, 05 Sep 2026 03:57:09 -0700",
         "readAt": "Sun, 30 Aug 2026 00:00:00 +0000",
@@ -120,10 +120,10 @@
     ]
   },
   "appleMusic": {
-    "title": "Babylon",
-    "artist": "Taylor Swift",
-    "album": "The Life of a Showgirl: The Encore",
-    "link": "https://music.apple.com/us/album/babylon/6814995859?i=6814996163&uo=4",
+    "title": "new trick",
+    "artist": "ROSÉ",
+    "album": "new trick - Single",
+    "link": "https://music.apple.com/us/album/new-trick/6812894902?i=6812894907&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -135,6 +135,6 @@
     "avatarHash": "67c094a759b0",
     "lastAttemptAt": "2026-09-28T01:12:39.015Z"
   },
-  "updatedAt": "2026-09-27T12:02:12.190Z",
-  "lastSignalRenderAt": "2026-09-27T16:53:21.867Z"
+  "updatedAt": "2026-09-28T06:54:52.237Z",
+  "lastSignalRenderAt": "2026-09-28T06:54:52.237Z"
 }
