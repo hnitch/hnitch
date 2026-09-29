@@ -13,7 +13,12 @@
       "dateAdded": "Mon, 28 Sep 2026 17:19:18 -0700",
       "readAt": "",
       "review": "",
-      "progress": null
+      "progress": {
+        "page": 129,
+        "total": 390,
+        "percent": 33,
+        "source": "shortcut"
+      }
     },
     "recent": [
       {
@@ -130,6 +135,6 @@
     "avatarHash": "67c094a759b0",
     "lastAttemptAt": "2026-09-28T20:51:17.099Z"
   },
-  "updatedAt": "2026-09-29T00:38:31.770Z",
-  "lastSignalRenderAt": "2026-09-29T00:38:31.770Z"
+  "updatedAt": "2026-09-29T01:13:17.784Z",
+  "lastSignalRenderAt": "2026-09-29T01:13:17.784Z"
 }
