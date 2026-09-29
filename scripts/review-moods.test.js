@@ -20,6 +20,12 @@ test("Verity's explicitly denied boredom does not erase its actual mixed reactio
 test("does not invent moods without written evidence", () => {
   assert.deepEqual(extractReviewMoods(""), []);
   assert.deepEqual(extractReviewMoods("the book is 400 pages long"), []);
+  assert.deepEqual(extractReviewMoods("i was not immediately invested"), []);
+});
+
+test("A Stage Set for Villains keeps both the enthusiasm and the caveat", () => {
+  const review = "every time i picked it back up i was immediately invested again. the whole thing was so dramatic and moody. i really did love this , it just needed tightening.";
+  assert.deepEqual(extractReviewMoods(review), ["immediately invested", "dramatic and moody", "needed tightening"]);
 });
 
 test("ratings affect only the star chip palette", () => {
@@ -36,9 +42,11 @@ test("keeps each chip concise", () => {
 
 test("empty shelf is honest and fully designed", () => {
   const svg = renderBookCurrent(null, null);
-  assert.match(svg, /not reading anything/);
-  assert.match(svg, /it never stays this way for long/);
+  assert.match(svg, /not reading anything , RN/);
+  assert.match(svg, /font-size="22" font-style="italic"/);
+  assert.match(svg, /translate\(43 51\) scale\(\.76\)/);
   assert.match(svg, />\.\.\.<\/text>/);
+  assert.doesNotMatch(svg, /it never stays this way for long|right now\./);
   assert.doesNotMatch(svg, /NEXT CHAPTER PENDING/);
   assert.doesNotMatch(svg, /between books|obsession is loading|progress not shared/);
 });

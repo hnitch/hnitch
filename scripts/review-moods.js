@@ -2,6 +2,7 @@
 // words in the public review. Ratings control only the colour of the stars.
 const PHRASES = [
   { group: "reaction", pattern: /\bcompletely hooked me\b/iu },
+  { group: "reaction", pattern: /\bimmediately invested\b/iu, negationSensitive: true },
   { group: "reaction", pattern: /\bgrossed me out\b/iu },
   { group: "reaction", pattern: /\bpissed me off\b/iu },
   { group: "reaction", pattern: /\bblindsided me\b/iu },
@@ -10,7 +11,6 @@ const PHRASES = [
   { group: "reaction", pattern: /\bdevoured it\b/iu },
   { group: "reaction", pattern: /\bfight for my life\b/iu },
   { group: "reaction", pattern: /\balmost dnfed\b/iu },
-  { group: "reaction", pattern: /\bfigured out\b/iu },
   { group: "reaction", pattern: /\bkept me hooked\b/iu },
   { group: "reaction", pattern: /\bneeded to know\b/iu },
   { group: "reaction", pattern: /\bcould not put (?:it|this) down\b/iu },
@@ -19,6 +19,8 @@ const PHRASES = [
   { group: "reaction", pattern: /\bi loved it\b/iu },
   { group: "reaction", pattern: /\bi was bored\b/iu, negationSensitive: true },
   { group: "craft", pattern: /\bdefinition of TMI\b/iu },
+  { group: "craft", pattern: /\bdramatic and moody\b/iu },
+  { group: "craft", pattern: /\bneeded tightening\b/iu },
   { group: "craft", pattern: /\bthird wheeling\b/iu },
   { group: "craft", pattern: /\bspooky aesthetic\b/iu },
   { group: "craft", pattern: /\bgloomy\b/iu },

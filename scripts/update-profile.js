@@ -481,15 +481,14 @@ function cover({ dataUri, x, y, width, height, radius = 12, id = "cover" }) {
 
 export function renderBookCurrent(book, artwork) {
   if (!book) {
-    return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="252" viewBox="0 0 860 252" role="img" aria-label="Not reading anything right now. It never stays this way for long." text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="252" viewBox="0 0 860 252" role="img" aria-label="Not reading anything , RN" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#19232e"/><stop offset="1" stop-color="#263244"/></linearGradient><linearGradient id="book" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a7d1f0"/><stop offset="1" stop-color="#8edfd4"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
   <rect x="1" y="1" width="858" height="250" rx="24" fill="url(#bg)" stroke="#53738b" stroke-width="2"/>
   <circle cx="820" cy="7" r="150" fill="#89c9f8" opacity=".055"/>
-  <g transform="translate(24 24)"><rect width="132" height="198" rx="12" fill="#2d3c4e" stroke="#607a91"/><path d="M27 35h73v126H27z" fill="#202b3a" stroke="#7999b5" stroke-width="2"/><path d="M34 42h65v114H34z" fill="#354b5e"/><path d="M49 82h35M49 94h27" stroke="url(#book)" stroke-width="4" stroke-linecap="round"/><path d="M28 35q-11 4-11 15v103q0 11 11 12" fill="none" stroke="#9cc7df" stroke-width="3"/><path d="M73 35v27l9-8 9 8V35" fill="#8edfd4" opacity=".9"/><circle cx="66" cy="119" r="17" fill="#8edfd4" opacity=".12"/><path d="M60 119h12M66 113v12" stroke="#8edfd4" stroke-width="2" stroke-linecap="round"/></g>
+  <g transform="translate(43 51) scale(.76)"><rect width="132" height="198" rx="12" fill="#2d3c4e" stroke="#607a91"/><path d="M27 35h73v126H27z" fill="#202b3a" stroke="#7999b5" stroke-width="2"/><path d="M34 42h65v114H34z" fill="#354b5e"/><path d="M49 82h35M49 94h27" stroke="url(#book)" stroke-width="4" stroke-linecap="round"/><path d="M28 35q-11 4-11 15v103q0 11 11 12" fill="none" stroke="#9cc7df" stroke-width="3"/><path d="M73 35v27l9-8 9 8V35" fill="#8edfd4" opacity=".9"/><circle cx="66" cy="119" r="17" fill="#8edfd4" opacity=".12"/><path d="M60 119h12M66 113v12" stroke="#8edfd4" stroke-width="2" stroke-linecap="round"/></g>
   <g class="sans"><rect x="188" y="24" width="168" height="30" rx="15" fill="#8edfd4" opacity=".12"/><circle cx="207" cy="39" r="4" fill="#8edfd4"/><text x="220" y="44" fill="#a9e7de" font-size="12" font-weight="800" letter-spacing="1.05">SHELF STATUS</text>
-  <text x="188" y="104" fill="#fffaf5" font-size="32" font-weight="800">not reading anything</text><text x="188" y="143" fill="#fffaf5" font-size="32" font-weight="800">right now.</text>
-  <text x="190" y="180" fill="#c9bed4" font-size="17" font-weight="600">it never stays this way for long.</text>
-  <rect x="188" y="198" width="189" height="30" rx="15" fill="#b9a4ff" opacity=".12"/><text x="282.5" y="218" fill="#d4c1ff" font-size="14" font-weight="800" letter-spacing="2" text-anchor="middle">...</text></g></svg>`;
+  <text x="188" y="130" fill="#fffaf5" font-size="22" font-style="italic" font-weight="650">not reading anything , RN</text>
+  <rect x="188" y="164" width="96" height="30" rx="15" fill="#b9a4ff" opacity=".12"/><text x="236" y="184" fill="#d4c1ff" font-size="14" font-weight="800" letter-spacing="2" text-anchor="middle">...</text></g></svg>`;
   }
   const item = book;
   const progress = item.progress;
@@ -826,8 +825,8 @@ function cardStack(items, prefix, alt, versionData = (item) => item) {
 
 function goodreadsMarkup(data) {
   const currentLink = data.current?.link || "https://www.goodreads.com/user/show/178629903";
-  const currentVersion = data.current ? data.current : ["empty shelf", "..."];
-  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(currentVersion)}" width="100%" alt="${data.current ? `currently reading ${escapeDisplay(data.current.title)}` : "not reading anything right now"}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read", (book) => [book, extractReviewMoods(book.review)])}`;
+  const currentVersion = data.current ? data.current : ["empty shelf", "...", "smaller italic status"];
+  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(currentVersion)}" width="100%" alt="${data.current ? `currently reading ${escapeDisplay(data.current.title)}` : "not reading anything , RN"}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read", (book) => [book, extractReviewMoods(book.review)])}`;
 }
 
 function letterboxdMarkup(data) {
