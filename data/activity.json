@@ -57,7 +57,7 @@
         "rating": 4,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1788493559l/258342692._SY475_.jpg",
         "pages": 397,
-        "averageRating": 3.72,
+        "averageRating": 3.71,
         "published": "2026",
         "dateAdded": "Wed, 16 Sep 2026 07:10:34 -0700",
         "readAt": "Wed, 16 Sep 2026 00:00:00 +0000",
@@ -120,10 +120,10 @@
     ]
   },
   "appleMusic": {
-    "title": "Red Wine Supernova",
-    "artist": "Chappell Roan",
-    "album": "The Rise and Fall of a Midwest Princess",
-    "link": "https://music.apple.com/us/album/red-wine-supernova/1707412988?i=1707413097&uo=4",
+    "title": "Blue Lips",
+    "artist": "CORTIS",
+    "album": "GREENGREEN - EP",
+    "link": "https://music.apple.com/us/album/blue-lips/1887671065?i=1887671074&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -133,8 +133,8 @@
   "instagram": {
     "username": "hnitch",
     "avatarHash": "67c094a759b0",
-    "lastAttemptAt": "2026-09-29T06:11:04.018Z"
+    "lastAttemptAt": "2026-09-29T12:50:36.520Z"
   },
-  "updatedAt": "2026-09-29T06:11:35.604Z",
-  "lastSignalRenderAt": "2026-09-29T06:11:35.604Z"
+  "updatedAt": "2026-09-29T12:50:58.828Z",
+  "lastSignalRenderAt": "2026-09-29T12:50:58.828Z"
 }
