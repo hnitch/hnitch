@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-28T20:51:39.765Z">28 Sept 2026, 20:51 UTC</relative-time>
+    <relative-time datetime="2026-09-29T00:38:31.770Z">29 Sept 2026, 00:38 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -36,7 +36,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=69335de587" width="100%" alt="not reading anything right now" /></a>
+<a href="https://www.goodreads.com/review/show/8521890786?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=0e7ef14fa5" width="100%" alt="currently reading Headlights" /></a>
 
 <a href="https://www.goodreads.com/review/show/8495966803?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=e013943674" width="100%" alt="Read: A Stage Set for Villains" /></a>
 

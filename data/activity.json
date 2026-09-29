@@ -1,6 +1,20 @@
 {
   "goodreads": {
-    "current": null,
+    "current": {
+      "bookId": "251568084",
+      "title": "Headlights",
+      "author": "C.J. Leede",
+      "link": "https://www.goodreads.com/review/show/8521890786?utm_medium=api&utm_source=rss",
+      "rating": 0,
+      "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1777384095l/251568084._SY475_.jpg",
+      "pages": 400,
+      "averageRating": 3.49,
+      "published": "2026",
+      "dateAdded": "Mon, 28 Sep 2026 17:19:18 -0700",
+      "readAt": "",
+      "review": "",
+      "progress": null
+    },
     "recent": [
       {
         "bookId": "250155395",
@@ -116,6 +130,6 @@
     "avatarHash": "67c094a759b0",
     "lastAttemptAt": "2026-09-28T20:51:17.099Z"
   },
-  "updatedAt": "2026-09-28T20:51:39.765Z",
-  "lastSignalRenderAt": "2026-09-28T20:51:39.765Z"
+  "updatedAt": "2026-09-29T00:38:31.770Z",
+  "lastSignalRenderAt": "2026-09-29T00:38:31.770Z"
 }
