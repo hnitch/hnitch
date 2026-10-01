@@ -8,7 +8,7 @@
       "rating": 0,
       "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1777384095l/251568084._SY475_.jpg",
       "pages": 400,
-      "averageRating": 3.49,
+      "averageRating": 3.46,
       "published": "2026",
       "dateAdded": "Mon, 28 Sep 2026 17:19:18 -0700",
       "readAt": "",
@@ -120,10 +120,10 @@
     ]
   },
   "appleMusic": {
-    "title": "Blue Lips",
-    "artist": "CORTIS",
-    "album": "GREENGREEN - EP",
-    "link": "https://music.apple.com/us/album/blue-lips/1887671065?i=1887671074&uo=4",
+    "title": "Cold Goodbyes",
+    "artist": "Gracie Abrams",
+    "album": "Daughter from Hell",
+    "link": "https://music.apple.com/us/album/cold-goodbyes/6766750836?i=6766751177&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -133,8 +133,8 @@
   "instagram": {
     "username": "hnitch",
     "avatarHash": "67c094a759b0",
-    "lastAttemptAt": "2026-09-30T22:28:49.423Z"
+    "lastAttemptAt": "2026-10-01T07:29:33.874Z"
   },
-  "updatedAt": "2026-09-29T12:50:58.828Z",
-  "lastSignalRenderAt": "2026-09-29T18:20:08.499Z"
+  "updatedAt": "2026-10-01T07:29:56.354Z",
+  "lastSignalRenderAt": "2026-10-01T07:29:56.354Z"
 }

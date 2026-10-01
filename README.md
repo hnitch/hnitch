@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />
+    <img src="./assets/signal-fresh.svg?v=3.7.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-09-29T12:50:58.828Z">29 Sept 2026, 12:50 UTC</relative-time>
+    <relative-time datetime="2026-10-01T07:29:56.354Z">1 Oct 2026, 07:29 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -36,7 +36,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/review/show/8521890786?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=11ff496328" width="100%" alt="currently reading Headlights" /></a>
+<a href="https://www.goodreads.com/review/show/8521890786?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=e791f42e7a" width="100%" alt="currently reading Headlights" /></a>
 
 <a href="https://www.goodreads.com/review/show/8495966803?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=c047f78727" width="100%" alt="Read: A Stage Set for Villains" /></a>
 
@@ -66,7 +66,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/blue-lips/1887671065?i=1887671074&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=e2061adf72" width="100%" alt="recently played Blue Lips by CORTIS" /></a>
+<a href="https://music.apple.com/us/album/cold-goodbyes/6766750836?i=6766751177&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=f65014aff9" width="100%" alt="recently played Cold Goodbyes by Gracie Abrams" /></a>
 <div align="center"><sub>a little behind the beat. Apple Music updates arrive in batches , not live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 
