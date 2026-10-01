@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-01T07:29:56.354Z">1 Oct 2026, 07:29 UTC</relative-time>
+    <relative-time datetime="2026-10-01T14:42:56.141Z">1 Oct 2026, 14:42 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -42,7 +42,7 @@
 
 <a href="https://www.goodreads.com/review/show/8125432492?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=69b23ce93d" width="100%" alt="Read: Verity" /></a>
 
-<a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=0e882e15c3" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
+<a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=848388a6b9" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
 
 <a href="https://www.goodreads.com/review/show/8506583969?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=fb389793d1" width="100%" alt="Read: The Caretaker" /></a>
 <!-- GOODREADS-FEED:END -->
@@ -66,7 +66,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/cold-goodbyes/6766750836?i=6766751177&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=f65014aff9" width="100%" alt="recently played Cold Goodbyes by Gracie Abrams" /></a>
+<a href="https://music.apple.com/us/album/blue-lips/1887671065?i=1887671074&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=e2061adf72" width="100%" alt="recently played Blue Lips by CORTIS" /></a>
 <div align="center"><sub>a little behind the beat. Apple Music updates arrive in batches , not live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 
