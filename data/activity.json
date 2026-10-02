@@ -14,9 +14,9 @@
       "readAt": "",
       "review": "",
       "progress": {
-        "page": 129,
-        "total": 390,
-        "percent": 33,
+        "page": 242,
+        "total": 400,
+        "percent": 61,
         "source": "shortcut"
       }
     },
@@ -135,6 +135,6 @@
     "avatarHash": "67c094a759b0",
     "lastAttemptAt": "2026-10-01T23:28:45.391Z"
   },
-  "updatedAt": "2026-10-01T14:42:56.141Z",
-  "lastSignalRenderAt": "2026-10-01T19:50:24.567Z"
+  "updatedAt": "2026-10-02T02:07:00.716Z",
+  "lastSignalRenderAt": "2026-10-02T02:07:00.716Z"
 }
