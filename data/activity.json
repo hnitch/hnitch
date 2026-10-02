@@ -132,9 +132,10 @@
   },
   "instagram": {
     "username": "hnitch",
-    "avatarHash": "67c094a759b0",
-    "lastAttemptAt": "2026-10-02T08:52:01.003Z"
+    "avatarHash": "bc623f7b849a",
+    "lastSuccessAt": "2026-10-02T15:06:24.818Z",
+    "lastAttemptAt": "2026-10-02T15:06:24.818Z"
   },
-  "updatedAt": "2026-10-02T02:07:00.716Z",
-  "lastSignalRenderAt": "2026-10-02T02:29:16.387Z"
+  "updatedAt": "2026-10-02T15:06:31.651Z",
+  "lastSignalRenderAt": "2026-10-02T15:06:31.651Z"
 }
