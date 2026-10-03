@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-03T13:23:49.263Z">3 Oct 2026, 13:23 UTC</relative-time>
+    <relative-time datetime="2026-10-03T17:28:32.065Z">3 Oct 2026, 17:28 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -44,7 +44,7 @@
 
 <a href="https://www.goodreads.com/review/show/8125432492?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=69b23ce93d" width="100%" alt="Read: Verity" /></a>
 
-<a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=848388a6b9" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
+<a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=caaa49355b" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
