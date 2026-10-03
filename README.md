@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />
+    <img src="./assets/signal-fresh.svg?v=3.7.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-03T02:16:00.878Z">3 Oct 2026, 02:16 UTC</relative-time>
+    <relative-time datetime="2026-10-03T13:23:49.263Z">3 Oct 2026, 13:23 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -54,13 +54,13 @@
 
 <br/>
 
-<a href="https://letterboxd.com/hnitch/film/heart-of-the-beast-2026/"><img src="./assets/activity/letterboxd-1.svg?v=302fc5d1e9" width="100%" alt="Watched: Heart of the Beast" /></a>
+<a href="https://letterboxd.com/hnitch/film/verity-2026/"><img src="./assets/activity/letterboxd-1.svg?v=419a374293" width="100%" alt="Watched: Verity" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/resident-evil-2026/"><img src="./assets/activity/letterboxd-2.svg?v=bff2f8ec46" width="100%" alt="Watched: Resident Evil" /></a>
+<a href="https://letterboxd.com/hnitch/film/heart-of-the-beast-2026/"><img src="./assets/activity/letterboxd-2.svg?v=302fc5d1e9" width="100%" alt="Watched: Heart of the Beast" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/insidious-out-of-the-further/"><img src="./assets/activity/letterboxd-3.svg?v=901dad36b1" width="100%" alt="Watched: Insidious: Out of the Further" /></a>
+<a href="https://letterboxd.com/hnitch/film/resident-evil-2026/"><img src="./assets/activity/letterboxd-3.svg?v=bff2f8ec46" width="100%" alt="Watched: Resident Evil" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/enola-holmes-3/"><img src="./assets/activity/letterboxd-4.svg?v=8e7c02d3b5" width="100%" alt="Watched: Enola Holmes 3" /></a>
+<a href="https://letterboxd.com/hnitch/film/insidious-out-of-the-further/"><img src="./assets/activity/letterboxd-4.svg?v=901dad36b1" width="100%" alt="Watched: Insidious: Out of the Further" /></a>
 <!-- LETTERBOXD-FEED:END -->
 
 <br/>

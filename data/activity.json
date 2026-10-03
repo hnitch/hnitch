@@ -77,6 +77,15 @@
   "letterboxd": {
     "recent": [
       {
+        "title": "Verity",
+        "year": "2026",
+        "rating": 2.5,
+        "liked": false,
+        "link": "https://letterboxd.com/hnitch/film/verity-2026/",
+        "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/6/7/1/5/1/1167151-verity-2026-0-600-0-900-crop.jpg?v=3169444893",
+        "review": "i liked this more than the book so yay movie ig"
+      },
+      {
         "title": "Heart of the Beast",
         "year": "2026",
         "rating": 2.5,
@@ -102,15 +111,6 @@
         "link": "https://letterboxd.com/hnitch/film/insidious-out-of-the-further/",
         "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/7/4/1/5/7/1174157-insidious-out-of-the-further-0-600-0-900-crop.jpg?v=b6c81c5505",
         "review": ""
-      },
-      {
-        "title": "Enola Holmes 3",
-        "year": "2026",
-        "rating": 3,
-        "liked": false,
-        "link": "https://letterboxd.com/hnitch/film/enola-holmes-3/",
-        "poster": "https://a.ltrbxd.com/resized/film-poster/1/0/8/6/8/7/2/1086872-enola-holmes-3-0-600-0-900-crop.jpg?v=7e091a46ec",
-        "review": "honeybee would've been a great pick for the wedding"
       }
     ]
   },
@@ -131,6 +131,6 @@
     "lastSuccessAt": "2026-10-02T15:06:24.818Z",
     "lastAttemptAt": "2026-10-02T15:06:24.818Z"
   },
-  "updatedAt": "2026-10-03T02:16:00.878Z",
-  "lastSignalRenderAt": "2026-10-03T08:13:11.724Z"
+  "updatedAt": "2026-10-03T13:23:49.263Z",
+  "lastSignalRenderAt": "2026-10-03T13:23:49.263Z"
 }
