@@ -115,10 +115,10 @@
     ]
   },
   "appleMusic": {
-    "title": "Blue Lips",
-    "artist": "CORTIS",
-    "album": "GREENGREEN - EP",
-    "link": "https://music.apple.com/us/album/blue-lips/1887671065?i=1887671074&uo=4",
+    "title": "coraline",
+    "artist": "Lyn Lapid",
+    "album": "coraline - Single",
+    "link": "https://music.apple.com/us/album/coraline/1789664730?i=1789664731&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -129,8 +129,8 @@
     "username": "hnitch",
     "avatarHash": "bc623f7b849a",
     "lastSuccessAt": "2026-10-02T15:06:24.818Z",
-    "lastAttemptAt": "2026-10-04T02:12:22.323Z"
+    "lastAttemptAt": "2026-10-04T08:25:28.440Z"
   },
-  "updatedAt": "2026-10-04T02:12:55.647Z",
-  "lastSignalRenderAt": "2026-10-04T02:12:55.647Z"
+  "updatedAt": "2026-10-04T08:25:58.482Z",
+  "lastSignalRenderAt": "2026-10-04T08:25:58.482Z"
 }

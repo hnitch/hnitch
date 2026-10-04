@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-04T02:12:55.647Z">4 Oct 2026, 02:12 UTC</relative-time>
+    <relative-time datetime="2026-10-04T08:25:58.482Z">4 Oct 2026, 08:25 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -66,7 +66,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/blue-lips/1887671065?i=1887671074&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=e2061adf72" width="100%" alt="recently played Blue Lips by CORTIS" /></a>
+<a href="https://music.apple.com/us/album/coraline/1789664730?i=1789664731&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=3c22d78101" width="100%" alt="recently played coraline by Lyn Lapid" /></a>
 <div align="center"><sub>a little behind the beat. Apple Music updates arrive in batches , not live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 
