@@ -103,8 +103,8 @@
   "appleMusic": {
     "title": "coraline",
     "artist": "Lyn Lapid",
-    "album": "coraline - Single",
-    "link": "https://music.apple.com/us/album/coraline/1789664730?i=1789664731&uo=4",
+    "album": "BUZZKILL (forever)",
+    "link": "https://music.apple.com/us/album/coraline/1836071789?i=1836071791&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -115,8 +115,8 @@
     "username": "hnitch",
     "avatarHash": "bc623f7b849a",
     "lastSuccessAt": "2026-10-02T15:06:24.818Z",
-    "lastAttemptAt": "2026-10-04T08:25:28.440Z"
+    "lastAttemptAt": "2026-10-04T18:10:37.970Z"
   },
-  "updatedAt": "2026-10-04T14:14:10.074Z",
-  "lastSignalRenderAt": "2026-10-04T14:14:10.074Z"
+  "updatedAt": "2026-10-04T18:11:09.548Z",
+  "lastSignalRenderAt": "2026-10-04T18:11:09.548Z"
 }
