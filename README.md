@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-03T22:51:11.707Z">3 Oct 2026, 22:51 UTC</relative-time>
+    <relative-time datetime="2026-10-04T02:12:55.647Z">4 Oct 2026, 02:12 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -36,7 +36,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=98e47bb242" width="100%" alt="currently reading Sometimes I Scare Myself: A Collection of Horror" /></a>
+<a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=ef6ebc9b2e" width="100%" alt="currently reading Sometimes I Scare Myself: A Collection of Horror" /></a>
 
 <a href="https://www.goodreads.com/review/show/8521890786?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=aa5823bf59" width="100%" alt="Read: Headlights" /></a>
 
