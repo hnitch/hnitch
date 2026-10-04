@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-04T08:25:58.482Z">4 Oct 2026, 08:25 UTC</relative-time>
+    <relative-time datetime="2026-10-04T14:14:10.074Z">4 Oct 2026, 14:14 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -36,15 +36,15 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=ef6ebc9b2e" width="100%" alt="currently reading Sometimes I Scare Myself: A Collection of Horror" /></a>
+<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=32b6549c76" width="100%" alt="not reading anything , RN" /></a>
 
-<a href="https://www.goodreads.com/review/show/8521890786?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=aa5823bf59" width="100%" alt="Read: Headlights" /></a>
+<a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=6c341bc5d4" width="100%" alt="Read: Sometimes I Scare Myself: A Collection of Horror" /></a>
 
-<a href="https://www.goodreads.com/review/show/8495966803?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=c047f78727" width="100%" alt="Read: A Stage Set for Villains" /></a>
+<a href="https://www.goodreads.com/review/show/8521890786?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=aa5823bf59" width="100%" alt="Read: Headlights" /></a>
 
-<a href="https://www.goodreads.com/review/show/8125432492?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=69b23ce93d" width="100%" alt="Read: Verity" /></a>
+<a href="https://www.goodreads.com/review/show/8495966803?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=c047f78727" width="100%" alt="Read: A Stage Set for Villains" /></a>
 
-<a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=caaa49355b" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
+<a href="https://www.goodreads.com/review/show/8125432492?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=69b23ce93d" width="100%" alt="Read: Verity" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
