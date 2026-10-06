@@ -1,6 +1,20 @@
 {
   "goodreads": {
-    "current": null,
+    "current": {
+      "bookId": "231182580",
+      "title": "Incidents Around the House",
+      "author": "Josh Malerman",
+      "link": "https://www.goodreads.com/review/show/9001336918?utm_medium=api&utm_source=rss",
+      "rating": 0,
+      "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1744151504l/231182580._SY475_.jpg",
+      "pages": 384,
+      "averageRating": 3.5,
+      "published": "2024",
+      "dateAdded": "Mon, 05 Oct 2026 08:19:09 -0700",
+      "readAt": "",
+      "review": "",
+      "progress": null
+    },
     "recent": [
       {
         "bookId": "248899390",
@@ -10,7 +24,7 @@
         "rating": 4,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1773162223l/248899390._SY475_.jpg",
         "pages": 288,
-        "averageRating": 3.94,
+        "averageRating": 3.92,
         "published": "2026",
         "dateAdded": "Sun, 04 Oct 2026 05:28:26 -0700",
         "readAt": "Sun, 4 Oct 2026 00:00:00 +0000",
@@ -103,8 +117,8 @@
   "appleMusic": {
     "title": "coraline",
     "artist": "Lyn Lapid",
-    "album": "coraline - Single",
-    "link": "https://music.apple.com/us/album/coraline/1789664730?i=1789664731&uo=4",
+    "album": "BUZZKILL (forever)",
+    "link": "https://music.apple.com/us/album/coraline/1836071789?i=1836071791&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -115,8 +129,8 @@
     "username": "hnitch",
     "avatarHash": "bc623f7b849a",
     "lastSuccessAt": "2026-10-02T15:06:24.818Z",
-    "lastAttemptAt": "2026-10-05T12:25:36.364Z"
+    "lastAttemptAt": "2026-10-06T01:26:15.388Z"
   },
-  "updatedAt": "2026-10-05T05:23:52.020Z",
-  "lastSignalRenderAt": "2026-10-05T12:25:59.108Z"
+  "updatedAt": "2026-10-06T01:26:44.682Z",
+  "lastSignalRenderAt": "2026-10-06T01:26:44.682Z"
 }

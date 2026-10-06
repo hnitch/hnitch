@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />
+    <img src="./assets/signal-fresh.svg?v=3.7.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-05T05:23:52.020Z">5 Oct 2026, 05:23 UTC</relative-time>
+    <relative-time datetime="2026-10-06T01:26:44.682Z">6 Oct 2026, 01:26 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -36,9 +36,9 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=32b6549c76" width="100%" alt="not reading anything , RN" /></a>
+<a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=698c32fe70" width="100%" alt="currently reading Incidents Around the House" /></a>
 
-<a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=959b6f1222" width="100%" alt="Read: Sometimes I Scare Myself: A Collection of Horror" /></a>
+<a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=2a654268cc" width="100%" alt="Read: Sometimes I Scare Myself: A Collection of Horror" /></a>
 
 <a href="https://www.goodreads.com/review/show/8521890786?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=aa5823bf59" width="100%" alt="Read: Headlights" /></a>
 
@@ -66,7 +66,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/coraline/1789664730?i=1789664731&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=3c22d78101" width="100%" alt="recently played coraline by Lyn Lapid" /></a>
+<a href="https://music.apple.com/us/album/coraline/1836071789?i=1836071791&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=7654735e49" width="100%" alt="recently played coraline by Lyn Lapid" /></a>
 <div align="center"><sub>a little behind the beat. Apple Music updates arrive in batches , not live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 
