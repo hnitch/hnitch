@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-06T01:26:44.682Z">6 Oct 2026, 01:26 UTC</relative-time>
+    <relative-time datetime="2026-10-06T07:51:24.048Z">6 Oct 2026, 07:51 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -36,11 +36,11 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=698c32fe70" width="100%" alt="currently reading Incidents Around the House" /></a>
+<a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=76fcee80e2" width="100%" alt="currently reading Incidents Around the House" /></a>
 
 <a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=2a654268cc" width="100%" alt="Read: Sometimes I Scare Myself: A Collection of Horror" /></a>
 
-<a href="https://www.goodreads.com/review/show/8521890786?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=aa5823bf59" width="100%" alt="Read: Headlights" /></a>
+<a href="https://www.goodreads.com/review/show/8521890786?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=6bb9124115" width="100%" alt="Read: Headlights" /></a>
 
 <a href="https://www.goodreads.com/review/show/8495966803?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=c047f78727" width="100%" alt="Read: A Stage Set for Villains" /></a>
 
