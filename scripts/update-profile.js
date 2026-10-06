@@ -148,14 +148,20 @@ function first(value) {
   return Array.isArray(value) ? value[0] : value;
 }
 
-function normaliseBook(item = {}) {
+function normaliseRating(value) {
+  const rating = Number(first(value));
+  return Number.isFinite(rating) && rating >= 0 && rating <= 5 ? rating : 0;
+}
+
+export function normaliseBook(item = {}) {
   const book = first(item.book) || {};
   return {
     bookId: decode(first(item.book_id)),
     title: decode(first(item.title)),
     author: decode(first(item.author_name)),
     link: decode(first(item.link)),
-    rating: Number(first(item.user_rating)) || 0,
+    // Personal ratings now include quarter stars. Keep the feed's precision.
+    rating: normaliseRating(item.user_rating),
     cover: decode(first(item.book_large_image_url) || first(item.book_medium_image_url)),
     pages: Number(first(item.num_pages) || first(book.num_pages)) || null,
     averageRating: Number(first(item.average_rating) || first(book.average_rating)) || null,
@@ -400,9 +406,15 @@ async function readAppleMusic(previous) {
   };
 }
 
-function stars(rating) {
+export function stars(value) {
+  const rating = normaliseRating(value);
   if (!rating) return "unrated";
-  return `${"★".repeat(Math.floor(rating))}${rating % 1 ? "½" : ""}`;
+  const fraction = rating % 1;
+  const suffix = { 0: "", 0.25: "¼", 0.5: "½", 0.75: "¾" }[fraction];
+  // If the source adds other increments, show the exact value rather than
+  // silently turning an unknown fraction into a half star.
+  if (suffix === undefined) return `${rating} ★`;
+  return `${"★".repeat(Math.floor(rating))}${suffix}`;
 }
 
 function monthYear(value) {
@@ -528,8 +540,10 @@ export function renderBookTile(book, artwork, index) {
   const communityRating = book.averageRating && `GR avg ${Number(book.averageRating).toFixed(2)}`;
   const bookFacts = [publication, communityRating].filter(Boolean);
   const titleSidecar = bookFacts.length ? `<path d="M632 65v52" stroke="#756b80" stroke-width="2" stroke-linecap="round" opacity=".8"/>${bookFacts.map((fact, factIndex) => `<text x="649" y="${80 + factIndex * 23}" fill="#a99daf" font-size="12" font-weight="650">${escapeDisplay(fact)}</text>`).join("")}` : "";
-  const mood = ratingMood(book.rating);
-  const ratingText = stars(book.rating);
+  const rating = normaliseRating(book.rating);
+  const mood = ratingMood(rating);
+  const ratingText = stars(rating);
+  const ratingLabel = rating ? `${rating} out of 5 stars` : "unrated";
   const ratingWidth = Math.max(78, 32 + ratingText.length * 16);
   const moods = extractReviewMoods(book.review);
   let chipX = 164 + ratingWidth + 29;
@@ -556,7 +570,7 @@ export function renderBookTile(book, artwork, index) {
   ${titleSidecar}
   <text x="164" y="136" fill="${theme.muted}" font-size="14.5" font-weight="700">${escapeDisplay(book.author)}</text>
   <text x="164" y="160" fill="#978a9f" font-size="12.5" font-weight="600">${escapeDisplay(facts)}</text>
-  <rect x="164" y="183" width="${ratingWidth}" height="34" rx="17" fill="${mood.background}"/><text x="${164 + ratingWidth / 2}" y="205" fill="${mood.color}" font-size="16" font-weight="800" text-anchor="middle">${escapeDisplay(ratingText)}</text>
+  <g role="img" aria-label="${ratingLabel}"><title>${ratingLabel}</title><rect x="164" y="183" width="${ratingWidth}" height="34" rx="17" fill="${mood.background}"/><text x="${164 + ratingWidth / 2}" y="205" fill="${mood.color}" font-size="16" font-weight="800" text-anchor="middle">${escapeDisplay(ratingText)}</text></g>
   <path d="M${174 + ratingWidth} 187v26" stroke="#776a88" stroke-width="2" stroke-linecap="round" opacity=".8"/>
   ${chips}${emptyReview}</g>
   </svg>`;
@@ -826,7 +840,7 @@ function cardStack(items, prefix, alt, versionData = (item) => item) {
 function goodreadsMarkup(data) {
   const currentLink = data.current?.link || "https://www.goodreads.com/user/show/178629903";
   const currentVersion = data.current ? data.current : ["empty shelf", "...", "smaller italic status"];
-  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(currentVersion)}" width="100%" alt="${data.current ? `currently reading ${escapeDisplay(data.current.title)}` : "not reading anything , RN"}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read", (book) => [book, extractReviewMoods(book.review)])}`;
+  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(currentVersion)}" width="100%" alt="${data.current ? `currently reading ${escapeDisplay(data.current.title)}` : "not reading anything , RN"}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read", (book) => [book, extractReviewMoods(book.review), "quarter-star ratings"])}`;
 }
 
 function letterboxdMarkup(data) {

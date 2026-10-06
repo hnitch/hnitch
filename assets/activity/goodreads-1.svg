@@ -8,7 +8,7 @@
   <path d="M632 65v52" stroke="#756b80" stroke-width="2" stroke-linecap="round" opacity=".8"/><text x="649" y="80" fill="#a99daf" font-size="12" font-weight="650">published 2026</text><text x="649" y="103" fill="#a99daf" font-size="12" font-weight="650">GR avg 3.92</text>
   <text x="164" y="136" fill="#bdb1ca" font-size="14.5" font-weight="700">Jeneva Rose</text>
   <text x="164" y="160" fill="#978a9f" font-size="12.5" font-weight="600">288p · read Oct 2026</text>
-  <rect x="164" y="183" width="96" height="34" rx="17" fill="#163b39"/><text x="212" y="205" fill="#8edfd4" font-size="16" font-weight="800" text-anchor="middle">★★★★</text>
+  <g role="img" aria-label="4 out of 5 stars"><title>4 out of 5 stars</title><rect x="164" y="183" width="96" height="34" rx="17" fill="#163b39"/><text x="212" y="205" fill="#8edfd4" font-size="16" font-weight="800" text-anchor="middle">★★★★</text></g>
   <path d="M270 187v26" stroke="#776a88" stroke-width="2" stroke-linecap="round" opacity=".8"/>
   <rect x="289" y="183" width="178" height="34" rx="17" fill="#302a3d"/><text x="378" y="205" fill="#bdb1ca" font-size="12" font-weight="700" text-anchor="middle">no written review</text></g>
   </svg>

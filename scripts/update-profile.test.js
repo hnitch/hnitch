@@ -1,8 +1,42 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { instagramOgAvatarUrl, renderBookCurrent, renderBookTile, shouldRefreshInstagram, signalPresentation, staleInstagramData } from "./update-profile.js";
+import { parseStringPromise } from "xml2js";
+import { instagramOgAvatarUrl, normaliseBook, renderBookCurrent, renderBookTile, shouldRefreshInstagram, signalPresentation, staleInstagramData, stars } from "./update-profile.js";
+import { ratingMood } from "./review-moods.js";
 
 const now = Date.parse("2026-09-20T12:00:00.000Z");
+
+test("Goodreads RSS preserves all twenty quarter-star increments end to end", async () => {
+  const fractions = ["", "¼", "½", "¾"];
+  for (let quarters = 1; quarters <= 20; quarters += 1) {
+    const rating = quarters / 4;
+    const feed = await parseStringPromise(`<item><title>Example</title><user_rating>${rating}</user_rating></item>`);
+    const book = normaliseBook(feed.item);
+    assert.equal(book.rating, rating);
+    const expected = "★".repeat(Math.floor(rating)) + fractions[quarters % 4];
+    assert.equal(stars(book.rating), expected);
+    const svg = renderBookTile(book, null, 0);
+    assert.ok(svg.includes(`>${expected}</text>`));
+    assert.ok(svg.includes(`aria-label="${rating} out of 5 stars"`));
+    await parseStringPromise(svg);
+  }
+});
+
+test("missing and invalid ratings do not become fabricated stars", () => {
+  for (const value of [undefined, null, "", "not rated", -1, 6, Infinity, NaN]) {
+    assert.equal(normaliseBook({ user_rating: [value] }).rating, 0);
+    assert.equal(stars(value), "unrated");
+  }
+  assert.equal(stars(3.3), "3.3 ★");
+  assert.equal(stars(3.5), "★★★½"); // Letterboxd's half stars remain unchanged.
+});
+
+test("quarter-star colours use the actual rating without rounding up", () => {
+  assert.equal(ratingMood(2.75).color, "#ff9f9a");
+  assert.equal(ratingMood(3.25).color, "#ffe58c");
+  assert.equal(ratingMood(3.75).color, "#ffe58c");
+  assert.equal(ratingMood(4.25).color, "#8edfd4");
+});
 
 test("signal reflects the last actual feed change, not the last scheduled check", () => {
   const changedAt = "2026-09-20T11:50:00.000Z";

@@ -20,7 +20,7 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-fresh.svg?v=3.7.0" height="14" alt="" />
+    <img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
@@ -38,13 +38,13 @@
 
 <a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=76fcee80e2" width="100%" alt="currently reading Incidents Around the House" /></a>
 
-<a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=2a654268cc" width="100%" alt="Read: Sometimes I Scare Myself: A Collection of Horror" /></a>
+<a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=91b32c8802" width="100%" alt="Read: Sometimes I Scare Myself: A Collection of Horror" /></a>
 
-<a href="https://www.goodreads.com/review/show/8521890786?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=6bb9124115" width="100%" alt="Read: Headlights" /></a>
+<a href="https://www.goodreads.com/review/show/8521890786?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=db72bc805e" width="100%" alt="Read: Headlights" /></a>
 
-<a href="https://www.goodreads.com/review/show/8495966803?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=c047f78727" width="100%" alt="Read: A Stage Set for Villains" /></a>
+<a href="https://www.goodreads.com/review/show/8495966803?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=28b383c6a3" width="100%" alt="Read: A Stage Set for Villains" /></a>
 
-<a href="https://www.goodreads.com/review/show/8125432492?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=69b23ce93d" width="100%" alt="Read: Verity" /></a>
+<a href="https://www.goodreads.com/review/show/8125432492?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=2c321d7e08" width="100%" alt="Read: Verity" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
