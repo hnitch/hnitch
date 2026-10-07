@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-07T16:24:23.439Z">7 Oct 2026, 16:24 UTC</relative-time>
+    <relative-time datetime="2026-10-07T21:25:04.181Z">7 Oct 2026, 21:25 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -36,15 +36,15 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=76fcee80e2" width="100%" alt="currently reading Incidents Around the House" /></a>
+<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=32b6549c76" width="100%" alt="not reading anything , RN" /></a>
 
-<a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=a83e9e29e1" width="100%" alt="Read: Sometimes I Scare Myself: A Collection of Horror" /></a>
+<a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=803f0e1b90" width="100%" alt="Read: Incidents Around the House" /></a>
 
-<a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=3d77474232" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
+<a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=f7673ccaa2" width="100%" alt="Read: Sometimes I Scare Myself: A Collection of Horror" /></a>
 
-<a href="https://www.goodreads.com/review/show/8495966803?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=328c031800" width="100%" alt="Read: A Stage Set for Villains" /></a>
+<a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=3d77474232" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
 
-<a href="https://www.goodreads.com/review/show/8521890786?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=b913fbf248" width="100%" alt="Read: Headlights" /></a>
+<a href="https://www.goodreads.com/review/show/8495966803?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=282a8cabe4" width="100%" alt="Read: A Stage Set for Villains" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
