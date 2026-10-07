@@ -42,7 +42,8 @@ test("keeps each chip concise", () => {
 
 test("empty shelf is honest and fully designed", () => {
   const svg = renderBookCurrent(null, null);
-  assert.match(svg, /not reading anything , RN/);
+  assert.match(svg, /not reading anything , rn/);
+  assert.doesNotMatch(svg, /\bRN\b/);
   assert.match(svg, /font-size="22" font-style="italic"/);
   assert.match(svg, /translate\(43 51\) scale\(\.76\)/);
   assert.match(svg, />\.\.\.<\/text>/);

@@ -20,7 +20,7 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-fresh.svg?v=3.7.0" height="14" alt="" />
+    <img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
@@ -36,7 +36,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=32b6549c76" width="100%" alt="not reading anything , RN" /></a>
+<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=52c6f41629" width="100%" alt="not reading anything , rn" /></a>
 
 <a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=803f0e1b90" width="100%" alt="Read: Incidents Around the House" /></a>
 
