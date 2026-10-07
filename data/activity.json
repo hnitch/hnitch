@@ -52,7 +52,7 @@
         "rating": 4,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1774312099l/250155395._SY475_.jpg",
         "pages": 419,
-        "averageRating": 4.12,
+        "averageRating": 4.13,
         "published": "2026",
         "dateAdded": "Tue, 06 Oct 2026 02:06:09 -0700",
         "readAt": "Mon, 28 Sep 2026 00:00:00 +0000",
@@ -129,8 +129,8 @@
     "username": "hnitch",
     "avatarHash": "bc623f7b849a",
     "lastSuccessAt": "2026-10-02T15:06:24.818Z",
-    "lastAttemptAt": "2026-10-06T23:20:54.089Z"
+    "lastAttemptAt": "2026-10-07T09:07:30.128Z"
   },
-  "updatedAt": "2026-10-06T23:21:25.666Z",
-  "lastSignalRenderAt": "2026-10-07T02:29:15.526Z"
+  "updatedAt": "2026-10-07T09:08:02.604Z",
+  "lastSignalRenderAt": "2026-10-07T09:08:02.604Z"
 }

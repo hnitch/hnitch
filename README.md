@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />
+    <img src="./assets/signal-fresh.svg?v=3.7.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-06T23:21:25.666Z">6 Oct 2026, 23:21 UTC</relative-time>
+    <relative-time datetime="2026-10-07T09:08:02.604Z">7 Oct 2026, 09:08 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -42,7 +42,7 @@
 
 <a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=3d77474232" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
 
-<a href="https://www.goodreads.com/review/show/8495966803?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=282a8cabe4" width="100%" alt="Read: A Stage Set for Villains" /></a>
+<a href="https://www.goodreads.com/review/show/8495966803?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=328c031800" width="100%" alt="Read: A Stage Set for Villains" /></a>
 
 <a href="https://www.goodreads.com/review/show/8521890786?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=b913fbf248" width="100%" alt="Read: Headlights" /></a>
 <!-- GOODREADS-FEED:END -->
