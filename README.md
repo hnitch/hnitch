@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-07T09:08:02.604Z">7 Oct 2026, 09:08 UTC</relative-time>
+    <relative-time datetime="2026-10-07T16:24:23.439Z">7 Oct 2026, 16:24 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -38,7 +38,7 @@
 
 <a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=76fcee80e2" width="100%" alt="currently reading Incidents Around the House" /></a>
 
-<a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=9eaa2de6a6" width="100%" alt="Read: Sometimes I Scare Myself: A Collection of Horror" /></a>
+<a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=a83e9e29e1" width="100%" alt="Read: Sometimes I Scare Myself: A Collection of Horror" /></a>
 
 <a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=3d77474232" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
 
