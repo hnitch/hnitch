@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-08T14:41:38.398Z">8 Oct 2026, 14:41 UTC</relative-time>
+    <relative-time datetime="2026-10-08T20:08:43.714Z">8 Oct 2026, 20:08 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -42,7 +42,7 @@
 
 <a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=f7673ccaa2" width="100%" alt="Read: Sometimes I Scare Myself: A Collection of Horror" /></a>
 
-<a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=41024aacbd" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
+<a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=f8fe75c238" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
 
 <a href="https://www.goodreads.com/review/show/8495966803?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=282a8cabe4" width="100%" alt="Read: A Stage Set for Villains" /></a>
 <!-- GOODREADS-FEED:END -->
