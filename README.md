@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-08T07:20:36.237Z">8 Oct 2026, 07:20 UTC</relative-time>
+    <relative-time datetime="2026-10-08T14:41:38.398Z">8 Oct 2026, 14:41 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -66,7 +66,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/night-to-howl/6802917476?i=6802917968&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=fa7fa87dbd" width="100%" alt="recently played Night to howl! by &amp;TEAM" /></a>
+<a href="https://music.apple.com/us/album/xo-only-if-you-say-yes-english-ver/1752178854?i=1752179185&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=0cd25fe9dd" width="100%" alt="recently played XO (Only If You Say Yes) [English Ver.] by ENHYPEN &amp; JVKE" /></a>
 <div align="center"><sub>a little behind the beat. Apple Music updates arrive in batches , not live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 
