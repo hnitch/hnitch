@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />
+    <img src="./assets/signal-fresh.svg?v=3.7.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-07T21:25:04.181Z">7 Oct 2026, 21:25 UTC</relative-time>
+    <relative-time datetime="2026-10-08T07:20:36.237Z">8 Oct 2026, 07:20 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -42,7 +42,7 @@
 
 <a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=f7673ccaa2" width="100%" alt="Read: Sometimes I Scare Myself: A Collection of Horror" /></a>
 
-<a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=3d77474232" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
+<a href="https://www.goodreads.com/review/show/8806043567?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=41024aacbd" width="100%" alt="Read: (Mostly) Human Resources (Entity Case Files , #1)" /></a>
 
 <a href="https://www.goodreads.com/review/show/8495966803?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=282a8cabe4" width="100%" alt="Read: A Stage Set for Villains" /></a>
 <!-- GOODREADS-FEED:END -->
@@ -66,7 +66,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/coraline/1836071789?i=1836071791&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=7654735e49" width="100%" alt="recently played coraline by Lyn Lapid" /></a>
+<a href="https://music.apple.com/us/album/night-to-howl/6802917476?i=6802917968&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=fa7fa87dbd" width="100%" alt="recently played Night to howl! by &amp;TEAM" /></a>
 <div align="center"><sub>a little behind the beat. Apple Music updates arrive in batches , not live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 

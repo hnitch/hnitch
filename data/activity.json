@@ -38,7 +38,7 @@
         "rating": 4,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1788493559l/258342692._SY475_.jpg",
         "pages": 397,
-        "averageRating": 3.75,
+        "averageRating": 3.76,
         "published": "2026",
         "dateAdded": "Tue, 06 Oct 2026 02:06:49 -0700",
         "readAt": "Wed, 16 Sep 2026 00:00:00 +0000",
@@ -101,10 +101,10 @@
     ]
   },
   "appleMusic": {
-    "title": "coraline",
-    "artist": "Lyn Lapid",
-    "album": "BUZZKILL (forever)",
-    "link": "https://music.apple.com/us/album/coraline/1836071789?i=1836071791&uo=4",
+    "title": "Night to howl!",
+    "artist": "&TEAM",
+    "album": "Mark on Me - EP",
+    "link": "https://music.apple.com/us/album/night-to-howl/6802917476?i=6802917968&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -115,8 +115,8 @@
     "username": "hnitch",
     "avatarHash": "bc623f7b849a",
     "lastSuccessAt": "2026-10-02T15:06:24.818Z",
-    "lastAttemptAt": "2026-10-08T01:09:06.492Z"
+    "lastAttemptAt": "2026-10-08T07:19:58.319Z"
   },
-  "updatedAt": "2026-10-07T21:25:04.181Z",
-  "lastSignalRenderAt": "2026-10-08T01:09:42.768Z"
+  "updatedAt": "2026-10-08T07:20:36.237Z",
+  "lastSignalRenderAt": "2026-10-08T07:20:36.237Z"
 }
