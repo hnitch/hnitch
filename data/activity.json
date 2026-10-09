@@ -1,6 +1,20 @@
 {
   "goodreads": {
-    "current": null,
+    "current": {
+      "bookId": "247756858",
+      "title": "Scion (Scion, #1)",
+      "author": "James Islington",
+      "link": "https://www.goodreads.com/review/show/8743273179?utm_medium=api&utm_source=rss",
+      "rating": 0,
+      "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1788797128l/247756858._SY475_.jpg",
+      "pages": 228,
+      "averageRating": 3.85,
+      "published": "2026",
+      "dateAdded": "Thu, 08 Oct 2026 19:43:16 -0700",
+      "readAt": "",
+      "review": "",
+      "progress": null
+    },
     "recent": [
       {
         "bookId": "231182580",
@@ -38,7 +52,7 @@
         "rating": 4,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1788493559l/258342692._SY475_.jpg",
         "pages": 397,
-        "averageRating": 3.78,
+        "averageRating": 3.81,
         "published": "2026",
         "dateAdded": "Tue, 06 Oct 2026 02:06:49 -0700",
         "readAt": "Wed, 16 Sep 2026 00:00:00 +0000",
@@ -52,7 +66,7 @@
         "rating": 4,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1774312099l/250155395._SY475_.jpg",
         "pages": 419,
-        "averageRating": 4.12,
+        "averageRating": 4.13,
         "published": "2026",
         "dateAdded": "Tue, 06 Oct 2026 02:06:09 -0700",
         "readAt": "Mon, 28 Sep 2026 00:00:00 +0000",
@@ -115,8 +129,8 @@
     "username": "hnitch",
     "avatarHash": "bc623f7b849a",
     "lastSuccessAt": "2026-10-02T15:06:24.818Z",
-    "lastAttemptAt": "2026-10-09T00:19:41.418Z"
+    "lastAttemptAt": "2026-10-09T06:20:36.116Z"
   },
-  "updatedAt": "2026-10-08T20:08:43.714Z",
-  "lastSignalRenderAt": "2026-10-09T00:20:06.070Z"
+  "updatedAt": "2026-10-09T06:21:06.386Z",
+  "lastSignalRenderAt": "2026-10-09T06:21:06.386Z"
 }
