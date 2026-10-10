@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />
+    <img src="./assets/signal-fresh.svg?v=3.7.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-09T06:21:06.386Z">9 Oct 2026, 06:21 UTC</relative-time>
+    <relative-time datetime="2026-10-10T08:33:22.581Z">10 Oct 2026, 08:33 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -36,7 +36,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/review/show/8743273179?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=aa9cd8d2f7" width="100%" alt="currently reading Scion (Scion , #1)" /></a>
+<a href="https://www.goodreads.com/review/show/8743273179?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=9fd3d4224d" width="100%" alt="currently reading Scion (Scion , #1)" /></a>
 
 <a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=803f0e1b90" width="100%" alt="Read: Incidents Around the House" /></a>
 

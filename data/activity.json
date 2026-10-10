@@ -8,7 +8,7 @@
       "rating": 0,
       "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1788797128l/247756858._SY475_.jpg",
       "pages": 228,
-      "averageRating": 3.85,
+      "averageRating": 3.84,
       "published": "2026",
       "dateAdded": "Thu, 08 Oct 2026 19:43:16 -0700",
       "readAt": "",
@@ -129,8 +129,8 @@
     "username": "hnitch",
     "avatarHash": "bc623f7b849a",
     "lastSuccessAt": "2026-10-02T15:06:24.818Z",
-    "lastAttemptAt": "2026-10-09T23:01:09.047Z"
+    "lastAttemptAt": "2026-10-10T08:32:50.905Z"
   },
-  "updatedAt": "2026-10-09T06:21:06.386Z",
-  "lastSignalRenderAt": "2026-10-09T13:29:44.916Z"
+  "updatedAt": "2026-10-10T08:33:22.581Z",
+  "lastSignalRenderAt": "2026-10-10T08:33:22.581Z"
 }
