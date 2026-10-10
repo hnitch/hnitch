@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-10T08:33:22.581Z">10 Oct 2026, 08:33 UTC</relative-time>
+    <relative-time datetime="2026-10-10T14:40:43.406Z">10 Oct 2026, 14:40 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -54,19 +54,19 @@
 
 <br/>
 
-<a href="https://letterboxd.com/hnitch/film/verity-2026/"><img src="./assets/activity/letterboxd-1.svg?v=419a374293" width="100%" alt="Watched: Verity" /></a>
+<a href="https://letterboxd.com/hnitch/film/other-mommy/"><img src="./assets/activity/letterboxd-1.svg?v=5e00519e6c" width="100%" alt="Watched: Other Mommy" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/heart-of-the-beast-2026/"><img src="./assets/activity/letterboxd-2.svg?v=302fc5d1e9" width="100%" alt="Watched: Heart of the Beast" /></a>
+<a href="https://letterboxd.com/hnitch/film/verity-2026/"><img src="./assets/activity/letterboxd-2.svg?v=419a374293" width="100%" alt="Watched: Verity" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/resident-evil-2026/"><img src="./assets/activity/letterboxd-3.svg?v=bff2f8ec46" width="100%" alt="Watched: Resident Evil" /></a>
+<a href="https://letterboxd.com/hnitch/film/heart-of-the-beast-2026/"><img src="./assets/activity/letterboxd-3.svg?v=302fc5d1e9" width="100%" alt="Watched: Heart of the Beast" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/insidious-out-of-the-further/"><img src="./assets/activity/letterboxd-4.svg?v=901dad36b1" width="100%" alt="Watched: Insidious: Out of the Further" /></a>
+<a href="https://letterboxd.com/hnitch/film/resident-evil-2026/"><img src="./assets/activity/letterboxd-4.svg?v=bff2f8ec46" width="100%" alt="Watched: Resident Evil" /></a>
 <!-- LETTERBOXD-FEED:END -->
 
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/xo-only-if-you-say-yes-english-ver/1752178854?i=1752179185&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=0cd25fe9dd" width="100%" alt="recently played XO (Only If You Say Yes) [English Ver.] by ENHYPEN &amp; JVKE" /></a>
+<a href="https://music.apple.com/us/album/the-beginning/1862719340?i=1862719342&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=1b0e17a8b6" width="100%" alt="recently played The Beginning by ENHYPEN" /></a>
 <div align="center"><sub>a little behind the beat. Apple Music updates arrive in batches , not live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 

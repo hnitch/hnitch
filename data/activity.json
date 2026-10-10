@@ -77,6 +77,15 @@
   "letterboxd": {
     "recent": [
       {
+        "title": "Other Mommy",
+        "year": "2026",
+        "rating": 2.5,
+        "liked": false,
+        "link": "https://letterboxd.com/hnitch/film/other-mommy/",
+        "poster": "https://a.ltrbxd.com/resized/film-poster/1/2/8/4/4/8/0/1284480-other-mommy-0-600-0-900-crop.jpg?v=297427826f",
+        "review": "not them literally playing the clayface trailer infront of this ahsjdjdk it’s getting extra stars for the body horror"
+      },
+      {
         "title": "Verity",
         "year": "2026",
         "rating": 2.5,
@@ -102,23 +111,14 @@
         "link": "https://letterboxd.com/hnitch/film/resident-evil-2026/",
         "poster": "https://a.ltrbxd.com/resized/film-poster/1/3/0/2/7/1/7/1302717-untitled-resident-evil-reboot-0-600-0-900-crop.jpg?v=a688bf1bc7",
         "review": "peak ragebait but worth it ahshsjnd"
-      },
-      {
-        "title": "Insidious: Out of the Further",
-        "year": "2026",
-        "rating": 2,
-        "liked": false,
-        "link": "https://letterboxd.com/hnitch/film/insidious-out-of-the-further/",
-        "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/7/4/1/5/7/1174157-insidious-out-of-the-further-0-600-0-900-crop.jpg?v=b6c81c5505",
-        "review": ""
       }
     ]
   },
   "appleMusic": {
-    "title": "XO (Only If You Say Yes) [English Ver.]",
-    "artist": "ENHYPEN & JVKE",
-    "album": "ROMANCE : UNTOLD",
-    "link": "https://music.apple.com/us/album/xo-only-if-you-say-yes-english-ver/1752178854?i=1752179185&uo=4",
+    "title": "The Beginning",
+    "artist": "ENHYPEN",
+    "album": "THE SIN : VANISH (English Ver.)",
+    "link": "https://music.apple.com/us/album/the-beginning/1862719340?i=1862719342&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -129,8 +129,8 @@
     "username": "hnitch",
     "avatarHash": "bc623f7b849a",
     "lastSuccessAt": "2026-10-02T15:06:24.818Z",
-    "lastAttemptAt": "2026-10-10T08:32:50.905Z"
+    "lastAttemptAt": "2026-10-10T14:40:19.886Z"
   },
-  "updatedAt": "2026-10-10T08:33:22.581Z",
-  "lastSignalRenderAt": "2026-10-10T08:33:22.581Z"
+  "updatedAt": "2026-10-10T14:40:43.406Z",
+  "lastSignalRenderAt": "2026-10-10T14:40:43.406Z"
 }
