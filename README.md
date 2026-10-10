@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-10T14:40:43.406Z">10 Oct 2026, 14:40 UTC</relative-time>
+    <relative-time datetime="2026-10-10T18:51:12.164Z">10 Oct 2026, 18:51 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -54,13 +54,13 @@
 
 <br/>
 
-<a href="https://letterboxd.com/hnitch/film/other-mommy/"><img src="./assets/activity/letterboxd-1.svg?v=5e00519e6c" width="100%" alt="Watched: Other Mommy" /></a>
+<a href="https://letterboxd.com/hnitch/film/carrie-2026/"><img src="./assets/activity/letterboxd-1.svg?v=5f2a60f0c2" width="100%" alt="Watched: Carrie" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/verity-2026/"><img src="./assets/activity/letterboxd-2.svg?v=419a374293" width="100%" alt="Watched: Verity" /></a>
+<a href="https://letterboxd.com/hnitch/film/other-mommy/"><img src="./assets/activity/letterboxd-2.svg?v=5e00519e6c" width="100%" alt="Watched: Other Mommy" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/heart-of-the-beast-2026/"><img src="./assets/activity/letterboxd-3.svg?v=302fc5d1e9" width="100%" alt="Watched: Heart of the Beast" /></a>
+<a href="https://letterboxd.com/hnitch/film/verity-2026/"><img src="./assets/activity/letterboxd-3.svg?v=419a374293" width="100%" alt="Watched: Verity" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/resident-evil-2026/"><img src="./assets/activity/letterboxd-4.svg?v=bff2f8ec46" width="100%" alt="Watched: Resident Evil" /></a>
+<a href="https://letterboxd.com/hnitch/film/heart-of-the-beast-2026/"><img src="./assets/activity/letterboxd-4.svg?v=302fc5d1e9" width="100%" alt="Watched: Heart of the Beast" /></a>
 <!-- LETTERBOXD-FEED:END -->
 
 <br/>
