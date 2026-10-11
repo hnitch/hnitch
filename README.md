@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />
+    <img src="./assets/signal-fresh.svg?v=3.7.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-11T06:33:45.173Z">11 Oct 2026, 06:33 UTC</relative-time>
+    <relative-time datetime="2026-10-11T22:03:52.365Z">11 Oct 2026, 22:03 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -40,7 +40,7 @@
 
 <a href="https://www.goodreads.com/review/show/8743273179?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=9ee1b14832" width="100%" alt="Read: Scion (Scion , #1)" /></a>
 
-<a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=803f0e1b90" width="100%" alt="Read: Incidents Around the House" /></a>
+<a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=9400afe24e" width="100%" alt="Read: Incidents Around the House" /></a>
 
 <a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=0bc58a7a00" width="100%" alt="Read: Sometimes I Scare Myself: A Collection of Horror" /></a>
 
