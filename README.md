@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />
+    <img src="./assets/signal-fresh.svg?v=3.7.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-12T16:13:24.098Z">12 Oct 2026, 16:13 UTC</relative-time>
+    <relative-time datetime="2026-10-12T23:17:26.647Z">12 Oct 2026, 23:17 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -36,7 +36,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=de96da14d4" width="100%" alt="currently reading Murder at the Grand Alpine Hotel" /></a>
+<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=57f7cead11" width="100%" alt="currently reading Murder at the Grand Alpine Hotel" /></a>
 
 <a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=cff549f9c6" width="100%" alt="Read: The Ending Writes Itself" /></a>
 

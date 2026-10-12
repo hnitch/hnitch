@@ -8,7 +8,7 @@
       "rating": 0,
       "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1772576610l/249253557.jpg",
       "pages": 384,
-      "averageRating": 3.95,
+      "averageRating": 3.93,
       "published": "2026",
       "dateAdded": "Sun, 11 Oct 2026 18:44:52 -0700",
       "readAt": "",
@@ -136,6 +136,6 @@
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
     "lastAttemptAt": "2026-10-12T15:08:45.725Z"
   },
-  "updatedAt": "2026-10-12T16:13:24.098Z",
-  "lastSignalRenderAt": "2026-10-12T16:51:08.726Z"
+  "updatedAt": "2026-10-12T23:17:26.647Z",
+  "lastSignalRenderAt": "2026-10-12T23:17:26.647Z"
 }
