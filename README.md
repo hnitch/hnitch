@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />
+    <img src="./assets/signal-fresh.svg?v=3.7.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-12T15:38:26.781Z">12 Oct 2026, 15:38 UTC</relative-time>
+    <relative-time datetime="2026-10-12T16:13:24.098Z">12 Oct 2026, 16:13 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -66,8 +66,8 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/profile/hnitch"><img src="./assets/activity/apple-music.svg?v=c2cb4e21c1" width="100%" alt="Apple Music: awaiting a verified listening update" /></a>
-<div align="center"><sub>listening history is paused until the source is reconnected. no track is guessed.</sub></div>
+<a href="https://music.apple.com/us/album/ff/6799851049?i=6799851344"><img src="./assets/activity/apple-music.svg?v=a525eac391" width="100%" alt="last played FF by Troye Sivan" /></a>
+<div align="center"><sub>a little behind the beat. updates can be delayed , and playback is not continuously live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 
 <br/>
