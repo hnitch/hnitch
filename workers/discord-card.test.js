@@ -1,6 +1,54 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { handleRequest, normaliseLanyard, renderDiscordCard } from "./discord-card.js";
+import { handleRequest, handleVisitorRequest, normaliseLanyard, renderDiscordCard } from "./discord-card.js";
+
+const visitorRequest = new Request("https://example.com/visitors.svg?v=1");
+const visitorNow = Date.parse("2026-10-12T15:00:00Z");
+
+test("visitor badge caches a validated count and serves its own SVG", async () => {
+  let cached;
+  const cache = { match: async () => cached?.clone(), put: async (_key, response) => { cached = response; } };
+  let calls = 0;
+  const fetcher = async () => {
+    calls++;
+    return new Response('<svg aria-label="CURIOUS VISITORS: 1,400"><script>untrusted</script></svg>', { headers: { "Content-Type": "image/svg+xml" } });
+  };
+  const result = await handleVisitorRequest(visitorRequest, fetcher, cache, visitorNow);
+  assert.equal(result.status, 200);
+  assert.match(await result.text(), /1,400/);
+  assert.match(result.headers.get("content-type"), /image\/svg\+xml/);
+  const fresh = await handleVisitorRequest(visitorRequest, fetcher, cache, visitorNow + 10_000);
+  assert.doesNotMatch(await fresh.text(), /script|untrusted/);
+  assert.equal(calls, 1);
+});
+
+test("counter outages preserve the last verified count even when cache writes fail", async () => {
+  const cache = {
+    match: async () => new Response(JSON.stringify({ count: 1400, checkedAt: "2026-10-11T15:00:00Z" })),
+    put: async () => { throw new Error("cache unavailable"); },
+  };
+  for (const fetcher of [async () => { throw new Error("offline"); }, async () => new Response("error", { status: 503 }), async () => new Response("not SVG")]) {
+    const result = await handleVisitorRequest(visitorRequest, fetcher, cache, visitorNow);
+    assert.equal(result.status, 200);
+    assert.match(await result.text(), /1,400.*last verified count/);
+  }
+});
+
+test("an empty or broken edge cache still returns the verified seed instead of a broken image", async () => {
+  const broken = { match: async () => { throw new Error("cache unavailable"); } };
+  const result = await handleVisitorRequest(visitorRequest, async () => { throw new Error("offline"); }, broken, visitorNow);
+  assert.equal(result.status, 200);
+  assert.match(await result.text(), /1,282/);
+});
+
+test("HEAD requests do not increment the counter and writes are rejected", async () => {
+  const fetcher = async () => { throw new Error("HEAD must not fetch the counter"); };
+  const head = await handleVisitorRequest(new Request(visitorRequest.url, { method: "HEAD" }), fetcher, null, visitorNow);
+  assert.equal(head.status, 200);
+  assert.equal(await head.text(), "");
+  const post = await handleVisitorRequest(new Request(visitorRequest.url, { method: "POST" }), fetcher, null, visitorNow);
+  assert.equal(post.status, 405);
+});
 
 const lanyardPresence = {
   discord_user: {

@@ -26,7 +26,6 @@ const SOURCES = {
     progress: "https://www.goodreads.com/user_status/list/178629903?format=rss",
   },
   letterboxd: "https://letterboxd.com/hnitch/rss/",
-  appleMusicRecent: "https://music-profile.rayriffy.com/theme/dark.svg?uid=000568.fa0178bfed7a4356a5b20a996b4824a4.1200",
 };
 
 const theme = {
@@ -342,7 +341,7 @@ function parseMusicEvent() {
 
 async function readMusicAppEvent(event, previous) {
   if (event.state === "stopped" && !event.title) {
-    if (!previous?.title) throw new Error("Music.app stopped without a previous track");
+    if (previous?.source !== "music-app") return { data: musicFallback(null) };
     return {
       data: {
         ...previous,
@@ -375,14 +374,45 @@ async function readMusicAppEvent(event, previous) {
   };
 }
 
-async function readAppleMusic(previous) {
+export function musicFallback(previous, now = Date.now()) {
+  // Only a real Music.app observation is safe to retain without a reconnected
+  // history account. Never perpetuate an unverified third-party track.
+  const observedAt = Date.parse(previous?.observedAt);
+  if (previous?.source === "music-app" && previous.title && Number.isFinite(observedAt) && observedAt <= now) {
+    const fresh = now - observedAt < 2 * 60_000;
+    return { ...previous, playbackState: fresh ? previous.playbackState : "stopped", isNowPlaying: fresh && previous.playbackState === "playing" };
+  }
+  return {
+    title: "waiting for a listening update",
+    artist: "no verified playback available",
+    album: "",
+    link: MUSIC_PROFILE_URL,
+    duration: 0,
+    source: "unavailable",
+    playbackState: "unknown",
+    isNowPlaying: false,
+    observedAt: null,
+  };
+}
+
+export function parseHistoryCard(svg) {
+  const title = cleanText(svg.match(/class="song-title[^>]*>([^<]+)</)?.[1]);
+  const artist = cleanText(svg.match(/class="song-artist[^>]*>([^<]+)</)?.[1]);
+  if (!title || !artist) throw new Error("Apple Music card did not contain track metadata");
+  return { title, artist };
+}
+
+export async function readAppleMusic(previous) {
   const musicEvent = parseMusicEvent();
   if (musicEvent) return readMusicAppEvent(musicEvent, previous);
-
-  const svg = await fetchText(cacheBusted(SOURCES.appleMusicRecent), { bypassCache: true });
-  const title = decode(svg.match(/class="song-title[^>]*>([^<]+)</)?.[1]);
-  const artist = decode(svg.match(/class="song-artist[^>]*>([^<]+)</)?.[1]);
-  if (!title || !artist) throw new Error("Apple Music card did not contain track metadata");
+  // The old UID supplied disputed history. Opt in only after the owner has
+  // reconnected and confirmed the account/card, rather than trusting it again.
+  const uid = process.env.APPLE_MUSIC_HISTORY_UID?.trim();
+  if (!uid) return { data: musicFallback(previous) };
+  if (!/^[\w.-]{1,200}$/.test(uid)) throw new Error("Invalid Apple Music history UID");
+  const source = `https://music-profile.rayriffy.com/theme/dark.svg?uid=${encodeURIComponent(uid)}`;
+  const svg = await fetchText(cacheBusted(source), { bypassCache: true });
+  const { title, artist } = parseHistoryCard(svg);
   const embeddedArtwork = svg.match(/<img[^>]+class="cover-image"[^>]+src="([^"]+)"/)?.[1]
     || svg.match(/<img[^>]+src="([^"]+)"[^>]+class="cover-image"/)?.[1]
     || "";
@@ -590,13 +620,13 @@ function renderFilmTile(film, artwork, index) {
   </svg>`;
 }
 
-function renderAppleMusic(data, artwork) {
+export function renderAppleMusic(data, artwork) {
   const states = {
     playing: { heading: "APPLE MUSIC / NOW PLAYING", color: "#fa243c" },
     paused: { heading: "APPLE MUSIC / PAUSED", color: "#ff9f9a" },
     stopped: { heading: "APPLE MUSIC / LAST PLAYED", color: "#b9a4ff" },
     recent: { heading: "APPLE MUSIC / RECENTLY PLAYED", color: "#b9a4ff" },
-    unknown: { heading: "APPLE MUSIC / LAST SIGNAL", color: "#8f859b" },
+    unknown: { heading: "APPLE MUSIC / WAITING FOR A SIGNAL", color: "#8f859b" },
   };
   const playback = states[data.playbackState] || states.recent;
   const duration = formatDuration(data.duration);
@@ -605,19 +635,18 @@ function renderAppleMusic(data, artwork) {
     : data.playbackState === "paused"
       ? "PAUSED FOR NOW"
       : data.playbackState === "unknown"
-        ? "LISTENING STATUS UNAVAILABLE"
+        ? "AWAITING PLAYBACK"
         : "RECENTLY PLAYED";
   const sourceWidth = Math.min(226, Math.max(188, 62 + (sourceLabel.length * 6.25)));
   const spinClass = data.isNowPlaying ? "spin" : "";
   return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="270" viewBox="0 0 860 270" role="img" aria-label="${escapeDisplay(data.title)} by ${escapeDisplay(data.artist)} on Apple Music" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1b2530"/><stop offset=".55" stop-color="#272334"/><stop offset="1" stop-color="#2d1d2a"/></linearGradient><radialGradient id="disc"><stop stop-color="#342a38"/><stop offset=".28" stop-color="#0a080c"/><stop offset=".32" stop-color="#fa243c"/><stop offset=".38" stop-color="#0a080c"/><stop offset="1" stop-color="#17131a"/></radialGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.spin{animation:spin 12s linear infinite;transform-origin:243px 135px}@keyframes spin{to{transform:rotate(360deg)}}</style></defs>
   <rect x="1" y="1" width="858" height="268" rx="25" fill="url(#bg)" stroke="#5d526d" stroke-width="2"/><circle class="${spinClass}" cx="243" cy="135" r="91" fill="url(#disc)" stroke="#453a49"/><circle cx="243" cy="135" r="10" fill="#ffe8ee"/>
-  ${cover({ dataUri: artwork, x: 28, y: 45, width: 180, height: 180, radius: 15, id: "artwork" })}
+  ${data.playbackState === "unknown" ? `<rect x="28" y="45" width="180" height="180" rx="15" fill="#302641"/><g transform="translate(81 98) scale(3.1)"><path d="${appleMusicPath}" fill="#b9a4ff" opacity=".55"/></g>` : cover({ dataUri: artwork, x: 28, y: 45, width: 180, height: 180, radius: 15, id: "artwork" })}
   <g class="sans"><g transform="translate(356 27) scale(1.08)"><path d="${appleMusicPath}" fill="#fa243c"/></g><text x="390" y="48" fill="#ff8293" font-size="12" font-weight="800" letter-spacing="1.25">${playback.heading}</text>
   ${wrappedText({ x: 356, y: 73, width: 458, height: 67, value: data.title, size: 30, weight: 800, lineHeight: 1.03 })}
   ${wrappedText({ x: 357, y: 143, width: 445, height: 28, value: data.artist, size: 17, weight: 700, lineHeight: 1 })}
-  <text x="357" y="181" fill="#9f8191" font-size="10.5" font-weight="800" letter-spacing="1">ALBUM</text>
-  ${wrappedText({ x: 405, y: 166, width: duration ? 300 : 397, height: 35, value: data.album || "album metadata not listed", size: 12.5, weight: 600, color: "#c7a9b8", lineHeight: 1.06 })}
+  ${data.playbackState === "unknown" ? "<!-- awaiting verified album metadata -->" : `<text x="357" y="181" fill="#9f8191" font-size="10.5" font-weight="800" letter-spacing="1">ALBUM</text>${wrappedText({ x: 405, y: 166, width: duration ? 300 : 397, height: 35, value: data.album || "album metadata not listed", size: 12.5, weight: 600, color: "#c7a9b8", lineHeight: 1.06 })}`}
 ${duration ? `  <rect x="724" y="168" width="78" height="27" rx="13.5" fill="#fff" opacity=".07"/><text x="763" y="186" fill="#d9c2ce" font-size="11.5" font-weight="700" text-anchor="middle">${duration}</text>` : ""}
   <rect x="357" y="211" width="${sourceWidth}" height="36" rx="18" fill="${playback.color}" opacity=".13"/><circle cx="378" cy="229" r="5" fill="${playback.color}"/>${data.isNowPlaying ? `<circle cx="378" cy="229" r="9" fill="none" stroke="${playback.color}" opacity=".35"><animate attributeName="r" values="7;12;7" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".45;0;.45" dur="1.8s" repeatCount="indefinite"/></circle>` : ""}<text x="391" y="233" fill="#eadce3" font-size="11.5" font-weight="800" letter-spacing=".55">${sourceLabel}</text>
   <text x="810" y="233" fill="#d6b8c6" font-size="12" font-weight="700" text-anchor="end">OPEN IN APPLE MUSIC  ↗</text></g>
@@ -808,6 +837,10 @@ async function readSource(name, reader, previous) {
     const result = await reader();
     return { fresh: true, ...(result?.data ? result : { data: result }) };
   } catch (error) {
+    if (name === "appleMusic") {
+      console.warn(`warning: music source unavailable; using only verified playback (${error.message})`);
+      return { fresh: true, data: musicFallback(previous.appleMusic) };
+    }
     if (previous[name]) {
       console.warn(`warning: ${name} refresh failed; keeping the last good data (${error.message})`);
       return { fresh: false, data: previous[name] };
@@ -848,8 +881,12 @@ function letterboxdMarkup(data) {
 }
 
 function appleMusicMarkup(data) {
-  const action = data.isNowPlaying ? "now playing" : "recently played";
-  return `<a href="${escapeXml(data.link || MUSIC_PROFILE_URL)}"><img src="./assets/activity/apple-music.svg?v=${assetVersion(data)}" width="100%" alt="${action} ${escapeDisplay(data.title)} by ${escapeDisplay(data.artist)}" /></a>\n<div align="center"><sub>a little behind the beat. Apple Music updates arrive in batches , not live.</sub></div>`;
+  const action = data.isNowPlaying ? "now playing" : data.source === "unavailable" ? "Apple Music status" : "last played";
+  const alt = data.source === "unavailable" ? "Apple Music: awaiting a verified listening update" : `${action} ${escapeDisplay(data.title)} by ${escapeDisplay(data.artist)}`;
+  const note = data.source === "unavailable"
+    ? "listening history is paused until the source is reconnected. no track is guessed."
+    : "a little behind the beat. updates can be delayed , and playback is not continuously live.";
+  return `<a href="${escapeXml(data.link || MUSIC_PROFILE_URL)}"><img src="./assets/activity/apple-music.svg?v=${assetVersion([data, "verified music source"])}" width="100%" alt="${alt}" /></a>\n<div align="center"><sub>${note}</sub></div>`;
 }
 
 function discordMarkup() {

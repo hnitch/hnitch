@@ -1,10 +1,50 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { parseStringPromise } from "xml2js";
-import { instagramOgAvatarUrl, normaliseBook, renderBookCurrent, renderBookTile, shouldRefreshInstagram, signalPresentation, staleInstagramData, stars } from "./update-profile.js";
+import { instagramOgAvatarUrl, musicFallback, normaliseBook, parseHistoryCard, readAppleMusic, renderAppleMusic, renderBookCurrent, renderBookTile, shouldRefreshInstagram, signalPresentation, staleInstagramData, stars } from "./update-profile.js";
 import { ratingMood } from "./review-moods.js";
 
 const now = Date.parse("2026-09-20T12:00:00.000Z");
+
+test("unverified history and preview tracks cannot survive as actual playback", () => {
+  for (const source of ["apple-history", "music-app-preview", "unavailable"]) {
+    const safe = musicFallback({ title: "The Abyss", source, observedAt: "2026-09-20T11:59:30Z" }, now);
+    assert.equal(safe.source, "unavailable");
+    assert.equal(safe.isNowPlaying, false);
+    assert.doesNotMatch(renderAppleMusic(safe, null), /The Abyss|RECENTLY PLAYED|NOW PLAYING/);
+  }
+});
+
+test("Music.app observations are retained but stale playback is not advertised as live", () => {
+  const previous = { source: "music-app", title: "Confirmed song", playbackState: "playing", observedAt: "2026-09-20T11:59:30Z" };
+  assert.equal(musicFallback(previous, now).isNowPlaying, true);
+  const stale = musicFallback(previous, now + 5 * 60_000);
+  assert.equal(stale.title, "Confirmed song");
+  assert.equal(stale.isNowPlaying, false);
+  assert.equal(stale.playbackState, "stopped");
+  assert.equal(musicFallback({ ...previous, observedAt: "invalid" }, now).source, "unavailable");
+});
+
+test("scheduled music refresh does not reuse the disputed UID without explicit reconnection", async (t) => {
+  const originalEvent = process.env.MUSIC_EVENT_JSON;
+  const originalUid = process.env.APPLE_MUSIC_HISTORY_UID;
+  t.after(() => {
+    for (const [key, value] of [["MUSIC_EVENT_JSON", originalEvent], ["APPLE_MUSIC_HISTORY_UID", originalUid]]) {
+      if (value === undefined) delete process.env[key]; else process.env[key] = value;
+    }
+  });
+  delete process.env.MUSIC_EVENT_JSON;
+  delete process.env.APPLE_MUSIC_HISTORY_UID;
+  const result = await readAppleMusic({ source: "apple-history", title: "The Abyss" });
+  assert.equal(result.data.source, "unavailable");
+  process.env.MUSIC_EVENT_JSON = JSON.stringify({ state: "stopped" });
+  assert.equal((await readAppleMusic({ source: "apple-history", title: "The Abyss" })).data.source, "unavailable");
+});
+
+test("history card parsing rejects error cards rather than promoting them to songs", () => {
+  assert.throws(() => parseHistoryCard('<svg><text>Reconnect Apple Music</text></svg>'), /track metadata/);
+  assert.deepEqual(parseHistoryCard('<h1 class="song-title text-gray-500">Song &amp; Song</h1><h2 class="song-artist">Artist</h2>'), { title: "Song & Song", artist: "Artist" });
+});
 
 test("Goodreads RSS preserves all twenty quarter-star increments end to end", async () => {
   const fractions = ["", "¼", "½", "¾"];

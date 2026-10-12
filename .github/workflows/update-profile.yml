@@ -54,6 +54,7 @@ jobs:
       - name: Refresh books , films , music , and Instagram
         env:
           MUSIC_EVENT_JSON: ${{ toJson(github.event.client_payload) }}
+          APPLE_MUSIC_HISTORY_UID: ${{ vars.APPLE_MUSIC_HISTORY_UID }}
         run: npm run update-profile
 
       - name: Confirm the update reached the same book

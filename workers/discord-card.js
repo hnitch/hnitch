@@ -1,5 +1,8 @@
 const DISCORD_USER_ID = "690729789702537336";
 const LANYARD_URL = `https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`;
+const VISITOR_URL = "https://komarev.com/ghpvc/?username=hnitch&style=for-the-badge&color=a7d1f0&label=curious+visitors";
+// Verified from the existing counter, not a reset or invented starting count.
+const VISITOR_SEED = { count: 1282, checkedAt: "2026-10-12" };
 
 const svgHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -192,8 +195,51 @@ function fallbackData() {
   };
 }
 
+export function renderVisitorBadge(count, stale = false) {
+  const value = Number(count).toLocaleString("en-US");
+  const valueWidth = Math.max(60, 22 + value.length * 8);
+  const width = 138 + valueWidth;
+  const label = `CURIOUS VISITORS: ${value}${stale ? " (last verified count; counter temporarily unavailable)" : ""}`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="28" role="img" aria-label="${label}"><title>${label}</title><g shape-rendering="crispEdges"><rect width="138" height="28" fill="#2d3c4e"/><rect x="138" width="${valueWidth}" height="28" fill="#a7d1f0"/></g><g text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" font-size="10" letter-spacing="1.1"><text x="69" y="17.5" fill="#e6edf3">CURIOUS VISITORS</text><text x="${138 + valueWidth / 2}" y="17.5" fill="#1b2531" font-weight="bold">${value}</text></g></svg>`;
+}
+
+export async function handleVisitorRequest(request, fetcher = globalThis.fetch, cache = globalThis.caches?.default, now = Date.now()) {
+  if (!["GET", "HEAD"].includes(request.method)) {
+    return new Response("method not allowed", { status: 405, headers: { Allow: "GET, HEAD" } });
+  }
+  // One fixed cache key: query parameters cannot create counter inflation or
+  // turn this into an arbitrary URL proxy. Cache failure must not hide a badge.
+  const key = new Request(new URL("/__visitor-last-good", request.url));
+  let saved = VISITOR_SEED;
+  try {
+    const cached = await cache?.match(key);
+    const candidate = cached && await cached.json();
+    if (Number.isSafeInteger(candidate?.count) && candidate.count >= saved.count && Number.isFinite(Date.parse(candidate.checkedAt))) saved = candidate;
+  } catch { /* Use the verified seed if the edge cache is empty or unavailable. */ }
+  let stale = now - Date.parse(saved.checkedAt) >= 60_000;
+  if (request.method === "GET" && stale) {
+    try {
+      const response = await fetcher(VISITOR_URL, { headers: { Accept: "image/svg+xml" }, signal: AbortSignal.timeout(4_000) });
+      if (!response.ok || !response.headers.get("content-type")?.includes("image/svg+xml")) throw new Error("counter unavailable");
+      const svg = await response.text();
+      const raw = svg.match(/(?:aria-label="|<title>)CURIOUS VISITORS:\s*([\d,]+)/)?.[1];
+      const count = raw ? Number(raw.replaceAll(",", "")) : NaN;
+      if (!Number.isSafeInteger(count) || count < saved.count) throw new Error("invalid counter value");
+      saved = { count, checkedAt: new Date(now).toISOString() };
+      stale = false;
+      try {
+        await cache?.put(key, new Response(JSON.stringify(saved), { headers: { "Content-Type": "application/json", "Cache-Control": "public, max-age=31536000" } }));
+      } catch { /* Cache writes are best-effort, not required to serve the SVG. */ }
+    } catch { /* Retain the last verified count throughout an upstream outage. */ }
+  }
+  return new Response(request.method === "HEAD" ? null : renderVisitorBadge(saved.count, stale), {
+    headers: { "Content-Type": "image/svg+xml; charset=utf-8", "Cache-Control": "public, max-age=60, stale-if-error=86400", "X-Content-Type-Options": "nosniff" },
+  });
+}
+
 export async function handleRequest(request, fetcher = globalThis.fetch) {
   const url = new URL(request.url);
+  if (url.pathname === "/visitors.svg") return handleVisitorRequest(request, fetcher);
   if (url.pathname !== "/" && url.pathname !== "/discord.svg") {
     return new Response("not found", { status: 404 });
   }

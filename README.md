@@ -1,7 +1,7 @@
 <div align="center">
   <img src="./assets/hero.svg?v=3.8.0" width="100%" alt="hii , i'm hn. i build things for screens. off-screen , there’s usually a book involved and music playing somewhere." />
   <br/><br/>
-  <img src="https://komarev.com/ghpvc/?username=hnitch&style=for-the-badge&color=a7d1f0&label=curious+visitors" alt="profile views" />
+  <img src="https://hnitch-discord-card.haarshaan.workers.dev/visitors.svg?v=1" alt="curious visitors" />
   <img src="https://img.shields.io/badge/currently%20reading%20%2C%20probably-8edfd4?style=for-the-badge&labelColor=1b2531" alt="currently reading , probably" />
 </div>
 
@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-12T07:22:26.146Z">12 Oct 2026, 07:22 UTC</relative-time>
+    <relative-time datetime="2026-10-12T15:08:51.955Z">12 Oct 2026, 15:08 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -40,7 +40,7 @@
 
 <a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=cff549f9c6" width="100%" alt="Read: The Ending Writes Itself" /></a>
 
-<a href="https://www.goodreads.com/review/show/8743273179?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=bece0c0dff" width="100%" alt="Read: Scion (Scion , #1)" /></a>
+<a href="https://www.goodreads.com/review/show/8743273179?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=9ee1b14832" width="100%" alt="Read: Scion (Scion , #1)" /></a>
 
 <a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=9400afe24e" width="100%" alt="Read: Incidents Around the House" /></a>
 
@@ -66,8 +66,8 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/the-abyss/1793654348?i=1793654652&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=0cccee6101" width="100%" alt="recently played The Abyss by The Weeknd &amp; Lana Del Rey" /></a>
-<div align="center"><sub>a little behind the beat. Apple Music updates arrive in batches , not live.</sub></div>
+<a href="https://music.apple.com/profile/hnitch"><img src="./assets/activity/apple-music.svg?v=c2cb4e21c1" width="100%" alt="Apple Music: awaiting a verified listening update" /></a>
+<div align="center"><sub>listening history is paused until the source is reconnected. no track is guessed.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 
 <br/>
