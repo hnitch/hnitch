@@ -14,12 +14,10 @@
       "readAt": "",
       "review": "",
       "progress": {
-        "page": null,
-        "total": null,
-        "percent": 33,
-        "label": "Murder at the Grand Alpin",
-        "updatedAt": "2026-10-12T01:51:58.000Z",
-        "link": "https://www.goodreads.com/user_status/show/1348293401"
+        "page": 35,
+        "total": 384,
+        "percent": 9,
+        "source": "shortcut"
       }
     },
     "recent": [
@@ -138,6 +136,6 @@
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
     "lastAttemptAt": "2026-10-12T15:08:45.725Z"
   },
-  "updatedAt": "2026-10-12T15:08:51.955Z",
-  "lastSignalRenderAt": "2026-10-12T15:08:51.955Z"
+  "updatedAt": "2026-10-12T15:18:48.958Z",
+  "lastSignalRenderAt": "2026-10-12T15:18:48.958Z"
 }

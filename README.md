@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-12T15:08:51.955Z">12 Oct 2026, 15:08 UTC</relative-time>
+    <relative-time datetime="2026-10-12T15:18:48.958Z">12 Oct 2026, 15:18 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -36,7 +36,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=dbe6948179" width="100%" alt="currently reading Murder at the Grand Alpine Hotel" /></a>
+<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=fcf36c3280" width="100%" alt="currently reading Murder at the Grand Alpine Hotel" /></a>
 
 <a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=cff549f9c6" width="100%" alt="Read: The Ending Writes Itself" /></a>
 
