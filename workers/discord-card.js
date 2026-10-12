@@ -237,9 +237,42 @@ export async function handleVisitorRequest(request, fetcher = globalThis.fetch, 
   });
 }
 
+export function shortcutBook(activity) {
+  const current = activity?.goodreads?.current;
+  const valid = current && /^\d+$/.test(String(current.bookId)) && typeof current.title === "string" && current.title.trim();
+  // Always provide flat, non-null fields. Shortcuts treats JSON null and file
+  // contents differently between OS versions; nested key paths are brittle.
+  return {
+    available: true,
+    bookId: valid ? String(current.bookId) : "",
+    title: valid ? current.title : "",
+    pages: valid ? Number(current.pages) || 0 : 0,
+    progress: valid && Number.isFinite(current.progress?.percent) ? `${current.progress.percent}%` : "",
+  };
+}
+
+export async function handleReadingRequest(request, fetcher = globalThis.fetch, now = Date.now()) {
+  if (!["GET", "HEAD"].includes(request.method)) return new Response("method not allowed", { status: 405 });
+  const headers = { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store, max-age=0", "X-Content-Type-Options": "nosniff" };
+  if (request.method === "HEAD") return new Response(null, { headers });
+  try {
+    const source = `https://raw.githubusercontent.com/hnitch/hnitch/main/data/activity.json?refresh=${Math.floor(now / 60_000)}`;
+    const result = await fetcher(source, { headers: { Accept: "application/json", "Cache-Control": "no-cache" }, signal: AbortSignal.timeout(6_000), cache: "no-store" });
+    if (!result.ok) throw new Error("feed unavailable");
+    const data = await result.json();
+    if (!data.goodreads || !("current" in data.goodreads)) throw new Error("invalid feed");
+    return new Response(JSON.stringify(shortcutBook(data)), { headers });
+  } catch {
+    // The app gets an honest unavailable state, never a fabricated active book
+    // or an HTML error page that it tries to interpret as a dictionary.
+    return new Response(JSON.stringify({ available: false, bookId: "", title: "", pages: 0, progress: "", error: "The current book could not be loaded. Try again shortly." }), { headers, status: 503 });
+  }
+}
+
 export async function handleRequest(request, fetcher = globalThis.fetch) {
   const url = new URL(request.url);
   if (url.pathname === "/visitors.svg") return handleVisitorRequest(request, fetcher);
+  if (url.pathname === "/reading.json") return handleReadingRequest(request, fetcher);
   if (url.pathname !== "/" && url.pathname !== "/discord.svg") {
     return new Response("not found", { status: 404 });
   }

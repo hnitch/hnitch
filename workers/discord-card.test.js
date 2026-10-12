@@ -1,6 +1,31 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { handleRequest, handleVisitorRequest, normaliseLanyard, renderDiscordCard } from "./discord-card.js";
+import { handleReadingRequest, handleRequest, handleVisitorRequest, normaliseLanyard, renderDiscordCard, shortcutBook } from "./discord-card.js";
+
+test("shortcut book fields stay flat and safe for empty or malformed shelves", () => {
+  for (const current of [null, undefined, {}, "null", { bookId: "wrong", title: "Wrong" }]) {
+    assert.deepEqual(shortcutBook({ goodreads: { current } }), { available: true, bookId: "", title: "", pages: 0, progress: "" });
+  }
+  assert.deepEqual(shortcutBook({ goodreads: { current: { bookId: 123, title: "Current book", pages: 384, progress: { percent: 9 } } } }), { available: true, bookId: "123", title: "Current book", pages: 384, progress: "9%" });
+});
+
+test("shortcut feed fetches a cache-busted snapshot with a JSON content type", async () => {
+  const response = await handleReadingRequest(new Request("https://example.com/reading.json"), async (url, options) => {
+    assert.match(url, /main\/data\/activity.json\?refresh=\d+$/);
+    assert.equal(options.cache, "no-store");
+    return new Response(JSON.stringify({ goodreads: { current: null } }));
+  });
+  assert.equal(response.status, 200);
+  assert.match(response.headers.get("content-type"), /application\/json/);
+  assert.match(response.headers.get("cache-control"), /no-store/);
+  assert.equal((await response.json()).bookId, "");
+});
+
+test("shortcut feed outages do not produce a null book or an HTML response", async () => {
+  const response = await handleReadingRequest(new Request("https://example.com/reading.json"), async () => { throw new Error("offline"); });
+  assert.equal(response.status, 503);
+  assert.deepEqual(await response.json(), { available: false, bookId: "", title: "", pages: 0, progress: "", error: "The current book could not be loaded. Try again shortly." });
+});
 
 const visitorRequest = new Request("https://example.com/visitors.svg?v=1");
 const visitorNow = Date.parse("2026-10-12T15:00:00Z");
