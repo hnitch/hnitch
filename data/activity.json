@@ -14,8 +14,8 @@
       "readAt": "",
       "review": "",
       "progress": {
-        "page": 35,
-        "total": 384,
+        "page": null,
+        "total": null,
         "percent": 9,
         "source": "shortcut"
       }
@@ -136,6 +136,6 @@
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
     "lastAttemptAt": "2026-10-12T15:08:45.725Z"
   },
-  "updatedAt": "2026-10-12T15:18:48.958Z",
-  "lastSignalRenderAt": "2026-10-12T15:18:48.958Z"
+  "updatedAt": "2026-10-12T15:38:26.781Z",
+  "lastSignalRenderAt": "2026-10-12T15:38:26.781Z"
 }
