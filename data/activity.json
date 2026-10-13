@@ -120,10 +120,10 @@
     ]
   },
   "appleMusic": {
-    "title": "FF",
-    "artist": "Troye Sivan",
-    "album": "Apple Music release",
-    "link": "https://music.apple.com/us/album/ff/6820298773?i=6820299242",
+    "title": "Dade County Dreaming (feat. JT & Yung Miami)",
+    "artist": "Camila Cabello",
+    "album": "C,XOXO (Magic City Edition)",
+    "link": "https://music.apple.com/us/album/dade-county-dreaming-feat-jt-yung-miami/1765226650?i=1765227026&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -136,6 +136,6 @@
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
     "lastAttemptAt": "2026-10-12T15:08:45.725Z"
   },
-  "updatedAt": "2026-10-13T03:37:39.728Z",
-  "lastSignalRenderAt": "2026-10-13T03:37:39.728Z"
+  "updatedAt": "2026-10-13T11:04:11.974Z",
+  "lastSignalRenderAt": "2026-10-13T11:04:11.974Z"
 }

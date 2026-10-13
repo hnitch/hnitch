@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-13T03:37:39.728Z">13 Oct 2026, 03:37 UTC</relative-time>
+    <relative-time datetime="2026-10-13T11:04:11.974Z">13 Oct 2026, 11:04 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -66,7 +66,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/ff/6820298773?i=6820299242"><img src="./assets/activity/apple-music.svg?v=972fcb5e6b" width="100%" alt="last played FF by Troye Sivan" /></a>
+<a href="https://music.apple.com/us/album/dade-county-dreaming-feat-jt-yung-miami/1765226650?i=1765227026&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=691b0e6da9" width="100%" alt="last played Dade County Dreaming (feat. JT &amp; Yung Miami) by Camila Cabello" /></a>
 <div align="center"><sub>a little behind the beat. updates can be delayed , and playback is not continuously live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 
