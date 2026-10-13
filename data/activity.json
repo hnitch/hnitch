@@ -43,7 +43,7 @@
         "rating": 3,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1788797128l/247756858._SY475_.jpg",
         "pages": 228,
-        "averageRating": 3.84,
+        "averageRating": 3.85,
         "published": "2026",
         "dateAdded": "Sat, 10 Oct 2026 19:16:39 -0700",
         "readAt": "Sat, 10 Oct 2026 00:00:00 +0000",
@@ -71,7 +71,7 @@
         "rating": 4,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1773162223l/248899390._SY475_.jpg",
         "pages": 288,
-        "averageRating": 3.89,
+        "averageRating": 3.88,
         "published": "2026",
         "dateAdded": "Wed, 07 Oct 2026 09:16:45 -0700",
         "readAt": "Sun, 4 Oct 2026 00:00:00 +0000",
@@ -123,7 +123,7 @@
     "title": "FF",
     "artist": "Troye Sivan",
     "album": "Apple Music release",
-    "link": "https://music.apple.com/us/album/ff/6799851049?i=6799851344",
+    "link": "https://music.apple.com/us/album/ff/6820298773?i=6820299242",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -136,6 +136,6 @@
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
     "lastAttemptAt": "2026-10-12T15:08:45.725Z"
   },
-  "updatedAt": "2026-10-12T23:17:26.647Z",
-  "lastSignalRenderAt": "2026-10-12T23:17:26.647Z"
+  "updatedAt": "2026-10-13T03:37:39.728Z",
+  "lastSignalRenderAt": "2026-10-13T03:37:39.728Z"
 }

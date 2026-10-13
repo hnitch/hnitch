@@ -24,7 +24,7 @@
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-12T23:17:26.647Z">12 Oct 2026, 23:17 UTC</relative-time>
+    <relative-time datetime="2026-10-13T03:37:39.728Z">13 Oct 2026, 03:37 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -40,11 +40,11 @@
 
 <a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=cff549f9c6" width="100%" alt="Read: The Ending Writes Itself" /></a>
 
-<a href="https://www.goodreads.com/review/show/8743273179?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=9ee1b14832" width="100%" alt="Read: Scion (Scion , #1)" /></a>
+<a href="https://www.goodreads.com/review/show/8743273179?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=bece0c0dff" width="100%" alt="Read: Scion (Scion , #1)" /></a>
 
 <a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=9400afe24e" width="100%" alt="Read: Incidents Around the House" /></a>
 
-<a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=0bc58a7a00" width="100%" alt="Read: Sometimes I Scare Myself: A Collection of Horror" /></a>
+<a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=4247e06a31" width="100%" alt="Read: Sometimes I Scare Myself: A Collection of Horror" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
@@ -66,7 +66,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/ff/6799851049?i=6799851344"><img src="./assets/activity/apple-music.svg?v=a525eac391" width="100%" alt="last played FF by Troye Sivan" /></a>
+<a href="https://music.apple.com/us/album/ff/6820298773?i=6820299242"><img src="./assets/activity/apple-music.svg?v=972fcb5e6b" width="100%" alt="last played FF by Troye Sivan" /></a>
 <div align="center"><sub>a little behind the beat. updates can be delayed , and playback is not continuously live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 
