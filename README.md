@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />
+    <img src="./assets/signal-fresh.svg?v=3.7.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-14T07:54:20.128Z">14 Oct 2026, 07:54 UTC</relative-time>
+    <relative-time datetime="2026-10-14T20:39:10.730Z">14 Oct 2026, 20:39 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -36,7 +36,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=b22187e86b" width="100%" alt="currently reading Murder at the Grand Alpine Hotel" /></a>
+<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=3c38a9795c" width="100%" alt="currently reading Murder at the Grand Alpine Hotel" /></a>
 
 <a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=cff549f9c6" width="100%" alt="Read: The Ending Writes Itself" /></a>
 
@@ -44,7 +44,7 @@
 
 <a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=9400afe24e" width="100%" alt="Read: Incidents Around the House" /></a>
 
-<a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=4247e06a31" width="100%" alt="Read: Sometimes I Scare Myself: A Collection of Horror" /></a>
+<a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=5ad7f0caf0" width="100%" alt="Read: Sometimes I Scare Myself: A Collection of Horror" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>

@@ -8,7 +8,7 @@
       "rating": 0,
       "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1772576610l/249253557.jpg",
       "pages": 384,
-      "averageRating": 3.93,
+      "averageRating": 3.91,
       "published": "2026",
       "dateAdded": "Sun, 11 Oct 2026 18:44:52 -0700",
       "readAt": "",
@@ -71,7 +71,7 @@
         "rating": 4,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1773162223l/248899390._SY475_.jpg",
         "pages": 288,
-        "averageRating": 3.88,
+        "averageRating": 3.87,
         "published": "2026",
         "dateAdded": "Wed, 07 Oct 2026 09:16:45 -0700",
         "readAt": "Sun, 4 Oct 2026 00:00:00 +0000",
@@ -136,6 +136,6 @@
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
     "lastAttemptAt": "2026-10-14T17:06:28.365Z"
   },
-  "updatedAt": "2026-10-14T07:54:20.128Z",
-  "lastSignalRenderAt": "2026-10-14T12:09:11.294Z"
+  "updatedAt": "2026-10-14T20:39:10.730Z",
+  "lastSignalRenderAt": "2026-10-14T20:39:10.730Z"
 }
