@@ -16,7 +16,7 @@
       "progress": {
         "page": null,
         "total": null,
-        "percent": 9,
+        "percent": 63,
         "source": "shortcut"
       }
     },
@@ -43,7 +43,7 @@
         "rating": 3,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1788797128l/247756858._SY475_.jpg",
         "pages": 228,
-        "averageRating": 3.85,
+        "averageRating": 3.84,
         "published": "2026",
         "dateAdded": "Sat, 10 Oct 2026 19:16:39 -0700",
         "readAt": "Sat, 10 Oct 2026 00:00:00 +0000",
@@ -134,8 +134,8 @@
     "username": "hnitch",
     "avatarHash": "bc623f7b849a",
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
-    "lastAttemptAt": "2026-10-14T01:24:21.174Z"
+    "lastAttemptAt": "2026-10-14T07:53:48.538Z"
   },
-  "updatedAt": "2026-10-13T11:04:11.974Z",
-  "lastSignalRenderAt": "2026-10-13T18:10:35.087Z"
+  "updatedAt": "2026-10-14T07:54:20.128Z",
+  "lastSignalRenderAt": "2026-10-14T07:54:20.128Z"
 }
