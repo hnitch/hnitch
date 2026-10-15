@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />
+    <img src="./assets/signal-fresh.svg?v=3.7.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-15T11:52:13.284Z">15 Oct 2026, 11:52 UTC</relative-time>
+    <relative-time datetime="2026-10-15T19:28:27.523Z">15 Oct 2026, 19:28 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -36,15 +36,15 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=3c38a9795c" width="100%" alt="currently reading Murder at the Grand Alpine Hotel" /></a>
+<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=52c6f41629" width="100%" alt="not reading anything , rn" /></a>
 
-<a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=cff549f9c6" width="100%" alt="Read: The Ending Writes Itself" /></a>
+<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=ceefa44d4b" width="100%" alt="Read: Murder at the Grand Alpine Hotel" /></a>
 
-<a href="https://www.goodreads.com/review/show/8743273179?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=9ee1b14832" width="100%" alt="Read: Scion (Scion , #1)" /></a>
+<a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=cff549f9c6" width="100%" alt="Read: The Ending Writes Itself" /></a>
 
-<a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=9400afe24e" width="100%" alt="Read: Incidents Around the House" /></a>
+<a href="https://www.goodreads.com/review/show/8743273179?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=9ee1b14832" width="100%" alt="Read: Scion (Scion , #1)" /></a>
 
-<a href="https://www.goodreads.com/review/show/8444218688?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=5ad7f0caf0" width="100%" alt="Read: Sometimes I Scare Myself: A Collection of Horror" /></a>
+<a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=9400afe24e" width="100%" alt="Read: Incidents Around the House" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
@@ -66,7 +66,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/good-boy/6802917476?i=6802917962&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=6332aa314c" width="100%" alt="last played Good Boy by &amp;TEAM" /></a>
+<a href="https://music.apple.com/us/album/mark-on-me/6802917476?i=6802917479&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=62a90b9cd8" width="100%" alt="last played Mark on Me by &amp;TEAM" /></a>
 <div align="center"><sub>a little behind the beat. updates can be delayed , and playback is not continuously live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 
