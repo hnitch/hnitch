@@ -8,7 +8,7 @@
       "rating": 0,
       "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1772576610l/249253557.jpg",
       "pages": 384,
-      "averageRating": 3.91,
+      "averageRating": 3.89,
       "published": "2026",
       "dateAdded": "Sun, 11 Oct 2026 18:44:52 -0700",
       "readAt": "",
@@ -120,10 +120,10 @@
     ]
   },
   "appleMusic": {
-    "title": "Dade County Dreaming (feat. JT & Yung Miami)",
-    "artist": "Camila Cabello",
-    "album": "C,XOXO (Magic City Edition)",
-    "link": "https://music.apple.com/us/album/dade-county-dreaming-feat-jt-yung-miami/1765226650?i=1765227026&uo=4",
+    "title": "Good Boy",
+    "artist": "&TEAM",
+    "album": "Mark on Me - EP",
+    "link": "https://music.apple.com/us/album/good-boy/6802917476?i=6802917962&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -134,8 +134,8 @@
     "username": "hnitch",
     "avatarHash": "bc623f7b849a",
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
-    "lastAttemptAt": "2026-10-14T23:26:25.811Z"
+    "lastAttemptAt": "2026-10-15T06:25:38.280Z"
   },
-  "updatedAt": "2026-10-14T20:39:10.730Z",
-  "lastSignalRenderAt": "2026-10-14T23:27:00.120Z"
+  "updatedAt": "2026-10-15T06:26:08.222Z",
+  "lastSignalRenderAt": "2026-10-15T06:26:08.222Z"
 }
