@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-16T08:03:08.925Z">16 Oct 2026, 08:03 UTC</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-16T18:07:03.836Z">16 Oct 2026, 18:07 UTC</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-16T21:01:32.421Z">16 Oct 2026, 21:01 UTC</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-16T21:01:32.605Z">16 Oct 2026, 21:01 UTC</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -34,7 +34,7 @@
 
 <a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=593b7be977" width="100%" alt="not reading anything , rn" /></a>
 
-<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=e98b8a6a69" width="100%" alt="Read: Murder at the Grand Alpine Hotel" /></a>
+<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=7071395bcd" width="100%" alt="Read: Murder at the Grand Alpine Hotel" /></a>
 
 <a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=4ebf9ffca9" width="100%" alt="Read: The Ending Writes Itself" /></a>
 

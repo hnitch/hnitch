@@ -10,7 +10,7 @@
         "rating": 3,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1772576610l/249253557.jpg",
         "pages": 384,
-        "averageRating": 3.88,
+        "averageRating": 3.86,
         "published": "2026",
         "dateAdded": "Thu, 15 Oct 2026 09:31:18 -0700",
         "readAt": "Thu, 15 Oct 2026 00:00:00 +0000",
@@ -115,31 +115,31 @@
     "username": "hnitch",
     "avatarHash": "bc623f7b849a",
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
-    "lastAttemptAt": "2026-10-16T14:15:23.243Z"
+    "lastAttemptAt": "2026-10-16T21:01:09.738Z"
   },
-  "updatedAt": "2026-10-16T08:03:08.925Z",
-  "lastSignalRenderAt": "2026-10-16T08:25:36.495Z",
+  "updatedAt": "2026-10-16T21:01:32.421Z",
+  "lastSignalRenderAt": "2026-10-16T21:01:32.421Z",
   "feedChecks": {
-    "checkedAt": "2026-10-16T18:07:03.836Z",
+    "checkedAt": "2026-10-16T21:01:32.605Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-10-16T18:07:03.836Z",
-        "lastSuccessAt": "2026-10-16T18:07:03.836Z"
+        "checkedAt": "2026-10-16T21:01:32.605Z",
+        "lastSuccessAt": "2026-10-16T21:01:32.605Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-10-16T18:07:03.836Z",
-        "lastSuccessAt": "2026-10-16T18:07:03.836Z"
+        "checkedAt": "2026-10-16T21:01:32.605Z",
+        "lastSuccessAt": "2026-10-16T21:01:32.605Z"
       },
       "appleMusic": {
         "status": "ok",
-        "checkedAt": "2026-10-16T18:07:03.836Z",
-        "lastSuccessAt": "2026-10-16T18:07:03.836Z"
+        "checkedAt": "2026-10-16T21:01:32.605Z",
+        "lastSuccessAt": "2026-10-16T21:01:32.605Z"
       },
       "instagram": {
         "status": "delayed",
-        "checkedAt": "2026-10-16T14:15:53.495Z",
+        "checkedAt": "2026-10-16T21:01:32.605Z",
         "lastSuccessAt": "2026-10-12T15:08:45.725Z"
       }
     }
