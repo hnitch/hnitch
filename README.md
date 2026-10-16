@@ -1,8 +1,10 @@
 <div align="center">
-  <img src="./assets/hero.svg?v=3.8.0" width="100%" alt="hii , i'm hn. i build things for screens. off-screen , there’s usually a book involved and music playing somewhere." />
+  <img src="./assets/hero.svg?v=3.10.0" width="100%" alt="hii , i'm hn. i build things for screens. off-screen , there’s usually a book involved and music playing somewhere." />
   <br/><br/>
   <img src="https://hnitch-discord-card.haarshaan.workers.dev/visitors.svg?v=1" alt="curious visitors" />
-  <img src="https://img.shields.io/badge/currently%20reading%20%2C%20probably-8edfd4?style=for-the-badge&labelColor=1b2531" alt="currently reading , probably" />
+  <!-- READING-BADGE:START -->
+  <img src="./assets/activity/reading-status.svg?v=7c8bd2696c" height="28" alt="between books , allegedly" />
+  <!-- READING-BADGE:END -->
 </div>
 
 <br/>
@@ -18,33 +20,25 @@
 <img src="./assets/stalk.svg?v=3.9.0" width="100%" alt="the legally-approved stalking zone" />
 
 <div align="center">
-  <kbd>
-    <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-fresh.svg?v=3.7.0" height="14" alt="" />
-    <!-- PROFILE-SIGNAL-STATE:END -->
-    last signal received ·
-    <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-16T08:03:08.925Z">16 Oct 2026, 08:03 UTC</relative-time>
-    <!-- PROFILE-LAST-UPDATED:END -->
-  </kbd>
+  <!-- PROFILE-FRESHNESS:START -->
+  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received <sub>(content change)</sub> · <relative-time datetime="2026-10-16T08:03:08.925Z">16 Oct 2026, 08:03 UTC</relative-time><br/><sub><img src="./assets/signal-idle.svg?v=3.10.0" height="8" alt="" /> feeds checked · awaiting first check <span title="Scheduled feeds; Discord presence refreshes separately. Checks do not guarantee upstream data is real-time."></span></sub></kbd>
+  <!-- PROFILE-FRESHNESS:END -->
 </div>
-
-<br/>
 
 <!-- GOODREADS-FEED:START -->
 <div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>
 
 <br/>
 
-<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=52c6f41629" width="100%" alt="not reading anything , rn" /></a>
+<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=593b7be977" width="100%" alt="not reading anything , rn" /></a>
 
-<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=597ac3087a" width="100%" alt="Read: Murder at the Grand Alpine Hotel" /></a>
+<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=e98b8a6a69" width="100%" alt="Read: Murder at the Grand Alpine Hotel" /></a>
 
-<a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=bef0d249de" width="100%" alt="Read: The Ending Writes Itself" /></a>
+<a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=4ebf9ffca9" width="100%" alt="Read: The Ending Writes Itself" /></a>
 
-<a href="https://www.goodreads.com/review/show/8743273179?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=9ee1b14832" width="100%" alt="Read: Scion (Scion , #1)" /></a>
+<a href="https://www.goodreads.com/review/show/8743273179?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=4efbdac1ef" width="100%" alt="Read: Scion (Scion , #1)" /></a>
 
-<a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=5a6d3e33f4" width="100%" alt="Read: Incidents Around the House" /></a>
+<a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=654442559c" width="100%" alt="Read: Incidents Around the House" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
@@ -54,19 +48,19 @@
 
 <br/>
 
-<a href="https://letterboxd.com/hnitch/film/carrie-2026/"><img src="./assets/activity/letterboxd-1.svg?v=5f2a60f0c2" width="100%" alt="Watched: Carrie" /></a>
+<a href="https://letterboxd.com/hnitch/film/carrie-2026/"><img src="./assets/activity/letterboxd-1.svg?v=3879f8afdb" width="100%" alt="Watched: Carrie" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/other-mommy/"><img src="./assets/activity/letterboxd-2.svg?v=5e00519e6c" width="100%" alt="Watched: Other Mommy" /></a>
+<a href="https://letterboxd.com/hnitch/film/other-mommy/"><img src="./assets/activity/letterboxd-2.svg?v=36c2d2a832" width="100%" alt="Watched: Other Mommy" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/verity-2026/"><img src="./assets/activity/letterboxd-3.svg?v=419a374293" width="100%" alt="Watched: Verity" /></a>
+<a href="https://letterboxd.com/hnitch/film/verity-2026/"><img src="./assets/activity/letterboxd-3.svg?v=4f6be301bc" width="100%" alt="Watched: Verity" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/heart-of-the-beast-2026/"><img src="./assets/activity/letterboxd-4.svg?v=302fc5d1e9" width="100%" alt="Watched: Heart of the Beast" /></a>
+<a href="https://letterboxd.com/hnitch/film/heart-of-the-beast-2026/"><img src="./assets/activity/letterboxd-4.svg?v=46d153c56f" width="100%" alt="Watched: Heart of the Beast" /></a>
 <!-- LETTERBOXD-FEED:END -->
 
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/cinnamon-girl/1474669063?i=1474669074&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=f11da5729f" width="100%" alt="last played Cinnamon Girl by Lana Del Rey" /></a>
+<a href="https://music.apple.com/us/album/cinnamon-girl/1474669063?i=1474669074&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=4045dd5519" width="100%" alt="last played Cinnamon Girl by Lana Del Rey" /></a>
 <div align="center"><sub>a little behind the beat. updates can be delayed , and playback is not continuously live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 
@@ -79,5 +73,5 @@
 <br/>
 
 <!-- INSTAGRAM-FEED:START -->
-<a href="https://www.instagram.com/hnitch/"><img src="./assets/activity/instagram.svg?v=3eb106f333" width="100%" alt="Instagram profile @hnitch" /></a>
+<a href="https://www.instagram.com/hnitch/"><img src="./assets/activity/instagram.svg?v=acdcebc01e" width="100%" alt="Instagram profile @hnitch" /></a>
 <!-- INSTAGRAM-FEED:END -->

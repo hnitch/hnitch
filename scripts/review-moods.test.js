@@ -45,7 +45,8 @@ test("empty shelf is honest and fully designed", () => {
   assert.match(svg, /not reading anything , rn/);
   assert.doesNotMatch(svg, /\bRN\b/);
   assert.match(svg, /font-size="22" font-style="italic"/);
-  assert.match(svg, /translate\(43 51\) scale\(\.76\)/);
+  assert.match(svg, /id="empty-shelf-icon" transform="translate\(94 126\)"/);
+  assert.match(svg, /x="-56" y="-56" width="112" height="112"/);
   assert.match(svg, />\.\.\.<\/text>/);
   assert.doesNotMatch(svg, /it never stays this way for long|right now\./);
   assert.doesNotMatch(svg, /NEXT CHAPTER PENDING/);

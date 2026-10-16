@@ -14,7 +14,7 @@ const README_FILE = path.join(ROOT, "README.md");
 const DISCORD_USER_ID = "690729789702537336";
 const MUSIC_PROFILE_URL = "https://music.apple.com/profile/hnitch";
 const LIVE_DISCORD_CARD_URL = "https://hnitch-discord-card.haarshaan.workers.dev/discord.svg";
-const RENDER_VERSION = "3.9.0";
+const RENDER_VERSION = "3.10.0";
 const INSTAGRAM_REFRESH_MS = 24 * 60 * 60_000;
 const INSTAGRAM_RETRY_MS = 6 * 60 * 60_000;
 const SIGNAL_FRESH_MS = 15 * 60_000;
@@ -238,6 +238,7 @@ async function readGoodreads() {
     parseStringPromise(readXml),
     parseStringPromise(progressXml),
   ]);
+  for (const feed of [currentFeed, readFeed, progressFeed]) requireRssChannel(feed);
   const currentItems = currentFeed?.rss?.channel?.[0]?.item ?? [];
   const readItems = readFeed?.rss?.channel?.[0]?.item ?? [];
   const current = currentItems[0] ? normaliseBook(currentItems[0]) : null;
@@ -267,6 +268,7 @@ function normaliseFilm(item = {}) {
 
 async function readLetterboxd() {
   const feed = await parseStringPromise(await fetchText(SOURCES.letterboxd));
+  requireRssChannel(feed);
   const items = feed?.rss?.channel?.[0]?.item ?? [];
   const seen = new Set();
   const recent = [];
@@ -279,6 +281,12 @@ async function readLetterboxd() {
     if (recent.length === 4) break;
   }
   return { recent };
+}
+
+export function requireRssChannel(feed) {
+  if (!feed?.rss?.channel?.[0] || typeof feed.rss.channel[0] !== "object") {
+    throw new Error("Source did not return a valid RSS channel; keeping the previous snapshot");
+  }
 }
 
 async function lookupAppleMusic(title, artist) {
@@ -408,7 +416,7 @@ export async function readAppleMusic(previous) {
   // The old UID supplied disputed history. Opt in only after the owner has
   // reconnected and confirmed the account/card, rather than trusting it again.
   const uid = process.env.APPLE_MUSIC_HISTORY_UID?.trim();
-  if (!uid) return { data: musicFallback(previous) };
+  if (!uid) return { data: musicFallback(previous), checkStatus: "paused" };
   if (!/^[\w.-]{1,200}$/.test(uid)) throw new Error("Invalid Apple Music history UID");
   const source = `https://music-profile.rayriffy.com/theme/dark.svg?uid=${encodeURIComponent(uid)}`;
   const svg = await fetchText(cacheBusted(source), { bypassCache: true });
@@ -527,7 +535,17 @@ export function renderBookCurrent(book, artwork) {
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#19232e"/><stop offset="1" stop-color="#263244"/></linearGradient><linearGradient id="book" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a7d1f0"/><stop offset="1" stop-color="#8edfd4"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
   <rect x="1" y="1" width="858" height="250" rx="24" fill="url(#bg)" stroke="#53738b" stroke-width="2"/>
   <circle cx="820" cy="7" r="150" fill="#89c9f8" opacity=".055"/>
-  <g transform="translate(43 51) scale(.76)"><rect width="132" height="198" rx="12" fill="#2d3c4e" stroke="#607a91"/><path d="M27 35h73v126H27z" fill="#202b3a" stroke="#7999b5" stroke-width="2"/><path d="M34 42h65v114H34z" fill="#354b5e"/><path d="M49 82h35M49 94h27" stroke="url(#book)" stroke-width="4" stroke-linecap="round"/><path d="M28 35q-11 4-11 15v103q0 11 11 12" fill="none" stroke="#9cc7df" stroke-width="3"/><path d="M73 35v27l9-8 9 8V35" fill="#8edfd4" opacity=".9"/><circle cx="66" cy="119" r="17" fill="#8edfd4" opacity=".12"/><path d="M60 119h12M66 113v12" stroke="#8edfd4" stroke-width="2" stroke-linecap="round"/></g>
+  <g id="empty-shelf-icon" transform="translate(94 126)" aria-hidden="true">
+    <rect x="-56" y="-56" width="112" height="112" rx="28" fill="#9dcde7" fill-opacity=".07" stroke="#9dcde7" stroke-opacity=".2"/>
+    <circle r="42" fill="#8edfd4" opacity=".035"/>
+    <g fill="#293e50" stroke="url(#book)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M0-23C-10-29-23-30-36-27V25C-22 22-10 23 0 29Z"/>
+      <path d="M0-23C10-29 23-30 36-27V25C22 22 10 23 0 29Z"/>
+      <path d="M0-23V29" fill="none"/>
+    </g>
+    <path d="M-26-13q9-1 16 2M-26-3q9-1 16 2M10 8q9-3 16-2" fill="none" stroke="#9dcde7" stroke-width="2" stroke-linecap="round" opacity=".65"/>
+    <path d="M15-29v25l6-5 6 5v-26" fill="#8edfd4"/>
+  </g>
   <g class="sans"><rect x="188" y="24" width="168" height="30" rx="15" fill="#8edfd4" opacity=".12"/><circle cx="207" cy="39" r="4" fill="#8edfd4"/><text x="220" y="44" fill="#a9e7de" font-size="12" font-weight="800" letter-spacing="1.05">SHELF STATUS</text>
   <text x="188" y="130" fill="#fffaf5" font-size="22" font-style="italic" font-weight="650">not reading anything , rn</text>
   <rect x="188" y="164" width="96" height="30" rx="15" fill="#b9a4ff" opacity=".12"/><text x="236" y="184" fill="#d4c1ff" font-size="14" font-weight="800" letter-spacing="2" text-anchor="middle">...</text></g></svg>`;
@@ -599,6 +617,7 @@ export function renderBookTile(book, artwork, index) {
   <circle cx="820" cy="12" r="124" fill="#89c9f8" opacity=".045"/>
   ${cover({ dataUri: artwork, x: 24, y: 21, width: 130, height: 198, radius: 10 })}
   <g class="sans"><text x="164" y="38" fill="#e9c995" font-size="12" font-weight="800" letter-spacing="1.25">READ RECEIPT / 0${index + 1}</text>
+  <text x="816" y="38" fill="#b7cddd" font-size="11" font-weight="600" text-anchor="end">${book.review ? "read full review ↗" : "view on Goodreads ↗"}</text>
   ${wrappedText({ x: 164, y: 51, width: bookFacts.length ? 450 : 630, height: 68, value: book.title, size: 27, weight: 800, lineHeight: 1.04 })}
   ${titleSidecar}
   <text x="164" y="136" fill="${theme.muted}" font-size="14.5" font-weight="700">${escapeDisplay(book.author)}</text>
@@ -814,13 +833,16 @@ export function staleInstagramData(previous, cachedAvatar, attemptedAt) {
 
 async function readInstagramSource(previous, cachedAvatar) {
   if (process.env.FORCE_INSTAGRAM_REFRESH !== "1" && !shouldRefreshInstagram(previous, cachedAvatar)) {
-    return { fresh: false, data: previous, avatarData: cachedAvatar };
+    const delayed = Number.isFinite(Date.parse(previous.lastAttemptAt))
+      && (!Number.isFinite(Date.parse(previous.lastSuccessAt)) || Date.parse(previous.lastAttemptAt) > Date.parse(previous.lastSuccessAt));
+    return { fresh: false, checkStatus: delayed ? "delayed-cached" : "cached", data: previous, avatarData: cachedAvatar };
   }
   const attemptedAt = new Date().toISOString();
   try {
     const result = await readInstagramAvatar();
     return {
       fresh: true,
+      checkStatus: "ok",
       data: { ...result.data, lastSuccessAt: attemptedAt, lastAttemptAt: attemptedAt },
       avatarData: result.avatarData,
     };
@@ -829,24 +851,25 @@ async function readInstagramSource(previous, cachedAvatar) {
     console.warn(`warning: Instagram avatar refresh failed; keeping the last good image (${error.message})`);
     return {
       fresh: false,
+      checkStatus: "delayed",
       data: staleInstagramData(previous, cachedAvatar, attemptedAt),
       avatarData: cachedAvatar,
     };
   }
 }
 
-async function readSource(name, reader, previous) {
+export async function readSource(name, reader, previous) {
   try {
     const result = await reader();
-    return { fresh: true, ...(result?.data ? result : { data: result }) };
+    return { fresh: true, checkStatus: "ok", ...(result?.data ? result : { data: result }) };
   } catch (error) {
     if (name === "appleMusic") {
       console.warn(`warning: music source unavailable; using only verified playback (${error.message})`);
-      return { fresh: true, data: musicFallback(previous.appleMusic) };
+      return { fresh: true, checkStatus: "delayed", data: musicFallback(previous.appleMusic) };
     }
     if (previous[name]) {
       console.warn(`warning: ${name} refresh failed; keeping the last good data (${error.message})`);
-      return { fresh: false, data: previous[name] };
+      return { fresh: false, checkStatus: "delayed", data: previous[name] };
     }
     throw error;
   }
@@ -926,6 +949,48 @@ export function signalPresentation(updatedAt, now = new Date()) {
   };
 }
 
+export function readingBadgeLabel(book) {
+  return book ? "currently reading , probably" : "between books , allegedly";
+}
+
+export function renderReadingBadge(book) {
+  const label = readingBadgeLabel(book);
+  const width = book ? 288 : 264;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="28" viewBox="0 0 ${width} 28" role="img" aria-label="${escapeXml(label)}"><rect width="${width}" height="28" rx="6" fill="${book ? "#8edfd4" : "#b1c9df"}"/><text x="${width / 2}" y="18" text-anchor="middle" fill="#223a40" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="11" font-weight="750" letter-spacing="1">${escapeXml(label.toUpperCase())}</text></svg>`;
+}
+
+// Check metadata is separate from content: polling must not fake a new signal.
+// Cached avatars and disabled music are not successful fresh network reads.
+export function recordFeedChecks(previous = {}, results, now) {
+  const at = now.toISOString();
+  const sources = {};
+  for (const [name, result] of Object.entries(results)) {
+    const old = previous.sources?.[name] || {};
+    const status = result.checkStatus || "ok";
+    const attempted = status === "ok" || status === "delayed";
+    sources[name] = {
+      status: status === "delayed-cached" ? "delayed" : status,
+      checkedAt: attempted ? at : old.checkedAt || result.data?.lastAttemptAt || null,
+      lastSuccessAt: status === "ok" ? at : old.lastSuccessAt || result.data?.lastSuccessAt || null,
+    };
+  }
+  return { checkedAt: at, sources };
+}
+
+export function freshnessMarkup(updatedAt, checks, now) {
+  const signal = signalPresentation(updatedAt, now);
+  const checked = signalPresentation(checks?.checkedAt, now);
+  const relative = (value, fallback) => value.datetime
+    ? `<relative-time datetime="${value.datetime}">${value.fallback}</relative-time>` : fallback;
+  const names = { goodreads: "Goodreads", letterboxd: "Letterboxd", appleMusic: "Apple Music", instagram: "Instagram" };
+  const delayed = Object.entries(checks?.sources || {}).filter(([, value]) => value.status === "delayed").map(([key]) => names[key] || key);
+  const paused = Object.entries(checks?.sources || {}).filter(([, value]) => value.status === "paused").map(([key]) => names[key] || key);
+  const issues = [...delayed.map((name) => `${name} delayed`), ...paused.map((name) => `${name} paused`)];
+  const detail = issues.length ? issues.join("; ") : "Scheduled feeds; Discord presence refreshes separately. Checks do not guarantee upstream data is real-time.";
+  const checkIcon = !checked.datetime ? "signal-idle" : issues.length ? "signal-delayed" : checked.fresh ? "signal-fresh" : "signal-idle";
+  return `<kbd><img src="./assets/${signal.fresh ? "signal-fresh" : "signal-idle"}.svg?v=3.7.0" height="10" alt="" /> last signal received <sub>(content change)</sub> · ${relative(signal, "awaiting a signal")}<br/><sub><img src="./assets/${checkIcon}.svg?v=3.10.0" height="8" alt="" /> feeds checked · ${relative(checked, "awaiting first check")} <span title="${escapeXml(detail)}">${issues.length ? `· ${delayed.length ? `${delayed.length} delayed` : ""}${delayed.length && paused.length ? ", " : ""}${paused.length ? `${paused.length} paused` : ""}` : ""}</span></sub></kbd>`;
+}
+
 async function updateReadme(data, updatedAt, now) {
   let readme = await fs.readFile(README_FILE, "utf8");
   readme = replaceSection(readme, "GOODREADS-FEED", goodreadsMarkup(data.goodreads));
@@ -933,16 +998,13 @@ async function updateReadme(data, updatedAt, now) {
   readme = replaceSection(readme, "APPLE-MUSIC-FEED", appleMusicMarkup(data.appleMusic));
   readme = replaceSection(readme, "DISCORD-FEED", discordMarkup());
   readme = replaceSection(readme, "INSTAGRAM-FEED", instagramMarkup(data.instagram));
-  const signal = signalPresentation(updatedAt, now);
-  const signalIcon = signal.fresh ? "signal-fresh" : "signal-idle";
-  readme = replaceSection(readme, "PROFILE-SIGNAL-STATE", `<img src="./assets/${signalIcon}.svg?v=3.7.0" height="14" alt="" />`);
-  readme = replaceSection(readme, "PROFILE-LAST-UPDATED", signal.datetime
-    ? `<relative-time datetime="${signal.datetime}">${signal.fallback}</relative-time>`
-    : signal.fallback);
+  readme = replaceSection(readme, "PROFILE-FRESHNESS", freshnessMarkup(updatedAt, data.feedChecks, now));
+  readme = replaceSection(readme, "READING-BADGE", `<img src="./assets/activity/reading-status.svg?v=${assetVersion(readingBadgeLabel(data.goodreads.current))}" height="28" alt="${readingBadgeLabel(data.goodreads.current)}" />`);
+  await fs.writeFile(path.join(OUTPUT_DIR, "reading-status.svg"), renderReadingBadge(data.goodreads.current));
   await fs.writeFile(README_FILE, readme);
 }
 
-function dataChanged(previous, current) {
+export function dataChanged(previous, current) {
   const old = {
     goodreads: previous.goodreads,
     letterboxd: previous.letterboxd,
@@ -950,7 +1012,9 @@ function dataChanged(previous, current) {
     instagram: { username: previous.instagram?.username, avatarHash: previous.instagram?.avatarHash },
   };
   const latest = {
-    ...current,
+    goodreads: current.goodreads,
+    letterboxd: current.letterboxd,
+    appleMusic: current.appleMusic,
     instagram: { username: current.instagram?.username, avatarHash: current.instagram?.avatarHash },
   };
   return JSON.stringify(old) !== JSON.stringify(latest);
@@ -1031,9 +1095,13 @@ async function main() {
     writes.push(fs.writeFile(path.join(OUTPUT_DIR, "instagram.svg"), renderInstagram(current.instagram, instagramResult.avatarData || cachedInstagramAvatar)));
   }
   await Promise.all(writes);
+  const feedChecks = recordFeedChecks(previous.feedChecks, {
+    goodreads: goodreadsResult, letterboxd: letterboxdResult,
+    appleMusic: appleMusicResult, instagram: instagramResult,
+  }, new Date());
   await Promise.all([
-    fs.writeFile(DATA_FILE, `${JSON.stringify({ ...current, updatedAt, lastSignalRenderAt }, null, 2)}\n`),
-    updateReadme(current, updatedAt, now),
+    fs.writeFile(DATA_FILE, `${JSON.stringify({ ...current, updatedAt, lastSignalRenderAt, feedChecks }, null, 2)}\n`),
+    updateReadme({ ...current, feedChecks }, updatedAt, new Date()),
   ]);
   console.log("profile activity refreshed ✨");
 }

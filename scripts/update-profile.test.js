@@ -3,6 +3,12 @@ import test from "node:test";
 import { parseStringPromise } from "xml2js";
 import { instagramOgAvatarUrl, musicFallback, normaliseBook, parseHistoryCard, readAppleMusic, renderAppleMusic, renderBookCurrent, renderBookTile, shouldRefreshInstagram, signalPresentation, staleInstagramData, stars } from "./update-profile.js";
 import { ratingMood } from "./review-moods.js";
+import { dataChanged, freshnessMarkup, readingBadgeLabel, recordFeedChecks, renderReadingBadge, readSource, requireRssChannel } from "./update-profile.js";
+import fs from "node:fs/promises";
+import os from "node:os";
+import path from "node:path";
+import { execFileSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 
 const now = Date.parse("2026-09-20T12:00:00.000Z");
 
@@ -141,4 +147,123 @@ test("finished-book card separates source publication facts from personal readin
   assert.match(svg, /M632 65v52/);
   assert.doesNotMatch(svg, /published Sep 2026/);
   assert.match(renderBookTile({ title: "Example", published: "2026-10-12" }, null, 1), /published October 2026/);
+});
+
+test("reading badge adapts without introducing an external image dependency", async () => {
+  assert.equal(readingBadgeLabel(null), "between books , allegedly");
+  assert.equal(readingBadgeLabel({ title: "A Book" }), "currently reading , probably");
+  for (const book of [null, { title: "A Book" }]) {
+    const svg = renderReadingBadge(book);
+    assert.match(svg, /height="28"/);
+    assert.doesNotMatch(svg, /<image|<script|shields\.io/);
+    await parseStringPromise(svg);
+  }
+});
+
+test("review link cue is visible without changing card height or inventing a written review", () => {
+  const written = renderBookTile({ title: "Book", review: "beautiful prose", rating: 3.25 }, null, 0);
+  assert.match(written, /read full review ↗/);
+  assert.match(written, /width="860" height="242"/);
+  const unwritten = renderBookTile({ title: "Book", review: "" }, null, 0);
+  assert.match(unwritten, /view on Goodreads ↗/);
+  assert.doesNotMatch(unwritten, /read full review ↗/);
+});
+
+test("check timestamps advance independently of content changes", () => {
+  const at = new Date(now).toISOString();
+  const source = { goodreads: { current: null, recent: [] }, letterboxd: { recent: [] }, appleMusic: {}, instagram: { username: "hnitch", avatarHash: "a" } };
+  const checks = recordFeedChecks({}, { goodreads: { checkStatus: "ok" } }, new Date(now));
+  assert.equal(checks.checkedAt, at);
+  assert.equal(checks.sources.goodreads.lastSuccessAt, at);
+  assert.equal(dataChanged({ ...source, feedChecks: {} }, { ...source, feedChecks: checks }), false);
+  assert.equal(dataChanged(source, { ...source, goodreads: { current: { title: "New book" }, recent: [] } }), true);
+});
+
+test("failed, paused, and cached sources cannot receive invented success timestamps", () => {
+  const oldAt = "2026-09-19T12:00:00.000Z";
+  const old = { sources: { goodreads: { checkedAt: oldAt, lastSuccessAt: oldAt } } };
+  const checks = recordFeedChecks(old, {
+    goodreads: { checkStatus: "delayed" },
+    appleMusic: { checkStatus: "paused" },
+    instagram: { checkStatus: "delayed-cached", data: { lastAttemptAt: oldAt, lastSuccessAt: "2026-09-18T12:00:00Z" } },
+    letterboxd: { checkStatus: "ok" },
+  }, new Date(now));
+  assert.equal(checks.sources.goodreads.lastSuccessAt, oldAt);
+  assert.equal(checks.sources.goodreads.checkedAt, new Date(now).toISOString());
+  assert.equal(checks.sources.appleMusic.lastSuccessAt, null);
+  assert.equal(checks.sources.appleMusic.checkedAt, null);
+  assert.equal(checks.sources.instagram.checkedAt, oldAt);
+  assert.equal(checks.sources.instagram.status, "delayed");
+  const markup = freshnessMarkup(oldAt, checks, new Date(now));
+  assert.match(markup, /2 delayed, 1 paused/);
+  assert.match(markup, /Goodreads delayed; Instagram delayed; Apple Music paused/);
+  assert.match(markup, /signal-delayed/);
+  assert.equal((markup.match(/<br\/>/g) || []).length, 1);
+  assert.doesNotMatch(markup, /width="100%"|<table/);
+});
+
+test("freshness strip handles first run and separate healthy check and change clocks", () => {
+  assert.match(freshnessMarkup(null, null, new Date(now)), /awaiting first check/);
+  const changedAt = "2026-09-19T12:00:00.000Z";
+  const checks = recordFeedChecks({}, { goodreads: { checkStatus: "ok" } }, new Date(now));
+  const markup = freshnessMarkup(changedAt, checks, new Date(now));
+  assert.match(markup, /signal-idle/);
+  assert.match(markup, /signal-fresh/);
+  assert.match(markup, new RegExp(`datetime="${changedAt}"`));
+  assert.match(markup, new RegExp(`datetime="${checks.checkedAt}"`));
+  assert.match(markup, /content change/);
+  assert.match(markup, /feeds checked/);
+});
+
+test("upstream failures keep fallback rendering but report delayed checks", async () => {
+  const failing = async () => { throw new Error("test source unavailable"); };
+  const books = { current: null, recent: [] };
+  const result = await readSource("goodreads", failing, { goodreads: books });
+  assert.equal(result.data, books);
+  assert.equal(result.checkStatus, "delayed");
+  assert.equal(result.fresh, false);
+  const music = await readSource("appleMusic", failing, {});
+  assert.equal(music.fresh, true); // Rewrite the honest fallback card.
+  assert.equal(music.checkStatus, "delayed"); // Never advertise a successful poll.
+  const paused = await readSource("appleMusic", async () => ({ data: {}, checkStatus: "paused" }), {});
+  assert.equal(paused.checkStatus, "paused");
+});
+
+test("HTML and malformed source responses cannot clear a shelf or fake healthy checks", () => {
+  for (const feed of [{}, { html: {} }, { rss: {} }, { rss: { channel: [""] } }]) {
+    assert.throws(() => requireRssChannel(feed), /valid RSS channel/);
+  }
+  assert.doesNotThrow(() => requireRssChannel({ rss: { channel: [{ title: ["Shelf"] }] } }));
+});
+
+test("hero heading uses portable outlines, retaining the accessible title and dimensions", async () => {
+  const svg = await fs.readFile(new URL("../assets/hero.svg", import.meta.url), "utf8");
+  assert.match(svg, /width="880" height="300"/);
+  assert.match(svg, /data-typeface="HelveticaNeue-MediumItalic"/);
+  assert.match(svg, /aria-label="hii , i'm hn"/);
+  assert.match(svg, /<path d="M/);
+  assert.doesNotMatch(svg, /@font-face|font-size="57" font-weight="700"/);
+  await parseStringPromise(svg);
+});
+
+test("cached rendering keeps both timestamps and the compact strip without increasing card counts", async (t) => {
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), "hnitch-status-test-"));
+  t.after(() => fs.rm(root, { recursive: true, force: true }));
+  await fs.mkdir(path.join(root, "assets/activity"), { recursive: true });
+  await fs.mkdir(path.join(root, "data"));
+  const repo = new URL("../", import.meta.url);
+  const snapshot = JSON.parse(await fs.readFile(new URL("data/activity.json", repo), "utf8"));
+  snapshot.feedChecks = recordFeedChecks({}, { goodreads: { checkStatus: "ok" } }, new Date(now));
+  const data = JSON.stringify(snapshot);
+  await fs.writeFile(path.join(root, "data/activity.json"), data);
+  await fs.copyFile(new URL("README.md", repo), path.join(root, "README.md"));
+  execFileSync(process.execPath, [fileURLToPath(new URL("update-profile.js", import.meta.url)), "--render-cached"], { cwd: root });
+  assert.equal(await fs.readFile(path.join(root, "data/activity.json"), "utf8"), data);
+  const readme = await fs.readFile(path.join(root, "README.md"), "utf8");
+  assert.ok(readme.includes(`datetime="${snapshot.updatedAt}"`));
+  assert.ok(readme.includes(`datetime="${snapshot.feedChecks.checkedAt}"`));
+  assert.equal((readme.match(/alt="Read:/g) || []).length, snapshot.goodreads.recent.length);
+  assert.equal((readme.match(/alt="Watched:/g) || []).length, snapshot.letterboxd.recent.length);
+  assert.match(readme, /reading-status\.svg\?v=/);
+  assert.doesNotMatch(readme, /img\.shields\.io\/badge\/currently/);
 });
