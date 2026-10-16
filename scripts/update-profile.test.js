@@ -195,7 +195,7 @@ test("failed, paused, and cached sources cannot receive invented success timesta
   assert.equal(checks.sources.instagram.checkedAt, oldAt);
   assert.equal(checks.sources.instagram.status, "delayed");
   const markup = freshnessMarkup(oldAt, checks, new Date(now));
-  assert.match(markup, /2 delayed, 1 paused/);
+  assert.doesNotMatch(markup.replace(/<[^>]*>/g, ""), /delayed|paused/);
   assert.match(markup, /Goodreads delayed; Instagram delayed; Apple Music paused/);
   assert.match(markup, /signal-delayed/);
   assert.equal((markup.match(/<br\/>/g) || []).length, 2); // GitHub's kbd line-height needs a small inter-line gap.
@@ -265,5 +265,6 @@ test("cached rendering keeps both timestamps and the compact strip without incre
   assert.equal((readme.match(/alt="Read:/g) || []).length, snapshot.goodreads.recent.length);
   assert.equal((readme.match(/alt="Watched:/g) || []).length, snapshot.letterboxd.recent.length);
   assert.match(readme, /reading-status\.svg\?v=/);
+  assert.match(readme, /<!-- PROFILE-FRESHNESS:END -->\s*<\/div>\s*<br\/>\s*<!-- GOODREADS-FEED:START -->/);
   assert.doesNotMatch(readme, /img\.shields\.io\/badge\/currently/);
 });

@@ -10,8 +10,9 @@ The small two-line strip separates two different clocks:
 
 `feedChecks.sources` records each source's state, last attempt and last success.
 An unsuccessful fetch preserves the previous success timestamp and reports
-`delayed`; disabled music reports `paused`. The strip shows an amber warning
-with counts and a tooltip naming affected services. Instagram's daily cache
+`delayed`; disabled music reports `paused`. The strip keeps the amber dot and
+a tooltip on "feeds checked" naming affected services, without visible counts.
+A small gap separates the strip from the Goodreads logo. Instagram's daily cache
 does not count as a new successful network fetch. Discord presence is served
 separately by the live Worker, not this scheduled check.
 
