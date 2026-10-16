@@ -20,11 +20,11 @@
 <div align="center">
   <kbd>
     <!-- PROFILE-SIGNAL-STATE:START -->
-    <img src="./assets/signal-idle.svg?v=3.7.0" height="14" alt="" />
+    <img src="./assets/signal-fresh.svg?v=3.7.0" height="14" alt="" />
     <!-- PROFILE-SIGNAL-STATE:END -->
     last signal received ·
     <!-- PROFILE-LAST-UPDATED:START -->
-    <relative-time datetime="2026-10-16T00:42:38.547Z">16 Oct 2026, 00:42 UTC</relative-time>
+    <relative-time datetime="2026-10-16T08:03:08.925Z">16 Oct 2026, 08:03 UTC</relative-time>
     <!-- PROFILE-LAST-UPDATED:END -->
   </kbd>
 </div>
@@ -66,7 +66,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/mark-on-me/6802917476?i=6802917479&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=62a90b9cd8" width="100%" alt="last played Mark on Me by &amp;TEAM" /></a>
+<a href="https://music.apple.com/us/album/cinnamon-girl/1474669063?i=1474669074&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=f11da5729f" width="100%" alt="last played Cinnamon Girl by Lana Del Rey" /></a>
 <div align="center"><sub>a little behind the beat. updates can be delayed , and playback is not continuously live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 

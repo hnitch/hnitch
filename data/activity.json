@@ -101,10 +101,10 @@
     ]
   },
   "appleMusic": {
-    "title": "Mark on Me",
-    "artist": "&TEAM",
-    "album": "Mark on Me - EP",
-    "link": "https://music.apple.com/us/album/mark-on-me/6802917476?i=6802917479&uo=4",
+    "title": "Cinnamon Girl",
+    "artist": "Lana Del Rey",
+    "album": "Norman Fucking Rockwell!",
+    "link": "https://music.apple.com/us/album/cinnamon-girl/1474669063?i=1474669074&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -117,6 +117,6 @@
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
     "lastAttemptAt": "2026-10-16T05:03:06.270Z"
   },
-  "updatedAt": "2026-10-16T00:42:38.547Z",
-  "lastSignalRenderAt": "2026-10-16T05:03:30.230Z"
+  "updatedAt": "2026-10-16T08:03:08.925Z",
+  "lastSignalRenderAt": "2026-10-16T08:03:08.925Z"
 }
