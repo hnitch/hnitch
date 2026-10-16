@@ -988,7 +988,7 @@ export function freshnessMarkup(updatedAt, checks, now) {
   const issues = [...delayed.map((name) => `${name} delayed`), ...paused.map((name) => `${name} paused`)];
   const detail = issues.length ? issues.join("; ") : "Scheduled feeds; Discord presence refreshes separately. Checks do not guarantee upstream data is real-time.";
   const checkIcon = !checked.datetime ? "signal-idle" : issues.length ? "signal-delayed" : checked.fresh ? "signal-fresh" : "signal-idle";
-  return `<kbd><img src="./assets/${signal.fresh ? "signal-fresh" : "signal-idle"}.svg?v=3.7.0" height="10" alt="" /> last signal received <sub>(content change)</sub> · ${relative(signal, "awaiting a signal")}<br/><sub><img src="./assets/${checkIcon}.svg?v=3.10.0" height="8" alt="" /> feeds checked · ${relative(checked, "awaiting first check")} <span title="${escapeXml(detail)}">${issues.length ? `· ${delayed.length ? `${delayed.length} delayed` : ""}${delayed.length && paused.length ? ", " : ""}${paused.length ? `${paused.length} paused` : ""}` : ""}</span></sub></kbd>`;
+  return `<kbd><img src="./assets/${signal.fresh ? "signal-fresh" : "signal-idle"}.svg?v=3.7.0" height="10" alt="" /> last signal received <sub>(content change)</sub> · ${relative(signal, "awaiting a signal")}<br/><img src="./assets/${checkIcon}.svg?v=3.10.0" height="8" alt="" /> feeds checked · ${relative(checked, "awaiting first check")} <span title="${escapeXml(detail)}">${issues.length ? `· ${delayed.length ? `${delayed.length} delayed` : ""}${delayed.length && paused.length ? ", " : ""}${paused.length ? `${paused.length} paused` : ""}` : ""}</span></kbd>`;
 }
 
 async function updateReadme(data, updatedAt, now) {
