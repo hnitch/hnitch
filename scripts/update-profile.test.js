@@ -198,7 +198,7 @@ test("failed, paused, and cached sources cannot receive invented success timesta
   assert.match(markup, /2 delayed, 1 paused/);
   assert.match(markup, /Goodreads delayed; Instagram delayed; Apple Music paused/);
   assert.match(markup, /signal-delayed/);
-  assert.equal((markup.match(/<br\/>/g) || []).length, 1);
+  assert.equal((markup.match(/<br\/>/g) || []).length, 2); // GitHub's kbd line-height needs a small inter-line gap.
   assert.doesNotMatch(markup, /width="100%"|<table/);
 });
 
