@@ -582,12 +582,15 @@ export function renderBookTile(book, artwork, index) {
     { fill: "#36302d", text: "#f3d4aa" },
     { fill: "#243a3a", text: "#b1e9e1" },
   ];
+  const desiredWidths = moods.map((label) => 27 + label.length * 7.1);
+  const availableWidth = 836 - chipX - Math.max(0, moods.length - 1) * 10;
+  const chipScale = Math.min(1, availableWidth / (desiredWidths.reduce((sum, width) => sum + width, 0) || 1));
   const chips = moods.map((label, chipIndex) => {
-    const width = Math.min(158, 27 + label.length * 7.1);
+    const width = desiredWidths[chipIndex] * chipScale;
     const x = chipX;
     chipX += width + 10;
     const palette = chipColors[chipIndex];
-    return `<rect x="${x}" y="183" width="${width}" height="34" rx="17" fill="${palette.fill}"/><text x="${x + width / 2}" y="205" fill="${palette.text}" font-size="12" font-weight="750" text-anchor="middle">${escapeDisplay(label)}</text>`;
+    return `<rect x="${x}" y="183" width="${width}" height="34" rx="17" fill="${palette.fill}"/><text x="${x + width / 2}" y="205" fill="${palette.text}" font-size="${12 * chipScale}" font-weight="750" text-anchor="middle">${escapeDisplay(label)}</text>`;
   }).join("");
   const emptyReview = moods.length ? "" : `<rect x="${chipX}" y="183" width="178" height="34" rx="17" fill="#302a3d"/><text x="${chipX + 89}" y="205" fill="#bdb1ca" font-size="12" font-weight="700" text-anchor="middle">${book.review ? "read the full review ↗" : "no written review"}</text>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="242" viewBox="0 0 860 242" role="img" aria-label="${escapeDisplay(book.title)} by ${escapeDisplay(book.author)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
