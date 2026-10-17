@@ -3,7 +3,7 @@
   <br/><br/>
   <img src="https://hnitch-discord-card.haarshaan.workers.dev/visitors.svg?v=1" alt="curious visitors" />
   <!-- READING-BADGE:START -->
-  <img src="./assets/activity/reading-status.svg?v=128dd2e861" height="28" alt="between books , allegedly" />
+  <img src="./assets/activity/reading-status.svg?v=7184442eaa" height="28" alt="currently reading , probably" />
   <!-- READING-BADGE:END -->
 </div>
 
@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-16T21:01:32.421Z">16 Oct 2026, 21:01 UTC</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-17T01:24:48.680Z">17 Oct 2026, 01:24 UTC</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-17T03:43:23.315Z">17 Oct 2026, 03:43 UTC</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-17T03:43:23.451Z">17 Oct 2026, 03:43 UTC</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -32,7 +32,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/user/show/178629903"><picture><source media="(max-width: 600px)" srcset="./assets/activity/goodreads-current-mobile.svg?v=94401c7506" /><img src="./assets/activity/goodreads-current.svg?v=94401c7506" width="100%" alt="not reading anything , rn" /></picture></a>
+<a href="https://www.goodreads.com/review/show/8781989677?utm_medium=api&amp;utm_source=rss"><picture><source media="(max-width: 600px)" srcset="./assets/activity/goodreads-current-mobile.svg?v=d4bfced985" /><img src="./assets/activity/goodreads-current.svg?v=d4bfced985" width="100%" alt="currently reading Cursed City (Harker Academy, #2) by Kate  Golden. Progress not shared yet." /></picture></a>
 
 <a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><picture><source media="(max-width: 600px)" srcset="./assets/activity/goodreads-1-mobile.svg?v=cd8f37b326" /><img src="./assets/activity/goodreads-1.svg?v=cd8f37b326" width="100%" alt="Read: Murder at the Grand Alpine Hotel by Lucy Foley. 3 out of 5 stars. slow to start; flat payoff; surprise twists. 384 pages. Published 2026. Read full review." /></picture></a>
 

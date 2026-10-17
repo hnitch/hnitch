@@ -1,6 +1,20 @@
 {
   "goodreads": {
-    "current": null,
+    "current": {
+      "bookId": "246596660",
+      "title": "Cursed City (Harker Academy, #2)",
+      "author": "Kate  Golden",
+      "link": "https://www.goodreads.com/review/show/8781989677?utm_medium=api&utm_source=rss",
+      "rating": 0,
+      "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1775714675l/246596660._SX318_.jpg",
+      "pages": 528,
+      "averageRating": 4.7,
+      "published": "2026",
+      "dateAdded": "Fri, 16 Oct 2026 19:54:15 -0700",
+      "readAt": "",
+      "review": "",
+      "progress": null
+    },
     "recent": [
       {
         "bookId": "249253557",
@@ -115,31 +129,31 @@
     "username": "hnitch",
     "avatarHash": "bc623f7b849a",
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
-    "lastAttemptAt": "2026-10-16T21:01:09.738Z"
+    "lastAttemptAt": "2026-10-17T03:42:57.967Z"
   },
-  "updatedAt": "2026-10-16T21:01:32.421Z",
-  "lastSignalRenderAt": "2026-10-16T23:27:06.589Z",
+  "updatedAt": "2026-10-17T03:43:23.315Z",
+  "lastSignalRenderAt": "2026-10-17T03:43:23.315Z",
   "feedChecks": {
-    "checkedAt": "2026-10-17T01:24:48.680Z",
+    "checkedAt": "2026-10-17T03:43:23.451Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-10-17T01:24:48.680Z",
-        "lastSuccessAt": "2026-10-17T01:24:48.680Z"
+        "checkedAt": "2026-10-17T03:43:23.451Z",
+        "lastSuccessAt": "2026-10-17T03:43:23.451Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-10-17T01:24:48.680Z",
-        "lastSuccessAt": "2026-10-17T01:24:48.680Z"
+        "checkedAt": "2026-10-17T03:43:23.451Z",
+        "lastSuccessAt": "2026-10-17T03:43:23.451Z"
       },
       "appleMusic": {
         "status": "ok",
-        "checkedAt": "2026-10-17T01:24:48.680Z",
-        "lastSuccessAt": "2026-10-17T01:24:48.680Z"
+        "checkedAt": "2026-10-17T03:43:23.451Z",
+        "lastSuccessAt": "2026-10-17T03:43:23.451Z"
       },
       "instagram": {
         "status": "delayed",
-        "checkedAt": "2026-10-16T21:01:32.605Z",
+        "checkedAt": "2026-10-17T03:43:23.451Z",
         "lastSuccessAt": "2026-10-12T15:08:45.725Z"
       }
     }
