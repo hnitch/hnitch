@@ -5,7 +5,6 @@ import { pathToFileURL } from "node:url";
 import { parseStringPromise } from "xml2js";
 import { extractReviewMoods, ratingMood } from "./review-moods.js";
 import { progressForCurrentBook } from "./reading-progress.js";
-import { bookDescription, currentDescription, renderMobileBook, renderMobileCurrent, renderMobileFilm, renderMobileMusic, renderMobileInstagram, renderMobileHero, renderMobileSocial } from "./mobile-cards.js";
 
 const ROOT = process.cwd();
 const OUTPUT_DIR = path.join(ROOT, "assets", "activity");
@@ -15,7 +14,7 @@ const README_FILE = path.join(ROOT, "README.md");
 const DISCORD_USER_ID = "690729789702537336";
 const MUSIC_PROFILE_URL = "https://music.apple.com/profile/hnitch";
 const LIVE_DISCORD_CARD_URL = "https://hnitch-discord-card.haarshaan.workers.dev/discord.svg";
-const RENDER_VERSION = "3.11.0";
+const RENDER_VERSION = "3.10.0";
 const INSTAGRAM_REFRESH_MS = 24 * 60 * 60_000;
 const INSTAGRAM_RETRY_MS = 6 * 60 * 60_000;
 const SIGNAL_FRESH_MS = 15 * 60_000;
@@ -890,22 +889,17 @@ async function writeLetterboxdAssets(data) {
   await Promise.all(data.recent.map((film, index) => fs.writeFile(path.join(OUTPUT_DIR, `letterboxd-${index + 1}.svg`), renderFilmTile(film, artwork[index], index))));
 }
 
-export function responsiveCard(filename, alt, version) {
-  return `<picture><source media="(max-width: 600px)" srcset="./assets/activity/${filename}-mobile.svg?v=${version}" /><img src="./assets/activity/${filename}.svg?v=${version}" width="100%" alt="${escapeXml(alt)}" /></picture>`;
-}
-
 function cardStack(items, prefix, alt, versionData = (item) => item) {
   return items.map((item, index) => {
     const number = index + 1;
-    const description = prefix === "goodreads" ? bookDescription(item, { normaliseRating }) : `${item.title}${item.year ? ` (${item.year})` : ""}. ${normaliseRating(item.rating) || "No"} out of 5 stars. ${item.review || "No written review."}`;
-    return `<a href="${escapeXml(item.link)}">${responsiveCard(`${prefix}-${number}`, `${alt}: ${description}`, assetVersion(versionData(item)))}</a>`;
+    return `<a href="${escapeXml(item.link)}"><img src="./assets/activity/${prefix}-${number}.svg?v=${assetVersion(versionData(item))}" width="100%" alt="${escapeDisplay(`${alt}: ${item.title}`)}" /></a>`;
   }).join("\n\n");
 }
 
 function goodreadsMarkup(data) {
   const currentLink = data.current?.link || "https://www.goodreads.com/user/show/178629903";
   const currentVersion = data.current ? data.current : ["empty shelf", "...", "smaller italic status", "lowercase rn"];
-  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}">${responsiveCard("goodreads-current", currentDescription(data.current), assetVersion(currentVersion))}</a>\n\n${cardStack(data.recent, "goodreads", "Read", (book) => [book, extractReviewMoods(book.review), "quarter-star ratings"])}`;
+  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(currentVersion)}" width="100%" alt="${data.current ? `currently reading ${escapeDisplay(data.current.title)}` : "not reading anything , rn"}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read", (book) => [book, extractReviewMoods(book.review), "quarter-star ratings"])}`;
 }
 
 function letterboxdMarkup(data) {
@@ -918,29 +912,15 @@ function appleMusicMarkup(data) {
   const note = data.source === "unavailable"
     ? "listening history is paused until the source is reconnected. no track is guessed."
     : "a little behind the beat. updates can be delayed , and playback is not continuously live.";
-  return `<a href="${escapeXml(data.link || MUSIC_PROFILE_URL)}">${responsiveCard("apple-music", alt, assetVersion([data, "verified music source"]))}</a>\n<div align="center"><sub>${note}</sub></div>`;
+  return `<a href="${escapeXml(data.link || MUSIC_PROFILE_URL)}"><img src="./assets/activity/apple-music.svg?v=${assetVersion([data, "verified music source"])}" width="100%" alt="${alt}" /></a>\n<div align="center"><sub>${note}</sub></div>`;
 }
 
 function discordMarkup() {
-  return `<a href="https://discord.com/users/${DISCORD_USER_ID}"><picture><source media="(max-width: 600px)" srcset="${LIVE_DISCORD_CARD_URL.replace("discord.svg", "discord-mobile.svg")}" /><img src="${LIVE_DISCORD_CARD_URL}" width="100%" alt="live Discord presence for @hnitch" /></picture></a>`;
+  return `<a href="https://discord.com/users/${DISCORD_USER_ID}"><img src="${LIVE_DISCORD_CARD_URL}" width="100%" alt="live Discord presence for @hnitch" /></a>`;
 }
 
 function instagramMarkup(data) {
-  return `<a href="https://www.instagram.com/${escapeXml(data.username)}/">${responsiveCard("instagram", `Instagram profile @${data.username}`, assetVersion(data.avatarHash || "1"))}</a>`;
-}
-
-async function writeMobileAssets(snapshot) {
-  const kit = { normaliseRating, publicationLabel, monthYear };
-  const cards = [
-    ["hero-mobile.svg", renderMobileHero(await fs.readFile(new URL("../assets/hero.svg", import.meta.url), "utf8"))],
-    ["social-mobile.svg", renderMobileSocial()],
-    ["goodreads-current-mobile.svg", renderMobileCurrent(snapshot.goodreads.current, await readEmbeddedImage("goodreads-current.svg"))],
-    ["apple-music-mobile.svg", renderMobileMusic(snapshot.appleMusic, await readEmbeddedImage("apple-music.svg"))],
-    ["instagram-mobile.svg", renderMobileInstagram(snapshot.instagram, await readEmbeddedImage("instagram.svg"))],
-  ];
-  for (const [i, book] of snapshot.goodreads.recent.entries()) cards.push([`goodreads-${i + 1}-mobile.svg`, renderMobileBook(book, await readEmbeddedImage(`goodreads-${i + 1}.svg`), i, kit)]);
-  for (const [i, film] of snapshot.letterboxd.recent.entries()) cards.push([`letterboxd-${i + 1}-mobile.svg`, renderMobileFilm(film, await readEmbeddedImage(`letterboxd-${i + 1}.svg`), i, kit)]);
-  await Promise.all(cards.map(([name, svg]) => fs.writeFile(path.join(OUTPUT_DIR, name), svg)));
+  return `<a href="https://www.instagram.com/${escapeXml(data.username)}/"><img src="./assets/activity/instagram.svg?v=${assetVersion(data.avatarHash || "1")}" width="100%" alt="Instagram profile @${escapeDisplay(data.username)}" /></a>`;
 }
 
 function replaceSection(content, name, replacement) {
@@ -1115,7 +1095,6 @@ async function main() {
     writes.push(fs.writeFile(path.join(OUTPUT_DIR, "instagram.svg"), renderInstagram(current.instagram, instagramResult.avatarData || cachedInstagramAvatar)));
   }
   await Promise.all(writes);
-  await writeMobileAssets(current);
   const feedChecks = recordFeedChecks(previous.feedChecks, {
     goodreads: goodreadsResult, letterboxd: letterboxdResult,
     appleMusic: appleMusicResult, instagram: instagramResult,
@@ -1148,7 +1127,6 @@ async function renderCached() {
     cards.push([filename, renderFilmTile(film, await imageFrom(filename), index)]);
   }
   await Promise.all(cards.map(([filename, svg]) => fs.writeFile(path.join(OUTPUT_DIR, filename), svg)));
-  await writeMobileAssets(snapshot);
   await updateReadme(snapshot, snapshot.updatedAt, new Date());
   console.log("cached profile cards restyled ✨");
 }

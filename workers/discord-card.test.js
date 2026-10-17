@@ -147,21 +147,3 @@ test("preserves the custom card during an upstream outage", async () => {
   assert.match(svg, /presence unavailable/);
   assert.match(svg, /suspiciously long coffee break/);
 });
-
-test("mobile Discord route keeps the same presence source and safe failure state", async () => {
-  for (const fails of [false, true]) {
-    const response = await handleRequest(new Request("https://example.com/discord-mobile.svg"), async input => {
-      if (fails) throw new Error("offline");
-      if (String(input).startsWith("https://api.lanyard.rest/")) return Response.json({ success: true, data: lanyardPresence });
-      return new Response(new Uint8Array([1, 2, 3]), { headers: { "content-type": "image/png" } });
-    });
-    const svg = await response.text();
-    assert.equal(response.status, 200);
-    assert.match(svg, /viewBox="0 0 360 /);
-    assert.match(svg, fails ? /presence unavailable/ : />online</);
-    assert.match(response.headers.get("cache-control"), /no-store/);
-  }
-  const head = await handleRequest(new Request("https://example.com/discord-mobile.svg", { method: "HEAD" }), async () => { throw new Error("offline"); });
-  assert.equal(await head.text(), "");
-  assert.equal((await handleRequest(new Request("https://example.com/discord-mobile.svg", { method: "POST" }))).status, 405);
-});
