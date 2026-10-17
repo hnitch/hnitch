@@ -62,8 +62,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/cinnamon-girl/1474669063?i=1474669074&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=4045dd5519" width="100%" alt="last played Cinnamon Girl by Lana Del Rey" /></a>
-<div align="center"><sub>a little behind the beat. updates can be delayed , and playback is not continuously live.</sub></div>
+<a href="https://music.apple.com/us/album/cinnamon-girl/1474669063?i=1474669074&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=429c77463a" width="100%" alt="last played Cinnamon Girl by Lana Del Rey" /></a>
 <!-- APPLE-MUSIC-FEED:END -->
 
 <br/>

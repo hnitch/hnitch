@@ -16,7 +16,7 @@ test("shortcut backup contains no credential and uses the flat fresh book feed",
   assert.equal(parameters(3).WFCondition, 101); // Does not have any value.
   assert.equal(parameters(3).WFInput.Variable.Value.OutputUUID, parameters(2).UUID);
   assert.equal(actions[5].WFWorkflowActionIdentifier, "is.workflow.actions.exit");
-  assert.equal(parameters(8).WFDictionaryKey, "title");
+  assert.equal(parameters(8).WFDictionaryKey, "shortcutPrompt");
   assert.equal(parameters(10).WFDictionaryKey, "bookId");
 });
 
@@ -43,4 +43,14 @@ test("confirmation requires a real run ID; rejection exits before success", () =
   assert.equal(parameters(22).WFAlertActionTitle, "Update queued ✓");
   assert.equal(parameters(22).WFAlertActionCancelButtonShown, false);
   assert.equal(manifest.WFWorkflowName, "Read Me Book Progress");
+});
+
+test("clean book prompt and dismissible acknowledgement never send a notification", () => {
+  assert.equal(parameters(12).WFAskActionPrompt.Value.string, "\uFFFC");
+  assert.equal(parameters(12).WFAskActionPrompt.Value.attachmentsByRange["{0, 1}"].VariableName, "BookTitle");
+  assert.equal(parameters(9).WFInput.Value.OutputUUID, parameters(8).UUID);
+  assert.match(parameters(22).WFAlertActionMessage, /waiting to save/);
+  assert.ok(actions.every(action => !/notification/.test(action.WFWorkflowActionIdentifier)));
+  const headers = parameters(1).WFHTTPHeaders.Value.WFDictionaryFieldValueItems;
+  assert.ok(headers.every(item => item.WFKey.Value.string.length > 0));
 });

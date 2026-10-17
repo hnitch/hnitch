@@ -4,9 +4,23 @@ import { handleReadingRequest, handleRequest, handleVisitorRequest, normaliseLan
 
 test("shortcut book fields stay flat and safe for empty or malformed shelves", () => {
   for (const current of [null, undefined, {}, "null", { bookId: "wrong", title: "Wrong" }]) {
-    assert.deepEqual(shortcutBook({ goodreads: { current } }), { available: true, bookId: "", title: "", pages: 0, progress: "" });
+    assert.deepEqual(shortcutBook({ goodreads: { current } }), { available: true, bookId: "", title: "", pages: 0, progress: "", shortcutPrompt: "" });
   }
-  assert.deepEqual(shortcutBook({ goodreads: { current: { bookId: 123, title: "Current book", pages: 384, progress: { percent: 9 } } } }), { available: true, bookId: "123", title: "Current book", pages: 384, progress: "9%" });
+  const book = shortcutBook({ goodreads: { current: { bookId: 123, title: "Current book", pages: 384, progress: { percent: 9 } } } });
+  assert.equal(book.title, "Current book");
+  assert.equal(book.bookId, "123");
+  assert.equal(book.progress, "9%");
+  assert.match(book.shortcutPrompt, /Current book\n\nLast recorded: 9% read/);
+});
+
+test("shortcut prompt shows recorded progress without inventing a page or completion", () => {
+  const prompt = progress => shortcutBook({ goodreads: { current: { bookId: 123, title: "Book", progress } } }).shortcutPrompt;
+  assert.match(prompt({ page: 0, total: 320, percent: 0 }), /page 0 of 320 · 0%/);
+  assert.match(prompt({ page: 148, total: 320, percent: 46 }), /page 148 of 320 · 46%/);
+  assert.match(prompt({ page: null, total: null, percent: 42 }), /42% read/);
+  assert.match(prompt(null), /no progress logged yet/);
+  assert.match(prompt({ page: -1, total: 320, percent: 101 }), /no progress logged yet/);
+  assert.doesNotMatch(prompt(null), /undefined|null|saved/i);
 });
 
 test("shortcut feed fetches a cache-busted snapshot with a JSON content type", async () => {

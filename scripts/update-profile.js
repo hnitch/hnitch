@@ -661,6 +661,9 @@ export function renderAppleMusic(data, artwork) {
         : "RECENTLY PLAYED";
   const sourceWidth = Math.min(226, Math.max(188, 62 + (sourceLabel.length * 6.25)));
   const spinClass = data.isNowPlaying ? "spin" : "";
+  const playbackNote = data.source === "unavailable"
+    ? "history paused · reconnect to resume. no track is guessed."
+    : "a little behind the beat · updates may be delayed, not live.";
   return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="270" viewBox="0 0 860 270" role="img" aria-label="${escapeDisplay(data.title)} by ${escapeDisplay(data.artist)} on Apple Music" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1b2530"/><stop offset=".55" stop-color="#272334"/><stop offset="1" stop-color="#2d1d2a"/></linearGradient><radialGradient id="disc"><stop stop-color="#342a38"/><stop offset=".28" stop-color="#0a080c"/><stop offset=".32" stop-color="#fa243c"/><stop offset=".38" stop-color="#0a080c"/><stop offset="1" stop-color="#17131a"/></radialGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.spin{animation:spin 12s linear infinite;transform-origin:243px 135px}@keyframes spin{to{transform:rotate(360deg)}}</style></defs>
   <rect x="1" y="1" width="858" height="268" rx="25" fill="url(#bg)" stroke="#5d526d" stroke-width="2"/><circle class="${spinClass}" cx="243" cy="135" r="91" fill="url(#disc)" stroke="#453a49"/><circle cx="243" cy="135" r="10" fill="#ffe8ee"/>
@@ -671,7 +674,8 @@ export function renderAppleMusic(data, artwork) {
   ${data.playbackState === "unknown" ? "<!-- awaiting verified album metadata -->" : `<text x="357" y="181" fill="#9f8191" font-size="10.5" font-weight="800" letter-spacing="1">ALBUM</text>${wrappedText({ x: 405, y: 166, width: duration ? 300 : 397, height: 35, value: data.album || "album metadata not listed", size: 12.5, weight: 600, color: "#c7a9b8", lineHeight: 1.06 })}`}
 ${duration ? `  <rect x="724" y="168" width="78" height="27" rx="13.5" fill="#fff" opacity=".07"/><text x="763" y="186" fill="#d9c2ce" font-size="11.5" font-weight="700" text-anchor="middle">${duration}</text>` : ""}
   <rect x="357" y="211" width="${sourceWidth}" height="36" rx="18" fill="${playback.color}" opacity=".13"/><circle cx="378" cy="229" r="5" fill="${playback.color}"/>${data.isNowPlaying ? `<circle cx="378" cy="229" r="9" fill="none" stroke="${playback.color}" opacity=".35"><animate attributeName="r" values="7;12;7" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".45;0;.45" dur="1.8s" repeatCount="indefinite"/></circle>` : ""}<text x="391" y="233" fill="#eadce3" font-size="11.5" font-weight="800" letter-spacing=".55">${sourceLabel}</text>
-  <text x="810" y="233" fill="#d6b8c6" font-size="12" font-weight="700" text-anchor="end">OPEN IN APPLE MUSIC  ↗</text></g>
+  <text x="810" y="233" fill="#d6b8c6" font-size="12" font-weight="700" text-anchor="end">OPEN IN APPLE MUSIC  ↗</text>
+  <text x="357" y="259" fill="#b6a5b6" font-size="10.5">${escapeXml(playbackNote)}</text></g>
   </svg>`;
 }
 
@@ -909,10 +913,7 @@ function letterboxdMarkup(data) {
 function appleMusicMarkup(data) {
   const action = data.isNowPlaying ? "now playing" : data.source === "unavailable" ? "Apple Music status" : "last played";
   const alt = data.source === "unavailable" ? "Apple Music: awaiting a verified listening update" : `${action} ${escapeDisplay(data.title)} by ${escapeDisplay(data.artist)}`;
-  const note = data.source === "unavailable"
-    ? "listening history is paused until the source is reconnected. no track is guessed."
-    : "a little behind the beat. updates can be delayed , and playback is not continuously live.";
-  return `<a href="${escapeXml(data.link || MUSIC_PROFILE_URL)}"><img src="./assets/activity/apple-music.svg?v=${assetVersion([data, "verified music source"])}" width="100%" alt="${alt}" /></a>\n<div align="center"><sub>${note}</sub></div>`;
+  return `<a href="${escapeXml(data.link || MUSIC_PROFILE_URL)}"><img src="./assets/activity/apple-music.svg?v=${assetVersion([data, "inline playback note"])}" width="100%" alt="${alt}" /></a>`;
 }
 
 function discordMarkup() {

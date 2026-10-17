@@ -8,5 +8,6 @@
   <text x="357" y="181" fill="#9f8191" font-size="10.5" font-weight="800" letter-spacing="1">ALBUM</text><text fill="#c7a9b8" font-size="12.5" font-weight="600" font-style="normal"><tspan x="405" y="179">Norman Fucking Rockwell!</tspan></text>
 
   <rect x="357" y="211" width="188" height="36" rx="18" fill="#b9a4ff" opacity=".13"/><circle cx="378" cy="229" r="5" fill="#b9a4ff"/><text x="391" y="233" fill="#eadce3" font-size="11.5" font-weight="800" letter-spacing=".55">RECENTLY PLAYED</text>
-  <text x="810" y="233" fill="#d6b8c6" font-size="12" font-weight="700" text-anchor="end">OPEN IN APPLE MUSIC  ↗</text></g>
+  <text x="810" y="233" fill="#d6b8c6" font-size="12" font-weight="700" text-anchor="end">OPEN IN APPLE MUSIC  ↗</text>
+  <text x="357" y="259" fill="#b6a5b6" font-size="10.5">a little behind the beat · updates may be delayed, not live.</text></g>
   </svg>

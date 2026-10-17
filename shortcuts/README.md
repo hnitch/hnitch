@@ -11,6 +11,10 @@ that branch. The workflow rejects a stale book ID or invalid number. A matching
 manual value overrides Goodreads progress only; Goodreads supplies all other
 book information. When the book changes, the old value is ignored.
 
+The input pop-up shows the book and last recorded page/percentage (or “no progress
+logged yet”). The final native pop-up confirms **queued**, not saved: GitHub must
+finish successfully before the profile changes. There are no notifications to clear.
+
 ## Before using it
 
 1. Review the shortcut's actions on your own device. The only outgoing requests

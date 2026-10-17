@@ -17,14 +17,14 @@
               {
                 "WFKey": {
                   "Value": {
-                    "string": ""
+                    "string": "User-Agent"
                   },
                   "WFSerializationType": "WFTextTokenString"
                 },
                 "WFItemType": 0,
                 "WFValue": {
                   "Value": {
-                    "string": ""
+                    "string": "hnitch-reading-shortcut"
                   },
                   "WFSerializationType": "WFTextTokenString"
                 }
@@ -136,7 +136,7 @@
           "WFSerializationType": "WFTextTokenAttachment"
         },
         "UUID": "A36C2D83-9F19-4672-BC85-36BDBCDF9E44",
-        "WFDictionaryKey": "title"
+        "WFDictionaryKey": "shortcutPrompt"
       }
     },
     {
@@ -188,9 +188,9 @@
         "UUID": "1C02A871-4B4A-4B68-B288-C15055B401A5",
         "WFAskActionPrompt": {
           "Value": {
-            "string": "Reading: ￼ · Where did you stop ? Page : 148 · Page/total : 148/320 · Percentage : 42%",
+            "string": "￼",
             "attachmentsByRange": {
-              "{9, 1}": {
+              "{0, 1}": {
                 "VariableName": "BookTitle",
                 "Type": "Variable"
               }
@@ -423,7 +423,7 @@
     {
       "WFWorkflowActionIdentifier": "is.workflow.actions.alert",
       "WFWorkflowActionParameters": {
-        "WFAlertActionMessage": "GitHub accepted your progress update. Your profile will refresh when the queued job finishes.",
+        "WFAlertActionMessage": "Accepted by GitHub, waiting to save. Your profile changes after the update finishes successfully. You can dismiss this now.",
         "WFAlertActionTitle": "Update queued ✓",
         "WFAlertActionCancelButtonShown": false
       }

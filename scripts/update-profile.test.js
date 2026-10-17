@@ -2,6 +2,14 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { parseStringPromise } from "xml2js";
 import { instagramOgAvatarUrl, musicFallback, normaliseBook, parseHistoryCard, readAppleMusic, renderAppleMusic, renderBookCurrent, renderBookTile, shouldRefreshInstagram, signalPresentation, staleInstagramData, stars } from "./update-profile.js";
+
+test("Apple Music owns its delay note without increasing card height", () => {
+  const svg = renderAppleMusic({ title: "Example", artist: "Artist", source: "apple-history", playbackState: "recent" }, null);
+  assert.match(svg, /height="270" viewBox="0 0 860 270"/);
+  assert.match(svg, /updates may be delayed, not live/);
+  const unavailable = renderAppleMusic({ title: "Waiting", artist: "", source: "unavailable", playbackState: "unknown" }, null);
+  assert.match(unavailable, /history paused · reconnect to resume/);
+});
 import { ratingMood } from "./review-moods.js";
 import { dataChanged, freshnessMarkup, readingBadgeLabel, recordFeedChecks, renderReadingBadge, readSource, requireRssChannel } from "./update-profile.js";
 import fs from "node:fs/promises";

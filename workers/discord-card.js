@@ -240,6 +240,13 @@ export async function handleVisitorRequest(request, fetcher = globalThis.fetch, 
 export function shortcutBook(activity) {
   const current = activity?.goodreads?.current;
   const valid = current && /^\d+$/.test(String(current.bookId)) && typeof current.title === "string" && current.title.trim();
+  const percent = current?.progress?.percent;
+  const page = current?.progress?.page;
+  const total = current?.progress?.total;
+  const knownPercent = Number.isFinite(percent) && percent >= 0 && percent <= 100;
+  const knownPages = Number.isInteger(page) && Number.isInteger(total) && page >= 0 && total > 0 && page <= total;
+  const progressLabel = valid && knownPages ? `page ${page} of ${total}${knownPercent ? ` · ${percent}%` : ""}`
+    : valid && knownPercent ? `${percent}% read` : "no progress logged yet";
   // Always provide flat, non-null fields. Shortcuts treats JSON null and file
   // contents differently between OS versions; nested key paths are brittle.
   return {
@@ -248,6 +255,7 @@ export function shortcutBook(activity) {
     title: valid ? current.title : "",
     pages: valid ? Number(current.pages) || 0 : 0,
     progress: valid && Number.isFinite(current.progress?.percent) ? `${current.progress.percent}%` : "",
+    shortcutPrompt: valid ? `${current.title.trim()}\n\nLast recorded: ${progressLabel}\n\nWhere did you stop?\nPage: 148   ·   Percent: 42%\nDifferent edition? Use 148/320.` : "",
   };
 }
 
