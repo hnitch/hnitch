@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-17T03:43:23.315Z">17 Oct 2026, 03:43 UTC</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-17T03:43:23.451Z">17 Oct 2026, 03:43 UTC</relative-time></kbd>
+  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-17T03:43:23.315Z">17 Oct 2026, 03:43 UTC</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-17T05:49:09.131Z">17 Oct 2026, 05:49 UTC</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
