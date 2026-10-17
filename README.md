@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-17T13:35:18.811Z">17 Oct 2026, 13:35 UTC</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-17T13:35:19.010Z">17 Oct 2026, 13:35 UTC</relative-time></kbd>
+  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-17T13:35:18.811Z" format="relative" format-style="long" title="2026-10-17T13:35:18.811Z">56 minutes ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-17T13:35:19.010Z" format="relative" format-style="long" title="2026-10-17T13:35:19.010Z">56 minutes ago</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -62,7 +62,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/cinnamon-girl/1474669063?i=1474669074&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=429c77463a" width="100%" alt="last played Cinnamon Girl by Lana Del Rey" /></a>
+<a href="https://music.apple.com/us/album/cinnamon-girl/1474669063?i=1474669074&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=7bf504b6e9" width="100%" alt="last played Cinnamon Girl by Lana Del Rey" /></a>
 <!-- APPLE-MUSIC-FEED:END -->
 
 <br/>

@@ -6,7 +6,9 @@ import { instagramOgAvatarUrl, musicFallback, normaliseBook, parseHistoryCard, r
 test("Apple Music owns its delay note without increasing card height", () => {
   const svg = renderAppleMusic({ title: "Example", artist: "Artist", source: "apple-history", playbackState: "recent" }, null);
   assert.match(svg, /height="270" viewBox="0 0 860 270"/);
-  assert.match(svg, /updates may be delayed, not live/);
+  assert.match(svg, /updates may be delayed , not live/);
+  assert.match(svg, /<g transform="translate\(0 -6\)"><rect x="357" y="211"/);
+  assert.match(svg, /<tspan x="405" y="181">/);
   const unavailable = renderAppleMusic({ title: "Waiting", artist: "", source: "unavailable", playbackState: "unknown" }, null);
   assert.match(unavailable, /history paused · reconnect to resume/);
 });
@@ -97,11 +99,21 @@ test("signal reflects the last actual feed change, not the last scheduled check"
   assert.deepEqual(signalPresentation(changedAt, new Date(now)), {
     fresh: true,
     datetime: changedAt,
-    fallback: "20 Sept 2026, 11:50 UTC",
+    fallback: "10 minutes ago",
   });
   assert.equal(signalPresentation(changedAt, new Date(now + 5 * 60_000)).fresh, false);
   assert.equal(signalPresentation("not a date", new Date(now)).fallback, "awaiting a signal");
   assert.equal(signalPresentation("2026-09-20T12:01:00.000Z", new Date(now)).fresh, false);
+});
+
+test("mobile timestamp fallback stays relative with singular and plural units", () => {
+  for (const [minutes, expected] of [[0, "just now"], [1, "1 minute ago"], [52, "52 minutes ago"], [60, "1 hour ago"], [120, "2 hours ago"], [1440, "1 day ago"], [2880, "2 days ago"]]) {
+    const at = new Date(now - minutes * 60_000).toISOString();
+    assert.equal(signalPresentation(at, new Date(now)).fallback, expected);
+  }
+  const markup = freshnessMarkup(new Date(now - 52 * 60_000).toISOString(), { checkedAt: new Date(now - 60_000).toISOString() }, new Date(now));
+  assert.match(markup, />52 minutes ago<\/relative-time>/);
+  assert.match(markup, />1 minute ago<\/relative-time>/);
 });
 
 test("Instagram refresh is elapsed-time based, not tied to a five-minute UTC window", () => {

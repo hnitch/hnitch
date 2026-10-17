@@ -663,7 +663,7 @@ export function renderAppleMusic(data, artwork) {
   const spinClass = data.isNowPlaying ? "spin" : "";
   const playbackNote = data.source === "unavailable"
     ? "history paused · reconnect to resume. no track is guessed."
-    : "a little behind the beat · updates may be delayed, not live.";
+    : "a little behind the beat · updates may be delayed , not live.";
   return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="270" viewBox="0 0 860 270" role="img" aria-label="${escapeDisplay(data.title)} by ${escapeDisplay(data.artist)} on Apple Music" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1b2530"/><stop offset=".55" stop-color="#272334"/><stop offset="1" stop-color="#2d1d2a"/></linearGradient><radialGradient id="disc"><stop stop-color="#342a38"/><stop offset=".28" stop-color="#0a080c"/><stop offset=".32" stop-color="#fa243c"/><stop offset=".38" stop-color="#0a080c"/><stop offset="1" stop-color="#17131a"/></radialGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.spin{animation:spin 12s linear infinite;transform-origin:243px 135px}@keyframes spin{to{transform:rotate(360deg)}}</style></defs>
   <rect x="1" y="1" width="858" height="268" rx="25" fill="url(#bg)" stroke="#5d526d" stroke-width="2"/><circle class="${spinClass}" cx="243" cy="135" r="91" fill="url(#disc)" stroke="#453a49"/><circle cx="243" cy="135" r="10" fill="#ffe8ee"/>
@@ -671,10 +671,10 @@ export function renderAppleMusic(data, artwork) {
   <g class="sans"><g transform="translate(356 27) scale(1.08)"><path d="${appleMusicPath}" fill="#fa243c"/></g><text x="390" y="48" fill="#ff8293" font-size="12" font-weight="800" letter-spacing="1.25">${playback.heading}</text>
   ${wrappedText({ x: 356, y: 73, width: 458, height: 67, value: data.title, size: 30, weight: 800, lineHeight: 1.03 })}
   ${wrappedText({ x: 357, y: 143, width: 445, height: 28, value: data.artist, size: 17, weight: 700, lineHeight: 1 })}
-  ${data.playbackState === "unknown" ? "<!-- awaiting verified album metadata -->" : `<text x="357" y="181" fill="#9f8191" font-size="10.5" font-weight="800" letter-spacing="1">ALBUM</text>${wrappedText({ x: 405, y: 166, width: duration ? 300 : 397, height: 35, value: data.album || "album metadata not listed", size: 12.5, weight: 600, color: "#c7a9b8", lineHeight: 1.06 })}`}
+  ${data.playbackState === "unknown" ? "<!-- awaiting verified album metadata -->" : `<text x="357" y="181" fill="#9f8191" font-size="10.5" font-weight="800" letter-spacing="1">ALBUM</text>${wrappedText({ x: 405, y: 168, width: duration ? 300 : 397, height: 35, value: data.album || "album metadata not listed", size: 12.5, weight: 600, color: "#c7a9b8", lineHeight: 1.06 })}`}
 ${duration ? `  <rect x="724" y="168" width="78" height="27" rx="13.5" fill="#fff" opacity=".07"/><text x="763" y="186" fill="#d9c2ce" font-size="11.5" font-weight="700" text-anchor="middle">${duration}</text>` : ""}
-  <rect x="357" y="211" width="${sourceWidth}" height="36" rx="18" fill="${playback.color}" opacity=".13"/><circle cx="378" cy="229" r="5" fill="${playback.color}"/>${data.isNowPlaying ? `<circle cx="378" cy="229" r="9" fill="none" stroke="${playback.color}" opacity=".35"><animate attributeName="r" values="7;12;7" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".45;0;.45" dur="1.8s" repeatCount="indefinite"/></circle>` : ""}<text x="391" y="233" fill="#eadce3" font-size="11.5" font-weight="800" letter-spacing=".55">${sourceLabel}</text>
-  <text x="810" y="233" fill="#d6b8c6" font-size="12" font-weight="700" text-anchor="end">OPEN IN APPLE MUSIC  ↗</text>
+  <g transform="translate(0 -6)"><rect x="357" y="211" width="${sourceWidth}" height="36" rx="18" fill="${playback.color}" opacity=".13"/><circle cx="378" cy="229" r="5" fill="${playback.color}"/>${data.isNowPlaying ? `<circle cx="378" cy="229" r="9" fill="none" stroke="${playback.color}" opacity=".35"><animate attributeName="r" values="7;12;7" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".45;0;.45" dur="1.8s" repeatCount="indefinite"/></circle>` : ""}<text x="391" y="233" fill="#eadce3" font-size="11.5" font-weight="800" letter-spacing=".55">${sourceLabel}</text>
+  <text x="810" y="233" fill="#d6b8c6" font-size="12" font-weight="700" text-anchor="end">OPEN IN APPLE MUSIC  ↗</text></g>
   <text x="357" y="259" fill="#b6a5b6" font-size="10.5">${escapeXml(playbackNote)}</text></g>
   </svg>`;
 }
@@ -913,7 +913,7 @@ function letterboxdMarkup(data) {
 function appleMusicMarkup(data) {
   const action = data.isNowPlaying ? "now playing" : data.source === "unavailable" ? "Apple Music status" : "last played";
   const alt = data.source === "unavailable" ? "Apple Music: awaiting a verified listening update" : `${action} ${escapeDisplay(data.title)} by ${escapeDisplay(data.artist)}`;
-  return `<a href="${escapeXml(data.link || MUSIC_PROFILE_URL)}"><img src="./assets/activity/apple-music.svg?v=${assetVersion([data, "inline playback note"])}" width="100%" alt="${alt}" /></a>`;
+  return `<a href="${escapeXml(data.link || MUSIC_PROFILE_URL)}"><img src="./assets/activity/apple-music.svg?v=${assetVersion([data, "spaced inline playback note"])}" width="100%" alt="${alt}" /></a>`;
 }
 
 function discordMarkup() {
@@ -939,14 +939,15 @@ export function signalPresentation(updatedAt, now = new Date()) {
     return { fresh: false, datetime: null, fallback: "awaiting a signal" };
   }
   const age = now.valueOf() - signalAt;
-  const fallback = new Intl.DateTimeFormat("en-GB", {
-    day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit",
-    hour12: false, timeZone: "UTC",
-  }).format(signalAt);
+  // Native/mobile clients may show only this text instead of running the web component.
+  const minutes = Math.floor(Math.max(0, age) / 60_000);
+  const count = minutes < 60 ? minutes : minutes < 1440 ? Math.floor(minutes / 60) : Math.floor(minutes / 1440);
+  const unit = minutes < 60 ? "minute" : minutes < 1440 ? "hour" : "day";
+  const fallback = minutes < 1 ? "just now" : `${count} ${unit}${count === 1 ? "" : "s"} ago`;
   return {
     fresh: age >= 0 && age < SIGNAL_FRESH_MS,
     datetime: new Date(signalAt).toISOString(),
-    fallback: `${fallback} UTC`,
+    fallback,
   };
 }
 
@@ -982,7 +983,7 @@ export function freshnessMarkup(updatedAt, checks, now) {
   const signal = signalPresentation(updatedAt, now);
   const checked = signalPresentation(checks?.checkedAt, now);
   const relative = (value, fallback) => value.datetime
-    ? `<relative-time datetime="${value.datetime}">${value.fallback}</relative-time>` : fallback;
+    ? `<relative-time datetime="${value.datetime}" format="relative" format-style="long" title="${value.datetime}">${value.fallback}</relative-time>` : fallback;
   const names = { goodreads: "Goodreads", letterboxd: "Letterboxd", appleMusic: "Apple Music", instagram: "Instagram" };
   const delayed = Object.entries(checks?.sources || {}).filter(([, value]) => value.status === "delayed").map(([key]) => names[key] || key);
   const paused = Object.entries(checks?.sources || {}).filter(([, value]) => value.status === "paused").map(([key]) => names[key] || key);
