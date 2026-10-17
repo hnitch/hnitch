@@ -1,9 +1,9 @@
 <div align="center">
-  <img src="./assets/hero.svg?v=3.10.0" width="100%" alt="hii , i'm hn. i build things for screens. off-screen , there’s usually a book involved and music playing somewhere." />
+  <picture><source media="(max-width: 600px)" srcset="./assets/activity/hero-mobile.svg?v=3.11.0" /><img src="./assets/hero.svg?v=3.10.0" width="100%" alt="hii , i'm hn. i build things for screens. off-screen , there’s usually a book involved and music playing somewhere." /></picture>
   <br/><br/>
   <img src="https://hnitch-discord-card.haarshaan.workers.dev/visitors.svg?v=1" alt="curious visitors" />
   <!-- READING-BADGE:START -->
-  <img src="./assets/activity/reading-status.svg?v=7c8bd2696c" height="28" alt="between books , allegedly" />
+  <img src="./assets/activity/reading-status.svg?v=128dd2e861" height="28" alt="between books , allegedly" />
   <!-- READING-BADGE:END -->
 </div>
 
@@ -17,7 +17,7 @@
   <img src="./assets/divider.svg?v=3.9.0" width="320" alt="" />
 </div>
 
-<img src="./assets/stalk.svg?v=3.9.0" width="100%" alt="the legally-approved stalking zone" />
+<picture><source media="(max-width: 600px)" srcset="./assets/activity/social-mobile.svg?v=3.11.0" /><img src="./assets/stalk.svg?v=3.9.0" width="100%" alt="the legally-approved stalking zone: books, films, music and presence" /></picture>
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
@@ -32,15 +32,15 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=593b7be977" width="100%" alt="not reading anything , rn" /></a>
+<a href="https://www.goodreads.com/user/show/178629903"><picture><source media="(max-width: 600px)" srcset="./assets/activity/goodreads-current-mobile.svg?v=94401c7506" /><img src="./assets/activity/goodreads-current.svg?v=94401c7506" width="100%" alt="not reading anything , rn" /></picture></a>
 
-<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=7071395bcd" width="100%" alt="Read: Murder at the Grand Alpine Hotel" /></a>
+<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><picture><source media="(max-width: 600px)" srcset="./assets/activity/goodreads-1-mobile.svg?v=cd8f37b326" /><img src="./assets/activity/goodreads-1.svg?v=cd8f37b326" width="100%" alt="Read: Murder at the Grand Alpine Hotel by Lucy Foley. 3 out of 5 stars. slow to start; flat payoff; surprise twists. 384 pages. Published 2026. Read full review." /></picture></a>
 
-<a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=4ebf9ffca9" width="100%" alt="Read: The Ending Writes Itself" /></a>
+<a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&amp;utm_source=rss"><picture><source media="(max-width: 600px)" srcset="./assets/activity/goodreads-2-mobile.svg?v=990573c01f" /><img src="./assets/activity/goodreads-2.svg?v=990573c01f" width="100%" alt="Read: The Ending Writes Itself by Evelyn Clarke. 4 out of 5 stars. hooked throughout; guessed the twist; strong epilogue. 338 pages. Published 2026. Read full review." /></picture></a>
 
-<a href="https://www.goodreads.com/review/show/8743273179?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=4efbdac1ef" width="100%" alt="Read: Scion (Scion , #1)" /></a>
+<a href="https://www.goodreads.com/review/show/8743273179?utm_medium=api&amp;utm_source=rss"><picture><source media="(max-width: 600px)" srcset="./assets/activity/goodreads-3-mobile.svg?v=7eb4a702d3" /><img src="./assets/activity/goodreads-3.svg?v=7eb4a702d3" width="100%" alt="Read: Scion (Scion, #1) by James Islington. 3 out of 5 stars. 228 pages. Published 2026. No written review." /></picture></a>
 
-<a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=654442559c" width="100%" alt="Read: Incidents Around the House" /></a>
+<a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><picture><source media="(max-width: 600px)" srcset="./assets/activity/goodreads-4-mobile.svg?v=b1652f5a91" /><img src="./assets/activity/goodreads-4.svg?v=b1652f5a91" width="100%" alt="Read: Incidents Around the House by Josh Malerman. 3 out of 5 stars. creepy first half; dragging middle; predictable ending. 384 pages. Published 2024. Read full review." /></picture></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
@@ -50,30 +50,30 @@
 
 <br/>
 
-<a href="https://letterboxd.com/hnitch/film/carrie-2026/"><img src="./assets/activity/letterboxd-1.svg?v=3879f8afdb" width="100%" alt="Watched: Carrie" /></a>
+<a href="https://letterboxd.com/hnitch/film/carrie-2026/"><picture><source media="(max-width: 600px)" srcset="./assets/activity/letterboxd-1-mobile.svg?v=05fc760f0b" /><img src="./assets/activity/letterboxd-1.svg?v=05fc760f0b" width="100%" alt="Watched: Carrie (2026). 5 out of 5 stars. HORROR TV IS SO BACK , mike flanagan i never doubted you !!" /></picture></a>
 
-<a href="https://letterboxd.com/hnitch/film/other-mommy/"><img src="./assets/activity/letterboxd-2.svg?v=36c2d2a832" width="100%" alt="Watched: Other Mommy" /></a>
+<a href="https://letterboxd.com/hnitch/film/other-mommy/"><picture><source media="(max-width: 600px)" srcset="./assets/activity/letterboxd-2-mobile.svg?v=d99f9e4443" /><img src="./assets/activity/letterboxd-2.svg?v=d99f9e4443" width="100%" alt="Watched: Other Mommy (2026). 2.5 out of 5 stars. not them literally playing the clayface trailer infront of this ahsjdjdk it’s getting extra stars for the body horror" /></picture></a>
 
-<a href="https://letterboxd.com/hnitch/film/verity-2026/"><img src="./assets/activity/letterboxd-3.svg?v=4f6be301bc" width="100%" alt="Watched: Verity" /></a>
+<a href="https://letterboxd.com/hnitch/film/verity-2026/"><picture><source media="(max-width: 600px)" srcset="./assets/activity/letterboxd-3-mobile.svg?v=ec1a1e77b1" /><img src="./assets/activity/letterboxd-3.svg?v=ec1a1e77b1" width="100%" alt="Watched: Verity (2026). 2.5 out of 5 stars. i liked this more than the book so yay movie ig" /></picture></a>
 
-<a href="https://letterboxd.com/hnitch/film/heart-of-the-beast-2026/"><img src="./assets/activity/letterboxd-4.svg?v=46d153c56f" width="100%" alt="Watched: Heart of the Beast" /></a>
+<a href="https://letterboxd.com/hnitch/film/heart-of-the-beast-2026/"><picture><source media="(max-width: 600px)" srcset="./assets/activity/letterboxd-4-mobile.svg?v=43db026055" /><img src="./assets/activity/letterboxd-4.svg?v=43db026055" width="100%" alt="Watched: Heart of the Beast (2026). 2.5 out of 5 stars. No written review." /></picture></a>
 <!-- LETTERBOXD-FEED:END -->
 
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/cinnamon-girl/1474669063?i=1474669074&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=4045dd5519" width="100%" alt="last played Cinnamon Girl by Lana Del Rey" /></a>
+<a href="https://music.apple.com/us/album/cinnamon-girl/1474669063?i=1474669074&amp;uo=4"><picture><source media="(max-width: 600px)" srcset="./assets/activity/apple-music-mobile.svg?v=b84e7b81b9" /><img src="./assets/activity/apple-music.svg?v=b84e7b81b9" width="100%" alt="last played Cinnamon Girl by Lana Del Rey" /></picture></a>
 <div align="center"><sub>a little behind the beat. updates can be delayed , and playback is not continuously live.</sub></div>
 <!-- APPLE-MUSIC-FEED:END -->
 
 <br/>
 
 <!-- DISCORD-FEED:START -->
-<a href="https://discord.com/users/690729789702537336"><img src="https://hnitch-discord-card.haarshaan.workers.dev/discord.svg" width="100%" alt="live Discord presence for @hnitch" /></a>
+<a href="https://discord.com/users/690729789702537336"><picture><source media="(max-width: 600px)" srcset="https://hnitch-discord-card.haarshaan.workers.dev/discord-mobile.svg" /><img src="https://hnitch-discord-card.haarshaan.workers.dev/discord.svg" width="100%" alt="live Discord presence for @hnitch" /></picture></a>
 <!-- DISCORD-FEED:END -->
 
 <br/>
 
 <!-- INSTAGRAM-FEED:START -->
-<a href="https://www.instagram.com/hnitch/"><img src="./assets/activity/instagram.svg?v=acdcebc01e" width="100%" alt="Instagram profile @hnitch" /></a>
+<a href="https://www.instagram.com/hnitch/"><picture><source media="(max-width: 600px)" srcset="./assets/activity/instagram-mobile.svg?v=4ba61df252" /><img src="./assets/activity/instagram.svg?v=4ba61df252" width="100%" alt="Instagram profile @hnitch" /></picture></a>
 <!-- INSTAGRAM-FEED:END -->

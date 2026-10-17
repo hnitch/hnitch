@@ -1,3 +1,5 @@
+import { renderMobileDiscord } from "../scripts/mobile-cards.js";
+
 const DISCORD_USER_ID = "690729789702537336";
 const LANYARD_URL = `https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`;
 const VISITOR_URL = "https://komarev.com/ghpvc/?username=hnitch&style=for-the-badge&color=a7d1f0&label=curious+visitors";
@@ -273,7 +275,7 @@ export async function handleRequest(request, fetcher = globalThis.fetch) {
   const url = new URL(request.url);
   if (url.pathname === "/visitors.svg") return handleVisitorRequest(request, fetcher);
   if (url.pathname === "/reading.json") return handleReadingRequest(request, fetcher);
-  if (url.pathname !== "/" && url.pathname !== "/discord.svg") {
+  if (url.pathname !== "/" && url.pathname !== "/discord.svg" && url.pathname !== "/discord-mobile.svg") {
     return new Response("not found", { status: 404 });
   }
   if (request.method !== "GET" && request.method !== "HEAD") {
@@ -300,7 +302,7 @@ export async function handleRequest(request, fetcher = globalThis.fetch) {
     // The public card remains usable and on-brand during upstream outages.
   }
 
-  const svg = renderDiscordCard(data, avatar, guildBadge);
+  const svg = url.pathname === "/discord-mobile.svg" ? renderMobileDiscord(data, avatar) : renderDiscordCard(data, avatar, guildBadge);
   return new Response(request.method === "HEAD" ? null : svg, { status: 200, headers: svgHeaders });
 }
 

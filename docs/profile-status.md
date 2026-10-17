@@ -51,3 +51,26 @@ swift scripts/outline-hero-heading.swift
 ```
 
 The normal Linux refresh workflow does not run or require this design utility.
+
+## Phone readability
+
+At viewport widths of 600px and below, README `picture` sources select
+360-unit mobile SVGs. Desktop cards and their dimensions are unchanged; mealOS
+keeps its original artwork. Phone layouts use readable, higher-contrast text,
+smaller artwork and wrapping mood rows rather than shrinking the desktop card.
+This needs a little more height per dense card on phones, not new sections.
+
+Both normal refresh and `--render-cached` generate mobile assets from the same
+snapshot, mood extractor and embedded artwork as desktop. There are no new
+external image providers or feed dependencies. Full book titles, numeric ratings,
+reading progress and mood text are available in image descriptions. Unusually
+long visual titles use an ellipsis instead of becoming tiny; full details remain
+in the description and linked review. Mobile ratings display exact numeric values
+such as `4.25 ★`, never rounded whole stars.
+
+The hero reuses the existing outlined italic heading. The live Discord Worker
+serves `/discord-mobile.svg` with the same source and outage fallback as the
+desktop endpoint; it must be deployed before enabling its README source.
+
+The reading Shortcut is deliberately unchanged in this pass, including its
+native dismissible confirmation alert. No notification action is introduced.

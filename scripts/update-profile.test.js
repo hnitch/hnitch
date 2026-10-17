@@ -267,4 +267,9 @@ test("cached rendering keeps both timestamps and the compact strip without incre
   assert.match(readme, /reading-status\.svg\?v=/);
   assert.match(readme, /<!-- PROFILE-FRESHNESS:END -->\s*<\/div>\s*<br\/>\s*<!-- GOODREADS-FEED:START -->/);
   assert.doesNotMatch(readme, /img\.shields\.io\/badge\/currently/);
+  for (const match of readme.matchAll(/srcset="\.\/assets\/activity\/([^?]+)\?/g)) {
+    const svg = await fs.readFile(path.join(root, "assets/activity", match[1]), "utf8");
+    await parseStringPromise(svg);
+    assert.match(svg, /viewBox="0 0 360 /);
+  }
 });
