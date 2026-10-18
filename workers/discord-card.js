@@ -255,7 +255,7 @@ export function shortcutBook(activity) {
     title: valid ? current.title : "",
     pages: valid ? Number(current.pages) || 0 : 0,
     progress: valid && Number.isFinite(current.progress?.percent) ? `${current.progress.percent}%` : "",
-    shortcutPrompt: valid ? `${current.title.trim()}\n\nLast recorded: ${progressLabel}\n\nWhere did you stop?\nPage: 148   ·   Percent: 42%\nDifferent edition? Use 148/320.` : "",
+    shortcutPrompt: valid ? `${current.title.trim()}\n\nLast recorded: ${progressLabel}\n\nWhere did you stop?\nEnter your current page or a percentage ending in %.\nFor a different edition, enter page/total.` : "",
   };
 }
 

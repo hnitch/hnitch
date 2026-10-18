@@ -13,6 +13,15 @@ test("shortcut book fields stay flat and safe for empty or malformed shelves", (
   assert.match(book.shortcutPrompt, /Current book\n\nLast recorded: 9% read/);
 });
 
+test("shortcut instructions contain no sample numbers that could look like recorded progress", () => {
+  const result = shortcutBook({ goodreads: { current: { bookId: 123, title: "Book", progress: { page: 249, total: 528, percent: 47 } } } });
+  assert.match(result.shortcutPrompt, /Last recorded: page 249 of 528 · 47%/);
+  const instructions = result.shortcutPrompt.split("Where did you stop?")[1];
+  assert.doesNotMatch(instructions, /\d/);
+  assert.match(instructions, /current page or a percentage ending in %/);
+  assert.match(instructions, /different edition, enter page\/total/);
+});
+
 test("shortcut prompt shows recorded progress without inventing a page or completion", () => {
   const prompt = progress => shortcutBook({ goodreads: { current: { bookId: 123, title: "Book", progress } } }).shortcutPrompt;
   assert.match(prompt({ page: 0, total: 320, percent: 0 }), /page 0 of 320 · 0%/);
