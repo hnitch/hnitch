@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-17T22:59:18.656Z" format="relative" format-style="long" title="2026-10-17T22:59:18.656Z">1 hour ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-18T00:43:29.944Z" format="relative" format-style="long" title="2026-10-18T00:43:29.944Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-18T04:01:02.789Z" format="relative" format-style="long" title="2026-10-18T04:01:02.789Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-18T04:01:03.143Z" format="relative" format-style="long" title="2026-10-18T04:01:03.143Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -32,7 +32,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/review/show/8781989677?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=9bba96e229" width="100%" alt="currently reading Cursed City (Harker Academy , #2)" /></a>
+<a href="https://www.goodreads.com/review/show/8781989677?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=47e74152cf" width="100%" alt="currently reading Cursed City (Harker Academy , #2)" /></a>
 
 <a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=0c845fedfb" width="100%" alt="Read: Murder at the Grand Alpine Hotel" /></a>
 
