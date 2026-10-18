@@ -158,12 +158,13 @@ export function renderDiscordCard(data, avatar, guildBadge) {
   };
   const presence = statuses[data.status] || statuses.unknown;
   const statusWidth = Math.min(190, Math.max(142, 48 + (presence.label.length * 6.8)));
-  const deviceText = data.devices.length ? `active on ${data.devices.join(" + ")}` : "no active device showing";
+  const deviceText = data.devices.length ? `${data.devices.join(" + ")}` : "platform not shared";
   const avatarMarkup = avatar
     ? `<image href="${avatar}" x="34" y="32" width="132" height="132" preserveAspectRatio="xMidYMid slice" clip-path="url(#avatar)"/>`
     : `<circle cx="100" cy="98" r="66" fill="#4b3a67"/><text x="100" y="112" fill="#fffaf5" class="sans" font-size="38" font-weight="800" text-anchor="middle">HN</text>`;
+  const guildX = Math.min(500, 196 + data.displayName.length * 19 + 16);
   const guildIdentity = data.guildTag
-    ? `<rect x="636" y="45" width="78" height="32" rx="16" fill="#fff" opacity=".08"/>${guildBadge ? `<image href="${guildBadge}" x="648" y="52" width="18" height="18" preserveAspectRatio="xMidYMid meet"/>` : `<path d="M656 51l8 9-8 9-8-9z" fill="#ded5e5" opacity=".9"/>`}<text x="687" y="66" fill="#ded5e5" font-size="11.5" font-weight="800" text-anchor="middle">${escapeDisplay(data.guildTag)}</text>`
+    ? `<g transform="translate(${guildX - 636} 8)"><rect x="636" y="45" width="78" height="32" rx="16" fill="#fff" opacity=".08"/>${guildBadge ? `<image href="${guildBadge}" x="648" y="52" width="18" height="18" preserveAspectRatio="xMidYMid meet"/>` : `<path d="M656 51l8 9-8 9-8-9z" fill="#ded5e5" opacity=".9"/>`}<text x="687" y="66" fill="#ded5e5" font-size="11.5" font-weight="800" text-anchor="middle">${escapeDisplay(data.guildTag)}</text></g>`
     : "";
   return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="206" viewBox="0 0 860 206" role="img" aria-label="Discord profile for ${escapeDisplay(data.username)} , status ${escapeDisplay(presence.label)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1b2531"/><stop offset=".55" stop-color="#292e42"/><stop offset="1" stop-color="#203c49"/></linearGradient><linearGradient id="edge" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#5865f2"/><stop offset=".55" stop-color="#7aaed9"/><stop offset="1" stop-color="#9ddce9"/></linearGradient><clipPath id="avatar"><circle cx="100" cy="98" r="66"/></clipPath><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.arrow{animation:nudge 1.8s ease-in-out infinite}@keyframes nudge{50%{transform:translateX(5px)}}</style></defs>
@@ -171,11 +172,11 @@ export function renderDiscordCard(data, avatar, guildBadge) {
   <circle cx="780" cy="20" r="138" fill="#89c9f8" opacity=".065"/><circle cx="710" cy="215" r="118" fill="#9ddce9" opacity=".045"/>
   ${avatarMarkup}<circle cx="148" cy="147" r="17" fill="#171427"/><circle cx="148" cy="147" r="11" fill="${presence.color}" stroke="#fffaf5" stroke-opacity=".3" stroke-width="1"/>
   <g class="sans"><text x="198" y="42" fill="#9ba3ff" font-size="11.5" font-weight="800" letter-spacing="1.35">DISCORD / PUBLIC PRESENCE</text>
-  ${wrappedText({ x: 196, y: 51, width: 390, height: 43, value: data.displayName, size: 31, weight: 800, lineHeight: 1 })}
+  ${wrappedText({ x: 196, y: 51, width: data.guildTag ? guildX - 208 : 390, height: 43, value: data.displayName, size: 31, weight: 800, lineHeight: 1 })}
   <text x="198" y="108" fill="#c8bdd3" font-size="14" font-weight="600">@${escapeDisplay(data.username)}</text>
   <rect x="196" y="124" width="${statusWidth.toFixed(1)}" height="30" rx="15" fill="${presence.color}" opacity=".15"/><circle cx="213" cy="139" r="4.5" fill="${presence.color}"/><text x="225" y="144" fill="#e5ddea" font-size="12" font-weight="800">${escapeDisplay(presence.label)}</text>
   ${wrappedText({ x: 198, y: 162, width: 405, height: 34, value: `${data.activity} · ${deviceText}`, size: 12, weight: 600, color: "#ada1ba", lineHeight: 1.15 })}
-  <text x="620" y="68" fill="#a497ae" font-size="11.5" font-weight="800" text-anchor="end">ON DISCORD SINCE ${data.memberSince}</text>${guildIdentity}
+  <text x="812" y="42" fill="#a497ae" font-size="11.5" font-weight="800" text-anchor="end">ON DISCORD SINCE ${data.memberSince}</text>${guildIdentity}
   <rect x="638" y="111" width="174" height="48" rx="24" fill="#5865f2"/><text x="669" y="140" fill="#fff" font-size="12" font-weight="800" letter-spacing=".7">OPEN PROFILE</text><text class="arrow" x="777" y="142" fill="#fff" font-size="18" font-weight="800">↗</text></g>
   </svg>`;
 }
@@ -198,9 +199,9 @@ function fallbackData() {
 export function renderVisitorBadge(count, stale = false) {
   const value = Number(count).toLocaleString("en-US");
   const valueWidth = Math.max(60, 22 + value.length * 8);
-  const width = 138 + valueWidth;
-  const label = `CURIOUS VISITORS: ${value}${stale ? " (last verified count; counter temporarily unavailable)" : ""}`;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="28" role="img" aria-label="${label}"><title>${label}</title><g shape-rendering="crispEdges"><rect width="138" height="28" fill="#2d3c4e"/><rect x="138" width="${valueWidth}" height="28" fill="#a7d1f0"/></g><g text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" font-size="10" letter-spacing="1.1"><text x="69" y="17.5" fill="#e6edf3">CURIOUS VISITORS</text><text x="${138 + valueWidth / 2}" y="17.5" fill="#1b2531" font-weight="bold">${value}</text></g></svg>`;
+  const width = 90 + valueWidth;
+  const label = `VISITORS: ${value}${stale ? " (last verified count; counter temporarily unavailable)" : ""}`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="28" role="img" aria-label="${label}"><title>${label}</title><defs><clipPath id="badge"><rect width="${width}" height="28" rx="14"/></clipPath></defs><g clip-path="url(#badge)"><rect width="90" height="28" fill="#2d3c4e"/><rect x="90" width="${valueWidth}" height="28" fill="#a7d1f0"/></g><g text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" font-size="10" letter-spacing="1.1"><text x="45" y="17.5" fill="#e6edf3">VISITORS</text><text x="${90 + valueWidth / 2}" y="17.5" fill="#1b2531" font-weight="bold">${value}</text></g></svg>`;
 }
 
 export async function handleVisitorRequest(request, fetcher = globalThis.fetch, cache = globalThis.caches?.default, now = Date.now()) {

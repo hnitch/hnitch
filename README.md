@@ -1,9 +1,9 @@
 <div align="center">
   <img src="./assets/hero.svg?v=3.10.0" width="100%" alt="hii , i'm hn. i build things for screens. off-screen , there’s usually a book involved and music playing somewhere." />
   <br/><br/>
-  <img src="https://hnitch-discord-card.haarshaan.workers.dev/visitors.svg?v=1" alt="curious visitors" />
+  <img src="https://hnitch-discord-card.haarshaan.workers.dev/visitors.svg?v=2" height="28" alt="visitors" />
   <!-- READING-BADGE:START -->
-  <img src="./assets/activity/reading-status.svg?v=4256af3204" height="28" alt="currently reading , probably" />
+  <img src="./assets/activity/reading-status.svg?v=7184442eaa" height="28" alt="currently reading , probably" />
   <!-- READING-BADGE:END -->
 </div>
 
@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-18T04:01:02.789Z" format="relative" format-style="long" title="2026-10-18T04:01:02.789Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-18T04:01:03.143Z" format="relative" format-style="long" title="2026-10-18T04:01:03.143Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-18T04:01:02.789Z" format="relative" format-style="long" title="2026-10-18T04:01:02.789Z">7 minutes ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-18T04:01:03.143Z" format="relative" format-style="long" title="2026-10-18T04:01:03.143Z">7 minutes ago</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -32,15 +32,15 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/review/show/8781989677?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=47e74152cf" width="100%" alt="currently reading Cursed City (Harker Academy , #2)" /></a>
+<a href="https://www.goodreads.com/review/show/8781989677?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=b906dd1397" width="100%" alt="currently reading Cursed City (Harker Academy , #2)" /></a>
 
-<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=0c845fedfb" width="100%" alt="Read: Murder at the Grand Alpine Hotel" /></a>
+<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=6ed6f9b6fc" width="100%" alt="Read: Murder at the Grand Alpine Hotel" /></a>
 
-<a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=e04b506e61" width="100%" alt="Read: The Ending Writes Itself" /></a>
+<a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=bd16b91cd3" width="100%" alt="Read: The Ending Writes Itself" /></a>
 
-<a href="https://www.goodreads.com/review/show/8743273179?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=4efbdac1ef" width="100%" alt="Read: Scion (Scion , #1)" /></a>
+<a href="https://www.goodreads.com/review/show/8743273179?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=7eb4a702d3" width="100%" alt="Read: Scion (Scion , #1)" /></a>
 
-<a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=654442559c" width="100%" alt="Read: Incidents Around the House" /></a>
+<a href="https://www.goodreads.com/review/show/9001336918?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=b1652f5a91" width="100%" alt="Read: Incidents Around the House" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
@@ -50,29 +50,29 @@
 
 <br/>
 
-<a href="https://letterboxd.com/hnitch/film/carrie-2026/"><img src="./assets/activity/letterboxd-1.svg?v=3879f8afdb" width="100%" alt="Watched: Carrie" /></a>
+<a href="https://letterboxd.com/hnitch/film/carrie-2026/"><img src="./assets/activity/letterboxd-1.svg?v=05fc760f0b" width="100%" alt="Watched: Carrie" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/other-mommy/"><img src="./assets/activity/letterboxd-2.svg?v=36c2d2a832" width="100%" alt="Watched: Other Mommy" /></a>
+<a href="https://letterboxd.com/hnitch/film/other-mommy/"><img src="./assets/activity/letterboxd-2.svg?v=d99f9e4443" width="100%" alt="Watched: Other Mommy" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/verity-2026/"><img src="./assets/activity/letterboxd-3.svg?v=4f6be301bc" width="100%" alt="Watched: Verity" /></a>
+<a href="https://letterboxd.com/hnitch/film/verity-2026/"><img src="./assets/activity/letterboxd-3.svg?v=ec1a1e77b1" width="100%" alt="Watched: Verity" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/heart-of-the-beast-2026/"><img src="./assets/activity/letterboxd-4.svg?v=46d153c56f" width="100%" alt="Watched: Heart of the Beast" /></a>
+<a href="https://letterboxd.com/hnitch/film/heart-of-the-beast-2026/"><img src="./assets/activity/letterboxd-4.svg?v=43db026055" width="100%" alt="Watched: Heart of the Beast" /></a>
 <!-- LETTERBOXD-FEED:END -->
 
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/cinnamon-girl/1474669063?i=1474669074&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=7bf504b6e9" width="100%" alt="last played Cinnamon Girl by Lana Del Rey" /></a>
+<a href="https://music.apple.com/us/album/cinnamon-girl/1474669063?i=1474669074&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=038da87353" width="100%" alt="last played Cinnamon Girl by Lana Del Rey" /></a>
 <!-- APPLE-MUSIC-FEED:END -->
 
 <br/>
 
 <!-- DISCORD-FEED:START -->
-<a href="https://discord.com/users/690729789702537336"><img src="https://hnitch-discord-card.haarshaan.workers.dev/discord.svg" width="100%" alt="live Discord presence for @hnitch" /></a>
+<a href="https://discord.com/users/690729789702537336"><img src="https://hnitch-discord-card.haarshaan.workers.dev/discord.svg?v=3.11.0" width="100%" alt="live Discord presence for @hnitch" /></a>
 <!-- DISCORD-FEED:END -->
 
 <br/>
 
 <!-- INSTAGRAM-FEED:START -->
-<a href="https://www.instagram.com/hnitch/"><img src="./assets/activity/instagram.svg?v=acdcebc01e" width="100%" alt="Instagram profile @hnitch" /></a>
+<a href="https://www.instagram.com/hnitch/"><img src="./assets/activity/instagram.svg?v=4ba61df252" width="100%" alt="Instagram profile @hnitch" /></a>
 <!-- INSTAGRAM-FEED:END -->

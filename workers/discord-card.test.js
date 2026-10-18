@@ -62,7 +62,11 @@ test("visitor badge caches a validated count and serves its own SVG", async () =
   };
   const result = await handleVisitorRequest(visitorRequest, fetcher, cache, visitorNow);
   assert.equal(result.status, 200);
-  assert.match(await result.text(), /1,400/);
+  const badge = await result.text();
+  assert.match(badge, /1,400/);
+  assert.match(badge, /rx="14"/);
+  assert.match(badge, />VISITORS</);
+  assert.doesNotMatch(badge, /CURIOUS/);
   assert.match(result.headers.get("content-type"), /image\/svg\+xml/);
   const fresh = await handleVisitorRequest(visitorRequest, fetcher, cache, visitorNow + 10_000);
   assert.doesNotMatch(await fresh.text(), /script|untrusted/);
@@ -135,6 +139,16 @@ test("keeps the custom 860 by 206 card design", () => {
   assert.match(svg, /OPEN PROFILE/);
   assert.match(svg, /#3ba55d/);
   assert.doesNotMatch(svg, /lanyard\.cnrad\.dev/);
+});
+
+test("idle platform labels do not imply activity and identity details stay aligned", () => {
+  const svg = renderDiscordCard(normaliseLanyard({ ...lanyardPresence, discord_status: "idle", activities: [] }), null, null);
+  assert.match(svg, /· desktop/);
+  assert.doesNotMatch(svg, /active on/);
+  assert.match(svg, /x="812" y="42"/);
+  assert.match(svg, /translate\(-386 8\)/);
+  const mobile = renderDiscordCard(normaliseLanyard({ ...lanyardPresence, discord_status: "idle", active_on_discord_desktop: false, active_on_discord_mobile: true, activities: [] }), null, null);
+  assert.match(mobile, /· mobile/);
 });
 
 test("serves a fresh custom SVG from Lanyard without cache headers", async () => {

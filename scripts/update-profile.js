@@ -13,8 +13,8 @@ const READING_PROGRESS_FILE = path.join(ROOT, "data", "reading-progress.json");
 const README_FILE = path.join(ROOT, "README.md");
 const DISCORD_USER_ID = "690729789702537336";
 const MUSIC_PROFILE_URL = "https://music.apple.com/profile/hnitch";
-const LIVE_DISCORD_CARD_URL = "https://hnitch-discord-card.haarshaan.workers.dev/discord.svg";
-const RENDER_VERSION = "3.10.0";
+const LIVE_DISCORD_CARD_URL = "https://hnitch-discord-card.haarshaan.workers.dev/discord.svg?v=3.11.0";
+const RENDER_VERSION = "3.11.0";
 const INSTAGRAM_REFRESH_MS = 24 * 60 * 60_000;
 const INSTAGRAM_RETRY_MS = 6 * 60 * 60_000;
 const SIGNAL_FRESH_MS = 15 * 60_000;
@@ -573,7 +573,7 @@ export function renderBookCurrent(book, artwork) {
   <rect x="1" y="1" width="858" height="250" rx="24" fill="url(#bg)" stroke="#58616b" stroke-width="2"/>
   <circle cx="817" cy="16" r="140" fill="#89c9f8" opacity=".04"/>
   ${cover({ dataUri: artwork, x: 24, y: 24, width: 132, height: 198, radius: 10 })}
-  <g class="sans"><rect x="188" y="24" width="205" height="30" rx="15" fill="#e9c995" opacity=".12"/><circle cx="207" cy="39" r="4" fill="#e9c995"/><text x="220" y="44" fill="#e9c995" font-size="12" font-weight="800" letter-spacing="1.05">CURRENTLY READING</text>
+  <g class="sans"><rect x="188" y="24" width="205" height="30" rx="15" fill="#e9c995" opacity=".12"/><circle cx="207" cy="39" r="4" fill="#e9c995"/><text x="220" y="44" fill="#e9c995" font-size="12" font-weight="800" letter-spacing="1.05">CURRENTLY READING</text><text x="800" y="44" fill="#a99bb4" font-size="11" font-weight="700" text-anchor="end">VIEW ON GOODREADS ↗</text>
   ${wrappedText({ x: 188, y: 65, width: 610, height: 86, value: item.title, size: 30, weight: 800, lineHeight: 1.04 })}
   <text x="190" y="170" fill="${theme.muted}" font-size="14.5" font-weight="600">by ${escapeDisplay(item.author)}</text>
   <text x="190" y="193" fill="#a99bb4" font-size="12" font-weight="600">${escapeDisplay(facts)}</text>
@@ -668,14 +668,14 @@ export function renderAppleMusic(data, artwork) {
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1b2530"/><stop offset=".55" stop-color="#272334"/><stop offset="1" stop-color="#2d1d2a"/></linearGradient><radialGradient id="disc"><stop stop-color="#342a38"/><stop offset=".28" stop-color="#0a080c"/><stop offset=".32" stop-color="#fa243c"/><stop offset=".38" stop-color="#0a080c"/><stop offset="1" stop-color="#17131a"/></radialGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.spin{animation:spin 12s linear infinite;transform-origin:243px 135px}@keyframes spin{to{transform:rotate(360deg)}}</style></defs>
   <rect x="1" y="1" width="858" height="268" rx="25" fill="url(#bg)" stroke="#5d526d" stroke-width="2"/><circle class="${spinClass}" cx="243" cy="135" r="91" fill="url(#disc)" stroke="#453a49"/><circle cx="243" cy="135" r="10" fill="#ffe8ee"/>
   ${data.playbackState === "unknown" ? `<rect x="28" y="45" width="180" height="180" rx="15" fill="#302641"/><g transform="translate(81 98) scale(3.1)"><path d="${appleMusicPath}" fill="#b9a4ff" opacity=".55"/></g>` : cover({ dataUri: artwork, x: 28, y: 45, width: 180, height: 180, radius: 15, id: "artwork" })}
-  <g class="sans"><g transform="translate(356 27) scale(1.08)"><path d="${appleMusicPath}" fill="#fa243c"/></g><text x="390" y="48" fill="#ff8293" font-size="12" font-weight="800" letter-spacing="1.25">${playback.heading}</text>
-  ${wrappedText({ x: 356, y: 73, width: 458, height: 67, value: data.title, size: 30, weight: 800, lineHeight: 1.03 })}
-  ${wrappedText({ x: 357, y: 143, width: 445, height: 28, value: data.artist, size: 17, weight: 700, lineHeight: 1 })}
-  ${data.playbackState === "unknown" ? "<!-- awaiting verified album metadata -->" : `<text x="357" y="181" fill="#9f8191" font-size="10.5" font-weight="800" letter-spacing="1">ALBUM</text>${wrappedText({ x: 405, y: 168, width: duration ? 300 : 397, height: 35, value: data.album || "album metadata not listed", size: 12.5, weight: 600, color: "#c7a9b8", lineHeight: 1.06 })}`}
-${duration ? `  <rect x="724" y="168" width="78" height="27" rx="13.5" fill="#fff" opacity=".07"/><text x="763" y="186" fill="#d9c2ce" font-size="11.5" font-weight="700" text-anchor="middle">${duration}</text>` : ""}
-  <g transform="translate(0 -6)"><rect x="357" y="211" width="${sourceWidth}" height="36" rx="18" fill="${playback.color}" opacity=".13"/><circle cx="378" cy="229" r="5" fill="${playback.color}"/>${data.isNowPlaying ? `<circle cx="378" cy="229" r="9" fill="none" stroke="${playback.color}" opacity=".35"><animate attributeName="r" values="7;12;7" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".45;0;.45" dur="1.8s" repeatCount="indefinite"/></circle>` : ""}<text x="391" y="233" fill="#eadce3" font-size="11.5" font-weight="800" letter-spacing=".55">${sourceLabel}</text>
-  <text x="810" y="233" fill="#d6b8c6" font-size="12" font-weight="700" text-anchor="end">OPEN IN APPLE MUSIC  ↗</text></g>
-  <text x="357" y="259" fill="#b6a5b6" font-size="10.5">${escapeXml(playbackNote)}</text></g>
+  <g class="sans"><g transform="translate(356 27) scale(1.08)"><path d="${appleMusicPath}" fill="#fa243c"/></g><text x="390" y="48" fill="#ff8293" font-size="12" font-weight="800" letter-spacing="1.25">APPLE MUSIC</text><text x="810" y="48" fill="#d6b8c6" font-size="11" font-weight="700" text-anchor="end">OPEN IN APPLE MUSIC ↗</text>
+  ${wrappedText({ x: 356, y: 65, width: 458, height: 62, value: data.title, size: 30, weight: 800, lineHeight: 1.03 })}
+  ${wrappedText({ x: 357, y: 130, width: 445, height: 28, value: data.artist, size: 17, weight: 700, lineHeight: 1 })}
+  ${data.playbackState === "unknown" ? "<!-- awaiting verified album metadata -->" : `<text x="357" y="168" fill="#9f8191" font-size="10.5" font-weight="800" letter-spacing="1">ALBUM</text>${wrappedText({ x: 405, y: 155, width: duration ? 300 : 397, height: 35, value: data.album || "album metadata not listed", size: 12.5, weight: 600, color: "#c7a9b8", lineHeight: 1.06 })}`}
+${duration ? `  <rect x="724" y="155" width="78" height="27" rx="13.5" fill="#fff" opacity=".07"/><text x="763" y="173" fill="#d9c2ce" font-size="11.5" font-weight="700" text-anchor="middle">${duration}</text>` : ""}
+  <g transform="translate(0 -19)"><rect x="357" y="211" width="${sourceWidth}" height="36" rx="18" fill="${playback.color}" opacity=".13"/><circle cx="378" cy="229" r="5" fill="${playback.color}"/>${data.isNowPlaying ? `<circle cx="378" cy="229" r="9" fill="none" stroke="${playback.color}" opacity=".35"><animate attributeName="r" values="7;12;7" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".45;0;.45" dur="1.8s" repeatCount="indefinite"/></circle>` : ""}<text x="391" y="233" fill="#eadce3" font-size="11.5" font-weight="800" letter-spacing=".55">${sourceLabel}</text>
+  </g>
+  <text x="357" y="246" fill="#b6a5b6" font-size="10.5" font-style="italic">${escapeXml(playbackNote)}</text></g>
   </svg>`;
 }
 
@@ -958,7 +958,7 @@ export function readingBadgeLabel(book) {
 export function renderReadingBadge(book) {
   const label = readingBadgeLabel(book);
   const width = book ? 288 : 264;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="28" viewBox="0 0 ${width} 28" role="img" aria-label="${escapeXml(label)}"><rect width="${width}" height="28" rx="6" fill="${book ? "#8edfd4" : "#b1c9df"}"/><text x="${width / 2}" y="18" text-anchor="middle" fill="#223a40" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="11" font-weight="750" letter-spacing="1">${escapeXml(label.toUpperCase())}</text></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="28" viewBox="0 0 ${width} 28" role="img" aria-label="${escapeXml(label)}"><rect width="${width}" height="28" rx="14" fill="${book ? "#8edfd4" : "#b1c9df"}"/><text x="${width / 2}" y="18" text-anchor="middle" fill="#223a40" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="11" font-weight="750" letter-spacing="1">${escapeXml(label.toUpperCase())}</text></svg>`;
 }
 
 // Check metadata is separate from content: polling must not fake a new signal.

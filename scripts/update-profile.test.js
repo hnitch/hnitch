@@ -7,8 +7,10 @@ test("Apple Music owns its delay note without increasing card height", () => {
   const svg = renderAppleMusic({ title: "Example", artist: "Artist", source: "apple-history", playbackState: "recent" }, null);
   assert.match(svg, /height="270" viewBox="0 0 860 270"/);
   assert.match(svg, /updates may be delayed , not live/);
-  assert.match(svg, /<g transform="translate\(0 -6\)"><rect x="357" y="211"/);
-  assert.match(svg, /<tspan x="405" y="181">/);
+  assert.match(svg, /<g transform="translate\(0 -19\)"><rect x="357" y="211"/);
+  assert.match(svg, /<tspan x="405" y="168">/);
+  assert.match(svg, /font-style="italic">a little behind the beat/);
+  assert.match(svg, /y="48"[^>]*>OPEN IN APPLE MUSIC/);
   const unavailable = renderAppleMusic({ title: "Waiting", artist: "", source: "unavailable", playbackState: "unknown" }, null);
   assert.match(unavailable, /history paused · reconnect to resume/);
 });
@@ -147,6 +149,7 @@ test("current-book card handles percentage-only progress", () => {
     progress: { page: null, total: null, percent: 23, source: "shortcut" },
   }, null);
   assert.match(svg, /23% read/);
+  assert.match(svg, /VIEW ON GOODREADS ↗/);
   assert.doesNotMatch(svg, /null/);
 });
 
@@ -175,6 +178,7 @@ test("reading badge adapts without introducing an external image dependency", as
   for (const book of [null, { title: "A Book" }]) {
     const svg = renderReadingBadge(book);
     assert.match(svg, /height="28"/);
+    assert.match(svg, /rx="14"/);
     assert.doesNotMatch(svg, /<image|<script|shields\.io/);
     await parseStringPromise(svg);
   }
