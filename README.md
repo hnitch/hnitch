@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-18T04:01:02.789Z" format="relative" format-style="long" title="2026-10-18T04:01:02.789Z">5 hours ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-18T09:35:50.389Z" format="relative" format-style="long" title="2026-10-18T09:35:50.389Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-18T13:32:07.660Z" format="relative" format-style="long" title="2026-10-18T13:32:07.660Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-18T13:32:07.781Z" format="relative" format-style="long" title="2026-10-18T13:32:07.781Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -34,7 +34,7 @@
 
 <a href="https://www.goodreads.com/review/show/8781989677?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=b906dd1397" width="100%" alt="currently reading Cursed City (Harker Academy , #2)" /></a>
 
-<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=6ed6f9b6fc" width="100%" alt="Read: Murder at the Grand Alpine Hotel" /></a>
+<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=428511ba74" width="100%" alt="Read: Murder at the Grand Alpine Hotel" /></a>
 
 <a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=bd16b91cd3" width="100%" alt="Read: The Ending Writes Itself" /></a>
 
