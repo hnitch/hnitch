@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-19T06:31:22.104Z" format="relative" format-style="long" title="2026-10-19T06:31:22.104Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-19T06:31:22.355Z" format="relative" format-style="long" title="2026-10-19T06:31:22.355Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-19T13:51:30.171Z" format="relative" format-style="long" title="2026-10-19T13:51:30.171Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-19T13:51:30.605Z" format="relative" format-style="long" title="2026-10-19T13:51:30.605Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -62,7 +62,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/bloody-paradise-english-ver/6804583619?i=6804583775&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=9496039703" width="100%" alt="last played Bloody Paradise (English Ver.) by ENHYPEN" /></a>
+<a href="https://music.apple.com/us/album/checkmate/6802196823?i=6802197005&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=f14cc156a5" width="100%" alt="last played Checkmate by ENHYPEN" /></a>
 <!-- APPLE-MUSIC-FEED:END -->
 
 <br/>

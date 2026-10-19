@@ -120,10 +120,10 @@
     ]
   },
   "appleMusic": {
-    "title": "Bloody Paradise (English Ver.)",
+    "title": "Checkmate",
     "artist": "ENHYPEN",
-    "album": "Bloody Paradise (English Ver.) - Single",
-    "link": "https://music.apple.com/us/album/bloody-paradise-english-ver/6804583619?i=6804583775&uo=4",
+    "album": "THE SIN : BLISS (Korean Ver.)",
+    "link": "https://music.apple.com/us/album/checkmate/6802196823?i=6802197005&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -134,31 +134,31 @@
     "username": "hnitch",
     "avatarHash": "bc623f7b849a",
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
-    "lastAttemptAt": "2026-10-19T06:30:59.459Z"
+    "lastAttemptAt": "2026-10-19T13:51:06.814Z"
   },
-  "updatedAt": "2026-10-19T06:31:22.104Z",
-  "lastSignalRenderAt": "2026-10-19T06:31:22.104Z",
+  "updatedAt": "2026-10-19T13:51:30.171Z",
+  "lastSignalRenderAt": "2026-10-19T13:51:30.171Z",
   "feedChecks": {
-    "checkedAt": "2026-10-19T06:31:22.355Z",
+    "checkedAt": "2026-10-19T13:51:30.605Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-10-19T06:31:22.355Z",
-        "lastSuccessAt": "2026-10-19T06:31:22.355Z"
+        "checkedAt": "2026-10-19T13:51:30.605Z",
+        "lastSuccessAt": "2026-10-19T13:51:30.605Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-10-19T06:31:22.355Z",
-        "lastSuccessAt": "2026-10-19T06:31:22.355Z"
+        "checkedAt": "2026-10-19T13:51:30.605Z",
+        "lastSuccessAt": "2026-10-19T13:51:30.605Z"
       },
       "appleMusic": {
         "status": "ok",
-        "checkedAt": "2026-10-19T06:31:22.355Z",
-        "lastSuccessAt": "2026-10-19T06:31:22.355Z"
+        "checkedAt": "2026-10-19T13:51:30.605Z",
+        "lastSuccessAt": "2026-10-19T13:51:30.605Z"
       },
       "instagram": {
         "status": "delayed",
-        "checkedAt": "2026-10-19T06:31:22.355Z",
+        "checkedAt": "2026-10-19T13:51:30.605Z",
         "lastSuccessAt": "2026-10-12T15:08:45.725Z"
       }
     }
