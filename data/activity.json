@@ -8,7 +8,7 @@
       "rating": 0,
       "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1775714675l/246596660._SX318_.jpg",
       "pages": 528,
-      "averageRating": 4.71,
+      "averageRating": 4.7,
       "published": "2026",
       "dateAdded": "Fri, 16 Oct 2026 19:54:15 -0700",
       "readAt": "",
@@ -120,10 +120,10 @@
     ]
   },
   "appleMusic": {
-    "title": "Cinnamon Girl",
-    "artist": "Lana Del Rey",
-    "album": "Norman Fucking Rockwell!",
-    "link": "https://music.apple.com/us/album/cinnamon-girl/1474669063?i=1474669074&uo=4",
+    "title": "Bloody Paradise (English Ver.)",
+    "artist": "ENHYPEN",
+    "album": "Bloody Paradise (English Ver.) - Single",
+    "link": "https://music.apple.com/us/album/bloody-paradise-english-ver/6804583619?i=6804583775&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -134,31 +134,31 @@
     "username": "hnitch",
     "avatarHash": "bc623f7b849a",
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
-    "lastAttemptAt": "2026-10-18T21:21:50.733Z"
+    "lastAttemptAt": "2026-10-19T06:30:59.459Z"
   },
-  "updatedAt": "2026-10-19T01:26:25.845Z",
-  "lastSignalRenderAt": "2026-10-19T01:26:25.845Z",
+  "updatedAt": "2026-10-19T06:31:22.104Z",
+  "lastSignalRenderAt": "2026-10-19T06:31:22.104Z",
   "feedChecks": {
-    "checkedAt": "2026-10-19T01:26:26.268Z",
+    "checkedAt": "2026-10-19T06:31:22.355Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-10-19T01:26:26.268Z",
-        "lastSuccessAt": "2026-10-19T01:26:26.268Z"
+        "checkedAt": "2026-10-19T06:31:22.355Z",
+        "lastSuccessAt": "2026-10-19T06:31:22.355Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-10-19T01:26:26.268Z",
-        "lastSuccessAt": "2026-10-19T01:26:26.268Z"
+        "checkedAt": "2026-10-19T06:31:22.355Z",
+        "lastSuccessAt": "2026-10-19T06:31:22.355Z"
       },
       "appleMusic": {
         "status": "ok",
-        "checkedAt": "2026-10-19T01:26:26.268Z",
-        "lastSuccessAt": "2026-10-19T01:26:26.268Z"
+        "checkedAt": "2026-10-19T06:31:22.355Z",
+        "lastSuccessAt": "2026-10-19T06:31:22.355Z"
       },
       "instagram": {
         "status": "delayed",
-        "checkedAt": "2026-10-18T21:22:14.733Z",
+        "checkedAt": "2026-10-19T06:31:22.355Z",
         "lastSuccessAt": "2026-10-12T15:08:45.725Z"
       }
     }

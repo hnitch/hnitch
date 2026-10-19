@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-19T01:26:25.845Z" format="relative" format-style="long" title="2026-10-19T01:26:25.845Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-19T01:26:26.268Z" format="relative" format-style="long" title="2026-10-19T01:26:26.268Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-19T06:31:22.104Z" format="relative" format-style="long" title="2026-10-19T06:31:22.104Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-19T06:31:22.355Z" format="relative" format-style="long" title="2026-10-19T06:31:22.355Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -32,7 +32,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/review/show/8781989677?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=0d37161020" width="100%" alt="currently reading Cursed City (Harker Academy , #2)" /></a>
+<a href="https://www.goodreads.com/review/show/8781989677?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=9d74302fb8" width="100%" alt="currently reading Cursed City (Harker Academy , #2)" /></a>
 
 <a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=428511ba74" width="100%" alt="Read: Murder at the Grand Alpine Hotel" /></a>
 
@@ -62,7 +62,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/cinnamon-girl/1474669063?i=1474669074&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=038da87353" width="100%" alt="last played Cinnamon Girl by Lana Del Rey" /></a>
+<a href="https://music.apple.com/us/album/bloody-paradise-english-ver/6804583619?i=6804583775&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=9496039703" width="100%" alt="last played Bloody Paradise (English Ver.) by ENHYPEN" /></a>
 <!-- APPLE-MUSIC-FEED:END -->
 
 <br/>
