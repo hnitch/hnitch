@@ -120,10 +120,10 @@
     ]
   },
   "appleMusic": {
-    "title": "Checkmate",
-    "artist": "ENHYPEN",
-    "album": "THE SIN : BLISS (Korean Ver.)",
-    "link": "https://music.apple.com/us/album/checkmate/6802196823?i=6802197005&uo=4",
+    "title": "National Anthem",
+    "artist": "Lana Del Rey",
+    "album": "Born to Die",
+    "link": "https://music.apple.com/us/album/national-anthem/1440811595?i=1440811824&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -136,25 +136,25 @@
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
     "lastAttemptAt": "2026-10-19T23:01:45.451Z"
   },
-  "updatedAt": "2026-10-20T00:50:32.296Z",
-  "lastSignalRenderAt": "2026-10-20T00:50:32.296Z",
+  "updatedAt": "2026-10-20T01:41:35.882Z",
+  "lastSignalRenderAt": "2026-10-20T01:41:35.882Z",
   "feedChecks": {
-    "checkedAt": "2026-10-20T00:50:32.683Z",
+    "checkedAt": "2026-10-20T01:41:36.033Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-10-20T00:50:32.683Z",
-        "lastSuccessAt": "2026-10-20T00:50:32.683Z"
+        "checkedAt": "2026-10-20T01:41:36.033Z",
+        "lastSuccessAt": "2026-10-20T01:41:36.033Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-10-20T00:50:32.683Z",
-        "lastSuccessAt": "2026-10-20T00:50:32.683Z"
+        "checkedAt": "2026-10-20T01:41:36.033Z",
+        "lastSuccessAt": "2026-10-20T01:41:36.033Z"
       },
       "appleMusic": {
         "status": "ok",
-        "checkedAt": "2026-10-20T00:50:32.683Z",
-        "lastSuccessAt": "2026-10-20T00:50:32.683Z"
+        "checkedAt": "2026-10-20T01:41:36.033Z",
+        "lastSuccessAt": "2026-10-20T01:41:36.033Z"
       },
       "instagram": {
         "status": "delayed",

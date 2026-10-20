@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-20T00:50:32.296Z" format="relative" format-style="long" title="2026-10-20T00:50:32.296Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-20T00:50:32.683Z" format="relative" format-style="long" title="2026-10-20T00:50:32.683Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-20T01:41:35.882Z" format="relative" format-style="long" title="2026-10-20T01:41:35.882Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-20T01:41:36.033Z" format="relative" format-style="long" title="2026-10-20T01:41:36.033Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -62,7 +62,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/checkmate/6802196823?i=6802197005&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=f14cc156a5" width="100%" alt="last played Checkmate by ENHYPEN" /></a>
+<a href="https://music.apple.com/us/album/national-anthem/1440811595?i=1440811824&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=4ddecb743a" width="100%" alt="last played National Anthem by Lana Del Rey" /></a>
 <!-- APPLE-MUSIC-FEED:END -->
 
 <br/>
