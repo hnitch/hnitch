@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-20T06:37:59.887Z" format="relative" format-style="long" title="2026-10-20T06:37:59.887Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-20T06:38:00.180Z" format="relative" format-style="long" title="2026-10-20T06:38:00.180Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-20T12:07:38.273Z" format="relative" format-style="long" title="2026-10-20T12:07:38.273Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-20T12:07:38.568Z" format="relative" format-style="long" title="2026-10-20T12:07:38.568Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -62,7 +62,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/airport-crush/6819429830?i=6819429831&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=b9cd0533a2" width="100%" alt="last played Airport Crush by salem ilese" /></a>
+<a href="https://music.apple.com/us/album/moths/1886835064?i=1886835082&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=4fb9088ae8" width="100%" alt="last played Moths by Conan Gray" /></a>
 <!-- APPLE-MUSIC-FEED:END -->
 
 <br/>

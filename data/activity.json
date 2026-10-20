@@ -120,10 +120,10 @@
     ]
   },
   "appleMusic": {
-    "title": "Airport Crush",
-    "artist": "salem ilese",
-    "album": "Airport Crush - Single",
-    "link": "https://music.apple.com/us/album/airport-crush/6819429830?i=6819429831&uo=4",
+    "title": "Moths",
+    "artist": "Conan Gray",
+    "album": "Wishbone Deluxe",
+    "link": "https://music.apple.com/us/album/moths/1886835064?i=1886835082&uo=4",
     "duration": 0,
     "source": "apple-history",
     "playbackState": "recent",
@@ -136,25 +136,25 @@
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
     "lastAttemptAt": "2026-10-20T06:37:36.566Z"
   },
-  "updatedAt": "2026-10-20T06:37:59.887Z",
-  "lastSignalRenderAt": "2026-10-20T06:37:59.887Z",
+  "updatedAt": "2026-10-20T12:07:38.273Z",
+  "lastSignalRenderAt": "2026-10-20T12:07:38.273Z",
   "feedChecks": {
-    "checkedAt": "2026-10-20T06:38:00.180Z",
+    "checkedAt": "2026-10-20T12:07:38.568Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-10-20T06:38:00.180Z",
-        "lastSuccessAt": "2026-10-20T06:38:00.180Z"
+        "checkedAt": "2026-10-20T12:07:38.568Z",
+        "lastSuccessAt": "2026-10-20T12:07:38.568Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-10-20T06:38:00.180Z",
-        "lastSuccessAt": "2026-10-20T06:38:00.180Z"
+        "checkedAt": "2026-10-20T12:07:38.568Z",
+        "lastSuccessAt": "2026-10-20T12:07:38.568Z"
       },
       "appleMusic": {
         "status": "ok",
-        "checkedAt": "2026-10-20T06:38:00.180Z",
-        "lastSuccessAt": "2026-10-20T06:38:00.180Z"
+        "checkedAt": "2026-10-20T12:07:38.568Z",
+        "lastSuccessAt": "2026-10-20T12:07:38.568Z"
       },
       "instagram": {
         "status": "delayed",
