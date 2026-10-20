@@ -14,9 +14,9 @@
       "readAt": "",
       "review": "",
       "progress": {
-        "page": 414,
+        "page": 443,
         "total": 528,
-        "percent": 78,
+        "percent": 84,
         "source": "shortcut"
       }
     },
@@ -136,25 +136,25 @@
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
     "lastAttemptAt": "2026-10-19T23:01:45.451Z"
   },
-  "updatedAt": "2026-10-19T19:31:19.342Z",
-  "lastSignalRenderAt": "2026-10-19T23:02:16.890Z",
+  "updatedAt": "2026-10-20T00:50:32.296Z",
+  "lastSignalRenderAt": "2026-10-20T00:50:32.296Z",
   "feedChecks": {
-    "checkedAt": "2026-10-19T23:02:17.204Z",
+    "checkedAt": "2026-10-20T00:50:32.683Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-10-19T23:02:17.204Z",
-        "lastSuccessAt": "2026-10-19T23:02:17.204Z"
+        "checkedAt": "2026-10-20T00:50:32.683Z",
+        "lastSuccessAt": "2026-10-20T00:50:32.683Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-10-19T23:02:17.204Z",
-        "lastSuccessAt": "2026-10-19T23:02:17.204Z"
+        "checkedAt": "2026-10-20T00:50:32.683Z",
+        "lastSuccessAt": "2026-10-20T00:50:32.683Z"
       },
       "appleMusic": {
         "status": "ok",
-        "checkedAt": "2026-10-19T23:02:17.204Z",
-        "lastSuccessAt": "2026-10-19T23:02:17.204Z"
+        "checkedAt": "2026-10-20T00:50:32.683Z",
+        "lastSuccessAt": "2026-10-20T00:50:32.683Z"
       },
       "instagram": {
         "status": "delayed",
