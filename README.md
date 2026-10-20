@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-20T12:07:38.273Z" format="relative" format-style="long" title="2026-10-20T12:07:38.273Z">8 hours ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-20T20:16:23.909Z" format="relative" format-style="long" title="2026-10-20T20:16:23.909Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-20T23:13:45.560Z" format="relative" format-style="long" title="2026-10-20T23:13:45.560Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-20T23:13:45.769Z" format="relative" format-style="long" title="2026-10-20T23:13:45.769Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -34,9 +34,9 @@
 
 <a href="https://www.goodreads.com/review/show/8781989677?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=32e9612192" width="100%" alt="currently reading Cursed City (Harker Academy , #2)" /></a>
 
-<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=3d539dec54" width="100%" alt="Read: Murder at the Grand Alpine Hotel" /></a>
+<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=23c4dbc616" width="100%" alt="Read: Murder at the Grand Alpine Hotel" /></a>
 
-<a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=bd16b91cd3" width="100%" alt="Read: The Ending Writes Itself" /></a>
+<a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=b6c6393f2c" width="100%" alt="Read: The Ending Writes Itself" /></a>
 
 <a href="https://www.goodreads.com/review/show/8743273179?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=7eb4a702d3" width="100%" alt="Read: Scion (Scion , #1)" /></a>
 

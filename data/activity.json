@@ -29,7 +29,7 @@
         "rating": 3,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1772576610l/249253557.jpg",
         "pages": 384,
-        "averageRating": 3.82,
+        "averageRating": 3.8,
         "published": "2026",
         "dateAdded": "Thu, 15 Oct 2026 09:31:18 -0700",
         "readAt": "Thu, 15 Oct 2026 00:00:00 +0000",
@@ -43,7 +43,7 @@
         "rating": 4,
         "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1781057161l/253680637._SY475_.jpg",
         "pages": 338,
-        "averageRating": 3.74,
+        "averageRating": 3.76,
         "published": "2026",
         "dateAdded": "Sun, 11 Oct 2026 18:46:54 -0700",
         "readAt": "Sun, 26 Apr 2026 00:00:00 +0000",
@@ -134,31 +134,31 @@
     "username": "hnitch",
     "avatarHash": "bc623f7b849a",
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
-    "lastAttemptAt": "2026-10-20T16:55:57.798Z"
+    "lastAttemptAt": "2026-10-20T23:13:14.665Z"
   },
-  "updatedAt": "2026-10-20T12:07:38.273Z",
-  "lastSignalRenderAt": "2026-10-20T16:56:21.976Z",
+  "updatedAt": "2026-10-20T23:13:45.560Z",
+  "lastSignalRenderAt": "2026-10-20T23:13:45.560Z",
   "feedChecks": {
-    "checkedAt": "2026-10-20T20:16:23.909Z",
+    "checkedAt": "2026-10-20T23:13:45.769Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-10-20T20:16:23.909Z",
-        "lastSuccessAt": "2026-10-20T20:16:23.909Z"
+        "checkedAt": "2026-10-20T23:13:45.769Z",
+        "lastSuccessAt": "2026-10-20T23:13:45.769Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-10-20T20:16:23.909Z",
-        "lastSuccessAt": "2026-10-20T20:16:23.909Z"
+        "checkedAt": "2026-10-20T23:13:45.769Z",
+        "lastSuccessAt": "2026-10-20T23:13:45.769Z"
       },
       "appleMusic": {
         "status": "ok",
-        "checkedAt": "2026-10-20T20:16:23.909Z",
-        "lastSuccessAt": "2026-10-20T20:16:23.909Z"
+        "checkedAt": "2026-10-20T23:13:45.769Z",
+        "lastSuccessAt": "2026-10-20T23:13:45.769Z"
       },
       "instagram": {
         "status": "delayed",
-        "checkedAt": "2026-10-20T16:56:22.581Z",
+        "checkedAt": "2026-10-20T23:13:45.769Z",
         "lastSuccessAt": "2026-10-12T15:08:45.725Z"
       }
     }
