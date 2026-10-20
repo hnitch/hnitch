@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-20T01:41:35.882Z" format="relative" format-style="long" title="2026-10-20T01:41:35.882Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-20T01:41:36.033Z" format="relative" format-style="long" title="2026-10-20T01:41:36.033Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-20T06:37:59.887Z" format="relative" format-style="long" title="2026-10-20T06:37:59.887Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-20T06:38:00.180Z" format="relative" format-style="long" title="2026-10-20T06:38:00.180Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -32,7 +32,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/review/show/8781989677?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=2725ecf268" width="100%" alt="currently reading Cursed City (Harker Academy , #2)" /></a>
+<a href="https://www.goodreads.com/review/show/8781989677?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=32e9612192" width="100%" alt="currently reading Cursed City (Harker Academy , #2)" /></a>
 
 <a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=3d539dec54" width="100%" alt="Read: Murder at the Grand Alpine Hotel" /></a>
 
@@ -62,7 +62,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/national-anthem/1440811595?i=1440811824&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=4ddecb743a" width="100%" alt="last played National Anthem by Lana Del Rey" /></a>
+<a href="https://music.apple.com/us/album/airport-crush/6819429830?i=6819429831&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=b9cd0533a2" width="100%" alt="last played Airport Crush by salem ilese" /></a>
 <!-- APPLE-MUSIC-FEED:END -->
 
 <br/>
