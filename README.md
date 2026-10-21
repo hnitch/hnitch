@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-21T06:32:38.588Z" format="relative" format-style="long" title="2026-10-21T06:32:38.588Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-21T06:32:38.881Z" format="relative" format-style="long" title="2026-10-21T06:32:38.881Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-21T12:16:16.505Z" format="relative" format-style="long" title="2026-10-21T12:16:16.505Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-21T12:16:16.685Z" format="relative" format-style="long" title="2026-10-21T12:16:16.685Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -62,7 +62,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/us/album/moths/1886835064?i=1886835082&amp;uo=4"><img src="./assets/activity/apple-music.svg?v=4fb9088ae8" width="100%" alt="last played Moths by Conan Gray" /></a>
+<a href="https://music.apple.com/profile/hnitch"><img src="./assets/activity/apple-music.svg?v=b426df2f1b" width="100%" alt="Apple Music: awaiting a verified listening update" /></a>
 <!-- APPLE-MUSIC-FEED:END -->
 
 <br/>

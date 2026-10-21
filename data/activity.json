@@ -120,13 +120,13 @@
     ]
   },
   "appleMusic": {
-    "title": "Moths",
-    "artist": "Conan Gray",
-    "album": "Wishbone Deluxe",
-    "link": "https://music.apple.com/us/album/moths/1886835064?i=1886835082&uo=4",
+    "title": "waiting for a listening update",
+    "artist": "no verified playback available",
+    "album": "",
+    "link": "https://music.apple.com/profile/hnitch",
     "duration": 0,
-    "source": "apple-history",
-    "playbackState": "recent",
+    "source": "unavailable",
+    "playbackState": "unknown",
     "isNowPlaying": false,
     "observedAt": null
   },
@@ -136,24 +136,24 @@
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
     "lastAttemptAt": "2026-10-21T06:32:07.308Z"
   },
-  "updatedAt": "2026-10-21T06:32:38.588Z",
-  "lastSignalRenderAt": "2026-10-21T06:32:38.588Z",
+  "updatedAt": "2026-10-21T12:16:16.505Z",
+  "lastSignalRenderAt": "2026-10-21T12:16:16.505Z",
   "feedChecks": {
-    "checkedAt": "2026-10-21T06:32:38.881Z",
+    "checkedAt": "2026-10-21T12:16:16.685Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-10-21T06:32:38.881Z",
-        "lastSuccessAt": "2026-10-21T06:32:38.881Z"
+        "checkedAt": "2026-10-21T12:16:16.685Z",
+        "lastSuccessAt": "2026-10-21T12:16:16.685Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-10-21T06:32:38.881Z",
-        "lastSuccessAt": "2026-10-21T06:32:38.881Z"
+        "checkedAt": "2026-10-21T12:16:16.685Z",
+        "lastSuccessAt": "2026-10-21T12:16:16.685Z"
       },
       "appleMusic": {
-        "status": "ok",
-        "checkedAt": "2026-10-21T06:32:38.881Z",
+        "status": "delayed",
+        "checkedAt": "2026-10-21T12:16:16.685Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {
