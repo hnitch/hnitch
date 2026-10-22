@@ -5,5 +5,5 @@ import { reviewMoodEvidence } from "./review-moods.js";
 const activity = JSON.parse(await fs.readFile(new URL("../data/activity.json", import.meta.url), "utf8"));
 console.log(JSON.stringify(activity.goodreads.recent.map((book) => ({
   title: book.title,
-  moods: reviewMoodEvidence(book.review),
+  moods: reviewMoodEvidence(book.review, 3, { title: book.title }),
 })), null, 2));

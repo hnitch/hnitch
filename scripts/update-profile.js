@@ -593,7 +593,7 @@ export function renderBookTile(book, artwork, index) {
   const ratingText = stars(rating);
   const ratingLabel = rating ? `${rating} out of 5 stars` : "unrated";
   const ratingWidth = Math.max(78, 32 + ratingText.length * 16);
-  const moods = extractReviewMoods(book.review);
+  const moods = extractReviewMoods(book.review, 3, { title: book.title });
   let chipX = 164 + ratingWidth + 29;
   const chipColors = [
     { fill: "#332b4a", text: "#dccdff" },
@@ -903,7 +903,7 @@ function cardStack(items, prefix, alt, versionData = (item) => item) {
 function goodreadsMarkup(data) {
   const currentLink = data.current?.link || "https://www.goodreads.com/user/show/178629903";
   const currentVersion = data.current ? data.current : ["empty shelf", "...", "smaller italic status", "lowercase rn"];
-  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(currentVersion)}" width="100%" alt="${data.current ? `currently reading ${escapeDisplay(data.current.title)}` : "not reading anything , rn"}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read", (book) => [book, extractReviewMoods(book.review), "quarter-star ratings"])}`;
+  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(currentVersion)}" width="100%" alt="${data.current ? `currently reading ${escapeDisplay(data.current.title)}` : "not reading anything , rn"}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read", (book) => [book, extractReviewMoods(book.review, 3, { title: book.title }), "quarter-star ratings"])}`;
 }
 
 function letterboxdMarkup(data) {

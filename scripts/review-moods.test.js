@@ -3,6 +3,59 @@ import test from "node:test";
 import { extractReviewMoods, ratingMood, reviewMoodEvidence } from "./review-moods.js";
 import { renderBookCurrent, renderBookTile } from "./update-profile.js";
 
+test("negation scope survives causal words, conjunctions and punctuation across labels", () => {
+  const statements = ["i was bored", "i loved it", "it was creepy", "the pacing was incredible", "this book was ridiculously addictive"];
+  for (const statement of statements) {
+    for (const prefix of ["not because ", "not just because ", "never because ", "i never said, or thought, ", "i didn't stop because "]) {
+      assert.deepEqual(extractReviewMoods(`${prefix}${statement}.`), [], `${prefix}${statement}`);
+    }
+  }
+});
+
+test("contrast restores direct observations without accepting the denied reason", () => {
+  for (const denied of ["i was bored", "it was creepy", "i loved it"]) {
+    assert.deepEqual(extractReviewMoods(`not because ${denied}, but the book had beautiful prose.`), ["beautiful prose"]);
+  }
+  assert.deepEqual(extractReviewMoods("i did not stay away for long before i picked it back up because this book was ridiculously addictive."), ["addictive read"]);
+  assert.deepEqual(extractReviewMoods("i did not stay away because this book was ridiculously addictive."), []);
+});
+
+test("temporary, uncertain and attributed opinions are not flattened into blanket claims", () => {
+  for (const phrase of [
+    "at first i was bored", "i was bored only when the lectures started", "i was bored for a while",
+    "i was bored until the plot started", "maybe i was bored", "she said i was bored",
+    "it felt as though i was bored", "i was bored in places", "the first half had beautiful prose",
+    "i was bored, this was not how i felt", "apparently this book was addictive",
+  ]) assert.deepEqual(extractReviewMoods(phrase), [], phrase);
+});
+
+test("current-title context works for arbitrary books, not a title allowlist", () => {
+  for (const title of ["Example Voyage", "Another Story", "An Unnamed Garden (Series, #2)"]) {
+    const name = title.replace(/\s*\(.*$/, "");
+    const review = `the first book was creepy. it was unsettling. ${name} improved on book one. the pacing was incredible. this book was ridiculously addictive. it was emotionally exhausting.`;
+    assert.deepEqual(extractReviewMoods(review, 3, { title }), ["addictive read", "excellent pacing", "emotional read"]);
+  }
+});
+
+test("new observations also reject expectations, quotations and negation", () => {
+  for (const statement of ["the pacing was incredible", "this book was ridiculously addictive", "it was emotionally exhausting"]) {
+    assert.equal(reviewMoodEvidence(statement).length, 1);
+    for (const wrapper of [s => `i hoped ${s}`, s => `i never thought ${s}`, s => `someone said ${s}`, s => `if ${s}`, s => `"${s}"`]) {
+      assert.deepEqual(extractReviewMoods(wrapper(statement)), [], wrapper(statement));
+    }
+  }
+});
+
+test("emotional breaks are not boredom and every replacement retains its evidence", () => {
+  const review = "the pacing was incredible. we need to talk about how emotionally exhausting this book was because there were moments where i had to put it down. not because i was bored , but because i could feel things going horribly wrong. except that did not last before i picked it right back up because this book was so ridiculously addictive.";
+  const moods = reviewMoodEvidence(review);
+  assert.deepEqual(moods.map(m => m.label), ["addictive read", "excellent pacing", "emotional read"]);
+  for (const mood of moods) assert.ok(review.includes(mood.evidence));
+  const svg = renderBookTile({ title: "Any Book", review, rating: 5 }, null, 0);
+  assert.doesNotMatch(svg, /i was bored/);
+  for (const mood of moods) assert.ok(svg.includes(mood.label));
+});
+
 test("pulls short evidence-backed moods from a mixed review", () => {
   const review = "i BREEZED through it. the atmosphere was gloomy , but i wanted more explanation. horror nonstop.";
   const moods = extractReviewMoods(review);

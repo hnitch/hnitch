@@ -48,6 +48,9 @@ const RULES = [
   { label: "shaky finale", aspect: "ending", tone: "negative", priority: 90, pattern: /\b(?:towards? the end[^.?!;]{0,150}(?:very |so )?shaky|final stretch felt so jarring)\b/iu },
   { label: "thin worldbuilding", aspect: "worldbuilding", tone: "negative", priority: 90, pattern: /\bunderdeveloped worldbuilding\b/iu },
   { label: "beautiful prose", aspect: "writing", tone: "positive", priority: 85, pattern: /\bbeautiful prose\b/iu },
+  { label: "addictive read", aspect: "engagement", tone: "positive", priority: 100, pattern: /\b(?:this book|the book|the story|it) (?:was|is|felt) (?:so |really |ridiculously |incredibly |very )*addictive\b/iu },
+  { label: "excellent pacing", aspect: "pacing", tone: "positive", priority: 99, pattern: /\b(?:the )?pacing (?:was|is|felt) (?:so |really |absolutely )*(?:incredible|excellent|amazing|fantastic)\b/iu },
+  { label: "emotional read", aspect: "emotion", tone: "neutral", priority: 90, pattern: /\b(?:emotionally (?:exhausting|intense|overwhelming)|(?:this book|the book|it) (?:was|is) (?:so |really )*emotional)\b/iu },
   { label: "choppy writing", aspect: "writing", tone: "negative", priority: 95, pattern: /\b(?:choppy (?:sentences|writing)|writing (?:was|felt) choppy)\b/iu },
   { label: "strong chemistry", aspect: "relationships", tone: "positive", priority: 85, pattern: /\b(?:great|strong|amazing|incredible) chemistry\b/iu },
   { label: "no chemistry", aspect: "relationships", tone: "negative", priority: 85, pattern: /\b(?:no|zero) chemistry\b/iu },
@@ -69,15 +72,20 @@ function cleanReview(review) {
 
 // Preserve a whole clause as evidence, and re-evaluate each occurrence. A
 // rejected early mention must not hide a later, clearly stated reaction.
-function clauses(source) {
+function clauses(source, title = "") {
+  const currentTitle = cleanReview(title).replace(/\s*\([^)]*\)\s*$/u, "").toLowerCase();
   let externalSubject = false;
   return source.split(/(?<=[.!?;])\s+|\n+|\s+\b(?:but|however|instead|yet)\b\s*[, :]*/iu)
     .map((text) => text.trim()).filter(Boolean).map((text) => {
-      if (/\b(?:movie|film|trailer|teaser|reels|adaptation|sequel|next book|previous book|other books?|last book|cover|edition|artwork|blurb)\b/iu.test(text)) externalSubject = true;
+      if (currentTitle.length > 2 && text.toLowerCase().includes(currentTitle)) externalSubject = false;
+      else if (EXTERNAL_SUBJECT.test(text)) externalSubject = true;
       else if (/\b(?:this book|the book|this novel|the novel|the story|while reading|i (?:read|went into|picked up))\b/iu.test(text)) externalSubject = false;
       return { text, externalSubject };
     });
 }
+
+const EXTERNAL_SUBJECT = /\b(?:movie|film|trailer|teaser|reels|adaptation|sequel|next book|previous book|other books?|last book|first book|book one|book three|cover|edition|artwork|blurb)\b/iu;
+const NEGATION = /\b(?:not|never|no|nothing|neither|cannot|can't|couldn't|didn't|wasn't|isn't|weren't|don't|doesn't|did not|was not|is not|hardly|barely)\b/iu;
 
 function supportedContext(clause, match) {
   const before = clause.slice(0, match.index);
@@ -85,24 +93,37 @@ function supportedContext(clause, match) {
   // Skip quoted opinions and references to adaptations, other books, packaging,
   // and general preferences. Conservative rejection is preferable to a guess.
   if (/["“][^"”]*["”]/u.test(clause) || /\?\s*$/u.test(clause)
-    || /\b(?:movie|film|trailer|teaser|reels|adaptation|sequel|next book|previous book|other books?|last book|cover|edition|artwork|blurb)\b/iu.test(clause)
+    || EXTERNAL_SUBJECT.test(clause)
     || /\b(?:people|everyone|friends|readers|reviews|reviewers)\s+(?:said|say|thought|found|called)\b/iu.test(clause)
     || /\b(?:i love (?:books|stories)|usually|normally)\b/iu.test(before)) return false;
   // Expectations and counterfactuals do not describe the reading experience.
   if (/\b(?:expect(?:ed|ing)?|hop(?:e|ed|ing)|wish(?:ed)?|wanted|promised|supposed|would|could|might|if)\b/iu.test(before)) return false;
   // Negation belongs to the matched phrase only when explicitly encoded in its
   // rule (e.g. "not for me", "no chemistry", "twists I didn't see coming").
-  const lead = before.split(/[,;:]|\b(?:because|and)\b/iu).at(-1);
-  if (/\b(?:not|never|no|nothing|neither|cannot|can't|couldn't|didn't|wasn't|isn't|weren't|don't|doesn't|did not|was not|is not)\b/iu.test(lead)) return false;
+  // Keep the complete prefix: conjunctions and commas do not end negation.
+  // "not because I was bored" and "never said, or thought, I loved it"
+  // must not turn into affirmative claims. False omissions are safer than
+  // reversing the review; contrast boundaries are handled by clauses().
+  const explicitCause = /\bbecause\s*$/iu.test(before)
+    && /^(?:this book|the book|the story)\b/iu.test(match[0])
+    && /\b(?:before|then|so|and)\s+i\b/iu.test(before)
+    && !NEGATION.test(before.split(/\b(?:before|then|so|and)\s+i\b/iu).at(-1))
+    && !/\b(?:not|never)(?:\s+\w+){0,3}\s+because\s*$/iu.test(before);
+  if (NEGATION.test(before) && !explicitCause) return false;
+  // Reported speech, uncertainty and comparisons are not direct reactions.
+  if (/\b(?:said|says|say|claimed|claims|told|apparently|supposedly|maybe|perhaps|whether|as if|as though|rather than|instead of)\b/iu.test(before)) return false;
+  // Do not flatten a temporary or qualified reaction into a whole-book claim.
+  if (/\b(?:at first|initially|for a (?:moment|while)|in places|sometimes|only when|only because|until|used to)\b/iu.test(clause)
+    || /\b(?:first|second|last) half\b/iu.test(clause) && !/\b(?:first|second|middle|later|start)\b/iu.test(match[0])) return false;
   if (/^\s*(?:[,:]\s*)?(?:it|this|the book)?\s*(?:was |is )?(?:not|never)\b/iu.test(after)) return false;
   return true;
 }
 
-export function reviewMoodEvidence(review, limit = 3) {
+export function reviewMoodEvidence(review, limit = 3, { title = "" } = {}) {
   const count = Number.isFinite(limit) ? Math.max(0, Math.min(3, Math.floor(limit))) : 3;
   if (!count) return [];
   const source = cleanReview(review);
-  const segments = clauses(source);
+  const segments = clauses(source, title);
   const candidates = [];
   for (const [order, rule] of RULES.entries()) {
     for (const { text: clause, externalSubject } of segments) {
@@ -140,8 +161,8 @@ export function reviewMoodEvidence(review, limit = 3) {
     .map(({ label, aspect, tone, evidence, matched }) => ({ label, aspect, tone, evidence, matched }));
 }
 
-export function extractReviewMoods(review, limit = 3) {
-  return reviewMoodEvidence(review, limit).map(({ label }) => label);
+export function extractReviewMoods(review, limit = 3, context = {}) {
+  return reviewMoodEvidence(review, limit, context).map(({ label }) => label);
 }
 
 export function ratingMood(rating) {
