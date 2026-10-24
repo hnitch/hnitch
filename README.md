@@ -3,7 +3,7 @@
   <br/><br/>
   <img src="https://hnitch-discord-card.haarshaan.workers.dev/visitors.svg?v=2" height="28" alt="visitors" />
   <!-- READING-BADGE:START -->
-  <img src="./assets/activity/reading-status.svg?v=128dd2e861" height="28" alt="between books , allegedly" />
+  <img src="./assets/activity/reading-status.svg?v=7184442eaa" height="28" alt="currently reading , probably" />
   <!-- READING-BADGE:END -->
 </div>
 
@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-23T17:07:26.998Z" format="relative" format-style="long" title="2026-10-23T17:07:26.998Z">8 hours ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-24T01:39:07.428Z" format="relative" format-style="long" title="2026-10-24T01:39:07.428Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-24T06:27:40.368Z" format="relative" format-style="long" title="2026-10-24T06:27:40.368Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-24T06:27:40.503Z" format="relative" format-style="long" title="2026-10-24T06:27:40.503Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -32,7 +32,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=94401c7506" width="100%" alt="not reading anything , rn" /></a>
+<a href="https://www.goodreads.com/review/show/8580097783?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=a16b7b5203" width="100%" alt="currently reading The Exquisite Torment of Loving Your Enemy (Dearly Beloathed , #2)" /></a>
 
 <a href="https://www.goodreads.com/review/show/8781989677?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=c6f97f85cf" width="100%" alt="Read: Cursed City (Harker Academy , #2)" /></a>
 
@@ -50,13 +50,13 @@
 
 <br/>
 
-<a href="https://letterboxd.com/hnitch/film/carrie-2026/"><img src="./assets/activity/letterboxd-1.svg?v=05fc760f0b" width="100%" alt="Watched: Carrie" /></a>
+<a href="https://letterboxd.com/hnitch/film/clayface/"><img src="./assets/activity/letterboxd-1.svg?v=4a568609b8" width="100%" alt="Watched: Clayface" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/other-mommy/"><img src="./assets/activity/letterboxd-2.svg?v=d99f9e4443" width="100%" alt="Watched: Other Mommy" /></a>
+<a href="https://letterboxd.com/hnitch/film/carrie-2026/"><img src="./assets/activity/letterboxd-2.svg?v=05fc760f0b" width="100%" alt="Watched: Carrie" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/verity-2026/"><img src="./assets/activity/letterboxd-3.svg?v=ec1a1e77b1" width="100%" alt="Watched: Verity" /></a>
+<a href="https://letterboxd.com/hnitch/film/other-mommy/"><img src="./assets/activity/letterboxd-3.svg?v=d99f9e4443" width="100%" alt="Watched: Other Mommy" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/heart-of-the-beast-2026/"><img src="./assets/activity/letterboxd-4.svg?v=43db026055" width="100%" alt="Watched: Heart of the Beast" /></a>
+<a href="https://letterboxd.com/hnitch/film/verity-2026/"><img src="./assets/activity/letterboxd-4.svg?v=ec1a1e77b1" width="100%" alt="Watched: Verity" /></a>
 <!-- LETTERBOXD-FEED:END -->
 
 <br/>
