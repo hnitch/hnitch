@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-24T06:27:40.368Z" format="relative" format-style="long" title="2026-10-24T06:27:40.368Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-24T06:27:40.503Z" format="relative" format-style="long" title="2026-10-24T06:27:40.503Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-24T11:08:18.017Z" format="relative" format-style="long" title="2026-10-24T11:08:18.017Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-24T11:08:18.757Z" format="relative" format-style="long" title="2026-10-24T11:08:18.757Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -32,7 +32,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/review/show/8580097783?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=a16b7b5203" width="100%" alt="currently reading The Exquisite Torment of Loving Your Enemy (Dearly Beloathed , #2)" /></a>
+<a href="https://www.goodreads.com/review/show/8580097783?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=049953da36" width="100%" alt="currently reading The Exquisite Torment of Loving Your Enemy (Dearly Beloathed , #2)" /></a>
 
 <a href="https://www.goodreads.com/review/show/8781989677?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=c6f97f85cf" width="100%" alt="Read: Cursed City (Harker Academy , #2)" /></a>
 
