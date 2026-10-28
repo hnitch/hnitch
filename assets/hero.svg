@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="300" viewBox="0 0 880 300" role="img" aria-labelledby="title desc" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+  <title id="title">hii , i'm hn</title>
+  <desc id="desc">i build things for screens. off-screen , there’s usually a book involved and music playing somewhere.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1b2531"/><stop offset=".52" stop-color="#294054"/><stop offset="1" stop-color="#364d60"/>
+    </linearGradient>
+    <linearGradient id="stroke" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#a7d1f0"/><stop offset=".52" stop-color="#6ca9d4"/><stop offset="1" stop-color="#9ddce9"/>
+    </linearGradient>
+    <radialGradient id="glow"><stop stop-color="#89c9f8" stop-opacity=".27"/><stop offset="1" stop-color="#89c9f8" stop-opacity="0"/></radialGradient>
+    <style>
+      .sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+      .spark{animation:pulse 2.8s ease-in-out infinite;transform-origin:center}
+      @keyframes pulse{50%{opacity:.35}}
+    </style>
+  </defs>
+  <rect x="1" y="1" width="878" height="298" rx="28" fill="url(#bg)" stroke="url(#stroke)" stroke-opacity=".7" stroke-width="2"/>
+  <circle cx="86" cy="40" r="125" fill="url(#glow)"/>
+  <circle cx="836" cy="278" r="160" fill="#8ad6ee" opacity=".1"/>
+  <path d="M0 251c151-52 252 31 400-8 143-38 269-78 480-26v82H0z" fill="#fff" opacity=".025"/>
+
+  <g class="sans">
+    <rect x="52" y="42" width="194" height="28" rx="14" fill="#d3e3f1" opacity=".1" stroke="#b5cde3" stroke-opacity=".2"/>
+    <circle cx="70" cy="56" r="4" fill="#74cba4"/>
+    <text x="82" y="61" fill="#d0dfec" font-size="11" font-weight="600" letter-spacing="1.3">HN / ONLINE-ISH</text>
+    <!-- HERO-HEADING:START -->
+    <g role="img" aria-label="hii , i'm hn" data-typeface="HelveticaNeue-MediumItalic" transform="translate(54 139) scale(1 -1)" fill="#f7f9fc"><title>hii , i'm hn</title><path d="M7.75 40.70L14.25 40.70L11.06 25.31L11.17 25.31Q12.83 27.53 15.45 28.90Q18.07 30.27 20.86 30.27Q25.31 30.27 27.39 28.16Q29.47 26.05 29.47 22.46Q29.47 21.66 29.41 20.63Q29.36 19.61 29.18 18.81L25.25 0.00L18.75 0.00L22.52 18.18Q22.69 18.92 22.83 19.61Q22.97 20.29 22.97 20.92Q22.97 21.26 22.94 21.97Q22.91 22.69 22.52 23.40Q22.12 24.11 21.18 24.62Q20.23 25.14 18.47 25.14Q16.53 25.14 15.02 24.31Q13.51 23.48 12.31 22.29Q11.17 21.15 10.35 19.47Q9.52 17.78 9.12 15.96L5.81 0.00L-0.68 0.00ZM39.87 40.70L46.31 40.70L45.06 34.54L38.62 34.54ZM37.53 29.47L44.03 29.47L37.93 0.00L31.43 0.00ZM53.01 40.70L59.45 40.70L58.19 34.54L51.75 34.54ZM50.67 29.47L57.17 29.47L51.07 0.00L44.57 0.00ZM75.35 7.70L83.33 7.70Q82.64 5.19 82.19 2.45Q81.73 -0.29 80.76 -2.62Q79.79 -4.96 77.97 -6.56Q76.15 -8.15 72.78 -8.32L73.41 -5.02Q75.58 -4.73 76.57 -3.36Q77.57 -2.00 77.97 0.00L73.64 0.00ZM111.88 40.70L118.32 40.70L117.07 34.54L110.63 34.54ZM109.55 29.47L116.04 29.47L109.94 0.00L103.45 0.00ZM124.56 40.70L130.38 40.70L130.38 24.62L124.56 24.62ZM138.27 29.47L144.43 29.47L143.57 25.31L143.69 25.19Q145.51 27.59 148.10 28.93Q150.70 30.27 153.77 30.27Q156.51 30.27 158.56 29.10Q160.61 27.93 161.24 25.02Q163.24 27.30 165.69 28.79Q168.14 30.27 171.22 30.27Q175.49 30.27 177.54 28.16Q179.59 26.05 179.59 22.46Q179.59 21.66 179.45 20.63Q179.31 19.61 179.14 18.81L175.38 0.00L168.88 0.00L172.53 17.44Q172.64 17.96 172.84 18.90Q173.04 19.84 173.10 20.92Q173.10 21.66 172.95 22.43Q172.81 23.20 172.36 23.80Q171.90 24.40 171.10 24.77Q170.30 25.14 169.05 25.14Q167.17 25.14 165.72 24.37Q164.26 23.60 163.21 22.43Q162.15 21.26 161.50 19.86Q160.84 18.47 160.61 17.21L157.02 0.00L150.53 0.00L153.89 16.19Q154.12 17.33 154.43 18.75Q154.74 20.18 154.74 21.49Q154.74 22.97 153.97 24.05Q153.20 25.14 151.15 25.14Q149.27 25.14 147.93 24.45Q146.59 23.77 145.62 22.80Q144.65 21.83 143.63 20.32Q142.60 18.81 142.20 17.04L138.67 0.00L132.17 0.00ZM205.58 40.70L212.08 40.70L208.89 25.31L209.00 25.31Q210.66 27.53 213.28 28.90Q215.90 30.27 218.69 30.27Q223.14 30.27 225.22 28.16Q227.30 26.05 227.30 22.46Q227.30 21.66 227.24 20.63Q227.19 19.61 227.02 18.81L223.08 0.00L216.59 0.00L220.35 18.18Q220.52 18.92 220.66 19.61Q220.80 20.29 220.80 20.92Q220.80 21.26 220.77 21.97Q220.75 22.69 220.35 23.40Q219.95 24.11 219.01 24.62Q218.07 25.14 216.30 25.14Q214.36 25.14 212.85 24.31Q211.34 23.48 210.14 22.29Q209.00 21.15 208.18 19.47Q207.35 17.78 206.95 15.96L203.65 0.00L197.15 0.00ZM235.37 29.47L241.46 29.47L240.55 25.19L240.67 25.08Q242.43 27.53 245.08 28.90Q247.73 30.27 250.81 30.27Q255.26 30.27 257.34 28.16Q259.42 26.05 259.42 22.46Q259.42 21.66 259.36 20.63Q259.31 19.61 259.13 18.81L255.20 0.00L248.70 0.00L252.47 18.18Q252.64 18.92 252.78 19.61Q252.92 20.29 252.92 20.92Q252.92 21.26 252.89 21.97Q252.86 22.69 252.47 23.40Q252.07 24.11 251.13 24.62Q250.19 25.14 248.42 25.14Q246.48 25.14 244.97 24.31Q243.46 23.48 242.26 22.29Q241.12 21.15 240.30 19.47Q239.47 17.78 239.07 15.96L235.76 0.00L229.27 0.00Z"/></g>
+    <!-- HERO-HEADING:END -->
+    <text x="54" y="180" fill="#d5e0eb" font-size="18" font-weight="500">i build things for screens.</text>
+    <text x="54" y="207" fill="#d5e0eb" font-size="18" font-weight="500">off-screen , there’s usually a book involved</text>
+    <text x="54" y="234" fill="#d5e0eb" font-size="18" font-weight="500">and music playing somewhere.</text>
+  </g>
+
+  <g>
+    <g transform="translate(637 54) rotate(-5)"><g>
+      <rect x="4" y="7" width="112" height="156" rx="15" fill="#05030a" opacity=".2"/>
+      <rect width="112" height="156" rx="15" fill="#30445d" stroke="#acd5f0" stroke-opacity=".72"/>
+      <rect x="17" y="18" width="78" height="96" rx="8" fill="#bad3e8" opacity=".15"/>
+      <path d="M36 44h42M36 57h31M36 70h37" stroke="#d0e5f4" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+      <text x="18" y="137" fill="#f7f9fc" class="sans" font-size="12.5" font-weight="700">one more?</text>
+    </g></g>
+    <g transform="translate(746 100) rotate(7)"><g>
+      <rect x="4" y="7" width="92" height="126" rx="15" fill="#05030a" opacity=".2"/>
+      <rect width="92" height="126" rx="15" fill="#214352" stroke="#8bd4e7" stroke-opacity=".72"/>
+      <circle cx="46" cy="48" r="25" fill="#9ce3ed" opacity=".19"/>
+      <path d="M39 35l23 13-23 13z" fill="#a4e5ee"/>
+      <path d="M19 91h54M26 103h40" stroke="#cbeaf3" stroke-width="4" stroke-linecap="round" opacity=".6"/>
+    </g></g>
+    <g transform="translate(540 188) rotate(5)">
+      <rect x="4" y="7" width="204" height="62" rx="16" fill="#05030a" opacity=".2"/>
+      <rect width="204" height="62" rx="16" fill="#324252" stroke="#9bcbe8" stroke-opacity=".72"/>
+      <g fill="#aedcf4" transform="translate(20 17)"><rect width="6" height="27" rx="3"/><rect x="12" y="7" width="6" height="20" rx="3"/><rect x="24" y="2" width="6" height="25" rx="3"/><rect x="36" y="10" width="6" height="17" rx="3"/></g>
+      <text x="83" y="29" fill="#f7f9fc" class="sans" font-size="12.5" font-weight="700">on repeat</text>
+      <text x="83" y="46" fill="#c9d6e2" class="sans" font-size="11" font-weight="500">probably too loud</text>
+    </g>
+  </g>
+  <g class="spark" fill="#d6e6f3"><circle cx="603" cy="50" r="3"/><circle cx="833" cy="64" r="2"/><circle cx="770" cy="251" r="2.5"/></g>
+</svg>

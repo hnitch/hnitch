@@ -1,0 +1,1167 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+import { createHash } from "node:crypto";
+import { pathToFileURL } from "node:url";
+import { parseStringPromise } from "xml2js";
+import { ratingMood } from "./rating-colors.js";
+import { progressForCurrentBook, applyBookEditions } from "./reading-progress.js";
+
+import { bookNotes, applyBookNotes } from "./book-notes.js";
+
+const ROOT = process.cwd();
+const OUTPUT_DIR = path.join(ROOT, "assets", "activity");
+const DATA_FILE = path.join(ROOT, "data", "activity.json");
+const READING_PROGRESS_FILE = path.join(ROOT, "data", "reading-progress.json");
+const BOOK_EDITIONS_FILE = path.join(ROOT, "data", "book-editions.json");
+const README_FILE = path.join(ROOT, "README.md");
+const DISCORD_USER_ID = "690729789702537336";
+const MUSIC_PROFILE_URL = "https://music.apple.com/profile/hnitch";
+const LIVE_DISCORD_CARD_URL = "https://hnitch-discord-card.haarshaan.workers.dev/discord.svg?v=3.11.0";
+const RENDER_VERSION = "3.11.0";
+const INSTAGRAM_REFRESH_MS = 24 * 60 * 60_000;
+const INSTAGRAM_RETRY_MS = 6 * 60 * 60_000;
+const SIGNAL_FRESH_MS = 15 * 60_000;
+
+const SOURCES = {
+  goodreads: {
+    current: "https://www.goodreads.com/review/list_rss/178629903?shelf=currently-reading",
+    read: "https://www.goodreads.com/review/list_rss/178629903?shelf=read",
+    progress: "https://www.goodreads.com/user_status/list/178629903?format=rss",
+  },
+  letterboxd: "https://letterboxd.com/hnitch/rss/",
+};
+
+const theme = {
+  bg: "#151120",
+  panel: "#211832",
+  panelSoft: "#282039",
+  line: "#403454",
+  text: "#fffaf5",
+  muted: "#bdb1ca",
+  lavender: "#b9a4ff",
+  mint: "#8edfd4",
+  yellow: "#ffe58c",
+  coral: "#ff9f9a",
+};
+
+const appleMusicPath = "M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 00-1.877-.726 10.496 10.496 0 00-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4-1.336.53-2.3 1.452-2.865 2.78-.192.448-.292.925-.363 1.408-.056.392-.088.785-.1 1.18 0 .032-.007.062-.01.093v12.223c.01.14.017.283.027.424.05.815.154 1.624.497 2.373.65 1.42 1.738 2.353 3.234 2.801.42.127.856.187 1.293.228.555.053 1.11.06 1.667.06h11.03a12.5 12.5 0 001.57-.1c.822-.106 1.596-.35 2.295-.81a5.046 5.046 0 001.88-2.207c.186-.42.293-.87.37-1.324.113-.675.138-1.358.137-2.04-.002-3.8 0-7.595-.003-11.393zm-6.423 3.99v5.712c0 .417-.058.827-.244 1.206-.29.59-.76.962-1.388 1.14-.35.1-.706.157-1.07.173-.95.045-1.773-.6-1.943-1.536a1.88 1.88 0 011.038-2.022c.323-.16.67-.25 1.018-.324.378-.082.758-.153 1.134-.24.274-.063.457-.23.51-.516a.904.904 0 00.02-.193c0-1.815 0-3.63-.002-5.443a.725.725 0 00-.026-.185c-.04-.15-.15-.243-.304-.234-.16.01-.318.035-.475.066-.76.15-1.52.303-2.28.456l-2.325.47-1.374.278c-.016.003-.032.01-.048.013-.277.077-.377.203-.39.49-.002.042 0 .086 0 .13-.002 2.602 0 5.204-.003 7.805 0 .42-.047.836-.215 1.227-.278.64-.77 1.04-1.434 1.233-.35.1-.71.16-1.075.172-.96.036-1.755-.6-1.92-1.544-.14-.812.23-1.685 1.154-2.075.357-.15.73-.232 1.108-.31.287-.06.575-.116.86-.177.383-.083.583-.323.6-.714v-.15c0-2.96 0-5.922.002-8.882 0-.123.013-.25.042-.37.07-.285.273-.448.546-.518.255-.066.515-.112.774-.165.733-.15 1.466-.296 2.2-.444l2.27-.46c.67-.134 1.34-.27 2.01-.403.22-.043.442-.088.663-.106.31-.025.523.17.554.482.008.073.012.148.012.223.002 1.91.002 3.822 0 5.732z";
+
+function decode(value = "") {
+  return String(value)
+    .replaceAll("&amp;", "&")
+    .replaceAll("&#039;", "'")
+    .replace(/&#(?:x([0-9a-f]+)|([0-9]+));/gi, (entity, hex, decimal) => {
+      const codePoint = Number.parseInt(hex || decimal, hex ? 16 : 10);
+      return codePoint <= 0x10ffff && !(codePoint >= 0xd800 && codePoint <= 0xdfff)
+        ? String.fromCodePoint(codePoint)
+        : entity;
+    })
+    .replaceAll("&quot;", '"')
+    .replaceAll("&lt;", "<")
+    .replaceAll("&gt;", ">");
+}
+
+function escapeXml(value = "") {
+  return decode(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&apos;");
+}
+
+function displayText(value = "") {
+  return decode(value).replace(/\s*,\s*/g, " , ");
+}
+
+function escapeDisplay(value = "") {
+  return escapeXml(displayText(value));
+}
+
+function cleanText(value = "") {
+  return decode(value).replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function delay(milliseconds) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
+
+function cacheBusted(url) {
+  const target = new URL(url);
+  target.searchParams.set("refresh", String(Math.floor(Date.now() / 60_000)));
+  return target.toString();
+}
+
+async function fetchResponse(url, accept, { bypassCache = false, headers = {} } = {}) {
+  let lastError;
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    try {
+      const response = await fetch(url, {
+        headers: {
+          Accept: accept,
+          "Cache-Control": bypassCache ? "no-cache" : "max-age=0",
+          Pragma: bypassCache ? "no-cache" : "",
+          "User-Agent": "hnitch-profile/3.4 (+https://github.com/hnitch/hnitch)",
+          ...headers,
+        },
+        cache: "no-store",
+        signal: AbortSignal.timeout(20_000),
+      });
+      if (response.ok) return response;
+      const retryable = response.status === 408 || response.status === 429 || response.status >= 500;
+      lastError = new Error(`${url} returned ${response.status}`);
+      if (!retryable || attempt === 2) throw lastError;
+      const retryHeader = response.headers.get("retry-after");
+      const retrySeconds = retryHeader === null ? Number.NaN : Number(retryHeader);
+      const retryDate = retryHeader && !Number.isFinite(retrySeconds) ? Date.parse(retryHeader) : Number.NaN;
+      const retryDelay = Number.isFinite(retrySeconds)
+        ? retrySeconds * 1_000
+        : Number.isFinite(retryDate)
+          ? retryDate - Date.now()
+          : 500 * (2 ** attempt);
+      await delay(Math.max(250, Math.min(retryDelay, 5_000)));
+    } catch (error) {
+      lastError = error;
+      if (attempt === 2 || / returned 4\d\d$/.test(error.message)) throw error;
+      await delay(500 * (2 ** attempt));
+    }
+  }
+  throw lastError;
+}
+
+async function fetchText(url, options) {
+  return (await fetchResponse(url, "application/rss+xml, application/xml, text/xml, text/html, image/svg+xml, application/json", options)).text();
+}
+
+async function fetchDataUri(url) {
+  if (!url) return null;
+  if (url.startsWith("data:")) return url;
+  try {
+    const response = await fetchResponse(url, "image/avif,image/webp,image/png,image/jpeg,image/*");
+    const type = response.headers.get("content-type")?.split(";")[0] || "image/jpeg";
+    return `data:${type};base64,${Buffer.from(await response.arrayBuffer()).toString("base64")}`;
+  } catch (error) {
+    console.warn(`warning: artwork unavailable (${error.message})`);
+    return null;
+  }
+}
+
+function first(value) {
+  return Array.isArray(value) ? value[0] : value;
+}
+
+function normaliseRating(value) {
+  const rating = Number(first(value));
+  return Number.isFinite(rating) && rating >= 0 && rating <= 5 ? rating : 0;
+}
+
+export function normaliseBook(item = {}) {
+  const book = first(item.book) || {};
+  return {
+    bookId: decode(first(item.book_id)),
+    title: decode(first(item.title)),
+    author: decode(first(item.author_name)),
+    link: decode(first(item.link)),
+    // Personal ratings now include quarter stars. Keep the feed's precision.
+    rating: normaliseRating(item.user_rating),
+    cover: decode(first(item.book_large_image_url) || first(item.book_medium_image_url)),
+    pages: Number(first(item.num_pages) || first(book.num_pages)) || null,
+    averageRating: Number(first(item.average_rating) || first(book.average_rating)) || null,
+    published: decode(first(item.book_published)),
+    dateAdded: decode(first(item.user_date_added) || first(item.pubDate)),
+    readAt: decode(first(item.user_read_at)),
+    review: cleanText(first(item.user_review)),
+  };
+}
+
+function normaliseMatchText(value = "") {
+  return decode(value)
+    .normalize("NFKD")
+    .toLowerCase()
+    .replace(/\.{2,}$/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function parseProgressTitle(value = "") {
+  const title = cleanText(value);
+  const page = title.match(/\bis on page\s+(\d+)\s+of\s+(\d+)\s+of\s+(.+)$/i);
+  if (page) {
+    return {
+      page: Number(page[1]),
+      total: Number(page[2]),
+      percent: Math.round((Number(page[1]) / Number(page[2])) * 100),
+      label: page[3],
+    };
+  }
+  const percent = title.match(/\bis\s+(\d+(?:\.\d+)?)%\s+done with\s+(.+)$/i);
+  if (!percent) return null;
+  return {
+    page: null,
+    total: null,
+    percent: Math.round(Number(percent[1])),
+    label: percent[2],
+  };
+}
+
+async function findCurrentProgress(statusFeed, current) {
+  if (!current) return null;
+  const currentTitle = normaliseMatchText(current.title);
+  const startedAt = Date.parse(current.dateAdded) || 0;
+  const items = statusFeed?.rss?.channel?.[0]?.item ?? [];
+  for (const item of items) {
+    const parsed = parseProgressTitle(first(item.title));
+    const publishedAt = Date.parse(first(item.pubDate)) || 0;
+    if (!parsed || publishedAt < startedAt) continue;
+    const label = normaliseMatchText(parsed.label);
+    if (label.length < 12 || !currentTitle.startsWith(label)) continue;
+    const link = decode(first(item.link));
+    let detail;
+    try {
+      detail = await fetchText(link);
+    } catch (error) {
+      console.warn(`warning: Goodreads progress detail unavailable (${error.message})`);
+      continue;
+    }
+    const bookId = detail.match(/href=["'](?:https:\/\/www\.goodreads\.com)?\/book\/show\/(\d+)/i)?.[1];
+    if (bookId !== current.bookId) continue;
+    return { ...parsed, updatedAt: new Date(publishedAt).toISOString(), link };
+  }
+  return null;
+}
+
+async function readGoodreads() {
+  const [currentXml, readXml, progressXml] = await Promise.all([
+    fetchText(SOURCES.goodreads.current),
+    fetchText(SOURCES.goodreads.read),
+    fetchText(SOURCES.goodreads.progress),
+  ]);
+  const [currentFeed, readFeed, progressFeed] = await Promise.all([
+    parseStringPromise(currentXml),
+    parseStringPromise(readXml),
+    parseStringPromise(progressXml),
+  ]);
+  for (const feed of [currentFeed, readFeed, progressFeed]) requireRssChannel(feed);
+  const currentItems = currentFeed?.rss?.channel?.[0]?.item ?? [];
+  const readItems = readFeed?.rss?.channel?.[0]?.item ?? [];
+  const current = currentItems[0] ? normaliseBook(currentItems[0]) : null;
+  if (current) current.progress = await findCurrentProgress(progressFeed, current);
+  return {
+    current,
+    recent: readItems.slice(0, 4).map(normaliseBook),
+  };
+}
+
+function normaliseFilm(item = {}) {
+  const description = decode(first(item.description));
+  const poster = description.match(/<img[^>]+src="([^"]+)"/)?.[1] || "";
+  const paragraphs = [...description.matchAll(/<p>([\s\S]*?)<\/p>/gi)]
+    .map((match) => cleanText(match[1]))
+    .filter((paragraph) => paragraph && !paragraph.startsWith("Watched on"));
+  return {
+    title: decode(first(item["letterboxd:filmTitle"]) || first(item.title)),
+    year: decode(first(item["letterboxd:filmYear"])),
+    rating: Number(first(item["letterboxd:memberRating"])) || 0,
+    liked: first(item["letterboxd:memberLike"]) === "Yes",
+    link: decode(first(item.link)),
+    poster: decode(poster),
+    review: paragraphs[0] || "",
+  };
+}
+
+async function readLetterboxd() {
+  const feed = await parseStringPromise(await fetchText(SOURCES.letterboxd));
+  requireRssChannel(feed);
+  const items = feed?.rss?.channel?.[0]?.item ?? [];
+  const seen = new Set();
+  const recent = [];
+  for (const item of items) {
+    const film = normaliseFilm(item);
+    const key = `${film.title}:${film.year}`;
+    if (!film.title || seen.has(key)) continue;
+    seen.add(key);
+    recent.push(film);
+    if (recent.length === 4) break;
+  }
+  return { recent };
+}
+
+export function requireRssChannel(feed) {
+  if (!feed?.rss?.channel?.[0] || typeof feed.rss.channel[0] !== "object") {
+    throw new Error("Source did not return a valid RSS channel; keeping the previous snapshot");
+  }
+}
+
+async function lookupAppleMusic(title, artist) {
+  try {
+    const query = encodeURIComponent(`${artist} ${title}`);
+    const payload = JSON.parse(await fetchText(`https://itunes.apple.com/search?term=${query}&entity=song&limit=25`));
+    const exact = payload.results?.find((item) =>
+      item.trackName?.toLowerCase() === title.toLowerCase()
+      && item.artistName?.toLowerCase().includes(artist.toLowerCase())
+    );
+    if (exact) {
+      return {
+        album: exact.collectionName || "",
+        artwork: exact.artworkUrl100?.replace("100x100bb", "600x600bb") || "",
+        link: exact.trackViewUrl || "https://music.apple.com/",
+      };
+    }
+
+    // Apple's older Search API can lag behind brand-new releases. The public
+    // Apple Music search page usually has them immediately, so use its direct
+    // track result while keeping the live card's own embedded artwork.
+    const html = await fetchText(`https://music.apple.com/us/search?term=${query}`);
+    const slug = title.toLowerCase().normalize("NFKD").replace(/[^\w\s-]/g, "").trim().replace(/[\s_]+/g, "-");
+    const trackLink = html.match(new RegExp(`https://music\\.apple\\.com/us/album/${slug}/[^"& ]+\\?i=\\d+`, "i"))?.[0];
+    if (!trackLink) return null;
+    const singleName = `${title} - Single`;
+    return {
+      album: html.toLowerCase().includes(singleName.toLowerCase()) ? singleName : "Apple Music release",
+      artwork: "",
+      link: decode(trackLink),
+    };
+  } catch (error) {
+    console.warn(`warning: Apple catalogue lookup failed (${error.message})`);
+    return null;
+  }
+}
+
+function parseMusicEvent() {
+  const raw = process.env.MUSIC_EVENT_JSON?.trim();
+  if (!raw || raw === "null" || raw === "{}") return null;
+  let event;
+  try {
+    event = JSON.parse(raw);
+  } catch {
+    throw new Error("MUSIC_EVENT_JSON is not valid JSON");
+  }
+  const states = new Set(["playing", "paused", "stopped"]);
+  const state = states.has(event.state) ? event.state : "stopped";
+  return {
+    state,
+    title: cleanText(event.title).slice(0, 240),
+    artist: cleanText(event.artist).slice(0, 240),
+    album: cleanText(event.album).slice(0, 240),
+    duration: Math.max(0, Number(event.duration) || 0),
+    position: Math.max(0, Number(event.position) || 0),
+    observedAt: Number.isNaN(Date.parse(event.observedAt)) ? new Date().toISOString() : new Date(event.observedAt).toISOString(),
+    preview: event.preview === true,
+  };
+}
+
+async function readMusicAppEvent(event, previous) {
+  if (event.state === "stopped" && !event.title) {
+    if (previous?.source !== "music-app") return { data: musicFallback(null) };
+    return {
+      data: {
+        ...previous,
+        source: event.preview ? "music-app-preview" : "music-app",
+        playbackState: "stopped",
+        isNowPlaying: false,
+        observedAt: event.observedAt,
+      },
+    };
+  }
+  if (!event.title) throw new Error("Music.app event is missing its track title");
+  const sameTrack = normaliseMatchText(previous?.title) === normaliseMatchText(event.title)
+    && (!event.artist || normaliseMatchText(previous?.artist) === normaliseMatchText(event.artist));
+  const catalogue = event.artist ? await lookupAppleMusic(event.title, event.artist) : null;
+  const artworkData = catalogue?.artwork ? await fetchDataUri(catalogue.artwork) : null;
+  return {
+    data: {
+      title: event.title,
+      artist: event.artist || (sameTrack && previous?.artist) || "artist metadata not listed",
+      album: event.album || catalogue?.album || (sameTrack && previous?.album) || "album metadata not listed",
+      link: catalogue?.link || (sameTrack && previous?.link) || MUSIC_PROFILE_URL,
+      duration: event.duration,
+      position: event.position,
+      source: event.preview ? "music-app-preview" : "music-app",
+      playbackState: event.state,
+      isNowPlaying: event.state === "playing",
+      observedAt: event.observedAt,
+    },
+    artworkData,
+  };
+}
+
+export function musicFallback(previous, now = Date.now()) {
+  // Only a real Music.app observation is safe to retain without a reconnected
+  // history account. Never perpetuate an unverified third-party track.
+  const observedAt = Date.parse(previous?.observedAt);
+  if (previous?.source === "music-app" && previous.title && Number.isFinite(observedAt) && observedAt <= now) {
+    const fresh = now - observedAt < 2 * 60_000;
+    return { ...previous, playbackState: fresh ? previous.playbackState : "stopped", isNowPlaying: fresh && previous.playbackState === "playing" };
+  }
+  return {
+    title: "waiting for a listening update",
+    artist: "no verified playback available",
+    album: "",
+    link: MUSIC_PROFILE_URL,
+    duration: 0,
+    source: "unavailable",
+    playbackState: "unknown",
+    isNowPlaying: false,
+    observedAt: null,
+  };
+}
+
+export function parseHistoryCard(svg) {
+  const title = cleanText(svg.match(/class="song-title[^>]*>([^<]+)</)?.[1]);
+  const artist = cleanText(svg.match(/class="song-artist[^>]*>([^<]+)</)?.[1]);
+  if (!title || !artist) throw new Error("Apple Music card did not contain track metadata");
+  return { title, artist };
+}
+
+export async function readAppleMusic(previous) {
+  const musicEvent = parseMusicEvent();
+  if (musicEvent) return readMusicAppEvent(musicEvent, previous);
+  // The old UID supplied disputed history. Opt in only after the owner has
+  // reconnected and confirmed the account/card, rather than trusting it again.
+  const uid = process.env.APPLE_MUSIC_HISTORY_UID?.trim();
+  if (!uid) return { data: musicFallback(previous), checkStatus: "paused" };
+  if (!/^[\w.-]{1,200}$/.test(uid)) throw new Error("Invalid Apple Music history UID");
+  const source = `https://music-profile.rayriffy.com/theme/dark.svg?uid=${encodeURIComponent(uid)}`;
+  const svg = await fetchText(cacheBusted(source), { bypassCache: true });
+  const { title, artist } = parseHistoryCard(svg);
+  const embeddedArtwork = svg.match(/<img[^>]+class="cover-image"[^>]+src="([^"]+)"/)?.[1]
+    || svg.match(/<img[^>]+src="([^"]+)"[^>]+class="cover-image"/)?.[1]
+    || "";
+  const catalogue = await lookupAppleMusic(title, artist);
+  const artworkData = catalogue?.artwork
+    ? await fetchDataUri(catalogue.artwork)
+    : embeddedArtwork;
+  return {
+    data: {
+      title,
+      artist,
+      album: catalogue?.album || "album metadata not listed",
+      link: catalogue?.link || MUSIC_PROFILE_URL,
+      duration: 0,
+      source: "apple-history",
+      playbackState: "recent",
+      isNowPlaying: false,
+      observedAt: null,
+    },
+    artworkData,
+  };
+}
+
+export function stars(value) {
+  const rating = normaliseRating(value);
+  if (!rating) return "unrated";
+  const fraction = rating % 1;
+  const suffix = { 0: "", 0.25: "¼", 0.5: "½", 0.75: "¾" }[fraction];
+  // If the source adds other increments, show the exact value rather than
+  // silently turning an unknown fraction into a half star.
+  if (suffix === undefined) return `${rating} ★`;
+  return `${"★".repeat(Math.floor(rating))}${suffix}`;
+}
+
+function monthYear(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.valueOf())) return "";
+  return new Intl.DateTimeFormat("en", { month: "short", year: "numeric", timeZone: "UTC" }).format(date);
+}
+
+function publicationLabel(value) {
+  const published = String(value || "").trim();
+  if (/^\d{4}$/.test(published)) return `published ${published}`;
+  const date = new Date(published);
+  if (!published || Number.isNaN(date.valueOf())) return "";
+  const monthAndYear = new Intl.DateTimeFormat("en", { month: "long", year: "numeric", timeZone: "UTC" }).format(date);
+  return `published ${monthAndYear}`;
+}
+
+function wrapLines(value, maxChars) {
+  const words = String(value).trim().split(/\s+/).flatMap((word) => {
+    if (word.length <= maxChars) return [word];
+    return word.match(new RegExp(`.{1,${maxChars}}`, "g")) || [word];
+  });
+  const lines = [];
+  let line = "";
+  for (const word of words) {
+    if (!line) {
+      line = word;
+    } else if (`${line} ${word}`.length <= maxChars) {
+      line += ` ${word}`;
+    } else {
+      lines.push(line);
+      line = word;
+    }
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+
+function wrappedText({ x, y, width, height, value, size, weight = 600, color = theme.text, lineHeight = 1.2, italic = false }) {
+  let fittedSize = size;
+  let lines = [];
+  let step = fittedSize * lineHeight;
+  let maxLines = Math.max(1, Math.floor(height / step));
+  while (fittedSize >= 10) {
+    step = fittedSize * lineHeight;
+    maxLines = Math.max(1, Math.floor(height / step));
+    const maxChars = Math.max(8, Math.floor(width / (fittedSize * .62)));
+    lines = wrapLines(value, maxChars);
+    if (lines.length <= maxLines) break;
+    if (fittedSize === 10) {
+      lines = lines.slice(0, maxLines);
+      break;
+    }
+    fittedSize -= 1;
+  }
+  const tspans = lines.map((line, index) => `<tspan x="${x}" y="${Math.round(y + fittedSize + (index * step))}">${escapeDisplay(line)}</tspan>`).join("");
+  return `<text fill="${color}" font-size="${fittedSize}" font-weight="${weight}" font-style="${italic ? "italic" : "normal"}">${tspans}</text>`;
+}
+
+function assetVersion(value) {
+  return createHash("sha256").update(JSON.stringify([RENDER_VERSION, value])).digest("hex").slice(0, 10);
+}
+
+function formatDuration(seconds) {
+  const total = Math.max(0, Math.round(Number(seconds) || 0));
+  if (!total) return "";
+  return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, "0")}`;
+}
+
+function cover({ dataUri, x, y, width, height, radius = 12, id = "cover" }) {
+  if (!dataUri) {
+    return `<rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${radius}" fill="#302641"/><path d="M${x + width * .34} ${y + height * .42}h${width * .32}M${x + width * .34} ${y + height * .52}h${width * .24}" stroke="${theme.lavender}" stroke-width="4" stroke-linecap="round" opacity=".65"/>`;
+  }
+  return `<defs><clipPath id="${id}"><rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${radius}"/></clipPath></defs><image href="${dataUri}" x="${x}" y="${y}" width="${width}" height="${height}" preserveAspectRatio="xMidYMid slice" clip-path="url(#${id})"/>`;
+}
+
+export function renderBookCurrent(book, artwork) {
+  if (!book) {
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="252" viewBox="0 0 860 252" role="img" aria-label="Not reading anything , rn" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#19232e"/><stop offset="1" stop-color="#263244"/></linearGradient><linearGradient id="book" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a7d1f0"/><stop offset="1" stop-color="#8edfd4"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
+  <rect x="1" y="1" width="858" height="250" rx="24" fill="url(#bg)" stroke="#53738b" stroke-width="2"/>
+  <circle cx="820" cy="7" r="150" fill="#89c9f8" opacity=".055"/>
+  <g id="empty-shelf-icon" transform="translate(94 126)" aria-hidden="true">
+    <rect x="-56" y="-56" width="112" height="112" rx="28" fill="#9dcde7" fill-opacity=".07" stroke="#9dcde7" stroke-opacity=".2"/>
+    <circle r="42" fill="#8edfd4" opacity=".035"/>
+    <g fill="#293e50" stroke="url(#book)" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M0-23C-10-29-23-30-36-27V25C-22 22-10 23 0 29Z"/>
+      <path d="M0-23C10-29 23-30 36-27V25C22 22 10 23 0 29Z"/>
+      <path d="M0-23V29" fill="none"/>
+    </g>
+    <path d="M-26-13q9-1 16 2M-26-3q9-1 16 2M10 8q9-3 16-2" fill="none" stroke="#9dcde7" stroke-width="2" stroke-linecap="round" opacity=".65"/>
+    <path d="M15-29v25l6-5 6 5v-26" fill="#8edfd4"/>
+  </g>
+  <g class="sans"><rect x="188" y="24" width="168" height="30" rx="15" fill="#8edfd4" opacity=".12"/><circle cx="207" cy="39" r="4" fill="#8edfd4"/><text x="220" y="44" fill="#a9e7de" font-size="12" font-weight="800" letter-spacing="1.05">SHELF STATUS</text>
+  <text x="188" y="130" fill="#fffaf5" font-size="22" font-style="italic" font-weight="650">not reading anything , rn</text>
+  <rect x="188" y="164" width="96" height="30" rx="15" fill="#b9a4ff" opacity=".12"/><text x="236" y="184" fill="#d4c1ff" font-size="14" font-weight="800" letter-spacing="2" text-anchor="middle">...</text></g></svg>`;
+  }
+  const item = book;
+  const progress = item.progress;
+  const facts = [
+    (progress?.total || item.pages) && `${progress?.total || item.pages} pages`,
+    item.published,
+    item.averageRating && `GR avg ${item.averageRating.toFixed(2)}`,
+  ].filter(Boolean).join(" · ");
+  const progressLabel = progress
+    ? (progress.page !== null && progress.total !== null
+      ? `page ${progress.page} of ${progress.total} · ${progress.percent}%`
+      : progress.page !== null
+        ? `page ${progress.page} · ${progress.percent}%`
+        : `${progress.percent}% read`)
+    : "progress not shared yet";
+  const progressWidth = progress ? Math.max(0, Math.min(100, progress.percent)) * 6.1 : 0;
+  const progressBar = progress
+    ? `<rect x="190" y="230" width="610" height="6" rx="3" fill="#4a3e35"/><rect x="190" y="230" width="${progressWidth.toFixed(1)}" height="6" rx="3" fill="#e9c995"/>`
+    : `<path d="M190 233H800" stroke="#756352" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 9" opacity=".7"/>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="252" viewBox="0 0 860 252" role="img" aria-label="Currently reading ${escapeDisplay(item.title)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#19222b"/><stop offset="1" stop-color="#29251f"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
+  <rect x="1" y="1" width="858" height="250" rx="24" fill="url(#bg)" stroke="#58616b" stroke-width="2"/>
+  <circle cx="817" cy="16" r="140" fill="#89c9f8" opacity=".04"/>
+  ${cover({ dataUri: artwork, x: 24, y: 24, width: 132, height: 198, radius: 10 })}
+  <g class="sans"><rect x="188" y="24" width="205" height="30" rx="15" fill="#e9c995" opacity=".12"/><circle cx="207" cy="39" r="4" fill="#e9c995"/><text x="220" y="44" fill="#e9c995" font-size="12" font-weight="800" letter-spacing="1.05">CURRENTLY READING</text><text x="800" y="44" fill="#a99bb4" font-size="11" font-weight="700" text-anchor="end">VIEW ON GOODREADS ↗</text>
+  ${wrappedText({ x: 188, y: 65, width: 610, height: 86, value: item.title, size: 30, weight: 800, lineHeight: 1.04 })}
+  <text x="190" y="170" fill="${theme.muted}" font-size="14.5" font-weight="600">by ${escapeDisplay(item.author)}</text>
+  <text x="190" y="193" fill="#a99bb4" font-size="12" font-weight="600">${escapeDisplay(facts)}</text>
+  <text x="190" y="215" fill="#e9c995" font-size="12" font-weight="800" letter-spacing=".35">${escapeDisplay(progressLabel)}</text>
+  ${progressBar}</g>
+  </svg>`;
+}
+
+export function renderBookTile(book, artwork, index) {
+  const facts = [book.pages && `${book.pages}p`, book.readAt && `read ${monthYear(book.readAt)}`].filter(Boolean).join(" · ");
+  const publication = publicationLabel(book.published);
+  const communityRating = book.averageRating && `GR avg ${Number(book.averageRating).toFixed(2)}`;
+  const bookFacts = [publication, communityRating].filter(Boolean);
+  const titleSidecar = bookFacts.length ? `<path d="M632 65v52" stroke="#756b80" stroke-width="2" stroke-linecap="round" opacity=".8"/>${bookFacts.map((fact, factIndex) => `<text x="649" y="${80 + factIndex * 23}" fill="#a99daf" font-size="12" font-weight="650">${escapeDisplay(fact)}</text>`).join("")}` : "";
+  const rating = normaliseRating(book.rating);
+  const mood = ratingMood(rating);
+  const ratingText = stars(rating);
+  const ratingLabel = rating ? `${rating} out of 5 stars` : "unrated";
+  const ratingWidth = Math.max(78, 32 + ratingText.length * 16);
+  const moods = bookNotes(book);
+  let chipX = 164 + ratingWidth + 29;
+  const chipColors = [
+    { fill: "#332b4a", text: "#dccdff" },
+    { fill: "#36302d", text: "#f3d4aa" },
+    { fill: "#243a3a", text: "#b1e9e1" },
+  ];
+  const desiredWidths = moods.map((label) => 27 + label.length * 7.1);
+  const availableWidth = 836 - chipX - Math.max(0, moods.length - 1) * 10;
+  const chipScale = Math.min(1, availableWidth / (desiredWidths.reduce((sum, width) => sum + width, 0) || 1));
+  const chips = moods.map((label, chipIndex) => {
+    const width = desiredWidths[chipIndex] * chipScale;
+    const x = chipX;
+    chipX += width + 10;
+    const palette = chipColors[chipIndex];
+    return `<rect x="${x}" y="183" width="${width}" height="34" rx="17" fill="${palette.fill}"/><text x="${x + width / 2}" y="205" fill="${palette.text}" font-size="${12 * chipScale}" font-weight="750" text-anchor="middle">${escapeDisplay(label)}</text>`;
+  }).join("");
+  const emptyReview = moods.length ? "" : `<rect x="${chipX}" y="183" width="178" height="34" rx="17" fill="#302a3d"/><text x="${chipX + 89}" y="205" fill="#bdb1ca" font-size="12" font-weight="700" text-anchor="middle">${book.review ? "read the full review ↗" : "no written review"}</text>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="242" viewBox="0 0 860 242" role="img" aria-label="${escapeDisplay(book.title)} by ${escapeDisplay(book.author)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#19222d"/><stop offset="1" stop-color="#252532"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
+  <rect x="1" y="1" width="858" height="240" rx="25" fill="url(#bg)" stroke="#526378" stroke-width="2"/>
+  <circle cx="820" cy="12" r="124" fill="#89c9f8" opacity=".045"/>
+  ${cover({ dataUri: artwork, x: 24, y: 21, width: 130, height: 198, radius: 10 })}
+  <g class="sans"><text x="164" y="38" fill="#e9c995" font-size="12" font-weight="800" letter-spacing="1.25">READ RECEIPT / 0${index + 1}</text>
+  <text x="816" y="38" fill="#b7cddd" font-size="11" font-weight="600" text-anchor="end">${book.review ? "read full review ↗" : "view on Goodreads ↗"}</text>
+  ${wrappedText({ x: 164, y: 51, width: bookFacts.length ? 450 : 630, height: 68, value: book.title, size: 27, weight: 800, lineHeight: 1.04 })}
+  ${titleSidecar}
+  <text x="164" y="136" fill="${theme.muted}" font-size="14.5" font-weight="700">${escapeDisplay(book.author)}</text>
+  <text x="164" y="160" fill="#978a9f" font-size="12.5" font-weight="600">${escapeDisplay(facts)}</text>
+  <g role="img" aria-label="${ratingLabel}"><title>${ratingLabel}</title><rect x="164" y="183" width="${ratingWidth}" height="34" rx="17" fill="${mood.background}"/><text x="${164 + ratingWidth / 2}" y="205" fill="${mood.color}" font-size="16" font-weight="800" text-anchor="middle">${escapeDisplay(ratingText)}</text></g>
+  <path d="M${174 + ratingWidth} 187v26" stroke="#776a88" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+  ${chips}${emptyReview}</g>
+  </svg>`;
+}
+
+function renderFilmTile(film, artwork, index) {
+  const note = film.review || (film.liked ? "liked. evidence duly noted." : "logged without further comment.");
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="220" viewBox="0 0 860 220" role="img" aria-label="${escapeDisplay(film.title)} (${escapeDisplay(film.year)})" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#17232e"/><stop offset="1" stop-color="#21313d"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
+  <rect x="1" y="1" width="858" height="218" rx="25" fill="url(#bg)" stroke="#45657b" stroke-width="2"/>
+  <circle cx="815" cy="18" r="130" fill="#89c9f8" opacity=".05"/>
+  ${cover({ dataUri: artwork, x: 24, y: 20, width: 118, height: 180, radius: 10 })}
+  <g class="sans"><g transform="translate(168 25)"><circle cx="8" cy="8" r="8" fill="#ff8000"/><circle cx="22" cy="8" r="8" fill="#00e054"/><circle cx="36" cy="8" r="8" fill="#40bcf4"/></g><text x="808" y="38" fill="#8298a8" font-size="12" font-weight="800" text-anchor="end" letter-spacing="1.1">WATCH 0${index + 1}</text>
+  ${wrappedText({ x: 168, y: 55, width: 630, height: 63, value: film.title, size: 28, weight: 800, lineHeight: 1.04 })}
+  <text x="168" y="139" fill="${theme.muted}" font-size="14" font-weight="700">${escapeDisplay(film.year)}${film.liked ? "  ·  ♥ liked" : ""}</text><text x="808" y="139" fill="${theme.yellow}" font-size="14" font-weight="800" text-anchor="end">${escapeDisplay(stars(film.rating))}</text>
+  ${wrappedText({ x: 168, y: 154, width: 630, height: 44, value: `“${note}”`, size: 13, weight: 600, color: "#a7b7c2", lineHeight: 1.18, italic: true })}</g>
+  </svg>`;
+}
+
+export function renderAppleMusic(data, artwork) {
+  const states = {
+    playing: { heading: "APPLE MUSIC / NOW PLAYING", color: "#fa243c" },
+    paused: { heading: "APPLE MUSIC / PAUSED", color: "#ff9f9a" },
+    stopped: { heading: "APPLE MUSIC / LAST PLAYED", color: "#b9a4ff" },
+    recent: { heading: "APPLE MUSIC / RECENTLY PLAYED", color: "#b9a4ff" },
+    unknown: { heading: "APPLE MUSIC / WAITING FOR A SIGNAL", color: "#8f859b" },
+  };
+  const playback = states[data.playbackState] || states.recent;
+  const duration = formatDuration(data.duration);
+  const sourceLabel = data.playbackState === "playing"
+    ? "PLAYING RIGHT NOW"
+    : data.playbackState === "paused"
+      ? "PAUSED FOR NOW"
+      : data.playbackState === "unknown"
+        ? "AWAITING PLAYBACK"
+        : "RECENTLY PLAYED";
+  const sourceWidth = Math.min(226, Math.max(188, 62 + (sourceLabel.length * 6.25)));
+  const spinClass = data.isNowPlaying ? "spin" : "";
+  const playbackNote = data.source === "unavailable"
+    ? "history paused · reconnect to resume. no track is guessed."
+    : "a little behind the beat · updates may be delayed , not live.";
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="270" viewBox="0 0 860 270" role="img" aria-label="${escapeDisplay(data.title)} by ${escapeDisplay(data.artist)} on Apple Music" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1b2530"/><stop offset=".55" stop-color="#272334"/><stop offset="1" stop-color="#2d1d2a"/></linearGradient><radialGradient id="disc"><stop stop-color="#342a38"/><stop offset=".28" stop-color="#0a080c"/><stop offset=".32" stop-color="#fa243c"/><stop offset=".38" stop-color="#0a080c"/><stop offset="1" stop-color="#17131a"/></radialGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.spin{animation:spin 12s linear infinite;transform-origin:243px 135px}@keyframes spin{to{transform:rotate(360deg)}}</style></defs>
+  <rect x="1" y="1" width="858" height="268" rx="25" fill="url(#bg)" stroke="#5d526d" stroke-width="2"/><circle class="${spinClass}" cx="243" cy="135" r="91" fill="url(#disc)" stroke="#453a49"/><circle cx="243" cy="135" r="10" fill="#ffe8ee"/>
+  ${data.playbackState === "unknown" ? `<rect x="28" y="45" width="180" height="180" rx="15" fill="#302641"/><g transform="translate(81 98) scale(3.1)"><path d="${appleMusicPath}" fill="#b9a4ff" opacity=".55"/></g>` : cover({ dataUri: artwork, x: 28, y: 45, width: 180, height: 180, radius: 15, id: "artwork" })}
+  <g class="sans"><g transform="translate(356 27) scale(1.08)"><path d="${appleMusicPath}" fill="#fa243c"/></g><text x="390" y="48" fill="#ff8293" font-size="12" font-weight="800" letter-spacing="1.25">APPLE MUSIC</text><text x="810" y="48" fill="#d6b8c6" font-size="11" font-weight="700" text-anchor="end">OPEN IN APPLE MUSIC ↗</text>
+  ${wrappedText({ x: 356, y: 65, width: 458, height: 62, value: data.title, size: 30, weight: 800, lineHeight: 1.03 })}
+  ${wrappedText({ x: 357, y: 130, width: 445, height: 28, value: data.artist, size: 17, weight: 700, lineHeight: 1 })}
+  ${data.playbackState === "unknown" ? "<!-- awaiting verified album metadata -->" : `<text x="357" y="168" fill="#9f8191" font-size="10.5" font-weight="800" letter-spacing="1">ALBUM</text>${wrappedText({ x: 405, y: 155, width: duration ? 300 : 397, height: 35, value: data.album || "album metadata not listed", size: 12.5, weight: 600, color: "#c7a9b8", lineHeight: 1.06 })}`}
+${duration ? `  <rect x="724" y="155" width="78" height="27" rx="13.5" fill="#fff" opacity=".07"/><text x="763" y="173" fill="#d9c2ce" font-size="11.5" font-weight="700" text-anchor="middle">${duration}</text>` : ""}
+  <g transform="translate(0 -19)"><rect x="357" y="211" width="${sourceWidth}" height="36" rx="18" fill="${playback.color}" opacity=".13"/><circle cx="378" cy="229" r="5" fill="${playback.color}"/>${data.isNowPlaying ? `<circle cx="378" cy="229" r="9" fill="none" stroke="${playback.color}" opacity=".35"><animate attributeName="r" values="7;12;7" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".45;0;.45" dur="1.8s" repeatCount="indefinite"/></circle>` : ""}<text x="391" y="233" fill="#eadce3" font-size="11.5" font-weight="800" letter-spacing=".55">${sourceLabel}</text>
+  </g>
+  <text x="357" y="246" fill="#b6a5b6" font-size="10.5" font-style="italic">${escapeXml(playbackNote)}</text></g>
+  </svg>`;
+}
+
+function renderInstagram(data, avatar) {
+  const avatarMarkup = avatar
+    ? `<image href="${avatar}" x="31" y="28" width="134" height="134" preserveAspectRatio="xMidYMid slice" clip-path="url(#instagram-avatar)"/>`
+    : `<circle cx="98" cy="95" r="67" fill="#39233d"/><text x="98" y="108" fill="#fffaf5" class="sans" font-size="35" font-weight="800" text-anchor="middle">HN</text>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="190" viewBox="0 0 860 190" role="img" aria-label="Instagram profile ${escapeDisplay(data.username)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1b2631"/><stop offset=".55" stop-color="#292434"/><stop offset="1" stop-color="#20313b"/></linearGradient><linearGradient id="ig" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#ffdc80"/><stop offset=".35" stop-color="#fc5b55"/><stop offset=".68" stop-color="#c13584"/><stop offset="1" stop-color="#833ab4"/></linearGradient><clipPath id="instagram-avatar"><circle cx="98" cy="95" r="67"/></clipPath><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}.arrow{animation:nudge 1.8s ease-in-out infinite}@keyframes nudge{50%{transform:translateX(5px)}}</style></defs>
+  <rect x="1" y="1" width="858" height="188" rx="25" fill="url(#bg)" stroke="#63566d" stroke-width="2"/><circle cx="786" cy="8" r="142" fill="#89c9f8" opacity=".045"/><circle cx="720" cy="194" r="120" fill="#ffdc80" opacity=".035"/>
+  <circle cx="98" cy="95" r="70" fill="none" stroke="url(#ig)" stroke-width="4"/>${avatarMarkup}
+  <circle cx="148" cy="145" r="25" fill="#18121d" stroke="#241725" stroke-width="3"/><rect x="130" y="127" width="36" height="36" rx="10" fill="url(#ig)"/><rect x="138" y="135" width="20" height="20" rx="6" fill="none" stroke="#fff" stroke-width="2.2"/><circle cx="148" cy="145" r="4.7" fill="none" stroke="#fff" stroke-width="2"/><circle cx="155" cy="138" r="1.8" fill="#fff"/>
+  <g class="sans"><text x="195" y="47" fill="#ff9fcb" font-size="12" font-weight="800" letter-spacing="1.5">INSTAGRAM / PUBLIC CAMERA ROLL</text><text x="193" y="94" fill="#fffaf5" font-size="31" font-weight="800">@${escapeDisplay(data.username)}</text><text x="195" y="124" fill="#c3aabd" font-size="14.5" font-weight="600">photos , stories , and whatever made the grid.</text>
+  <g font-size="10.5" font-weight="800" letter-spacing=".75" text-anchor="middle"><rect x="195" y="143" width="78" height="25" rx="12.5" fill="#ffdc80" opacity=".1"/><text x="234" y="160" fill="#ffdc80">PHOTOS</text><rect x="281" y="143" width="82" height="25" rx="12.5" fill="#c13584" opacity=".14"/><text x="322" y="160" fill="#ff9fcb">STORIES</text></g>
+  <rect x="690" y="70" width="132" height="48" rx="24" fill="#fffaf5" opacity=".92"/><text x="723" y="99" fill="#251720" font-size="12" font-weight="800" letter-spacing=".9">OPEN</text><text class="arrow" x="778" y="101" fill="#251720" font-size="18" font-weight="800">↗</text></g></svg>`;
+}
+
+async function readPrevious() {
+  try {
+    return JSON.parse(await fs.readFile(DATA_FILE, "utf8"));
+  } catch {
+    return {};
+  }
+}
+
+async function readEmbeddedImage(filename, index = 0) {
+  try {
+    const svg = await fs.readFile(path.join(OUTPUT_DIR, filename), "utf8");
+    return [...svg.matchAll(/<image[^>]+href="(data:[^"]+)"/g)][index]?.[1] || null;
+  } catch {
+    return null;
+  }
+}
+
+async function chromeExecutable() {
+  const candidates = [
+    process.env.PUPPETEER_EXECUTABLE_PATH,
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "/usr/bin/google-chrome",
+    "/usr/bin/google-chrome-stable",
+    "/usr/bin/chromium",
+    "/usr/bin/chromium-browser",
+  ].filter(Boolean);
+  for (const candidate of candidates) {
+    try {
+      await fs.access(candidate);
+      return candidate;
+    } catch {
+      // Keep looking for a browser already available on the runner.
+    }
+  }
+  throw new Error("no Chrome executable is available for the Instagram refresh");
+}
+
+export function instagramOgAvatarUrl(html) {
+  const title = decode(html.match(/<meta\s+property=["']og:title["']\s+content=["']([^"']+)["']/i)?.[1] || "");
+  if (!title.toLowerCase().includes("@hnitch")) return null;
+  const rawUrl = decode(html.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i)?.[1] || "");
+  try {
+    const url = new URL(rawUrl);
+    if (url.protocol !== "https:" || !url.hostname.endsWith(".cdninstagram.com")) return null;
+    return url.toString();
+  } catch {
+    return null;
+  }
+}
+
+export async function readInstagramAvatarFromPage() {
+  const html = await fetchText("https://www.instagram.com/hnitch/");
+  const avatarUrl = instagramOgAvatarUrl(html);
+  if (!avatarUrl) throw new Error("Instagram did not publish this profile's image metadata");
+  const response = await fetchResponse(avatarUrl, "image/jpeg,image/*");
+  const type = response.headers.get("content-type")?.split(";")[0] || "";
+  const bytes = Buffer.from(await response.arrayBuffer());
+  if (!type.startsWith("image/") || bytes.length < 1_500) throw new Error("Instagram published an unusable profile image");
+  const avatarData = `data:${type};base64,${bytes.toString("base64")}`;
+  return {
+    data: { username: "hnitch", avatarHash: createHash("sha256").update(bytes).digest("hex").slice(0, 12) },
+    avatarData,
+  };
+}
+
+async function readInstagramAvatarWithBrowser() {
+  const { default: puppeteer } = await import("puppeteer-core");
+  const browser = await puppeteer.launch({
+    executablePath: await chromeExecutable(),
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+  });
+  try {
+    const page = await browser.newPage();
+    await page.setViewport({ width: 900, height: 900, deviceScaleFactor: 1 });
+    await page.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36");
+    await page.goto("https://www.instagram.com/hnitch/", { waitUntil: "domcontentloaded", timeout: 30_000 });
+    await page.waitForSelector('img[alt*="profile picture"]', { visible: true, timeout: 20_000 });
+    await delay(1_500);
+    const candidates = await page.$$('img[alt*="profile picture"]');
+    let avatarUrl = "";
+    for (const candidate of candidates) {
+      const details = await candidate.evaluate((element) => {
+        const box = element.getBoundingClientRect();
+        return {
+          width: box.width,
+          height: box.height,
+          naturalWidth: element.naturalWidth,
+          source: element.currentSrc || element.src,
+        };
+      });
+      if (details.width >= 80 && details.height >= 80 && details.naturalWidth >= 80 && /cdninstagram\.com/.test(details.source)) {
+        avatarUrl = details.source;
+        break;
+      }
+    }
+    if (!avatarUrl) throw new Error("Instagram did not expose a usable profile image");
+    const imageResponse = await page.goto(avatarUrl, { waitUntil: "networkidle0", timeout: 20_000 });
+    const bytes = imageResponse ? await imageResponse.buffer() : null;
+    if (!imageResponse?.ok() || !bytes || bytes.length < 1_500) throw new Error("Instagram returned an empty profile-image placeholder");
+    const type = imageResponse.headers()["content-type"]?.split(";")[0] || "image/jpeg";
+    const avatarData = `data:${type};base64,${bytes.toString("base64")}`;
+    return {
+      data: {
+        username: "hnitch",
+        avatarHash: createHash("sha256").update(avatarData).digest("hex").slice(0, 12),
+      },
+      avatarData,
+    };
+  } finally {
+    await browser.close();
+  }
+}
+
+async function readInstagramAvatar() {
+  try {
+    return await readInstagramAvatarFromPage();
+  } catch (error) {
+    console.warn(`warning: Instagram image metadata unavailable; trying browser (${error.message})`);
+    return readInstagramAvatarWithBrowser();
+  }
+}
+
+export function shouldRefreshInstagram(previous, cachedAvatar, now = Date.now()) {
+  if (!previous || !cachedAvatar) return true;
+  const lastSuccess = Date.parse(previous.lastSuccessAt);
+  const lastAttempt = Date.parse(previous.lastAttemptAt);
+  if (Number.isFinite(lastSuccess) && now - lastSuccess < INSTAGRAM_REFRESH_MS) return false;
+  if (Number.isFinite(lastAttempt) && now - lastAttempt < INSTAGRAM_RETRY_MS) return false;
+  return true;
+}
+
+export function staleInstagramData(previous, cachedAvatar, attemptedAt) {
+  return {
+    ...previous,
+    username: "hnitch",
+    // Retrying a failed fetch is not a new avatar or a profile signal.
+    avatarHash: previous?.avatarHash || createHash("sha256").update(cachedAvatar).digest("hex").slice(0, 12),
+    lastAttemptAt: attemptedAt,
+  };
+}
+
+async function readInstagramSource(previous, cachedAvatar) {
+  if (process.env.FORCE_INSTAGRAM_REFRESH !== "1" && !shouldRefreshInstagram(previous, cachedAvatar)) {
+    const delayed = Number.isFinite(Date.parse(previous.lastAttemptAt))
+      && (!Number.isFinite(Date.parse(previous.lastSuccessAt)) || Date.parse(previous.lastAttemptAt) > Date.parse(previous.lastSuccessAt));
+    return { fresh: false, checkStatus: delayed ? "delayed-cached" : "cached", data: previous, avatarData: cachedAvatar };
+  }
+  const attemptedAt = new Date().toISOString();
+  try {
+    const result = await readInstagramAvatar();
+    return {
+      fresh: true,
+      checkStatus: "ok",
+      data: { ...result.data, lastSuccessAt: attemptedAt, lastAttemptAt: attemptedAt },
+      avatarData: result.avatarData,
+    };
+  } catch (error) {
+    if (!cachedAvatar) throw error;
+    console.warn(`warning: Instagram avatar refresh failed; keeping the last good image (${error.message})`);
+    return {
+      fresh: false,
+      checkStatus: "delayed",
+      data: staleInstagramData(previous, cachedAvatar, attemptedAt),
+      avatarData: cachedAvatar,
+    };
+  }
+}
+
+export async function readSource(name, reader, previous) {
+  try {
+    const result = await reader();
+    return { fresh: true, checkStatus: "ok", ...(result?.data ? result : { data: result }) };
+  } catch (error) {
+    if (name === "appleMusic") {
+      console.warn(`warning: music source unavailable; using only verified playback (${error.message})`);
+      return { fresh: true, checkStatus: "delayed", data: musicFallback(previous.appleMusic) };
+    }
+    if (previous[name]) {
+      console.warn(`warning: ${name} refresh failed; keeping the last good data (${error.message})`);
+      return { fresh: false, checkStatus: "delayed", data: previous[name] };
+    }
+    throw error;
+  }
+}
+
+async function writeGoodreadsAssets(data, cachedArtwork = {}) {
+  const currentArt = (await fetchDataUri(data.current?.cover)) || cachedArtwork.current || null;
+  const downloadedRecentArt = await Promise.all(data.recent.map((book) => fetchDataUri(book.cover)));
+  const recentArt = downloadedRecentArt.map((artwork, index) => artwork || cachedArtwork.recent?.[index] || null);
+  const writes = [fs.writeFile(path.join(OUTPUT_DIR, "goodreads-current.svg"), renderBookCurrent(data.current, currentArt))];
+  data.recent.forEach((book, index) => writes.push(fs.writeFile(path.join(OUTPUT_DIR, `goodreads-${index + 1}.svg`), renderBookTile(book, recentArt[index], index))));
+  await Promise.all(writes);
+}
+
+async function writeLetterboxdAssets(data) {
+  const artwork = await Promise.all(data.recent.map((film) => fetchDataUri(film.poster)));
+  await Promise.all(data.recent.map((film, index) => fs.writeFile(path.join(OUTPUT_DIR, `letterboxd-${index + 1}.svg`), renderFilmTile(film, artwork[index], index))));
+}
+
+function cardStack(items, prefix, alt, versionData = (item) => item) {
+  return items.map((item, index) => {
+    const number = index + 1;
+    return `<a href="${escapeXml(item.link)}"><img src="./assets/activity/${prefix}-${number}.svg?v=${assetVersion(versionData(item))}" width="100%" alt="${escapeDisplay(`${alt}: ${item.title}`)}" /></a>`;
+  }).join("\n\n");
+}
+
+function goodreadsMarkup(data) {
+  const currentLink = data.current?.link || "https://www.goodreads.com/user/show/178629903";
+  const currentVersion = data.current ? data.current : ["empty shelf", "...", "smaller italic status", "lowercase rn"];
+  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(currentVersion)}" width="100%" alt="${data.current ? `currently reading ${escapeDisplay(data.current.title)}` : "not reading anything , rn"}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read", (book) => [book, bookNotes(book), "quarter-star ratings"])}`;
+}
+
+function letterboxdMarkup(data) {
+  return `<div align="center"><a href="https://letterboxd.com/hnitch/"><img src="./assets/brands/letterboxd.svg" width="230" alt="Letterboxd" /></a><br/><sub>films watched. stars assigned. feelings were involved.</sub></div>\n\n<br/>\n\n${cardStack(data.recent, "letterboxd", "Watched")}`;
+}
+
+function appleMusicMarkup(data) {
+  const action = data.isNowPlaying ? "now playing" : data.source === "unavailable" ? "Apple Music status" : "last played";
+  const alt = data.source === "unavailable" ? "Apple Music: awaiting a verified listening update" : `${action} ${escapeDisplay(data.title)} by ${escapeDisplay(data.artist)}`;
+  return `<a href="${escapeXml(data.link || MUSIC_PROFILE_URL)}"><img src="./assets/activity/apple-music.svg?v=${assetVersion([data, "spaced inline playback note"])}" width="100%" alt="${alt}" /></a>`;
+}
+
+function discordMarkup() {
+  return `<a href="https://discord.com/users/${DISCORD_USER_ID}"><img src="${LIVE_DISCORD_CARD_URL}" width="100%" alt="live Discord presence for @hnitch" /></a>`;
+}
+
+function instagramMarkup(data) {
+  return `<a href="https://www.instagram.com/${escapeXml(data.username)}/"><img src="./assets/activity/instagram.svg?v=${assetVersion(data.avatarHash || "1")}" width="100%" alt="Instagram profile @${escapeDisplay(data.username)}" /></a>`;
+}
+
+function replaceSection(content, name, replacement) {
+  const pattern = new RegExp(`(^[\\t ]*)<!-- ${name}:START -->[\\s\\S]*?<!-- ${name}:END -->`, "m");
+  if (!pattern.test(content)) throw new Error(`README is missing the ${name} markers`);
+  return content.replace(pattern, (_match, indent) => {
+    const body = replacement.split("\n").map((line) => `${indent}${line}`).join("\n");
+    return `${indent}<!-- ${name}:START -->\n${body}\n${indent}<!-- ${name}:END -->`;
+  });
+}
+
+export function signalPresentation(updatedAt, now = new Date()) {
+  const signalAt = Date.parse(updatedAt);
+  if (!Number.isFinite(signalAt)) {
+    return { fresh: false, datetime: null, fallback: "awaiting a signal" };
+  }
+  const age = now.valueOf() - signalAt;
+  // Native/mobile clients may show only this text instead of running the web component.
+  const minutes = Math.floor(Math.max(0, age) / 60_000);
+  const count = minutes < 60 ? minutes : minutes < 1440 ? Math.floor(minutes / 60) : Math.floor(minutes / 1440);
+  const unit = minutes < 60 ? "minute" : minutes < 1440 ? "hour" : "day";
+  const fallback = minutes < 1 ? "just now" : `${count} ${unit}${count === 1 ? "" : "s"} ago`;
+  return {
+    fresh: age >= 0 && age < SIGNAL_FRESH_MS,
+    datetime: new Date(signalAt).toISOString(),
+    fallback,
+  };
+}
+
+export function readingBadgeLabel(book) {
+  return book ? "currently reading , probably" : "between books , allegedly";
+}
+
+export function renderReadingBadge(book) {
+  const label = readingBadgeLabel(book);
+  const width = book ? 288 : 264;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="28" viewBox="0 0 ${width} 28" role="img" aria-label="${escapeXml(label)}"><rect width="${width}" height="28" rx="14" fill="${book ? "#8edfd4" : "#b1c9df"}"/><text x="${width / 2}" y="18" text-anchor="middle" fill="#223a40" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="11" font-weight="750" letter-spacing="1">${escapeXml(label.toUpperCase())}</text></svg>`;
+}
+
+// Check metadata is separate from content: polling must not fake a new signal.
+// Cached avatars and disabled music are not successful fresh network reads.
+export function recordFeedChecks(previous = {}, results, now) {
+  const at = now.toISOString();
+  const sources = {};
+  for (const [name, result] of Object.entries(results)) {
+    const old = previous.sources?.[name] || {};
+    const status = result.checkStatus || "ok";
+    const attempted = status === "ok" || status === "delayed";
+    sources[name] = {
+      status: status === "delayed-cached" ? "delayed" : status,
+      checkedAt: attempted ? at : old.checkedAt || result.data?.lastAttemptAt || null,
+      lastSuccessAt: status === "ok" ? at : old.lastSuccessAt || result.data?.lastSuccessAt || null,
+    };
+  }
+  return { checkedAt: at, sources };
+}
+
+export function freshnessMarkup(updatedAt, checks, now) {
+  const signal = signalPresentation(updatedAt, now);
+  const checked = signalPresentation(checks?.checkedAt, now);
+  const relative = (value, fallback) => value.datetime
+    ? `<relative-time datetime="${value.datetime}" format="relative" format-style="long" title="${value.datetime}">${value.fallback}</relative-time>` : fallback;
+  const names = { goodreads: "Goodreads", letterboxd: "Letterboxd", appleMusic: "Apple Music", instagram: "Instagram" };
+  const delayed = Object.entries(checks?.sources || {}).filter(([, value]) => value.status === "delayed").map(([key]) => names[key] || key);
+  const paused = Object.entries(checks?.sources || {}).filter(([, value]) => value.status === "paused").map(([key]) => names[key] || key);
+  const issues = [...delayed.map((name) => `${name} delayed`), ...paused.map((name) => `${name} paused`)];
+  const detail = issues.length ? issues.join("; ") : "Scheduled feeds; Discord presence refreshes separately. Checks do not guarantee upstream data is real-time.";
+  const checkIcon = !checked.datetime ? "signal-idle" : issues.length ? "signal-delayed" : checked.fresh ? "signal-fresh" : "signal-idle";
+  return `<kbd><img src="./assets/${signal.fresh ? "signal-fresh" : "signal-idle"}.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · ${relative(signal, "awaiting a signal")}<br/><br/><img src="./assets/${checkIcon}.svg?v=3.10.0" height="8" alt="" /> <span title="${escapeXml(detail)}">feeds checked</span> · ${relative(checked, "awaiting first check")}</kbd>`;
+}
+
+async function updateReadme(data, updatedAt, now) {
+  let readme = await fs.readFile(README_FILE, "utf8");
+  readme = replaceSection(readme, "GOODREADS-FEED", goodreadsMarkup(data.goodreads));
+  readme = replaceSection(readme, "LETTERBOXD-FEED", letterboxdMarkup(data.letterboxd));
+  readme = replaceSection(readme, "APPLE-MUSIC-FEED", appleMusicMarkup(data.appleMusic));
+  readme = replaceSection(readme, "DISCORD-FEED", discordMarkup());
+  readme = replaceSection(readme, "INSTAGRAM-FEED", instagramMarkup(data.instagram));
+  readme = replaceSection(readme, "PROFILE-FRESHNESS", freshnessMarkup(updatedAt, data.feedChecks, now));
+  readme = replaceSection(readme, "READING-BADGE", `<img src="./assets/activity/reading-status.svg?v=${assetVersion(readingBadgeLabel(data.goodreads.current))}" height="28" alt="${readingBadgeLabel(data.goodreads.current)}" />`);
+  await fs.writeFile(path.join(OUTPUT_DIR, "reading-status.svg"), renderReadingBadge(data.goodreads.current));
+  await fs.writeFile(README_FILE, readme);
+}
+
+export function dataChanged(previous, current) {
+  const old = {
+    goodreads: previous.goodreads,
+    letterboxd: previous.letterboxd,
+    appleMusic: previous.appleMusic,
+    instagram: { username: previous.instagram?.username, avatarHash: previous.instagram?.avatarHash },
+  };
+  const latest = {
+    goodreads: current.goodreads,
+    letterboxd: current.letterboxd,
+    appleMusic: current.appleMusic,
+    instagram: { username: current.instagram?.username, avatarHash: current.instagram?.avatarHash },
+  };
+  return JSON.stringify(old) !== JSON.stringify(latest);
+}
+
+async function readBookEditions() {
+  try {
+    return JSON.parse(await fs.readFile(BOOK_EDITIONS_FILE, "utf8"));
+  } catch (error) {
+    if (error.code === "ENOENT") return {};
+    throw error;
+  }
+}
+
+async function readBookNotes() {
+  try { return JSON.parse(await fs.readFile(path.join(ROOT, "data/book-notes.json"), "utf8")); }
+  catch (error) { if (error.code === "ENOENT") return {}; throw error; }
+}
+
+async function main() {
+  const previous = await readPrevious();
+  const editions = await readBookEditions();
+  let savedReadingProgress = null;
+  try {
+    savedReadingProgress = JSON.parse(await fs.readFile(READING_PROGRESS_FILE, "utf8"));
+  } catch (error) {
+    if (error.code !== "ENOENT") console.warn(`warning: saved reading progress unavailable (${error.message})`);
+  }
+  const [
+    cachedAppleArtwork,
+    generatedInstagramAvatar,
+    cachedGoodreadsCurrentArtwork,
+    ...cachedGoodreadsRecentArtwork
+  ] = await Promise.all([
+    readEmbeddedImage("apple-music.svg"),
+    readEmbeddedImage("instagram.svg"),
+    readEmbeddedImage("goodreads-current.svg"),
+    ...Array.from({ length: 4 }, (_value, index) => readEmbeddedImage(`goodreads-${index + 1}.svg`)),
+  ]);
+  const generatedInstagramBytes = generatedInstagramAvatar
+    ? Buffer.from(generatedInstagramAvatar.split(",", 2)[1] || "", "base64").length
+    : 0;
+  const cachedInstagramAvatar = generatedInstagramBytes >= 1_500 ? generatedInstagramAvatar : null;
+  const [goodreadsResult, letterboxdResult, appleMusicResult, instagramResult] = await Promise.all([
+    readSource("goodreads", async () => {
+      const books = await readGoodreads();
+      const manuallyLogged = progressForCurrentBook(savedReadingProgress, books.current);
+      if (manuallyLogged) books.current.progress = manuallyLogged;
+      return books;
+    }, previous),
+    readSource("letterboxd", readLetterboxd, previous),
+    readSource("appleMusic", () => readAppleMusic(previous.appleMusic), previous),
+    readInstagramSource(previous.instagram, cachedInstagramAvatar),
+  ]);
+  const current = {
+    goodreads: goodreadsResult.data,
+    letterboxd: letterboxdResult.data,
+    appleMusic: appleMusicResult.data,
+    instagram: instagramResult.data,
+  };
+  applyBookEditions(current.goodreads, editions);
+  applyBookNotes(current.goodreads, await readBookNotes());
+  const cachedGoodreadsArtwork = {
+    current: previous.goodreads?.current?.bookId === current.goodreads?.current?.bookId
+      ? cachedGoodreadsCurrentArtwork
+      : null,
+    recent: current.goodreads.recent.map((book, index) => (
+      previous.goodreads?.recent?.[index]?.bookId === book.bookId
+        ? cachedGoodreadsRecentArtwork[index]
+        : null
+    )),
+  };
+  const now = new Date();
+  const changed = dataChanged(previous, current);
+  const updatedAt = changed || !previous.updatedAt ? now.toISOString() : previous.updatedAt;
+  const previousSignalRenderAt = Date.parse(previous.lastSignalRenderAt || previous.lastCheckedAt);
+  const signalChanged = signalPresentation(previous.updatedAt, new Date(previousSignalRenderAt)).fresh
+    !== signalPresentation(updatedAt, now).fresh;
+  const lastSignalRenderAt = changed || !Number.isFinite(previousSignalRenderAt) || signalChanged
+    ? now.toISOString()
+    : new Date(previousSignalRenderAt).toISOString();
+
+  await fs.mkdir(OUTPUT_DIR, { recursive: true });
+  await fs.mkdir(path.dirname(DATA_FILE), { recursive: true });
+  const writes = [];
+  writes.push(writeGoodreadsAssets(current.goodreads, cachedGoodreadsArtwork));
+  if (letterboxdResult.fresh) writes.push(writeLetterboxdAssets(current.letterboxd));
+  if (appleMusicResult.fresh) {
+    const sameTrack = normaliseMatchText(previous.appleMusic?.title) === normaliseMatchText(current.appleMusic?.title)
+      && normaliseMatchText(previous.appleMusic?.artist) === normaliseMatchText(current.appleMusic?.artist);
+    const artwork = (sameTrack ? cachedAppleArtwork : null) || appleMusicResult.artworkData;
+    writes.push(fs.writeFile(path.join(OUTPUT_DIR, "apple-music.svg"), renderAppleMusic(current.appleMusic, artwork)));
+  }
+  if (instagramResult.fresh) {
+    writes.push(fs.writeFile(path.join(OUTPUT_DIR, "instagram.svg"), renderInstagram(current.instagram, instagramResult.avatarData || cachedInstagramAvatar)));
+  }
+  await Promise.all(writes);
+  const feedChecks = recordFeedChecks(previous.feedChecks, {
+    goodreads: goodreadsResult, letterboxd: letterboxdResult,
+    appleMusic: appleMusicResult, instagram: instagramResult,
+  }, new Date());
+  await Promise.all([
+    fs.writeFile(DATA_FILE, `${JSON.stringify({ ...current, updatedAt, lastSignalRenderAt, feedChecks }, null, 2)}\n`),
+    updateReadme({ ...current, feedChecks }, updatedAt, new Date()),
+  ]);
+  console.log("profile activity refreshed ✨");
+}
+
+// Restyle the last-known feed without fetching or changing its signal timestamp.
+async function renderCached() {
+  const snapshot = await readPrevious();
+  const beforeEditions = JSON.stringify(snapshot);
+  applyBookEditions(snapshot.goodreads, await readBookEditions());
+  applyBookNotes(snapshot.goodreads, await readBookNotes());
+  if (!snapshot.goodreads || !snapshot.letterboxd || !snapshot.appleMusic || !snapshot.instagram) {
+    throw new Error("Cannot render cached cards: data/activity.json is incomplete");
+  }
+  const imageFrom = (svg) => readEmbeddedImage(svg);
+  const cards = [
+    ["goodreads-current.svg", renderBookCurrent(snapshot.goodreads.current, await imageFrom("goodreads-current.svg"))],
+    ["apple-music.svg", renderAppleMusic(snapshot.appleMusic, await imageFrom("apple-music.svg"))],
+    ["instagram.svg", renderInstagram(snapshot.instagram, await imageFrom("instagram.svg"))],
+  ];
+  for (const [index, book] of snapshot.goodreads.recent.entries()) {
+    const filename = `goodreads-${index + 1}.svg`;
+    cards.push([filename, renderBookTile(book, await imageFrom(filename), index)]);
+  }
+  for (const [index, film] of snapshot.letterboxd.recent.entries()) {
+    const filename = `letterboxd-${index + 1}.svg`;
+    cards.push([filename, renderFilmTile(film, await imageFrom(filename), index)]);
+  }
+  await Promise.all(cards.map(([filename, svg]) => fs.writeFile(path.join(OUTPUT_DIR, filename), svg)));
+  if (JSON.stringify(snapshot) !== beforeEditions) {
+    await fs.writeFile(DATA_FILE, `${JSON.stringify(snapshot, null, 2)}\n`);
+  }
+  await updateReadme(snapshot, snapshot.updatedAt, new Date());
+  console.log("cached profile cards restyled ✨");
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  (process.argv.includes("--render-cached") ? renderCached() : main()).catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

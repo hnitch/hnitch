@@ -1,0 +1,434 @@
+{
+  "WFWorkflowName": "Read Me Book Progress",
+  "WFWorkflowActions": [
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.url",
+      "WFWorkflowActionParameters": {
+        "WFURLActionURL": "https://hnitch-discord-card.haarshaan.workers.dev/reading.json",
+        "UUID": "DF5C79D4-1E1A-49E9-BBDD-992095EEB9D3"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.downloadurl",
+      "WFWorkflowActionParameters": {
+        "WFHTTPHeaders": {
+          "Value": {
+            "WFDictionaryFieldValueItems": [
+              {
+                "WFKey": {
+                  "Value": {
+                    "string": "User-Agent"
+                  },
+                  "WFSerializationType": "WFTextTokenString"
+                },
+                "WFItemType": 0,
+                "WFValue": {
+                  "Value": {
+                    "string": "hnitch-reading-shortcut"
+                  },
+                  "WFSerializationType": "WFTextTokenString"
+                }
+              },
+              {
+                "WFKey": {
+                  "Value": {
+                    "string": "Accept"
+                  },
+                  "WFSerializationType": "WFTextTokenString"
+                },
+                "WFItemType": 0,
+                "WFValue": {
+                  "Value": {
+                    "string": "application/json"
+                  },
+                  "WFSerializationType": "WFTextTokenString"
+                }
+              }
+            ]
+          },
+          "WFSerializationType": "WFDictionaryFieldValue"
+        },
+        "ShowHeaders": true,
+        "UUID": "29FB0649-9F76-473F-8C79-A16A6152991A",
+        "WFURL": {
+          "Value": {
+            "string": "￼",
+            "attachmentsByRange": {
+              "{0, 1}": {
+                "OutputUUID": "DF5C79D4-1E1A-49E9-BBDD-992095EEB9D3",
+                "Type": "ActionOutput",
+                "OutputName": "URL"
+              }
+            }
+          },
+          "WFSerializationType": "WFTextTokenString"
+        }
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.getvalueforkey",
+      "WFWorkflowActionParameters": {
+        "WFInput": {
+          "Value": {
+            "OutputUUID": "29FB0649-9F76-473F-8C79-A16A6152991A",
+            "Type": "ActionOutput",
+            "OutputName": "Contents of URL"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        },
+        "WFDictionaryKey": "bookId",
+        "UUID": "07BE1B9A-4079-4C40-BAFE-A5D0658383D6"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+      "WFWorkflowActionParameters": {
+        "WFInput": {
+          "Type": "Variable",
+          "Variable": {
+            "Value": {
+              "OutputUUID": "07BE1B9A-4079-4C40-BAFE-A5D0658383D6",
+              "Type": "ActionOutput",
+              "OutputName": "Dictionary Value"
+            },
+            "WFSerializationType": "WFTextTokenAttachment"
+          }
+        },
+        "WFCondition": 101,
+        "GroupingIdentifier": "10377851-F22C-48BE-A8E8-1BB87324822D",
+        "WFControlFlowMode": 0
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.alert",
+      "WFWorkflowActionParameters": {
+        "WFAlertActionMessage": "Mark a book as currently reading on Goodreads, then come back to log your place."
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.exit",
+      "WFWorkflowActionParameters": {}
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+      "WFWorkflowActionParameters": {
+        "GroupingIdentifier": "10377851-F22C-48BE-A8E8-1BB87324822D",
+        "WFControlFlowMode": 1
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+      "WFWorkflowActionParameters": {
+        "UUID": "60C1DB50-839B-46B7-B129-747BA737D638",
+        "GroupingIdentifier": "10377851-F22C-48BE-A8E8-1BB87324822D",
+        "WFControlFlowMode": 2
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.getvalueforkey",
+      "WFWorkflowActionParameters": {
+        "WFInput": {
+          "Value": {
+            "OutputUUID": "29FB0649-9F76-473F-8C79-A16A6152991A",
+            "Type": "ActionOutput",
+            "OutputName": "Contents of URL"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        },
+        "UUID": "A36C2D83-9F19-4672-BC85-36BDBCDF9E44",
+        "WFDictionaryKey": "shortcutPrompt"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.setvariable",
+      "WFWorkflowActionParameters": {
+        "WFInput": {
+          "Value": {
+            "OutputUUID": "A36C2D83-9F19-4672-BC85-36BDBCDF9E44",
+            "Type": "ActionOutput",
+            "OutputName": "Dictionary Value"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        },
+        "WFVariableName": "BookTitle"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.getvalueforkey",
+      "WFWorkflowActionParameters": {
+        "WFInput": {
+          "Value": {
+            "OutputUUID": "29FB0649-9F76-473F-8C79-A16A6152991A",
+            "Type": "ActionOutput",
+            "OutputName": "Contents of URL"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        },
+        "UUID": "4B3DA1FD-208D-4CFF-9C9A-1E01376731CF",
+        "WFDictionaryKey": "bookId"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.setvariable",
+      "WFWorkflowActionParameters": {
+        "WFInput": {
+          "Value": {
+            "OutputUUID": "4B3DA1FD-208D-4CFF-9C9A-1E01376731CF",
+            "Type": "ActionOutput",
+            "OutputName": "Dictionary Value"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        },
+        "WFVariableName": "BookID"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.ask",
+      "WFWorkflowActionParameters": {
+        "UUID": "1C02A871-4B4A-4B68-B288-C15055B401A5",
+        "WFAskActionPrompt": {
+          "Value": {
+            "string": "￼",
+            "attachmentsByRange": {
+              "{0, 1}": {
+                "VariableName": "BookTitle",
+                "Type": "Variable"
+              }
+            }
+          },
+          "WFSerializationType": "WFTextTokenString"
+        },
+        "WFAllowsMultilineText": false
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.setvariable",
+      "WFWorkflowActionParameters": {
+        "WFInput": {
+          "Value": {
+            "OutputUUID": "1C02A871-4B4A-4B68-B288-C15055B401A5",
+            "Type": "ActionOutput",
+            "OutputName": "Provided Input"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        },
+        "WFVariableName": "ProgressInput"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.url",
+      "WFWorkflowActionParameters": {
+        "WFURLActionURL": "https://api.github.com/repos/hnitch/hnitch/actions/workflows/update-profile.yml/dispatches",
+        "UUID": "50B94992-B7C6-4F8C-8F73-788B544129A0"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.downloadurl",
+      "WFWorkflowActionParameters": {
+        "WFHTTPHeaders": {
+          "Value": {
+            "WFDictionaryFieldValueItems": [
+              {
+                "WFKey": {
+                  "Value": {
+                    "string": "Authorization"
+                  },
+                  "WFSerializationType": "WFTextTokenString"
+                },
+                "WFItemType": 0,
+                "WFValue": {
+                  "Value": {
+                    "string": "Bearer REPLACE_WITH_FINE_GRAINED_TOKEN"
+                  },
+                  "WFSerializationType": "WFTextTokenString"
+                }
+              }
+            ]
+          },
+          "WFSerializationType": "WFDictionaryFieldValue"
+        },
+        "ShowHeaders": false,
+        "UUID": "C66BD0A0-7959-4CE0-913A-60EB91FD0FDE",
+        "WFURL": {
+          "Value": {
+            "string": "￼",
+            "attachmentsByRange": {
+              "{0, 1}": {
+                "OutputUUID": "50B94992-B7C6-4F8C-8F73-788B544129A0",
+                "Type": "ActionOutput",
+                "OutputName": "URL"
+              }
+            }
+          },
+          "WFSerializationType": "WFTextTokenString"
+        },
+        "WFJSONValues": {
+          "Value": {
+            "WFDictionaryFieldValueItems": [
+              {
+                "WFKey": {
+                  "Value": {
+                    "string": "ref"
+                  },
+                  "WFSerializationType": "WFTextTokenString"
+                },
+                "WFItemType": 0,
+                "WFValue": {
+                  "Value": {
+                    "string": "main"
+                  },
+                  "WFSerializationType": "WFTextTokenString"
+                }
+              },
+              {
+                "WFKey": {
+                  "Value": {
+                    "string": "return_run_details"
+                  },
+                  "WFSerializationType": "WFTextTokenString"
+                },
+                "WFItemType": 4,
+                "WFValue": {
+                  "Value": true,
+                  "WFSerializationType": "WFNumberSubstitutableState"
+                }
+              },
+              {
+                "WFKey": {
+                  "Value": {
+                    "string": "inputs"
+                  },
+                  "WFSerializationType": "WFTextTokenString"
+                },
+                "WFItemType": 1,
+                "WFValue": {
+                  "Value": {
+                    "Value": {
+                      "WFDictionaryFieldValueItems": [
+                        {
+                          "WFKey": {
+                            "Value": {
+                              "string": "reading_book_id"
+                            },
+                            "WFSerializationType": "WFTextTokenString"
+                          },
+                          "WFItemType": 0,
+                          "WFValue": {
+                            "Value": {
+                              "string": "￼",
+                              "attachmentsByRange": {
+                                "{0, 1}": {
+                                  "VariableName": "BookID",
+                                  "Type": "Variable"
+                                }
+                              }
+                            },
+                            "WFSerializationType": "WFTextTokenString"
+                          }
+                        },
+                        {
+                          "WFKey": {
+                            "Value": {
+                              "string": "reading_progress"
+                            },
+                            "WFSerializationType": "WFTextTokenString"
+                          },
+                          "WFItemType": 0,
+                          "WFValue": {
+                            "Value": {
+                              "string": "￼",
+                              "attachmentsByRange": {
+                                "{0, 1}": {
+                                  "VariableName": "ProgressInput",
+                                  "Type": "Variable"
+                                }
+                              }
+                            },
+                            "WFSerializationType": "WFTextTokenString"
+                          }
+                        }
+                      ]
+                    },
+                    "WFSerializationType": "WFDictionaryFieldValue"
+                  },
+                  "WFSerializationType": "WFDictionaryFieldValue"
+                }
+              }
+            ]
+          },
+          "WFSerializationType": "WFDictionaryFieldValue"
+        },
+        "WFHTTPMethod": "POST"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.getvalueforkey",
+      "WFWorkflowActionParameters": {
+        "WFInput": {
+          "Value": {
+            "OutputUUID": "C66BD0A0-7959-4CE0-913A-60EB91FD0FDE",
+            "Type": "ActionOutput",
+            "OutputName": "Contents of URL"
+          },
+          "WFSerializationType": "WFTextTokenAttachment"
+        },
+        "WFDictionaryKey": "workflow_run_id",
+        "UUID": "329E623A-799C-4171-8DC3-6B7DF45BE1FD"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+      "WFWorkflowActionParameters": {
+        "WFControlFlowMode": 0,
+        "GroupingIdentifier": "9E1181FF-E685-4CD2-B551-50720ED18A9E",
+        "WFCondition": 101,
+        "WFInput": {
+          "Type": "Variable",
+          "Variable": {
+            "Value": {
+              "OutputUUID": "329E623A-799C-4171-8DC3-6B7DF45BE1FD",
+              "Type": "ActionOutput",
+              "OutputName": "Dictionary Value"
+            },
+            "WFSerializationType": "WFTextTokenAttachment"
+          }
+        }
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.alert",
+      "WFWorkflowActionParameters": {
+        "WFAlertActionMessage": "GitHub did not accept this progress update. Nothing has been queued. Check the shortcut’s GitHub token and connection, then try again."
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.exit",
+      "WFWorkflowActionParameters": {}
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+      "WFWorkflowActionParameters": {
+        "WFControlFlowMode": 1,
+        "GroupingIdentifier": "9E1181FF-E685-4CD2-B551-50720ED18A9E"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.conditional",
+      "WFWorkflowActionParameters": {
+        "GroupingIdentifier": "9E1181FF-E685-4CD2-B551-50720ED18A9E",
+        "WFControlFlowMode": 2,
+        "UUID": "7CC3F546-E7DA-44DA-B956-7E06001266CE"
+      }
+    },
+    {
+      "WFWorkflowActionIdentifier": "is.workflow.actions.alert",
+      "WFWorkflowActionParameters": {
+        "WFAlertActionMessage": "Accepted by GitHub, waiting to save. Your profile changes after the update finishes successfully. You can dismiss this now.",
+        "WFAlertActionTitle": "Update queued ✓",
+        "WFAlertActionCancelButtonShown": false
+      }
+    }
+  ],
+  "WFWorkflowTypes": [],
+  "WFWorkflowInputContentItemClasses": []
+}
