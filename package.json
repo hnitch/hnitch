@@ -1,0 +1,21 @@
+{
+  "name": "hnitch-profile",
+  "version": "3.4.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "update-profile": "node scripts/update-profile.js",
+    "check": "node --check scripts/update-profile.js && node --check scripts/music-bridge-macos.js && node --check scripts/reading-progress.js && node --check scripts/save-reading-progress.js && node --check workers/discord-card.js && node --test scripts/reading-progress.test.js scripts/update-profile.test.js scripts/mobile-cards.test.js scripts/shortcut.test.js workers/discord-card.test.js",
+    "music:preview": "node scripts/music-bridge-macos.js --preview",
+    "music:dispatch": "node scripts/music-bridge-macos.js --dispatch",
+    "music:install": "zsh scripts/install-music-bridge-macos.sh",
+    "music:uninstall": "zsh scripts/uninstall-music-bridge-macos.sh"
+  },
+  "dependencies": {
+    "puppeteer-core": "^25.10.0",
+    "xml2js": "^0.6.2"
+  }
+}
