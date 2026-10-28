@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" role="img" aria-label="fresh signal">
+  <circle cx="9" cy="9" r="7" fill="#3ba55d" opacity=".18">
+    <animate attributeName="r" values="5;8;5" dur="1.8s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values=".32;.06;.32" dur="1.8s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="9" cy="9" r="4" fill="#57f287" stroke="#b9ffd0" stroke-opacity=".65"/>
+</svg>
