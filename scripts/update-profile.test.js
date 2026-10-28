@@ -301,3 +301,14 @@ test("cached rendering keeps both timestamps and the compact strip without incre
   assert.deepEqual(corrected.feedChecks, snapshot.feedChecks);
   assert.match(await fs.readFile(path.join(root, "assets/activity/goodreads-1.svg"), "utf8"), /777p/);
 });
+
+test("wrapped waiting title has breathing room before its playback explanation", () => {
+  const svg = renderAppleMusic(musicFallback(), null);
+  const headingLines = [...svg.matchAll(/<tspan x="356" y="(\d+)">/g)].map(m => Number(m[1]));
+  const subtitle = svg.match(/<text[^>]*font-size="(\d+)"[^>]*><tspan x="357" y="(\d+)">no verified playback available/);
+  assert.equal(headingLines.length, 2);
+  assert.ok(subtitle, "the waiting explanation is visible");
+  const subtitleTop = Number(subtitle[2]) - Number(subtitle[1]);
+  assert.ok(subtitleTop - Math.max(...headingLines) >= 14, "keep a clear gap after the wrapped title");
+  assert.ok(192 - Number(subtitle[2]) >= 20, "keep space above the status pill too");
+});
