@@ -3,7 +3,7 @@
   <br/><br/>
   <img src="https://hnitch-discord-card.haarshaan.workers.dev/visitors.svg?v=2" height="28" alt="visitors" />
   <!-- READING-BADGE:START -->
-  <img src="./assets/activity/reading-status.svg?v=f8e1138ac2" height="28" alt="currently reading , probably" />
+  <img src="./assets/activity/reading-status.svg?v=971e4e93b3" height="28" alt="between books , allegedly" />
   <!-- READING-BADGE:END -->
 </div>
 
@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-27T16:04:24.044Z" format="relative" format-style="long" title="2026-10-27T16:04:24.044Z">1 day ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Goodreads delayed; Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-29T03:49:06.347Z" format="relative" format-style="long" title="2026-10-29T03:49:06.347Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-29T03:56:20.104Z" format="relative" format-style="long" title="2026-10-29T03:56:20.104Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-29T03:56:20.400Z" format="relative" format-style="long" title="2026-10-29T03:56:20.400Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -32,15 +32,15 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/review/show/8444218649?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-current.svg?v=789c225f33" width="100%" alt="currently reading What Feeds Below" /></a>
+<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=728df2620d" width="100%" alt="not reading anything , rn" /></a>
 
-<a href="https://www.goodreads.com/review/show/8580097783?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-1.svg?v=8b8558316c" width="100%" alt="Read: The Exquisite Torment of Loving Your Enemy (Dearly Beloathed , #2)" /></a>
+<a href="https://www.goodreads.com/review/show/8444218649"><img src="./assets/activity/goodreads-1.svg?v=fc41bcd6c6" width="100%" alt="Read: What Feeds Below" /></a>
 
-<a href="https://www.goodreads.com/review/show/8781989677?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-2.svg?v=f8fd9482bc" width="100%" alt="Read: Cursed City (Harker Academy , #2)" /></a>
+<a href="https://www.goodreads.com/review/show/8580097783"><img src="./assets/activity/goodreads-2.svg?v=5cc81e0ba2" width="100%" alt="Read: The Exquisite Torment of Loving Your Enemy (Dearly Beloathed , #2)" /></a>
 
-<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-3.svg?v=d2223360af" width="100%" alt="Read: Murder at the Grand Alpine Hotel" /></a>
+<a href="https://www.goodreads.com/review/show/8781989677"><img src="./assets/activity/goodreads-3.svg?v=316ac21f22" width="100%" alt="Read: Cursed City (Harker Academy , #2)" /></a>
 
-<a href="https://www.goodreads.com/review/show/8506229886?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=64e9f80d67" width="100%" alt="Read: The Ending Writes Itself" /></a>
+<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=d2223360af" width="100%" alt="Read: Murder at the Grand Alpine Hotel" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
