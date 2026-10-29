@@ -312,3 +312,18 @@ test("wrapped waiting title has breathing room before its playback explanation",
   assert.ok(subtitleTop - Math.max(...headingLines) >= 14, "keep a clear gap after the wrapped title");
   assert.ok(192 - Number(subtitle[2]) >= 20, "keep space above the status pill too");
 });
+
+
+test('public Goodreads fallback moves a finished book and preserves full review and half stars', async () => {
+ const {parsePublicGoodreads}=await import('./goodreads-fallback.js');
+ const previous={current:{bookId:'1',title:'Book',pages:266,review:'',rating:0,progress:{page:134}},recent:[]};
+ const profile='<div id="shelves"><a href="?shelf=currently-reading">currently-reading (0)</a></div>';
+ const updates=`<table class="newsfeedUpdates"><tr class="update" data-timestamp="October 28, 2026 07:32"><td><div class="updateAction"><a href="/user/show/178629903-haarshaan">haarshaan</a> rated a book ${[10,10,10,10,6].map(n=>`<span class="staticStar p${n}"></span>`).join('')}</div><a class="bookTitle" href="/book/show/1-book">Book</a></td></tr><tr class="update no_border"><td><span id="reviewTextContainer9"><span id="freeTextContainerreview9">short</span><span id="freeTextreview9">Full review<br>with context.</span><a data-text-id="9">more</a></span></td></tr></table>`;
+ const result=parsePublicGoodreads(profile,updates,previous);
+ assert.equal(result.current,null);assert.equal(result.recent[0].rating,4.5);
+ assert.equal(result.recent[0].review,'Full review with context.');assert.equal(result.recent[0].pages,266);
+ assert.equal(result.recent[0].progress,undefined);
+ assert.throws(()=>parsePublicGoodreads('<title>Sign in</title>',updates,previous));
+ assert.throws(()=>parsePublicGoodreads(profile,updates.replace('p6','p3'),previous));
+ assert.throws(()=>parsePublicGoodreads(profile,updates.replace('/user/show/178629903-haarshaan','/user/show/999'),previous));
+});

@@ -1,3 +1,4 @@
+import {parsePublicGoodreads} from './goodreads-fallback.js';
 import fs from "node:fs/promises";
 import path from "node:path";
 import { createHash } from "node:crypto";
@@ -230,7 +231,7 @@ async function findCurrentProgress(statusFeed, current) {
   return null;
 }
 
-async function readGoodreads() {
+async function readGoodreadsRss() {
   const [currentXml, readXml, progressXml] = await Promise.all([
     fetchText(SOURCES.goodreads.current),
     fetchText(SOURCES.goodreads.read),
@@ -1065,7 +1066,16 @@ async function main() {
   const cachedInstagramAvatar = generatedInstagramBytes >= 1_500 ? generatedInstagramAvatar : null;
   const [goodreadsResult, letterboxdResult, appleMusicResult, instagramResult] = await Promise.all([
     readSource("goodreads", async () => {
-      const books = await readGoodreads();
+      let books;
+      try { books = await readGoodreadsRss(); }
+      catch (error) {
+        console.warn('Goodreads RSS unavailable; checking public profile updates.');
+        const [profile, updates] = await Promise.all([
+          fetchText('https://www.goodreads.com/user/show/178629903-haarshaan'),
+          fetchText('https://www.goodreads.com/user/delayable_user_show/178629903?csm_scope=delayable_user_show&skip_cache=false'),
+        ]);
+        books = parsePublicGoodreads(profile, updates, previous.goodreads);
+      }
       const manuallyLogged = progressForCurrentBook(savedReadingProgress, books.current);
       if (manuallyLogged) books.current.progress = manuallyLogged;
       return books;
