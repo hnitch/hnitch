@@ -1,10 +1,17 @@
 name: refresh profile activity
+run-name: ${{ inputs.refresh_origin == 'cloud-scheduler' && 'Automatic profile refresh' || 'refresh profile activity' }}
 
 on:
   schedule:
     - cron: "2-59/5 * * * *"
   workflow_dispatch:
     inputs:
+      refresh_origin:
+        description: "Refresh source (leave manual when starting an update yourself)"
+        type: choice
+        options: [manual, cloud-scheduler]
+        default: manual
+        required: false
       reading_book_id:
         description: "Current Goodreads book ID (leave blank for a normal refresh)"
         required: false
