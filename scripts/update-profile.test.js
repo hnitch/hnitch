@@ -327,3 +327,14 @@ test('public Goodreads fallback moves a finished book and preserves full review 
  assert.throws(()=>parsePublicGoodreads(profile,updates.replace('p6','p3'),previous));
  assert.throws(()=>parsePublicGoodreads(profile,updates.replace('/user/show/178629903-haarshaan','/user/show/999'),previous));
 });
+
+test('public fallback imports a new current edition from the profile page', async()=>{
+ const {publicGoodreads,parseEdition}=await import('./goodreads-fallback.js');
+ const profile='<div id="shelves"><a href="?shelf=currently-reading">currently-reading (1)</a></div><div id="currentlyReadingReviews"><a class="bookTitle" href="/book/show/456-new">New book</a></div>';
+ const updates='<table class="newsfeedUpdates"><tr class="update" data-timestamp="2026-10-29"><td><div class="updateAction"><a href="/user/show/178629903">haarshaan</a> rated a book '+Array(5).fill('<span class="staticStar p10"></span>').join('')+'</div><a class="bookTitle" href="/book/show/123-old">Old book</a></td></tr><tr class="update no_border"><td id="reviewTextContainer9"><span id="freeTextreview9">Loved it.</span></td></tr></table>';
+ const html='<script id="__NEXT_DATA__">'+JSON.stringify({props:{pageProps:{apolloState:{b:{__typename:'Book',legacyId:456,title:'New book',webUrl:'https://www.goodreads.com/book/show/456',primaryContributorEdge:{node:{__ref:'a'}},details:{numPages:390,publicationTime:1767225600000}},a:{name:'Author'}}}}})+'</script>';
+ let requests=0;
+ const result=await publicGoodreads(profile,updates,{current:null,recent:[{bookId:'123',title:'Old book'}]},async url=>{requests++;assert.match(url,/\/456$/);return html;});
+ assert.equal(requests,1);assert.equal(result.current.title,'New book');assert.equal(result.current.pages,390);assert.equal(result.current.rating,0);assert.equal(result.recent[0].review,'Loved it.');
+ assert.throws(()=>parseEdition(html,'789'),/mismatched/);
+});

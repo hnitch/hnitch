@@ -1,4 +1,4 @@
-import {parsePublicGoodreads} from './goodreads-fallback.js';
+import {publicGoodreads} from './goodreads-fallback.js';
 import fs from "node:fs/promises";
 import path from "node:path";
 import { createHash } from "node:crypto";
@@ -1074,7 +1074,7 @@ async function main() {
           fetchText('https://www.goodreads.com/user/show/178629903-haarshaan'),
           fetchText('https://www.goodreads.com/user/delayable_user_show/178629903?csm_scope=delayable_user_show&skip_cache=false'),
         ]);
-        books = parsePublicGoodreads(profile, updates, previous.goodreads);
+        books = await publicGoodreads(profile, updates, previous.goodreads, fetchText);
       }
       const manuallyLogged = progressForCurrentBook(savedReadingProgress, books.current);
       if (manuallyLogged) books.current.progress = manuallyLogged;
