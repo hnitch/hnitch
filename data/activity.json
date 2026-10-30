@@ -1,6 +1,19 @@
 {
   "goodreads": {
-    "current": null,
+    "current": {
+      "bookId": "247294908",
+      "title": "The Poet Empress",
+      "author": "Shen Tao",
+      "link": "https://www.goodreads.com/book/show/247294908-the-poet-empress",
+      "rating": 0,
+      "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1777149543i/247294908.jpg",
+      "pages": 390,
+      "averageRating": 4.38,
+      "published": "2026",
+      "dateAdded": "",
+      "readAt": "",
+      "review": ""
+    },
     "recent": [
       {
         "bookId": "243391644",
@@ -145,31 +158,31 @@
     "username": "hnitch",
     "avatarHash": "bc623f7b849a",
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
-    "lastAttemptAt": "2026-10-29T21:58:30.897Z"
+    "lastAttemptAt": "2026-10-30T05:49:58.807Z"
   },
-  "updatedAt": "2026-10-29T03:56:20.104Z",
-  "lastSignalRenderAt": "2026-10-29T05:40:06.907Z",
+  "updatedAt": "2026-10-30T05:50:22.726Z",
+  "lastSignalRenderAt": "2026-10-30T05:50:22.726Z",
   "feedChecks": {
-    "checkedAt": "2026-10-30T01:41:11.323Z",
+    "checkedAt": "2026-10-30T05:50:23.158Z",
     "sources": {
       "goodreads": {
-        "status": "delayed",
-        "checkedAt": "2026-10-30T01:41:11.323Z",
-        "lastSuccessAt": "2026-10-29T21:59:03.064Z"
+        "status": "ok",
+        "checkedAt": "2026-10-30T05:50:23.158Z",
+        "lastSuccessAt": "2026-10-30T05:50:23.158Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-10-30T01:41:11.323Z",
-        "lastSuccessAt": "2026-10-30T01:41:11.323Z"
+        "checkedAt": "2026-10-30T05:50:23.158Z",
+        "lastSuccessAt": "2026-10-30T05:50:23.158Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-10-30T01:41:11.323Z",
+        "checkedAt": "2026-10-30T05:50:23.158Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {
         "status": "delayed",
-        "checkedAt": "2026-10-29T21:59:03.064Z",
+        "checkedAt": "2026-10-30T05:50:23.158Z",
         "lastSuccessAt": "2026-10-12T15:08:45.725Z"
       }
     }

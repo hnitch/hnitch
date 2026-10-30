@@ -3,7 +3,7 @@
   <br/><br/>
   <img src="https://hnitch-discord-card.haarshaan.workers.dev/visitors.svg?v=2" height="28" alt="visitors" />
   <!-- READING-BADGE:START -->
-  <img src="./assets/activity/reading-status.svg?v=971e4e93b3" height="28" alt="between books , allegedly" />
+  <img src="./assets/activity/reading-status.svg?v=f8e1138ac2" height="28" alt="currently reading , probably" />
   <!-- READING-BADGE:END -->
 </div>
 
@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-29T03:56:20.104Z" format="relative" format-style="long" title="2026-10-29T03:56:20.104Z">21 hours ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Goodreads delayed; Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-30T01:41:11.323Z" format="relative" format-style="long" title="2026-10-30T01:41:11.323Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-30T05:50:22.726Z" format="relative" format-style="long" title="2026-10-30T05:50:22.726Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-30T05:50:23.158Z" format="relative" format-style="long" title="2026-10-30T05:50:23.158Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -32,7 +32,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=728df2620d" width="100%" alt="not reading anything , rn" /></a>
+<a href="https://www.goodreads.com/book/show/247294908-the-poet-empress"><img src="./assets/activity/goodreads-current.svg?v=e44718182e" width="100%" alt="currently reading The Poet Empress" /></a>
 
 <a href="https://www.goodreads.com/review/show/8444218649"><img src="./assets/activity/goodreads-1.svg?v=1c952f6ac0" width="100%" alt="Read: What Feeds Below" /></a>
 
