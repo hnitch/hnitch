@@ -1,20 +1,21 @@
 {
   "goodreads": {
-    "current": {
-      "bookId": "247294908",
-      "title": "The Poet Empress",
-      "author": "Shen Tao",
-      "link": "https://www.goodreads.com/book/show/247294908-the-poet-empress",
-      "rating": 0,
-      "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1777149543i/247294908.jpg",
-      "pages": 390,
-      "averageRating": 4.38,
-      "published": "2026",
-      "dateAdded": "",
-      "readAt": "",
-      "review": ""
-    },
+    "current": null,
     "recent": [
+      {
+        "bookId": "247294908",
+        "title": "The Poet Empress",
+        "author": "Shen Tao",
+        "link": "https://www.goodreads.com/review/show/8812304511",
+        "rating": 5,
+        "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1777149543i/247294908.jpg",
+        "pages": 390,
+        "averageRating": 4.38,
+        "published": "2026",
+        "dateAdded": "",
+        "readAt": "October 31, 2026 06:56",
+        "review": "sobbing , rtc…"
+      },
       {
         "bookId": "243391644",
         "title": "What Feeds Below",
@@ -79,27 +80,6 @@
             "loved viv's growth"
           ]
         }
-      },
-      {
-        "bookId": "249253557",
-        "title": "Murder at the Grand Alpine Hotel",
-        "author": "Lucy Foley",
-        "link": "https://www.goodreads.com/review/show/8811868314?utm_medium=api&utm_source=rss",
-        "rating": 3,
-        "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1772576610l/249253557.jpg",
-        "pages": 384,
-        "averageRating": 3.8,
-        "published": "2026",
-        "dateAdded": "Thu, 15 Oct 2026 09:31:18 -0700",
-        "readAt": "Thu, 15 Oct 2026 00:00:00 +0000",
-        "review": "murder at the grand alpine hotel had agatha christie’s name on the cover and somehow still had me waiting for the actual murder mystery to START for half the book. like i’m sorry but what are we doing here 😭 i went into this expecting a clever murder mystery with plenty of twists and turns. instead , what i got felt more like a cozy fantasy with a little murder mystery sprinkled on top. and i KNOW some people are going to think i’m insane for saying this but i genuinely would not consider this a thriller. SO much of this book is just character drama and people talking to each other. which isn’t necessarily a bad thing because i actually enjoyed the alternating POVs and getting to see the different character dynamics play out. but when practically nothing happens for the first 50% of a murder mystery , we’ve got a problem. my biggest complaint though is the investigation itself. for something involving miss marple , i expected a LOT more cleverness. instead , it felt like the book was deliberately withholding information from the reader just so everything could be explained at the very end. and i’m sorry but having characters sit around explaining how they figured everything out is nowhere near as satisfying as actually watching an investigation unfold. i wanted to connect the dots WITH the characters , not have the answers handed to me after the fact. it just made the entire payoff feel so flat. HOWEVER , i will give credit where it’s due because there were genuinely a few twists i did not see coming. i didn’t guess who was responsible for the murders and i actually really liked some of the character motivations behind everything. which makes this even more frustrating because the reveals themselves were interesting ! i just wish the journey to getting there had been equally as good. so yeah , i didn’t hate this. there were things i enjoyed and i can appreciate what the book was trying to do. but when the mystery takes half the book to properly get going and the investigation itself ends up feeling this underwhelming , i can’t help being disappointed. it was okay , just nowhere near what i was hoping for.",
-        "bookNote": {
-          "key": "ff0c491db75882b8b307114302d8599ed2ffab155ca9593c5db8f3d455dbd8aa",
-          "labels": [
-            "the payoff felt so flat",
-            "a few twists i didn't see"
-          ]
-        }
       }
     ]
   },
@@ -158,31 +138,31 @@
     "username": "hnitch",
     "avatarHash": "bc623f7b849a",
     "lastSuccessAt": "2026-10-12T15:08:45.725Z",
-    "lastAttemptAt": "2026-10-31T08:00:18.620Z"
+    "lastAttemptAt": "2026-10-31T14:00:20.872Z"
   },
-  "updatedAt": "2026-10-30T05:50:22.726Z",
-  "lastSignalRenderAt": "2026-10-30T07:00:25.819Z",
+  "updatedAt": "2026-10-31T14:00:43.739Z",
+  "lastSignalRenderAt": "2026-10-31T14:00:43.739Z",
   "feedChecks": {
-    "checkedAt": "2026-10-31T12:00:20.063Z",
+    "checkedAt": "2026-10-31T14:00:43.948Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-10-31T12:00:20.063Z",
-        "lastSuccessAt": "2026-10-31T12:00:20.063Z"
+        "checkedAt": "2026-10-31T14:00:43.948Z",
+        "lastSuccessAt": "2026-10-31T14:00:43.948Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-10-31T12:00:20.063Z",
-        "lastSuccessAt": "2026-10-31T12:00:20.063Z"
+        "checkedAt": "2026-10-31T14:00:43.948Z",
+        "lastSuccessAt": "2026-10-31T14:00:43.948Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-10-31T12:00:20.063Z",
+        "checkedAt": "2026-10-31T14:00:43.948Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {
         "status": "delayed",
-        "checkedAt": "2026-10-31T08:00:41.655Z",
+        "checkedAt": "2026-10-31T14:00:43.948Z",
         "lastSuccessAt": "2026-10-12T15:08:45.725Z"
       }
     }

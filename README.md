@@ -3,7 +3,7 @@
   <br/><br/>
   <img src="https://hnitch-discord-card.haarshaan.workers.dev/visitors.svg?v=2" height="28" alt="visitors" />
   <!-- READING-BADGE:START -->
-  <img src="./assets/activity/reading-status.svg?v=f8e1138ac2" height="28" alt="currently reading , probably" />
+  <img src="./assets/activity/reading-status.svg?v=971e4e93b3" height="28" alt="between books , allegedly" />
   <!-- READING-BADGE:END -->
 </div>
 
@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-30T05:50:22.726Z" format="relative" format-style="long" title="2026-10-30T05:50:22.726Z">1 day ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-31T12:00:20.063Z" format="relative" format-style="long" title="2026-10-31T12:00:20.063Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-10-31T14:00:43.739Z" format="relative" format-style="long" title="2026-10-31T14:00:43.739Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-10-31T14:00:43.948Z" format="relative" format-style="long" title="2026-10-31T14:00:43.948Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -32,15 +32,15 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/book/show/247294908-the-poet-empress"><img src="./assets/activity/goodreads-current.svg?v=e44718182e" width="100%" alt="currently reading The Poet Empress" /></a>
+<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=728df2620d" width="100%" alt="not reading anything , rn" /></a>
 
-<a href="https://www.goodreads.com/review/show/8444218649"><img src="./assets/activity/goodreads-1.svg?v=1c952f6ac0" width="100%" alt="Read: What Feeds Below" /></a>
+<a href="https://www.goodreads.com/review/show/8812304511"><img src="./assets/activity/goodreads-1.svg?v=0fb87bba9f" width="100%" alt="Read: The Poet Empress" /></a>
 
-<a href="https://www.goodreads.com/review/show/8580097783"><img src="./assets/activity/goodreads-2.svg?v=5cc81e0ba2" width="100%" alt="Read: The Exquisite Torment of Loving Your Enemy (Dearly Beloathed , #2)" /></a>
+<a href="https://www.goodreads.com/review/show/8444218649"><img src="./assets/activity/goodreads-2.svg?v=1c952f6ac0" width="100%" alt="Read: What Feeds Below" /></a>
 
-<a href="https://www.goodreads.com/review/show/8781989677"><img src="./assets/activity/goodreads-3.svg?v=316ac21f22" width="100%" alt="Read: Cursed City (Harker Academy , #2)" /></a>
+<a href="https://www.goodreads.com/review/show/8580097783"><img src="./assets/activity/goodreads-3.svg?v=5cc81e0ba2" width="100%" alt="Read: The Exquisite Torment of Loving Your Enemy (Dearly Beloathed , #2)" /></a>
 
-<a href="https://www.goodreads.com/review/show/8811868314?utm_medium=api&amp;utm_source=rss"><img src="./assets/activity/goodreads-4.svg?v=d2223360af" width="100%" alt="Read: Murder at the Grand Alpine Hotel" /></a>
+<a href="https://www.goodreads.com/review/show/8781989677"><img src="./assets/activity/goodreads-4.svg?v=316ac21f22" width="100%" alt="Read: Cursed City (Harker Academy , #2)" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
