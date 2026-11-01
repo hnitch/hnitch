@@ -14,7 +14,13 @@
         "published": "2026",
         "dateAdded": "",
         "readAt": "October 31, 2026 06:56",
-        "review": "sobbing , rtc…"
+        "review": "sobbing , rtc…",
+        "bookNote": {
+          "key": "4d5b0ba0553470e9a60971011b8491165e76ab74e262a009928c01f51affb7f5",
+          "labels": [
+            "sobbing"
+          ]
+        }
       },
       {
         "bookId": "243391644",
