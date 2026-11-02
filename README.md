@@ -34,7 +34,7 @@
 
 <a href="https://www.goodreads.com/book/show/260072083-kiss-slay-replay"><img src="./assets/activity/goodreads-current.svg?v=ec69f4f001" width="100%" alt="currently reading Kiss Slay Replay" /></a>
 
-<a href="https://www.goodreads.com/review/show/8812304511"><img src="./assets/activity/goodreads-1.svg?v=48afda5f0b" width="100%" alt="Read: The Poet Empress" /></a>
+<a href="https://www.goodreads.com/review/show/8812304511"><img src="./assets/activity/goodreads-1.svg?v=01d12ba953" width="100%" alt="Read: The Poet Empress" /></a>
 
 <a href="https://www.goodreads.com/review/show/8444218649"><img src="./assets/activity/goodreads-2.svg?v=1c952f6ac0" width="100%" alt="Read: What Feeds Below" /></a>
 
