@@ -164,21 +164,21 @@
   "updatedAt": "2026-11-02T15:55:45.153Z",
   "lastSignalRenderAt": "2026-11-02T16:15:37.590Z",
   "feedChecks": {
-    "checkedAt": "2026-11-04T01:15:38.713Z",
+    "checkedAt": "2026-11-04T01:25:34.410Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-04T01:15:38.713Z",
-        "lastSuccessAt": "2026-11-04T01:15:38.713Z"
+        "checkedAt": "2026-11-04T01:25:34.410Z",
+        "lastSuccessAt": "2026-11-04T01:25:34.410Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-04T01:15:38.713Z",
-        "lastSuccessAt": "2026-11-04T01:15:38.713Z"
+        "checkedAt": "2026-11-04T01:25:34.410Z",
+        "lastSuccessAt": "2026-11-04T01:25:34.410Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-11-04T01:15:38.713Z",
+        "checkedAt": "2026-11-04T01:25:34.410Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {
