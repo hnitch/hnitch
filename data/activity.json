@@ -1,20 +1,21 @@
 {
   "goodreads": {
-    "current": {
-      "bookId": "260072083",
-      "title": "Kiss Slay Replay",
-      "author": "Rachel   Harrison",
-      "link": "https://www.goodreads.com/book/show/260072083-kiss-slay-replay",
-      "rating": 0,
-      "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1790845276i/260072083.jpg",
-      "pages": 390,
-      "averageRating": 3.75,
-      "published": "2026",
-      "dateAdded": "",
-      "readAt": "",
-      "review": ""
-    },
+    "current": null,
     "recent": [
+      {
+        "bookId": "260072083",
+        "title": "Kiss Slay Replay",
+        "author": "Rachel   Harrison",
+        "link": "https://www.goodreads.com/review/show/8755007560",
+        "rating": 3.5,
+        "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1790845276i/260072083.jpg",
+        "pages": 390,
+        "averageRating": 3.75,
+        "published": "2026",
+        "dateAdded": "",
+        "readAt": "November 04, 2026 06:47",
+        "review": "rtc…"
+      },
       {
         "bookId": "247294908",
         "title": "The Poet Empress",
@@ -80,27 +81,6 @@
             "wanted more from the plot"
           ]
         }
-      },
-      {
-        "bookId": "246596660",
-        "title": "Cursed City (Harker Academy, #2)",
-        "author": "Kate  Golden",
-        "link": "https://www.goodreads.com/review/show/8781989677",
-        "rating": 5,
-        "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1775714675l/246596660._SX318_.jpg",
-        "pages": 500,
-        "averageRating": 4.69,
-        "published": "2026",
-        "dateAdded": "Wed, 21 Oct 2026 10:04:38 -0700",
-        "readAt": "Mon, 19 Oct 2026 00:00:00 +0000",
-        "review": "i would like to start this review by issuing a HUGE fucking apology to literally everyone because WHAT THE HELL WAS I THINKING WHEN I WROTE MY HALF CITY REVIEW !!!? i called myself a full reid defender. i said that man better be endgame. i said i did NOT want the other option. AT ALL. and now here i am , in full clown makeup , because apparently the ONE time i decide to abandon every single principle i have and root for the supposedly good guy instead of the villain , THIS is what happens to me ??? TEAM VILLAIN IS LITERALLY IN MY BIO. i had ONE rule and somehow i broke it for reid graveheart. i have genuinely never felt so stupid in my life. and the worst part is that i have the evidence IN WRITING. my half city review is literally sitting there for everyone to see. i was so confident too... literally my thirteenth reason. ANYWAYSS. moving on from that because HOLY SHYT KATE GOLDEN ??? i cannot even say she outdid herself because that would be an understatement. she absolutely CRUSHED this book and somehow we're only on book TWO. if you've read my half city review , you'll know that i didn't love the first book nearly as much as i wanted to. i liked it , but the pacing dragged and there was so much setup that i kept wishing things would just MOVE. well apparently kate golden heard every single complaint i had because cursed city took everything i wanted from book one and delivered it about a BILLION times better. the pacing was incredible , the twists had me losing my mind and THE CHARACTER DEVELOPMENT. THE DRAMA ?!! everything was just SO much better this time around. and VIV !!! the amount of growth this girl has shown since half city is insane. she's come such a long way and i loved seeing different sides of her this time around. the way i switched sides for deacon practically gave me whiplash. i am officially and unapologetically team mr white antlers now and i would like everyone to kindly forget every single thing i have ever said about his brother. thank yeww. also , we NEED to talk about how emotionally exhausting this book was because there were moments where i genuinely had to PUT IT DOWN. not because i was bored , but because i could feel things going horribly wrong and needed to save myself from whatever emotional damage was coming next. except that did not last before i picked it right back up because this book was so ridiculously addictive. THAT ENDING too. i don't think i've screamed at a book this much in a LONG time. sooo we're getting an underworld arc in book three. AN UNDERWORLD / HELL ARC. as someone who absolutely LIVES for dante's inferno and anything involving hell , you have NO idea how excited i am. the possibilities are actually making me feral. i already KNOW the final book might somehow top this one and that is INSANE considering how much i loved this one. fairyloot doing a matching edition is literally everything to me because FINALLY my half city won't be sitting there looking pretty alone. don't even get me started on the bookish box reverse dust jacket because THAT is the deacon graveheart i pictured in my head the whole time. absolutely no regrets about needing both editions now. five stars. the easiest five stars. i am SO unbelievably happy i continued this series because this was everything i wanted and so much more. kate golden has officially made me completely obsessed with this trilogy and i will be FIRST IN LINE for book three. july cannot come any faster. i NEED IT. 😭",
-        "bookNote": {
-          "key": "cecf3dd6bd8bba50ff5cf330dda6a20c4abbf03fa890db91c34e6cf4039276b7",
-          "labels": [
-            "so ridiculously addictive",
-            "loved viv's growth"
-          ]
-        }
       }
     ]
   },
@@ -161,24 +141,24 @@
     "lastSuccessAt": "2026-11-02T15:25:34.085Z",
     "lastAttemptAt": "2026-11-04T10:05:33.287Z"
   },
-  "updatedAt": "2026-11-02T15:55:45.153Z",
-  "lastSignalRenderAt": "2026-11-02T16:15:37.590Z",
+  "updatedAt": "2026-11-04T14:55:37.581Z",
+  "lastSignalRenderAt": "2026-11-04T14:55:37.581Z",
   "feedChecks": {
-    "checkedAt": "2026-11-04T14:45:43.849Z",
+    "checkedAt": "2026-11-04T14:55:37.857Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-04T14:45:43.849Z",
-        "lastSuccessAt": "2026-11-04T14:45:43.849Z"
+        "checkedAt": "2026-11-04T14:55:37.857Z",
+        "lastSuccessAt": "2026-11-04T14:55:37.857Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-04T14:45:43.849Z",
-        "lastSuccessAt": "2026-11-04T14:45:43.849Z"
+        "checkedAt": "2026-11-04T14:55:37.857Z",
+        "lastSuccessAt": "2026-11-04T14:55:37.857Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-11-04T14:45:43.849Z",
+        "checkedAt": "2026-11-04T14:55:37.857Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {
