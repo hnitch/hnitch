@@ -591,7 +591,7 @@ export function ratingIcons(rating, color) {
   const star = 'M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z';
   return Array.from({ length: 5 }, (_, i) => {
     const fill = Math.max(0, Math.min(1, rating - i));
-    return `<g transform="translate(${180 + i * 22} 190)"><defs><clipPath id="rating-star-${i}"><rect width="${20 * fill}" height="20"/></clipPath></defs><path d="${star}" fill="${color}" opacity=".22"/><path d="${star}" fill="${color}" clip-path="url(#rating-star-${i})"/></g>`;
+    return `<g transform="translate(${178 + i * 20} 191) scale(.9)"><defs><clipPath id="rating-star-${i}"><rect width="${20 * fill}" height="20"/></clipPath></defs><path d="${star}" fill="${color}" opacity=".22"/><path d="${star}" fill="${color}" clip-path="url(#rating-star-${i})"/></g>`;
   }).join('');
 }
 
@@ -607,7 +607,7 @@ export function renderBookTile(book, artwork, index) {
   const ratingLabel = book.ratingSource === "unavailable" ? "Exact rating unavailable from Goodreads" : rating ? `${rating} out of 5 stars` : "unrated";
   const showStars = rating > 0 && book.ratingSource !== "unavailable";
   const numberWidth = [...String(rating)].reduce((width, char) => width + (char === "." ? 4 : 9), 0);
-  const ratingWidth = showStars ? 152 + numberWidth : Math.max(78, 32 + ratingText.length * 16);
+  const ratingWidth = showStars ? 136 + numberWidth : Math.max(78, 32 + ratingText.length * 16);
   const moods = bookNotes(book);
   let chipX = 164 + ratingWidth + 29;
   const chipColors = [
@@ -637,7 +637,7 @@ export function renderBookTile(book, artwork, index) {
   ${titleSidecar}
   <text x="164" y="136" fill="${theme.muted}" font-size="14.5" font-weight="700">${escapeDisplay(book.author)}</text>
   <text x="164" y="160" fill="#978a9f" font-size="12.5" font-weight="600">${escapeDisplay(facts)}</text>
-  <g role="img" aria-label="${ratingLabel}"><title>${ratingLabel}</title><rect x="164" y="183" width="${ratingWidth}" height="34" rx="17" fill="${mood.background}"/>${showStars ? ratingIcons(rating, mood.color) + `<text x="300" y="205" fill="${mood.color}" font-size="14" font-weight="800" text-anchor="start">${rating}</text>` : `<text x="${164 + ratingWidth / 2}" y="205" fill="${mood.color}" font-size="16" font-weight="800" text-anchor="middle">${escapeDisplay(ratingText)}</text>`}</g>
+  <g role="img" aria-label="${ratingLabel}"><title>${ratingLabel}</title><rect x="164" y="183" width="${ratingWidth}" height="34" rx="17" fill="${mood.background}"/>${showStars ? ratingIcons(rating, mood.color) + `<text x="286" y="205" fill="${mood.color}" font-size="14" font-weight="800" text-anchor="start">${rating}</text>` : `<text x="${164 + ratingWidth / 2}" y="205" fill="${mood.color}" font-size="16" font-weight="800" text-anchor="middle">${escapeDisplay(ratingText)}</text>`}</g>
   <path d="M${174 + ratingWidth} 187v26" stroke="#776a88" stroke-width="2" stroke-linecap="round" opacity=".8"/>
   ${chips}${emptyReview}</g>
   </svg>`;

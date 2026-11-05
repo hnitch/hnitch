@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-05T08:53:29.045Z" format="relative" format-style="long" title="2026-11-05T08:53:29.045Z">27 minutes ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-05T09:20:47.510Z" format="relative" format-style="long" title="2026-11-05T09:20:47.510Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-05T08:53:29.045Z" format="relative" format-style="long" title="2026-11-05T08:53:29.045Z">28 minutes ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-05T09:20:47.510Z" format="relative" format-style="long" title="2026-11-05T09:20:47.510Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -36,11 +36,11 @@
 
 <a href="https://www.goodreads.com/review/show/8755007560"><img src="./assets/activity/goodreads-1.svg?v=ede46e9bc2" width="100%" alt="Read: Kiss Slay Replay" /></a>
 
-<a href="https://www.goodreads.com/review/show/8812304511"><img src="./assets/activity/goodreads-2.svg?v=f6c2d3b64c" width="100%" alt="Read: The Poet Empress" /></a>
+<a href="https://www.goodreads.com/review/show/8812304511"><img src="./assets/activity/goodreads-2.svg?v=77b2291f54" width="100%" alt="Read: The Poet Empress" /></a>
 
-<a href="https://www.goodreads.com/review/show/8444218649"><img src="./assets/activity/goodreads-3.svg?v=f080a9438b" width="100%" alt="Read: What Feeds Below" /></a>
+<a href="https://www.goodreads.com/review/show/8444218649"><img src="./assets/activity/goodreads-3.svg?v=85281595ad" width="100%" alt="Read: What Feeds Below" /></a>
 
-<a href="https://www.goodreads.com/review/show/8580097783"><img src="./assets/activity/goodreads-4.svg?v=5cc81e0ba2" width="100%" alt="Read: The Exquisite Torment of Loving Your Enemy (Dearly Beloathed , #2)" /></a>
+<a href="https://www.goodreads.com/review/show/8580097783"><img src="./assets/activity/goodreads-4.svg?v=287119a856" width="100%" alt="Read: The Exquisite Torment of Loving Your Enemy (Dearly Beloathed , #2)" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
