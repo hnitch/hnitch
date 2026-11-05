@@ -643,17 +643,25 @@ export function renderBookTile(book, artwork, index) {
   </svg>`;
 }
 
-function renderFilmTile(film, artwork, index) {
+export function renderFilmTile(film, artwork, index) {
   const note = film.review || (film.liked ? "liked. evidence duly noted." : "logged without further comment.");
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="220" viewBox="0 0 860 220" role="img" aria-label="${escapeDisplay(film.title)} (${escapeDisplay(film.year)})" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
-  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#17232e"/><stop offset="1" stop-color="#21313d"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
-  <rect x="1" y="1" width="858" height="218" rx="25" fill="url(#bg)" stroke="#45657b" stroke-width="2"/>
-  <circle cx="815" cy="18" r="130" fill="#89c9f8" opacity=".05"/>
-  ${cover({ dataUri: artwork, x: 24, y: 20, width: 118, height: 180, radius: 10 })}
-  <g class="sans"><g transform="translate(168 25)"><circle cx="8" cy="8" r="8" fill="#ff8000"/><circle cx="22" cy="8" r="8" fill="#00e054"/><circle cx="36" cy="8" r="8" fill="#40bcf4"/></g><text x="808" y="38" fill="#8298a8" font-size="12" font-weight="800" text-anchor="end" letter-spacing="1.1">WATCH 0${index + 1}</text>
-  ${wrappedText({ x: 168, y: 55, width: 630, height: 63, value: film.title, size: 28, weight: 800, lineHeight: 1.04 })}
-  <text x="168" y="139" fill="${theme.muted}" font-size="14" font-weight="700">${escapeDisplay(film.year)}${film.liked ? "  ·  ♥ liked" : ""}</text><text x="808" y="139" fill="${theme.yellow}" font-size="14" font-weight="800" text-anchor="end">${escapeDisplay(stars(film.rating))}</text>
-  ${wrappedText({ x: 168, y: 154, width: 630, height: 44, value: `“${note}”`, size: 13, weight: 600, color: "#a7b7c2", lineHeight: 1.18, italic: true })}</g>
+  const rating = normaliseRating(film.rating);
+  const mood = ratingMood(rating);
+  const numberWidth = [...String(rating)].reduce((width, char) => width + (char === "." ? 4 : 9), 0);
+  const ratingWidth = rating ? 136 + numberWidth : 88;
+  const ratingLabel = rating ? `${rating} out of 5 stars` : "unrated";
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="242" viewBox="0 0 860 242" role="img" aria-label="${escapeDisplay(film.title)} (${escapeDisplay(film.year)})" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#19222d"/><stop offset="1" stop-color="#252532"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
+  <rect x="1" y="1" width="858" height="240" rx="25" fill="url(#bg)" stroke="#526378" stroke-width="2"/>
+  <circle cx="820" cy="12" r="124" fill="#89c9f8" opacity=".045"/>
+  ${cover({ dataUri: artwork, x: 24, y: 21, width: 130, height: 198, radius: 10 })}
+  <g class="sans"><text x="164" y="38" fill="#e9c995" font-size="12" font-weight="800" letter-spacing="1.25">WATCH RECEIPT / 0${index + 1}</text>
+  <text x="816" y="38" fill="#b7cddd" font-size="11" font-weight="600" text-anchor="end">${film.review ? "read full review ↗" : "view on Letterboxd ↗"}</text>
+  ${wrappedText({ x: 164, y: 51, width: 630, height: 59, value: film.title, size: 27, weight: 800, lineHeight: 1.04 })}
+  <text x="164" y="123" fill="${theme.muted}" font-size="14.5" font-weight="700">${escapeDisplay(film.year)}</text>
+  ${wrappedText({ x: 164, y: 135, width: 650, height: 37, value: `“${note}”`, size: 13, weight: 600, color: "#bdb1ca", lineHeight: 1.18, italic: true })}
+  <g role="img" aria-label="${ratingLabel}"><title>${ratingLabel}</title><rect x="164" y="183" width="${ratingWidth}" height="34" rx="17" fill="${mood.background}"/>${rating ? ratingIcons(rating, mood.color) + `<text x="286" y="205" fill="${mood.color}" font-size="14" font-weight="800">${rating}</text>` : `<text x="208" y="205" fill="${mood.color}" font-size="14" font-weight="700" text-anchor="middle">unrated</text>`}</g>
+  ${film.liked ? `<path d="M${174 + ratingWidth} 187v26" stroke="#776a88" stroke-width="2" stroke-linecap="round" opacity=".8"/><rect x="${193 + ratingWidth}" y="183" width="84" height="34" rx="17" fill="#332b4a"/><text x="${235 + ratingWidth}" y="205" fill="#dccdff" font-size="12" font-weight="750" text-anchor="middle">♥ liked</text>` : ""}</g>
   </svg>`;
 }
 
