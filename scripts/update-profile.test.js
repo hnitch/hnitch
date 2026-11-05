@@ -74,7 +74,9 @@ test("Goodreads RSS preserves all twenty quarter-star increments end to end", as
     const expected = "★".repeat(Math.floor(rating)) + fractions[quarters % 4];
     assert.equal(stars(book.rating), expected);
     const svg = renderBookTile(book, null, 0);
-    assert.ok(svg.includes(`>${expected}</text>`));
+    assert.equal((svg.match(/<clipPath id="rating-star-/g) || []).length, 5);
+    for(let i=0;i<5;i++) assert.ok(svg.includes(`id="rating-star-${i}"><rect width="${20*Math.max(0,Math.min(1,rating-i))}" height="20"`));
+    assert.ok(!/[¼½¾]/.test(svg));
     assert.ok(svg.includes(`aria-label="${rating} out of 5 stars"`));
     await parseStringPromise(svg);
   }
