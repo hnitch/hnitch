@@ -165,6 +165,7 @@ export function normaliseBook(item = {}) {
     link: decode(first(item.link)),
     // Personal ratings now include quarter stars. Keep the feed's precision.
     rating: normaliseRating(item.user_rating),
+    ratingSource: "numeric-feed",
     cover: decode(first(item.book_large_image_url) || first(item.book_medium_image_url)),
     pages: Number(first(item.num_pages) || first(book.num_pages)) || null,
     averageRating: Number(first(item.average_rating) || first(book.average_rating)) || null,
@@ -594,8 +595,8 @@ export function renderBookTile(book, artwork, index) {
   const titleSidecar = bookFacts.length ? `<path d="M632 65v52" stroke="#756b80" stroke-width="2" stroke-linecap="round" opacity=".8"/>${bookFacts.map((fact, factIndex) => `<text x="649" y="${80 + factIndex * 23}" fill="#a99daf" font-size="12" font-weight="650">${escapeDisplay(fact)}</text>`).join("")}` : "";
   const rating = normaliseRating(book.rating);
   const mood = ratingMood(rating);
-  const ratingText = stars(rating);
-  const ratingLabel = rating ? `${rating} out of 5 stars` : "unrated";
+  const ratingText = book.ratingSource === "unavailable" ? "rating pending" : stars(rating);
+  const ratingLabel = book.ratingSource === "unavailable" ? "Exact rating unavailable from Goodreads" : rating ? `${rating} out of 5 stars` : "unrated";
   const ratingWidth = Math.max(78, 32 + ratingText.length * 16);
   const moods = bookNotes(book);
   let chipX = 164 + ratingWidth + 29;

@@ -1,4 +1,5 @@
 import {load} from 'cheerio';
+import confirmedRatings from '../data/book-ratings.json' with {type:'json'};
 
 // The public profile still exposes complete reviews when its RSS routes are unavailable.
 // Only reuse metadata for known editions; missing evidence must never clear a shelf.
@@ -33,14 +34,20 @@ export function parsePublicGoodreads(profileHtml, updatesHtml, previous, metadat
   const copy=text.clone();copy.find('br').replaceWith('\n');
   const review=copy.text().replace(/\s+/g,' ').trim();
   const stars=action.find('.staticStar').toArray().map(el=>updates(el).attr('class')?.match(/\bp(\d+)\b/)?.[1]);
-  // p6 is Goodreads' half-star asset; unknown fractions fail closed.
+  // The legacy p6 image is ambiguous: confirmed 3.75 also renders as p6.
   const values={'0':0,'6':0.5,'10':1};
   if(stars.length!==5||stars.some(s=>!(s in values)))throw Error('Goodreads rating could not be read precisely');
-  const rating=stars.reduce((sum,s)=>sum+values[s],0);
+  const displayedRating=stars.reduce((sum,s)=>sum+values[s],0);
   const reviewId=reviewRow.find('[id^="reviewTextContainer"]').attr('id')?.replace('reviewTextContainer','');
   if(!reviewId)return;
+  const confirmed=confirmedRatings[reviewId];
+  const trusted=confirmed?.bookId===id?confirmed.rating:book.ratingSource==='numeric-feed'?book.rating:null;
+  const fullStars=stars.filter(s=>s==='10').length;
+  const compatible=Number.isFinite(trusted)&&trusted>fullStars&&trusted<fullStars+1&&Number.isInteger(trusted*4);
+  const rating=stars.includes('6')?(compatible?trusted:null):displayedRating;
+  const ratingSource=stars.includes('6')?(compatible?(confirmed?.bookId===id?'confirmed':'numeric-feed'):'unavailable'):'public-stars';
   const {progress,...metadata}=book;
-  recent.push({...metadata,rating,review,link:`https://www.goodreads.com/review/show/${reviewId}`,readAt:book.readAt||row.attr('data-timestamp')||''});
+  recent.push({...metadata,rating,ratingSource,review,link:`https://www.goodreads.com/review/show/${reviewId}`,readAt:book.readAt||row.attr('data-timestamp')||''});
  });
  if(!recent.length)throw Error('No own reviews found in Goodreads public fallback');
  for(const book of previous?.recent||[])if(!recent.some(b=>b.bookId===book.bookId)&&book.bookId!==current?.bookId)recent.push(book);
