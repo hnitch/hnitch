@@ -1,6 +1,19 @@
 {
   "goodreads": {
-    "current": null,
+    "current": {
+      "bookId": "259986702",
+      "title": "Victorious",
+      "author": "V.E. Schwab",
+      "link": "https://www.goodreads.com/book/show/259986702-victorious",
+      "rating": 0,
+      "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1790700215i/259986702.jpg",
+      "pages": 578,
+      "averageRating": null,
+      "published": "2026",
+      "dateAdded": "",
+      "readAt": "",
+      "review": ""
+    },
     "recent": [
       {
         "bookId": "260072083",
@@ -144,24 +157,24 @@
     "lastSuccessAt": "2026-11-02T15:25:34.085Z",
     "lastAttemptAt": "2026-11-07T11:15:33.261Z"
   },
-  "updatedAt": "2026-11-05T08:53:29.045Z",
-  "lastSignalRenderAt": "2026-11-05T09:10:42.293Z",
+  "updatedAt": "2026-11-07T12:46:32.618Z",
+  "lastSignalRenderAt": "2026-11-07T12:46:32.618Z",
   "feedChecks": {
-    "checkedAt": "2026-11-07T12:36:35.191Z",
+    "checkedAt": "2026-11-07T12:46:33.029Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-07T12:36:35.191Z",
-        "lastSuccessAt": "2026-11-07T12:36:35.191Z"
+        "checkedAt": "2026-11-07T12:46:33.029Z",
+        "lastSuccessAt": "2026-11-07T12:46:33.029Z"
       },
       "letterboxd": {
         "status": "delayed",
-        "checkedAt": "2026-11-07T12:36:35.191Z",
+        "checkedAt": "2026-11-07T12:46:33.029Z",
         "lastSuccessAt": "2026-11-07T12:26:03.828Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-11-07T12:36:35.191Z",
+        "checkedAt": "2026-11-07T12:46:33.029Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {

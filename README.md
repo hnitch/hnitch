@@ -3,7 +3,7 @@
   <br/><br/>
   <img src="https://hnitch-discord-card.haarshaan.workers.dev/visitors.svg?v=2" height="28" alt="visitors" />
   <!-- READING-BADGE:START -->
-  <img src="./assets/activity/reading-status.svg?v=971e4e93b3" height="28" alt="between books , allegedly" />
+  <img src="./assets/activity/reading-status.svg?v=f8e1138ac2" height="28" alt="currently reading , probably" />
   <!-- READING-BADGE:END -->
 </div>
 
@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-05T08:53:29.045Z" format="relative" format-style="long" title="2026-11-05T08:53:29.045Z">2 days ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Letterboxd delayed; Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-07T12:36:35.191Z" format="relative" format-style="long" title="2026-11-07T12:36:35.191Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-07T12:46:32.618Z" format="relative" format-style="long" title="2026-11-07T12:46:32.618Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Letterboxd delayed; Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-07T12:46:33.029Z" format="relative" format-style="long" title="2026-11-07T12:46:33.029Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -32,7 +32,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=728df2620d" width="100%" alt="not reading anything , rn" /></a>
+<a href="https://www.goodreads.com/book/show/259986702-victorious"><img src="./assets/activity/goodreads-current.svg?v=56aa4daf9e" width="100%" alt="currently reading Victorious" /></a>
 
 <a href="https://www.goodreads.com/review/show/8755007560"><img src="./assets/activity/goodreads-1.svg?v=ede46e9bc2" width="100%" alt="Read: Kiss Slay Replay" /></a>
 
