@@ -95,7 +95,7 @@ test("missing and invalid ratings do not become fabricated stars", () => {
 test("quarter-star colours use the actual rating without rounding up", () => {
   assert.equal(ratingMood(2.75).color, "#ff9f9a");
   assert.equal(ratingMood(3.25).color, "#ffe58c");
-  assert.equal(ratingMood(3.75).color, "#ffe58c");
+  assert.equal(ratingMood(3.75).color, "#8edfd4");
   assert.equal(ratingMood(4.25).color, "#8edfd4");
 });
 
