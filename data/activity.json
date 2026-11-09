@@ -16,7 +16,13 @@
         "readAt": "November 08, 2026 19:57",
         "review": "rtcccc , i’m processing",
         "readingSessionId": "32b59f8d-6b86-41e3-98cb-58e7d0c19d25",
-        "ratingSource": "unavailable"
+        "ratingSource": "unavailable",
+        "bookNote": {
+          "key": "a48e49434aa42776605bcc9a2b4287e5e156aeb123cad8be837270a7c8d474e4",
+          "labels": [
+            "processing"
+          ]
+        }
       },
       {
         "bookId": "260072083",

@@ -11,5 +11,5 @@
   <text x="164" y="160" fill="#978a9f" font-size="12.5" font-weight="600">578p · read Nov 2026</text>
   <g role="img" aria-label="Exact rating unavailable from Goodreads"><title>Exact rating unavailable from Goodreads</title><rect x="164" y="183" width="256" height="34" rx="17" fill="#332c3b"/><text x="292" y="205" fill="#bdb1ca" font-size="16" font-weight="800" text-anchor="middle">rating pending</text></g>
   <path d="M430 187v26" stroke="#776a88" stroke-width="2" stroke-linecap="round" opacity=".8"/>
-  <rect x="449" y="183" width="178" height="34" rx="17" fill="#302a3d"/><text x="538" y="205" fill="#bdb1ca" font-size="12" font-weight="700" text-anchor="middle">read the full review ↗</text></g>
+  <rect x="449" y="183" width="98" height="34" rx="17" fill="#332b4a"/><text x="498" y="205" fill="#dccdff" font-size="12" font-weight="750" text-anchor="middle">processing</text></g>
   </svg>
