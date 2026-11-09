@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-09T00:47:13.737Z" format="relative" format-style="long" title="2026-11-09T00:47:13.737Z">2 hours ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-09T03:05:34.384Z" format="relative" format-style="long" title="2026-11-09T03:05:34.384Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-09T00:47:13.737Z" format="relative" format-style="long" title="2026-11-09T00:47:13.737Z">2 hours ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-09T03:15:34.230Z" format="relative" format-style="long" title="2026-11-09T03:15:34.230Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
