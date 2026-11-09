@@ -1,27 +1,23 @@
 {
   "goodreads": {
-    "current": {
-      "bookId": "259986702",
-      "title": "Victorious",
-      "author": "V.E. Schwab",
-      "link": "https://www.goodreads.com/book/show/259986702-victorious",
-      "rating": 0,
-      "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1790700215i/259986702.jpg",
-      "pages": 578,
-      "averageRating": null,
-      "published": "2026",
-      "dateAdded": "",
-      "readAt": "",
-      "review": "",
-      "readingSessionId": "32b59f8d-6b86-41e3-98cb-58e7d0c19d25",
-      "progress": {
-        "page": 411,
-        "total": 578,
-        "percent": 71,
-        "source": "shortcut"
-      }
-    },
+    "current": null,
     "recent": [
+      {
+        "bookId": "259986702",
+        "title": "Victorious",
+        "author": "V.E. Schwab",
+        "link": "https://www.goodreads.com/review/show/8886771684",
+        "rating": null,
+        "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1790700215i/259986702.jpg",
+        "pages": 578,
+        "averageRating": null,
+        "published": "2026",
+        "dateAdded": "",
+        "readAt": "November 08, 2026 19:57",
+        "review": "rtcccc , i’m processing",
+        "readingSessionId": "32b59f8d-6b86-41e3-98cb-58e7d0c19d25",
+        "ratingSource": "unavailable"
+      },
       {
         "bookId": "260072083",
         "title": "Kiss Slay Replay",
@@ -80,28 +76,6 @@
             "horrifying , fascinating",
             "loved the body horror",
             "guessed the twist"
-          ]
-        }
-      },
-      {
-        "bookId": "252105302",
-        "title": "The Exquisite Torment of Loving Your Enemy (Dearly Beloathed, #2)",
-        "author": "Brigitte Knightley",
-        "link": "https://www.goodreads.com/review/show/8580097783",
-        "rating": 4,
-        "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1778531452l/252105302._SY475_.jpg",
-        "pages": 389,
-        "averageRating": 4.47,
-        "published": "2026",
-        "dateAdded": "Mon, 26 Oct 2026 02:19:30 -0700",
-        "readAt": "Sun, 25 Oct 2026 00:00:00 +0000",
-        "review": "i need brigitte knightley to explain why watching osric and aurienne try to outsmart each other for two entire books is somehow one of the more entertaining things i've read this year. like seriously... how are they STILL finding new ways to get under each other's skin and me eating up every second of it. i don't think i've laughed this much while reading a fantasy book in a LONG time. some of the dialogue in this duology is so batshit insane that i genuinely had to stop reading just to process.. and it's not even just the main two because the side characters have some absolute GOLD too. knightley's writing style is genuinely something else and i can absolutely see why it wouldn't work for everyone , but once you get used to it , it's ridiculously entertaining. i LOVE these characters. what is it with sequels topping their predecessors recently because i really did enjoy this more than book one. there's more action , the relationship develops beautifully and THANK GOD we actually got a proper ending this time because after that cliffhanger in book one , i was NOT about to survive another round of unanswered questions. seeing everything finally come together was so satisfying and honestly , i couldn't have asked for a better ending for these two. my biggest complaint though is that i STILL wanted more from the actual fantasy plot. yes , there's definitely more happening here compared to book one , but the stakes never felt quite as high as i wanted them to. osric's seth rot was supposed to be this potentially fatal condition and such a huge part of why these characters even met , but the way it was resolved felt a little too straightforward and easy. like oh okay... it's just drastically improving now ?? 😭 i never really felt like either of them was in serious danger , and while the romantic tension was absolutely THERE , i wish the external conflicts had carried that same intensity. and that's really what keeps this from being a five-star read for me , even though i was INVESTED... like i finished this in two days and loved spending more time with these characters. my only wish is that the fantasy side was a bit more developed to match how brilliant the humor and romance were. anywayssss , four stars for two of the most insufferable people i've ever had the pleasure of reading about. i will miss these two terribly.",
-        "bookNote": {
-          "key": "65c51a3445c9f5c6a0e9eb585a986a3014d50bf04cb51937113e02339903ffd6",
-          "labels": [
-            "laughed so much",
-            "satisfying ending",
-            "wanted higher stakes"
           ]
         }
       }
@@ -164,24 +138,24 @@
     "lastSuccessAt": "2026-11-02T15:25:34.085Z",
     "lastAttemptAt": "2026-11-08T23:45:32.581Z"
   },
-  "updatedAt": "2026-11-09T00:47:13.737Z",
-  "lastSignalRenderAt": "2026-11-09T01:10:32.135Z",
+  "updatedAt": "2026-11-09T04:05:29.805Z",
+  "lastSignalRenderAt": "2026-11-09T04:05:29.805Z",
   "feedChecks": {
-    "checkedAt": "2026-11-09T03:55:31.915Z",
+    "checkedAt": "2026-11-09T04:05:30.222Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-09T03:55:31.915Z",
-        "lastSuccessAt": "2026-11-09T03:55:31.915Z"
+        "checkedAt": "2026-11-09T04:05:30.222Z",
+        "lastSuccessAt": "2026-11-09T04:05:30.222Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-09T03:55:31.915Z",
-        "lastSuccessAt": "2026-11-09T03:55:31.915Z"
+        "checkedAt": "2026-11-09T04:05:30.222Z",
+        "lastSuccessAt": "2026-11-09T04:05:30.222Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-11-09T03:55:31.915Z",
+        "checkedAt": "2026-11-09T04:05:30.222Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {

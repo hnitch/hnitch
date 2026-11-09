@@ -3,7 +3,7 @@
   <br/><br/>
   <img src="https://hnitch-discord-card.haarshaan.workers.dev/visitors.svg?v=2" height="28" alt="visitors" />
   <!-- READING-BADGE:START -->
-  <img src="./assets/activity/reading-status.svg?v=f8e1138ac2" height="28" alt="currently reading , probably" />
+  <img src="./assets/activity/reading-status.svg?v=971e4e93b3" height="28" alt="between books , allegedly" />
   <!-- READING-BADGE:END -->
 </div>
 
@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-09T00:47:13.737Z" format="relative" format-style="long" title="2026-11-09T00:47:13.737Z">3 hours ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-09T03:55:31.915Z" format="relative" format-style="long" title="2026-11-09T03:55:31.915Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-09T04:05:29.805Z" format="relative" format-style="long" title="2026-11-09T04:05:29.805Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-09T04:05:30.222Z" format="relative" format-style="long" title="2026-11-09T04:05:30.222Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -32,15 +32,15 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/book/show/259986702-victorious"><img src="./assets/activity/goodreads-current.svg?v=7a321bb36a" width="100%" alt="currently reading Victorious" /></a>
+<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=728df2620d" width="100%" alt="not reading anything , rn" /></a>
 
-<a href="https://www.goodreads.com/review/show/8755007560"><img src="./assets/activity/goodreads-1.svg?v=ede46e9bc2" width="100%" alt="Read: Kiss Slay Replay" /></a>
+<a href="https://www.goodreads.com/review/show/8886771684"><img src="./assets/activity/goodreads-1.svg?v=80f13edfed" width="100%" alt="Read: Victorious" /></a>
 
-<a href="https://www.goodreads.com/review/show/8812304511"><img src="./assets/activity/goodreads-2.svg?v=77b2291f54" width="100%" alt="Read: The Poet Empress" /></a>
+<a href="https://www.goodreads.com/review/show/8755007560"><img src="./assets/activity/goodreads-2.svg?v=ede46e9bc2" width="100%" alt="Read: Kiss Slay Replay" /></a>
 
-<a href="https://www.goodreads.com/review/show/8444218649"><img src="./assets/activity/goodreads-3.svg?v=85281595ad" width="100%" alt="Read: What Feeds Below" /></a>
+<a href="https://www.goodreads.com/review/show/8812304511"><img src="./assets/activity/goodreads-3.svg?v=77b2291f54" width="100%" alt="Read: The Poet Empress" /></a>
 
-<a href="https://www.goodreads.com/review/show/8580097783"><img src="./assets/activity/goodreads-4.svg?v=287119a856" width="100%" alt="Read: The Exquisite Torment of Loving Your Enemy (Dearly Beloathed , #2)" /></a>
+<a href="https://www.goodreads.com/review/show/8444218649"><img src="./assets/activity/goodreads-4.svg?v=85281595ad" width="100%" alt="Read: What Feeds Below" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
