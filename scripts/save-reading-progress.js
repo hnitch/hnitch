@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
@@ -25,9 +26,14 @@ export async function saveReadingProgress({ bookId, input, root = process.cwd() 
     editions[String(bookId)] = { total: progress.total, source: "shortcut", updatedAt: new Date().toISOString() };
     await fs.writeFile(editionsFile, `${JSON.stringify(editions, null, 2)}\n`);
   }
+  if (!Number.isFinite(Date.parse(current.dateAdded)) && !current.readingSessionId) {
+    current.readingSessionId = randomUUID();
+    await fs.writeFile(path.join(root, "data", "activity.json"), `${JSON.stringify(activity, null, 2)}\n`);
+  }
   await fs.writeFile(path.join(root, "data", "reading-progress.json"), `${JSON.stringify({
     bookId: String(bookId),
     dateAdded: current.dateAdded,
+    ...(current.readingSessionId ? { readingSessionId: current.readingSessionId } : {}),
     progress,
     updatedAt: new Date().toISOString(),
   }, null, 2)}\n`);

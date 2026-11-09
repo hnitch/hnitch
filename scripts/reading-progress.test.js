@@ -81,3 +81,22 @@ test("dispatch rejects a stale book and writes only validated progress", async (
     await fs.rm(root, { recursive: true, force: true });
   }
 });
+
+test("fallback books without a start date retain shortcut progress through verification", async () => {
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), "hnitch-undated-progress-"));
+  try {
+    await fs.mkdir(path.join(root, "data"));
+    const file = path.join(root, "data", "activity.json");
+    await fs.writeFile(file, JSON.stringify({goodreads:{current:{...book,dateAdded:""}}}));
+    await saveReadingProgress({bookId:"123",input:"300/578",root});
+    const activity = JSON.parse(await fs.readFile(file));
+    const saved = JSON.parse(await fs.readFile(path.join(root,"data","reading-progress.json")));
+    assert.ok(saved.readingSessionId);
+    activity.goodreads.current.progress = progressForCurrentBook(saved, activity.goodreads.current);
+    assert.equal(activity.goodreads.current.progress.page,300);
+    assert.equal(progressForCurrentBook(saved,{...activity.goodreads.current,readingSessionId:"new-reread"}),null);
+    assert.equal(progressForCurrentBook(saved,{...activity.goodreads.current,bookId:"456"}),null);
+    await fs.writeFile(file,JSON.stringify(activity));
+    assert.equal(await verifyReadingProgress({bookId:"123",root}),true);
+  } finally { await fs.rm(root,{recursive:true,force:true}); }
+});

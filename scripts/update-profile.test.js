@@ -344,5 +344,11 @@ test('public fallback imports a new current edition from the profile page', asyn
  let requests=0;
  const result=await publicGoodreads(profile,updates,{current:null,recent:[{bookId:'123',title:'Old book'}]},async url=>{requests++;assert.match(url,/\/456$/);return html;});
  assert.equal(requests,1);assert.equal(result.current.title,'New book');assert.equal(result.current.pages,390);assert.equal(result.current.rating,0);assert.equal(result.recent[0].review,'Loved it.');
+ assert.ok(result.current.readingSessionId);
+ const again=await publicGoodreads(profile,updates,result,async()=>{throw Error('unexpected fetch');});
+ assert.equal(again.current.readingSessionId,result.current.readingSessionId);
+ const reread=await publicGoodreads(profile,updates,{current:null,recent:[result.current,...result.recent]},async()=>{throw Error('unexpected fetch');});
+ assert.notEqual(reread.current.readingSessionId,result.current.readingSessionId);
+ assert.equal(reread.current.progress,undefined);
  assert.throws(()=>parseEdition(html,'789'),/mismatched/);
 });

@@ -22,7 +22,10 @@ export function progressForCurrentBook(saved, book) {
   if (!saved || !book || String(saved.bookId) !== String(book.bookId)) return null;
   const savedStart = Date.parse(saved.dateAdded);
   const bookStart = Date.parse(book.dateAdded);
-  if (!Number.isFinite(savedStart) || savedStart !== bookStart) return null;
+  const matchingDates = Number.isFinite(savedStart) && savedStart === bookStart;
+  const matchingSession = typeof saved.readingSessionId === "string" && saved.readingSessionId.length > 0
+    && saved.readingSessionId === book.readingSessionId;
+  if (!matchingDates && !matchingSession) return null;
   if (!Number.isFinite(Date.parse(saved.updatedAt))) return null;
   const progress = saved.progress;
   if (!progress || progress.source !== "shortcut") return null;

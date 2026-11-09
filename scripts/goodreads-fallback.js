@@ -1,3 +1,4 @@
+import {randomUUID} from "node:crypto";
 import {load} from 'cheerio';
 import confirmedRatings from '../data/book-ratings.json' with {type:'json'};
 
@@ -15,6 +16,13 @@ export function parsePublicGoodreads(profileHtml, updatesHtml, previous, metadat
   const id=heading.find('a[href*="/book/show/"]').first().attr('href')?.match(/\/book\/show\/(\d+)/)?.[1];
   if(!id||!known.has(id))throw Error('Goodreads current edition needs fresh metadata; retaining last good snapshot');
   current={...known.get(id)};
+  if(previous?.current?.bookId!==id){
+   delete current.progress;
+   current.dateAdded='';
+   current.readingSessionId=randomUUID();
+  } else if(!Number.isFinite(Date.parse(current.dateAdded))&&!current.readingSessionId){
+   current.readingSessionId=randomUUID();
+  }
  }
  const recent=[];
  updates('tr.update').each((_,el)=>{
