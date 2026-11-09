@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-07T12:46:32.618Z" format="relative" format-style="long" title="2026-11-07T12:46:32.618Z">1 day ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-09T00:40:30.087Z" format="relative" format-style="long" title="2026-11-09T00:40:30.087Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-09T00:47:13.737Z" format="relative" format-style="long" title="2026-11-09T00:47:13.737Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-09T00:47:14.086Z" format="relative" format-style="long" title="2026-11-09T00:47:14.086Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -32,7 +32,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/book/show/259986702-victorious"><img src="./assets/activity/goodreads-current.svg?v=56aa4daf9e" width="100%" alt="currently reading Victorious" /></a>
+<a href="https://www.goodreads.com/book/show/259986702-victorious"><img src="./assets/activity/goodreads-current.svg?v=7a321bb36a" width="100%" alt="currently reading Victorious" /></a>
 
 <a href="https://www.goodreads.com/review/show/8755007560"><img src="./assets/activity/goodreads-1.svg?v=ede46e9bc2" width="100%" alt="Read: Kiss Slay Replay" /></a>
 
