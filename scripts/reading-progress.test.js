@@ -3,7 +3,7 @@ import test from "node:test";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import { parseReadingProgress, progressForCurrentBook, applyBookEditions } from "./reading-progress.js";
+import { parseReadingProgress, progressForCurrentBook, applyBookEditions, applySavedProgress } from "./reading-progress.js";
 import { saveReadingProgress, verifyReadingProgress } from "./save-reading-progress.js";
 
 const book = { bookId: "123", title: "Test Book", pages: 341, dateAdded: "2026-09-17T00:00:00Z" };
@@ -99,4 +99,12 @@ test("fallback books without a start date retain shortcut progress through verif
     await fs.writeFile(file,JSON.stringify(activity));
     assert.equal(await verifyReadingProgress({bookId:"123",root}),true);
   } finally { await fs.rm(root,{recursive:true,force:true}); }
+});
+
+test("source outage still applies logged progress only to the matching saved session", () => {
+ const books={current:{...book},recent:[]};
+ const saved={bookId:book.bookId,dateAdded:book.dateAdded,updatedAt:new Date().toISOString(),progress:parseReadingProgress("411/578")};
+ assert.equal(applySavedProgress(books,saved).current.progress.page,411);
+ const other={current:{...book,bookId:"456"},recent:[]};
+ assert.equal(applySavedProgress(other,saved).current.progress,undefined);
 });

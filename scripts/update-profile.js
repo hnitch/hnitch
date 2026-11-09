@@ -1,3 +1,4 @@
+import { fetchWithRetry } from "./fetch-retry.js";
 import {publicGoodreads} from './goodreads-fallback.js';
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -5,7 +6,7 @@ import { createHash } from "node:crypto";
 import { pathToFileURL } from "node:url";
 import { parseStringPromise } from "xml2js";
 import { ratingMood } from "./rating-colors.js";
-import { progressForCurrentBook, applyBookEditions } from "./reading-progress.js";
+import { progressForCurrentBook, applyBookEditions, applySavedProgress } from "./reading-progress.js";
 
 import { bookNotes, applyBookNotes } from "./book-notes.js";
 
@@ -94,40 +95,16 @@ function cacheBusted(url) {
 }
 
 async function fetchResponse(url, accept, { bypassCache = false, headers = {} } = {}) {
-  let lastError;
-  for (let attempt = 0; attempt < 3; attempt += 1) {
-    try {
-      const response = await fetch(url, {
-        headers: {
-          Accept: accept,
-          "Cache-Control": bypassCache ? "no-cache" : "max-age=0",
-          Pragma: bypassCache ? "no-cache" : "",
-          "User-Agent": "hnitch-profile/3.4 (+https://github.com/hnitch/hnitch)",
-          ...headers,
-        },
-        cache: "no-store",
-        signal: AbortSignal.timeout(20_000),
-      });
-      if (response.ok) return response;
-      const retryable = response.status === 408 || response.status === 429 || response.status >= 500;
-      lastError = new Error(`${url} returned ${response.status}`);
-      if (!retryable || attempt === 2) throw lastError;
-      const retryHeader = response.headers.get("retry-after");
-      const retrySeconds = retryHeader === null ? Number.NaN : Number(retryHeader);
-      const retryDate = retryHeader && !Number.isFinite(retrySeconds) ? Date.parse(retryHeader) : Number.NaN;
-      const retryDelay = Number.isFinite(retrySeconds)
-        ? retrySeconds * 1_000
-        : Number.isFinite(retryDate)
-          ? retryDate - Date.now()
-          : 500 * (2 ** attempt);
-      await delay(Math.max(250, Math.min(retryDelay, 5_000)));
-    } catch (error) {
-      lastError = error;
-      if (attempt === 2 || / returned 4\d\d$/.test(error.message)) throw error;
-      await delay(500 * (2 ** attempt));
-    }
-  }
-  throw lastError;
+  return fetchWithRetry(url, {
+    headers: {
+      Accept: accept,
+      "Cache-Control": bypassCache ? "no-cache" : "max-age=0",
+      Pragma: bypassCache ? "no-cache" : "",
+      "User-Agent": "hnitch-profile/3.4 (+https://github.com/hnitch/hnitch)",
+      ...headers,
+    },
+    cache: "no-store",
+  });
 }
 
 async function fetchText(url, options) {
@@ -1106,6 +1083,7 @@ async function main() {
     appleMusic: appleMusicResult.data,
     instagram: instagramResult.data,
   };
+  applySavedProgress(current.goodreads, savedReadingProgress);
   applyBookEditions(current.goodreads, editions);
   applyBookNotes(current.goodreads, await readBookNotes());
   const cachedGoodreadsArtwork = {

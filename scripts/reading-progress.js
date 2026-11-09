@@ -58,3 +58,10 @@ export function applyBookEditions(books, editions) {
   }
   return books;
 }
+
+// A source outage must not discard a validated shortcut entry for the same session.
+export function applySavedProgress(books, saved) {
+  const progress = progressForCurrentBook(saved, books?.current);
+  if (progress) books.current.progress = progress;
+  return books;
+}
