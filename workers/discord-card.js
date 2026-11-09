@@ -265,7 +265,7 @@ export async function handleReadingRequest(request, fetcher = globalThis.fetch, 
   const headers = { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store, max-age=0", "X-Content-Type-Options": "nosniff" };
   if (request.method === "HEAD") return new Response(null, { headers });
   try {
-    const source = `https://raw.githubusercontent.com/hnitch/hnitch/main/data/activity.json?refresh=${Math.floor(now / 60_000)}`;
+    const source = `https://raw.githubusercontent.com/hnitch/hnitch/main/data/activity.json?refresh=${now}`;
     const result = await fetcher(source, { headers: { Accept: "application/json", "Cache-Control": "no-cache" }, signal: AbortSignal.timeout(6_000), cache: "no-store" });
     if (!result.ok) throw new Error("feed unavailable");
     const data = await result.json();
