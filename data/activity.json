@@ -1,6 +1,20 @@
 {
   "goodreads": {
-    "current": null,
+    "current": {
+      "bookId": "248285113",
+      "title": "Under the Iron Sky",
+      "author": "A.T. Emerald",
+      "link": "https://www.goodreads.com/book/show/248285113-under-the-iron-sky",
+      "rating": 0,
+      "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1780183215i/248285113.jpg",
+      "pages": 512,
+      "averageRating": null,
+      "published": "2026",
+      "dateAdded": "",
+      "readAt": "",
+      "review": "",
+      "readingSessionId": "f9d5ed01-af5f-4e2f-bc18-859276a83b68"
+    },
     "recent": [
       {
         "bookId": "259986702",
@@ -154,24 +168,24 @@
     "lastSuccessAt": "2026-11-02T15:25:34.085Z",
     "lastAttemptAt": "2026-11-10T12:25:30.040Z"
   },
-  "updatedAt": "2026-11-09T16:55:33.346Z",
-  "lastSignalRenderAt": "2026-11-09T17:15:32.056Z",
+  "updatedAt": "2026-11-10T14:45:38.784Z",
+  "lastSignalRenderAt": "2026-11-10T14:45:38.784Z",
   "feedChecks": {
-    "checkedAt": "2026-11-10T14:35:35.218Z",
+    "checkedAt": "2026-11-10T14:45:39.152Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-10T14:35:35.218Z",
-        "lastSuccessAt": "2026-11-10T14:35:35.218Z"
+        "checkedAt": "2026-11-10T14:45:39.152Z",
+        "lastSuccessAt": "2026-11-10T14:45:39.152Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-10T14:35:35.218Z",
-        "lastSuccessAt": "2026-11-10T14:35:35.218Z"
+        "checkedAt": "2026-11-10T14:45:39.152Z",
+        "lastSuccessAt": "2026-11-10T14:45:39.152Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-11-10T14:35:35.218Z",
+        "checkedAt": "2026-11-10T14:45:39.152Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {
