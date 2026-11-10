@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-09T16:55:33.346Z" format="relative" format-style="long" title="2026-11-09T16:55:33.346Z">7 hours ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-10T00:50:30.689Z" format="relative" format-style="long" title="2026-11-10T00:50:30.689Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-09T16:55:33.346Z" format="relative" format-style="long" title="2026-11-09T16:55:33.346Z">7 hours ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-10T00:50:30.689Z" format="relative" format-style="long" title="2026-11-10T00:50:30.689Z">3 minutes ago</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -34,13 +34,13 @@
 
 <a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=728df2620d" width="100%" alt="not reading anything , rn" /></a>
 
-<a href="https://www.goodreads.com/review/show/8886771684"><img src="./assets/activity/goodreads-1.svg?v=e816ed85b2" width="100%" alt="Read: Victorious" /></a>
+<a href="https://www.goodreads.com/review/show/8886771684"><img src="./assets/activity/goodreads-1.svg?v=7626b00cc2" width="100%" alt="Read: Victorious" /></a>
 
-<a href="https://www.goodreads.com/review/show/8755007560"><img src="./assets/activity/goodreads-2.svg?v=a569f7cef1" width="100%" alt="Read: Kiss Slay Replay" /></a>
+<a href="https://www.goodreads.com/review/show/8755007560"><img src="./assets/activity/goodreads-2.svg?v=fad46c710f" width="100%" alt="Read: Kiss Slay Replay" /></a>
 
-<a href="https://www.goodreads.com/review/show/8812304511"><img src="./assets/activity/goodreads-3.svg?v=77b2291f54" width="100%" alt="Read: The Poet Empress" /></a>
+<a href="https://www.goodreads.com/review/show/8812304511"><img src="./assets/activity/goodreads-3.svg?v=0223a9bfc7" width="100%" alt="Read: The Poet Empress" /></a>
 
-<a href="https://www.goodreads.com/review/show/8444218649"><img src="./assets/activity/goodreads-4.svg?v=85281595ad" width="100%" alt="Read: What Feeds Below" /></a>
+<a href="https://www.goodreads.com/review/show/8444218649"><img src="./assets/activity/goodreads-4.svg?v=18aa27daf7" width="100%" alt="Read: What Feeds Below" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>

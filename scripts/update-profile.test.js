@@ -325,6 +325,13 @@ test('public Goodreads fallback moves a finished book and preserves full review 
  const result=parsePublicGoodreads(profile,updates,previous);
  assert.equal(result.current,null);assert.equal(result.recent[0].rating,null);
  assert.equal(result.recent[0].ratingSource,"unavailable");
+ const exactReview=updates.replace('Full review<br>with context.', "The previous book was a 4.5 star for me. I'm keeping this at 4.75 rather than giving it the full five stars.");
+ const explicit=parsePublicGoodreads(profile,exactReview,previous).recent[0];
+ assert.equal(explicit.rating,4.75);
+ assert.equal(explicit.ratingSource,'review-text');
+ assert.equal(parsePublicGoodreads(profile,updates.replace('Full review<br>with context.','The previous book was a 4.5 star for me.'),previous).recent[0].rating,null);
+ assert.equal(parsePublicGoodreads(profile,updates.replace('Full review<br>with context.',"I'm giving this 4.25 stars."),previous).recent[0].rating,4.25);
+ assert.equal(parsePublicGoodreads(profile,updates.replace('Full review<br>with context.',"I'm giving this 3.75 stars."),previous).recent[0].rating,null);
  for(const rating of [4.25,4.5,4.75]) {
   const exact={current:{...previous.current,rating,ratingSource:"numeric-feed"},recent:[]};
   assert.equal(parsePublicGoodreads(profile,updates,exact).recent[0].rating,rating);

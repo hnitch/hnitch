@@ -1,6 +1,20 @@
 import { createHash } from 'node:crypto';
+const fields = book => [String(book.bookId), book.title || '', book.author || '', book.review || ''];
+const hash = fields => createHash('sha256').update(JSON.stringify(fields)).digest('hex');
+
 export function bookNoteKey(book) {
- return createHash('sha256').update(JSON.stringify([String(book.bookId), book.title || '', book.author || '', book.review || '', book.rating ?? 0])).digest('hex');
+ return hash(fields(book));
+}
+
+export function findBookNote(book, notes) {
+ if(!book.review?.trim())return undefined;
+ const current=notes?.[bookNoteKey(book)];
+ if(Array.isArray(current))return current;
+ // Older entries also included the rating. Reuse them only for identical review text.
+ for(const rating of new Set([book.rating??0,...Array.from({length:21},(_,i)=>i/4)])){
+  const legacy=notes?.[hash([...fields(book),rating])];
+  if(Array.isArray(legacy))return legacy;
+ }
 }
 export function bookNotes(book) {
  const note = book.bookNote;
@@ -11,7 +25,8 @@ export function applyBookNotes(books, notes) {
   if(!book) continue;
   delete book.bookNote;
   const key=bookNoteKey(book);
-  if(Array.isArray(notes?.[key])) book.bookNote={key,labels:notes[key]};
+  const labels=findBookNote(book,notes);
+  if(labels) book.bookNote={key,labels};
   if(!bookNotes(book).length) delete book.bookNote;
  }
 }

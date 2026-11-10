@@ -2,6 +2,16 @@ import {randomUUID} from "node:crypto";
 import {load} from 'cheerio';
 import confirmedRatings from '../data/book-ratings.json' with {type:'json'};
 
+// Only use explicit first-person ratings for this book. Other numbers in the
+// review can describe earlier books, an imagined score, or the community rating.
+export function statedFractionalRating(review, fullStars) {
+ const statements = /\b(?:i(?:'m| am) (?:keeping this(?: book)? at|giving this(?: book)?)|my (?:final|overall) rating(?: for this book)? is) (\d+\.(?:25|50?|75))(?=\s*(?:stars?\b|\/\s*5\b|rather than giving it the full five stars\b))/gi;
+ const scores = new Set([...review.replace(/’/g, "'").matchAll(statements)].map(match => Number(match[1])));
+ if(scores.size!==1)return null;
+ const [rating]=scores;
+ return rating>fullStars&&rating<fullStars+1?rating:null;
+}
+
 // The public profile still exposes complete reviews when its RSS routes are unavailable.
 // Only reuse metadata for known editions; missing evidence must never clear a shelf.
 export function parsePublicGoodreads(profileHtml, updatesHtml, previous, metadata = []) {
@@ -52,8 +62,9 @@ export function parsePublicGoodreads(profileHtml, updatesHtml, previous, metadat
   const trusted=confirmed?.bookId===id?confirmed.rating:book.ratingSource==='numeric-feed'?book.rating:null;
   const fullStars=stars.filter(s=>s==='10').length;
   const compatible=Number.isFinite(trusted)&&trusted>fullStars&&trusted<fullStars+1&&Number.isInteger(trusted*4);
-  const rating=stars.includes('6')?(compatible?trusted:null):displayedRating;
-  const ratingSource=stars.includes('6')?(compatible?(confirmed?.bookId===id?'confirmed':'numeric-feed'):'unavailable'):'public-stars';
+  const stated=stars.includes('6')?statedFractionalRating(review,fullStars):null;
+  const rating=stars.includes('6')?(stated??(compatible?trusted:null)):displayedRating;
+  const ratingSource=stars.includes('6')?(stated!==null?'review-text':compatible?(confirmed?.bookId===id?'confirmed':'numeric-feed'):'unavailable'):'public-stars';
   const {progress,...metadata}=book;
   recent.push({...metadata,rating,ratingSource,review,link:`https://www.goodreads.com/review/show/${reviewId}`,readAt:book.readAt||row.attr('data-timestamp')||''});
  });
