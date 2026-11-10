@@ -12,9 +12,9 @@
     <filter id="perfect-rating-glow" x="-15%" y="-40%" width="130%" height="180%"><feGaussianBlur stdDeviation="2.5"/></filter>
     <clipPath id="perfect-rating-clip"><rect x="164" y="183" width="145" height="34" rx="17"/></clipPath>
     <radialGradient id="perfect-rating-highlight">
-      <stop offset=".16" stop-color="#ffcb64" stop-opacity=".72"/>
-      <stop offset=".55" stop-color="#ffb844" stop-opacity=".46"/>
-      <stop offset="1" stop-color="#ffb844" stop-opacity="0"/>
+      <stop stop-color="#ffd886" stop-opacity=".9"/>
+      <stop offset=".55" stop-color="#ffc75f" stop-opacity=".48"/>
+      <stop offset="1" stop-color="#ffc75f" stop-opacity="0"/>
     </radialGradient>
     <style>
       @media (prefers-reduced-motion: no-preference) {
@@ -27,8 +27,9 @@
   <rect x="164" y="183" width="145" height="34" rx="17" fill="url(#perfect-rating-sheen)" stroke="#9bf4dc" stroke-opacity=".58"/>
   <g clip-path="url(#perfect-rating-clip)" aria-hidden="true">
     <g class="perfect-rating-highlight">
-      <ellipse cx="236.5" cy="190" rx="61" ry="24" fill="url(#perfect-rating-highlight)"/>
-      <path transform="translate(244.5 188)" fill="#fff3bf" d="M0 -4 Q.6 -.6 4 0 Q.6 .6 0 4 Q-.6 .6 -4 0 Q-.6 -.6 0 -4Z"/>
+      <ellipse cx="236.5" cy="183.5" rx="46" ry="7" fill="url(#perfect-rating-highlight)" opacity=".48"/>
+      <ellipse cx="236.5" cy="184" rx="34" ry="1.4" fill="url(#perfect-rating-highlight)"/>
+      <path transform="translate(245.5 187.5)" fill="#fff3bf" d="M0 -3.5 Q.65 -.65 3.5 0 Q.65 .65 0 3.5 Q-.65 .65 -3.5 0 Q-.65 -.65 0 -3.5Z"/>
     </g>
   </g><g transform="translate(178 191) scale(.9)"><defs><clipPath id="rating-star-0"><rect width="20" height="20"/></clipPath></defs><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" opacity=".22"/><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" clip-path="url(#rating-star-0)"/></g><g transform="translate(198 191) scale(.9)"><defs><clipPath id="rating-star-1"><rect width="20" height="20"/></clipPath></defs><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" opacity=".22"/><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" clip-path="url(#rating-star-1)"/></g><g transform="translate(218 191) scale(.9)"><defs><clipPath id="rating-star-2"><rect width="20" height="20"/></clipPath></defs><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" opacity=".22"/><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" clip-path="url(#rating-star-2)"/></g><g transform="translate(238 191) scale(.9)"><defs><clipPath id="rating-star-3"><rect width="20" height="20"/></clipPath></defs><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" opacity=".22"/><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" clip-path="url(#rating-star-3)"/></g><g transform="translate(258 191) scale(.9)"><defs><clipPath id="rating-star-4"><rect width="20" height="20"/></clipPath></defs><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" opacity=".22"/><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" clip-path="url(#rating-star-4)"/></g><text x="286" y="205" fill="#c4fff0" font-size="14" font-weight="800">5</text></g>
   <text fill="#a7b7c2" font-size="13" font-weight="600" font-style="italic"><tspan x="168" y="167">“HORROR TV IS SAVED AGAIN , mike flanagan i never</tspan><tspan x="168" y="182">doubted you !!”</tspan></text></g>

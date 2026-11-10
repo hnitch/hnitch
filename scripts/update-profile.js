@@ -584,9 +584,9 @@ function ratingPillBackground(width, background, perfect) {
     <filter id="perfect-rating-glow" x="-15%" y="-40%" width="130%" height="180%"><feGaussianBlur stdDeviation="2.5"/></filter>
     <clipPath id="perfect-rating-clip"><rect ${shape}/></clipPath>
     <radialGradient id="perfect-rating-highlight">
-      <stop offset=".16" stop-color="#ffcb64" stop-opacity=".72"/>
-      <stop offset=".55" stop-color="#ffb844" stop-opacity=".46"/>
-      <stop offset="1" stop-color="#ffb844" stop-opacity="0"/>
+      <stop stop-color="#ffd886" stop-opacity=".9"/>
+      <stop offset=".55" stop-color="#ffc75f" stop-opacity=".48"/>
+      <stop offset="1" stop-color="#ffc75f" stop-opacity="0"/>
     </radialGradient>
     <style>
       @media (prefers-reduced-motion: no-preference) {
@@ -599,8 +599,9 @@ function ratingPillBackground(width, background, perfect) {
   <rect ${shape} fill="url(#perfect-rating-sheen)" stroke="#9bf4dc" stroke-opacity=".58"/>
   <g clip-path="url(#perfect-rating-clip)" aria-hidden="true">
     <g class="perfect-rating-highlight">
-      <ellipse cx="${center}" cy="190" rx="61" ry="24" fill="url(#perfect-rating-highlight)"/>
-      <path transform="translate(${center + 8} 188)" fill="#fff3bf" d="M0 -4 Q.6 -.6 4 0 Q.6 .6 0 4 Q-.6 .6 -4 0 Q-.6 -.6 0 -4Z"/>
+      <ellipse cx="${center}" cy="183.5" rx="46" ry="7" fill="url(#perfect-rating-highlight)" opacity=".48"/>
+      <ellipse cx="${center}" cy="184" rx="34" ry="1.4" fill="url(#perfect-rating-highlight)"/>
+      <path transform="translate(${center + 9} 187.5)" fill="#fff3bf" d="M0 -3.5 Q.65 -.65 3.5 0 Q.65 .65 0 3.5 Q-.65 .65 -3.5 0 Q-.65 -.65 0 -3.5Z"/>
     </g>
   </g>`;
 }
@@ -928,7 +929,7 @@ function cardStack(items, prefix, alt, versionData = (item) => item) {
     const number = index + 1;
     const data = versionData(item);
     const version = normaliseRating(item.rating) === 5 && item.ratingSource !== "unavailable"
-      ? [data, "perfect-rating gold sparkle"] : data;
+      ? [data, "perfect-rating edge glint"] : data;
     return `<a href="${escapeXml(item.link)}"><img src="./assets/activity/${prefix}-${number}.svg?v=${assetVersion(version)}" width="100%" alt="${escapeDisplay(`${alt}: ${item.title}`)}" /></a>`;
   }).join("\n\n");
 }
