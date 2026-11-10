@@ -573,36 +573,34 @@ export function ratingIcons(rating, color) {
 }
 
 function ratingPillBackground(width, background, perfect) {
-  const shape = `x="164" y="183" width="${width}" height="34" rx="17"`;
+  const x = 164;
+  const y = 183;
+  const radius = 17;
+  const height = radius * 2;
+  const shape = `x="${x}" y="${y}" width="${width}" height="${height}" rx="${radius}"`;
   if (!perfect) return `<rect ${shape} fill="${background}"/>`;
-  const center = 164 + width / 2;
+  const left = x + radius;
+  const right = x + width - radius;
+  const rim = `M${left} ${y} H${right} a${radius} ${radius} 0 0 1 0 ${height} H${left} a${radius} ${radius} 0 0 1 0 -${height} Z`;
 
   return `<defs>
     <linearGradient id="perfect-rating-sheen" x1="0%" y1="100%" x2="100%" y2="0%">
       <stop stop-color="${background}"/><stop offset=".48" stop-color="#2c6059"/><stop offset=".68" stop-color="#214b47"/><stop offset="1" stop-color="${background}"/>
     </linearGradient>
     <filter id="perfect-rating-glow" x="-15%" y="-40%" width="130%" height="180%"><feGaussianBlur stdDeviation="2.5"/></filter>
-    <clipPath id="perfect-rating-clip"><rect ${shape}/></clipPath>
-    <radialGradient id="perfect-rating-highlight">
-      <stop stop-color="#ffd886" stop-opacity=".9"/>
-      <stop offset=".55" stop-color="#ffc75f" stop-opacity=".48"/>
-      <stop offset="1" stop-color="#ffc75f" stop-opacity="0"/>
-    </radialGradient>
+    <filter id="perfect-rating-rim-soften" x="-10%" y="-20%" width="120%" height="140%"><feGaussianBlur stdDeviation=".65"/></filter>
     <style>
       @media (prefers-reduced-motion: no-preference) {
-        .perfect-rating-highlight { animation: rating-drift 5s ease-in-out infinite alternate; }
-        @keyframes rating-drift { from { transform: translateX(-34px); } to { transform: translateX(34px); } }
+        .perfect-rating-orbit { animation: rating-orbit 10s linear infinite; }
+        @keyframes rating-orbit { from { stroke-dashoffset: -9; } to { stroke-dashoffset: -109; } }
       }
     </style>
   </defs>
   <rect ${shape} fill="none" stroke="#83f3cf" stroke-width="3" opacity=".55" filter="url(#perfect-rating-glow)"/>
   <rect ${shape} fill="url(#perfect-rating-sheen)" stroke="#9bf4dc" stroke-opacity=".58"/>
-  <g clip-path="url(#perfect-rating-clip)" aria-hidden="true">
-    <g class="perfect-rating-highlight">
-      <ellipse cx="${center}" cy="183.5" rx="46" ry="7" fill="url(#perfect-rating-highlight)" opacity=".48"/>
-      <ellipse cx="${center}" cy="184" rx="34" ry="1.4" fill="url(#perfect-rating-highlight)"/>
-      <path transform="translate(${center + 9} 187.5)" fill="#fff3bf" d="M0 -3.5 Q.65 -.65 3.5 0 Q.65 .65 0 3.5 Q-.65 .65 -3.5 0 Q-.65 -.65 0 -3.5Z"/>
-    </g>
+  <g class="perfect-rating-orbit" aria-hidden="true" fill="none" stroke-linecap="round" stroke-dasharray="12 88" stroke-dashoffset="-9">
+    <path d="${rim}" pathLength="100" stroke="#ffc75f" stroke-width="4" opacity=".7" filter="url(#perfect-rating-glow)"/>
+    <path d="${rim}" pathLength="100" stroke="#ffdb92" stroke-width="1.5" filter="url(#perfect-rating-rim-soften)"/>
   </g>`;
 }
 
@@ -929,7 +927,7 @@ function cardStack(items, prefix, alt, versionData = (item) => item) {
     const number = index + 1;
     const data = versionData(item);
     const version = normaliseRating(item.rating) === 5 && item.ratingSource !== "unavailable"
-      ? [data, "perfect-rating edge glint"] : data;
+      ? [data, "perfect-rating orbit"] : data;
     return `<a href="${escapeXml(item.link)}"><img src="./assets/activity/${prefix}-${number}.svg?v=${assetVersion(version)}" width="100%" alt="${escapeDisplay(`${alt}: ${item.title}`)}" /></a>`;
   }).join("\n\n");
 }
