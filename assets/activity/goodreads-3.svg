@@ -16,9 +16,9 @@
     <filter id="perfect-rating-glow" x="-15%" y="-40%" width="130%" height="180%"><feGaussianBlur stdDeviation="2.5"/></filter>
     <clipPath id="perfect-rating-clip"><rect x="164" y="183" width="145" height="34" rx="17"/></clipPath>
     <radialGradient id="perfect-rating-highlight">
-      <stop stop-color="#ffda92" stop-opacity=".38"/>
-      <stop offset=".42" stop-color="#a7ffe7" stop-opacity=".18"/>
-      <stop offset="1" stop-color="#a7ffe7" stop-opacity="0"/>
+      <stop offset=".12" stop-color="#ffcb64" stop-opacity=".7"/>
+      <stop offset=".48" stop-color="#ffb844" stop-opacity=".4"/>
+      <stop offset="1" stop-color="#ffb844" stop-opacity="0"/>
     </radialGradient>
     <style>
       @media (prefers-reduced-motion: no-preference) {

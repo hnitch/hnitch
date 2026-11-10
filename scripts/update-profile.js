@@ -583,9 +583,9 @@ function ratingPillBackground(width, background, perfect) {
     <filter id="perfect-rating-glow" x="-15%" y="-40%" width="130%" height="180%"><feGaussianBlur stdDeviation="2.5"/></filter>
     <clipPath id="perfect-rating-clip"><rect ${shape}/></clipPath>
     <radialGradient id="perfect-rating-highlight">
-      <stop stop-color="#ffda92" stop-opacity=".38"/>
-      <stop offset=".42" stop-color="#a7ffe7" stop-opacity=".18"/>
-      <stop offset="1" stop-color="#a7ffe7" stop-opacity="0"/>
+      <stop offset=".12" stop-color="#ffcb64" stop-opacity=".7"/>
+      <stop offset=".48" stop-color="#ffb844" stop-opacity=".4"/>
+      <stop offset="1" stop-color="#ffb844" stop-opacity="0"/>
     </radialGradient>
     <style>
       @media (prefers-reduced-motion: no-preference) {
@@ -922,7 +922,7 @@ function cardStack(items, prefix, alt, versionData = (item) => item) {
     const number = index + 1;
     const data = versionData(item);
     const version = normaliseRating(item.rating) === 5 && item.ratingSource !== "unavailable"
-      ? [data, "perfect-rating gold drift"] : data;
+      ? [data, "perfect-rating amber drift"] : data;
     return `<a href="${escapeXml(item.link)}"><img src="./assets/activity/${prefix}-${number}.svg?v=${assetVersion(version)}" width="100%" alt="${escapeDisplay(`${alt}: ${item.title}`)}" /></a>`;
   }).join("\n\n");
 }
