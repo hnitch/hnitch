@@ -579,29 +579,36 @@ function ratingPillBackground(width, background, perfect) {
   const height = radius * 2;
   const shape = `x="${x}" y="${y}" width="${width}" height="${height}" rx="${radius}"`;
   if (!perfect) return `<rect ${shape} fill="${background}"/>`;
+  const center = x + width / 2;
   const left = x + radius;
   const right = x + width - radius;
-  const rim = `M${left} ${y} H${right} a${radius} ${radius} 0 0 1 0 ${height} H${left} a${radius} ${radius} 0 0 1 0 -${height} Z`;
+  const rim = `M${center} ${y} H${right} a${radius} ${radius} 0 0 1 0 ${height} H${left} a${radius} ${radius} 0 0 1 0 -${height} Z`;
+  const halo = '<ellipse rx="24" ry="12" fill="url(#perfect-rating-gold)"/>';
 
   return `<defs>
     <linearGradient id="perfect-rating-sheen" x1="0%" y1="100%" x2="100%" y2="0%">
       <stop stop-color="${background}"/><stop offset=".48" stop-color="#2c6059"/><stop offset=".68" stop-color="#214b47"/><stop offset="1" stop-color="${background}"/>
     </linearGradient>
     <filter id="perfect-rating-glow" x="-15%" y="-40%" width="130%" height="180%"><feGaussianBlur stdDeviation="2.5"/></filter>
-    <filter id="perfect-rating-rim-soften" x="-10%" y="-20%" width="120%" height="140%"><feGaussianBlur stdDeviation=".65"/></filter>
+    <radialGradient id="perfect-rating-gold">
+      <stop stop-color="#ffd27a" stop-opacity=".74"/>
+      <stop offset=".48" stop-color="#ffbf55" stop-opacity=".42"/>
+      <stop offset=".8" stop-color="#f4a53b" stop-opacity=".09"/>
+      <stop offset="1" stop-color="#f4a53b" stop-opacity="0"/>
+    </radialGradient>
     <style>
       @media (prefers-reduced-motion: no-preference) {
-        .perfect-rating-orbit { animation: rating-orbit 10s linear infinite; }
-        @keyframes rating-orbit { from { stroke-dashoffset: -9; } to { stroke-dashoffset: -109; } }
+        .perfect-rating-still { display: none; }
+        .perfect-rating-orbit { display: inline; }
       }
     </style>
   </defs>
   <rect ${shape} fill="none" stroke="#83f3cf" stroke-width="3" opacity=".55" filter="url(#perfect-rating-glow)"/>
-  <rect ${shape} fill="url(#perfect-rating-sheen)" stroke="#9bf4dc" stroke-opacity=".58"/>
-  <g class="perfect-rating-orbit" aria-hidden="true" fill="none" stroke-linecap="round" stroke-dasharray="12 88" stroke-dashoffset="-9">
-    <path d="${rim}" pathLength="100" stroke="#ffc75f" stroke-width="4" opacity=".7" filter="url(#perfect-rating-glow)"/>
-    <path d="${rim}" pathLength="100" stroke="#ffdb92" stroke-width="1.5" filter="url(#perfect-rating-rim-soften)"/>
-  </g>`;
+  <g class="perfect-rating-still" aria-hidden="true" transform="translate(${center} ${y})">${halo}</g>
+  <g class="perfect-rating-orbit" aria-hidden="true" display="none">
+    ${halo}<animateMotion path="${rim}" dur="10s" rotate="auto" repeatCount="indefinite"/>
+  </g>
+  <rect ${shape} fill="url(#perfect-rating-sheen)" stroke="#9bf4dc" stroke-opacity=".58"/>`;
 }
 
 export function renderBookTile(book, artwork, index) {
@@ -927,7 +934,7 @@ function cardStack(items, prefix, alt, versionData = (item) => item) {
     const number = index + 1;
     const data = versionData(item);
     const version = normaliseRating(item.rating) === 5 && item.ratingSource !== "unavailable"
-      ? [data, "perfect-rating orbit"] : data;
+      ? [data, "perfect-rating soft halo"] : data;
     return `<a href="${escapeXml(item.link)}"><img src="./assets/activity/${prefix}-${number}.svg?v=${assetVersion(version)}" width="100%" alt="${escapeDisplay(`${alt}: ${item.title}`)}" /></a>`;
   }).join("\n\n");
 }
