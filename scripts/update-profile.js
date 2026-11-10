@@ -581,9 +581,20 @@ function ratingPillBackground(width, background, perfect) {
       <stop stop-color="${background}"/><stop offset=".48" stop-color="#2c6059"/><stop offset=".68" stop-color="#214b47"/><stop offset="1" stop-color="${background}"/>
     </linearGradient>
     <filter id="perfect-rating-glow" x="-15%" y="-40%" width="130%" height="180%"><feGaussianBlur stdDeviation="2.5"/></filter>
+    <clipPath id="perfect-rating-clip"><rect ${shape}/></clipPath>
+    <radialGradient id="perfect-rating-highlight">
+      <stop stop-color="#a7ffe7" stop-opacity=".24"/><stop offset="1" stop-color="#a7ffe7" stop-opacity="0"/>
+    </radialGradient>
+    <style>
+      @media (prefers-reduced-motion: no-preference) {
+        .perfect-rating-highlight { animation: rating-drift 6s ease-in-out infinite alternate; }
+        @keyframes rating-drift { from { transform: translateX(-34px); } to { transform: translateX(34px); } }
+      }
+    </style>
   </defs>
   <rect ${shape} fill="none" stroke="#83f3cf" stroke-width="3" opacity=".55" filter="url(#perfect-rating-glow)"/>
-  <rect ${shape} fill="url(#perfect-rating-sheen)" stroke="#9bf4dc" stroke-opacity=".58"/>`;
+  <rect ${shape} fill="url(#perfect-rating-sheen)" stroke="#9bf4dc" stroke-opacity=".58"/>
+  <g clip-path="url(#perfect-rating-clip)"><ellipse class="perfect-rating-highlight" cx="${164 + width / 2}" cy="190" rx="53" ry="24" fill="url(#perfect-rating-highlight)"/></g>`;
 }
 
 export function renderBookTile(book, artwork, index) {
@@ -909,7 +920,7 @@ function cardStack(items, prefix, alt, versionData = (item) => item) {
     const number = index + 1;
     const data = versionData(item);
     const version = normaliseRating(item.rating) === 5 && item.ratingSource !== "unavailable"
-      ? [data, "perfect-rating glow"] : data;
+      ? [data, "perfect-rating glow drift"] : data;
     return `<a href="${escapeXml(item.link)}"><img src="./assets/activity/${prefix}-${number}.svg?v=${assetVersion(version)}" width="100%" alt="${escapeDisplay(`${alt}: ${item.title}`)}" /></a>`;
   }).join("\n\n");
 }
