@@ -583,11 +583,13 @@ function ratingPillBackground(width, background, perfect) {
     <filter id="perfect-rating-glow" x="-15%" y="-40%" width="130%" height="180%"><feGaussianBlur stdDeviation="2.5"/></filter>
     <clipPath id="perfect-rating-clip"><rect ${shape}/></clipPath>
     <radialGradient id="perfect-rating-highlight">
-      <stop stop-color="#a7ffe7" stop-opacity=".24"/><stop offset="1" stop-color="#a7ffe7" stop-opacity="0"/>
+      <stop stop-color="#ffda92" stop-opacity=".38"/>
+      <stop offset=".42" stop-color="#a7ffe7" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#a7ffe7" stop-opacity="0"/>
     </radialGradient>
     <style>
       @media (prefers-reduced-motion: no-preference) {
-        .perfect-rating-highlight { animation: rating-drift 6s ease-in-out infinite alternate; }
+        .perfect-rating-highlight { animation: rating-drift 5s ease-in-out infinite alternate; }
         @keyframes rating-drift { from { transform: translateX(-34px); } to { transform: translateX(34px); } }
       }
     </style>
@@ -920,7 +922,7 @@ function cardStack(items, prefix, alt, versionData = (item) => item) {
     const number = index + 1;
     const data = versionData(item);
     const version = normaliseRating(item.rating) === 5 && item.ratingSource !== "unavailable"
-      ? [data, "perfect-rating glow drift"] : data;
+      ? [data, "perfect-rating gold drift"] : data;
     return `<a href="${escapeXml(item.link)}"><img src="./assets/activity/${prefix}-${number}.svg?v=${assetVersion(version)}" width="100%" alt="${escapeDisplay(`${alt}: ${item.title}`)}" /></a>`;
   }).join("\n\n");
 }
