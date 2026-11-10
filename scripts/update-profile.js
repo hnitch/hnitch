@@ -572,6 +572,20 @@ export function ratingIcons(rating, color) {
   }).join('');
 }
 
+function ratingPillBackground(width, background, perfect) {
+  const shape = `x="164" y="183" width="${width}" height="34" rx="17"`;
+  if (!perfect) return `<rect ${shape} fill="${background}"/>`;
+
+  return `<defs>
+    <linearGradient id="perfect-rating-sheen" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop stop-color="${background}"/><stop offset=".48" stop-color="#2c6059"/><stop offset=".68" stop-color="#214b47"/><stop offset="1" stop-color="${background}"/>
+    </linearGradient>
+    <filter id="perfect-rating-glow" x="-15%" y="-40%" width="130%" height="180%"><feGaussianBlur stdDeviation="2.5"/></filter>
+  </defs>
+  <rect ${shape} fill="none" stroke="#83f3cf" stroke-width="3" opacity=".55" filter="url(#perfect-rating-glow)"/>
+  <rect ${shape} fill="url(#perfect-rating-sheen)" stroke="#9bf4dc" stroke-opacity=".58"/>`;
+}
+
 export function renderBookTile(book, artwork, index) {
   const facts = [book.pages && `${book.pages}p`, book.readAt && `read ${monthYear(book.readAt)}`].filter(Boolean).join(" · ");
   const publication = publicationLabel(book.published);
@@ -614,7 +628,7 @@ export function renderBookTile(book, artwork, index) {
   ${titleSidecar}
   <text x="164" y="136" fill="${theme.muted}" font-size="14.5" font-weight="700">${escapeDisplay(book.author)}</text>
   <text x="164" y="160" fill="#978a9f" font-size="12.5" font-weight="600">${escapeDisplay(facts)}</text>
-  <g role="img" aria-label="${ratingLabel}"><title>${ratingLabel}</title><rect x="164" y="183" width="${ratingWidth}" height="34" rx="17" fill="${mood.background}"/>${showStars ? ratingIcons(rating, mood.color) + `<text x="286" y="205" fill="${mood.color}" font-size="14" font-weight="800" text-anchor="start">${rating}</text>` : `<text x="${164 + ratingWidth / 2}" y="205" fill="${mood.color}" font-size="16" font-weight="800" text-anchor="middle">${escapeDisplay(ratingText)}</text>`}</g>
+  <g role="img" aria-label="${ratingLabel}"><title>${ratingLabel}</title>${ratingPillBackground(ratingWidth, mood.background, showStars && rating === 5)}${showStars ? ratingIcons(rating, mood.color) + `<text x="286" y="205" fill="${mood.color}" font-size="14" font-weight="800" text-anchor="start">${rating}</text>` : `<text x="${164 + ratingWidth / 2}" y="205" fill="${mood.color}" font-size="16" font-weight="800" text-anchor="middle">${escapeDisplay(ratingText)}</text>`}</g>
   <path d="M${174 + ratingWidth} 187v26" stroke="#776a88" stroke-width="2" stroke-linecap="round" opacity=".8"/>
   ${chips}${emptyReview}</g>
   </svg>`;
@@ -634,7 +648,7 @@ function renderFilmTile(film, artwork, index) {
   ${cover({ dataUri: artwork, x: 24, y: 20, width: 118, height: 180, radius: 10 })}
   <g class="sans"><g transform="translate(168 25)"><circle cx="8" cy="8" r="8" fill="#ff8000"/><circle cx="22" cy="8" r="8" fill="#00e054"/><circle cx="36" cy="8" r="8" fill="#40bcf4"/></g><text x="808" y="38" fill="#8298a8" font-size="12" font-weight="800" text-anchor="end" letter-spacing="1.1">WATCH 0${index + 1}</text>
   ${wrappedText({ x: 168, y: 55, width: 630, height: 63, value: film.title, size: 28, weight: 800, lineHeight: 1.04 })}
-  <text x="168" y="139" fill="${theme.muted}" font-size="14" font-weight="700">${escapeDisplay(film.year)}${film.liked ? "  ·  ♥ liked" : ""}</text><g transform="translate(${808 - ratingWidth - 164} -78)" role="img" aria-label="${ratingLabel}"><title>${ratingLabel}</title><rect x="164" y="183" width="${ratingWidth}" height="34" rx="17" fill="${mood.background}"/>${rating ? ratingIcons(rating, mood.color) + `<text x="286" y="205" fill="${mood.color}" font-size="14" font-weight="800">${rating}</text>` : `<text x="208" y="205" fill="${mood.color}" font-size="14" text-anchor="middle">unrated</text>`}</g>
+  <text x="168" y="139" fill="${theme.muted}" font-size="14" font-weight="700">${escapeDisplay(film.year)}${film.liked ? "  ·  ♥ liked" : ""}</text><g transform="translate(${808 - ratingWidth - 164} -78)" role="img" aria-label="${ratingLabel}"><title>${ratingLabel}</title>${ratingPillBackground(ratingWidth, mood.background, rating === 5)}${rating ? ratingIcons(rating, mood.color) + `<text x="286" y="205" fill="${mood.color}" font-size="14" font-weight="800">${rating}</text>` : `<text x="208" y="205" fill="${mood.color}" font-size="14" text-anchor="middle">unrated</text>`}</g>
   ${wrappedText({ x: 168, y: 154, width: 420, height: 44, value: `“${note}”`, size: 13, weight: 600, color: "#a7b7c2", lineHeight: 1.18, italic: true })}</g>
   </svg>`;
 }
@@ -893,7 +907,10 @@ async function writeLetterboxdAssets(data) {
 function cardStack(items, prefix, alt, versionData = (item) => item) {
   return items.map((item, index) => {
     const number = index + 1;
-    return `<a href="${escapeXml(item.link)}"><img src="./assets/activity/${prefix}-${number}.svg?v=${assetVersion(versionData(item))}" width="100%" alt="${escapeDisplay(`${alt}: ${item.title}`)}" /></a>`;
+    const data = versionData(item);
+    const version = normaliseRating(item.rating) === 5 && item.ratingSource !== "unavailable"
+      ? [data, "perfect-rating glow"] : data;
+    return `<a href="${escapeXml(item.link)}"><img src="./assets/activity/${prefix}-${number}.svg?v=${assetVersion(version)}" width="100%" alt="${escapeDisplay(`${alt}: ${item.title}`)}" /></a>`;
   }).join("\n\n");
 }
 
