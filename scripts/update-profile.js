@@ -579,36 +579,44 @@ function ratingPillBackground(width, background, perfect) {
   const height = radius * 2;
   const shape = `x="${x}" y="${y}" width="${width}" height="${height}" rx="${radius}"`;
   if (!perfect) return `<rect ${shape} fill="${background}"/>`;
-  const center = x + width / 2;
-  const left = x + radius;
-  const right = x + width - radius;
-  const rim = `M${center} ${y} H${right} a${radius} ${radius} 0 0 1 0 ${height} H${left} a${radius} ${radius} 0 0 1 0 -${height} Z`;
-  const halo = '<ellipse rx="24" ry="12" fill="url(#perfect-rating-gold)"/>';
+
+  // A broad, softly changing silhouette carries the colour around the pill.
+  const auroraFrames = [
+    'M1 17 C0 4 14 -4 40 -5 C61 -6 79 2 104 -4 C129 -10 146 -1 144 17 C143 29 132 36 105 36 C72 36 62 43 35 37 C11 36 1 31 1 17 Z',
+    'M0 17 C1 2 16 -4 42 -1 C70 4 90 -9 114 -6 C136 -3 149 3 148 19 C149 35 127 39 104 38 C77 35 65 31 36 38 C11 43 -1 32 0 17 Z',
+    'M-3 18 C-3 6 11 -5 38 -6 C65 -7 77 -1 104 -4 C127 -9 146 2 145 17 C145 35 121 39 97 41 C73 43 53 34 33 34 C9 36 -3 31 -3 18 Z',
+  ];
+  const auroraLoop = [...auroraFrames, auroraFrames[0]].join(';');
 
   return `<defs>
     <linearGradient id="perfect-rating-sheen" x1="0%" y1="100%" x2="100%" y2="0%">
       <stop stop-color="${background}"/><stop offset=".48" stop-color="#2c6059"/><stop offset=".68" stop-color="#214b47"/><stop offset="1" stop-color="${background}"/>
     </linearGradient>
     <filter id="perfect-rating-glow" x="-15%" y="-40%" width="130%" height="180%"><feGaussianBlur stdDeviation="2.5"/></filter>
-    <radialGradient id="perfect-rating-gold">
-      <stop stop-color="#ffd27a" stop-opacity=".74"/>
-      <stop offset=".48" stop-color="#ffbf55" stop-opacity=".42"/>
-      <stop offset=".8" stop-color="#f4a53b" stop-opacity=".09"/>
-      <stop offset="1" stop-color="#f4a53b" stop-opacity="0"/>
-    </radialGradient>
+    <filter id="perfect-rating-aurora-blur" x="-15%" y="-50%" width="130%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>
+    <linearGradient id="perfect-rating-aurora-colors" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop stop-color="#cba3ed"/><stop offset=".25" stop-color="#8fa8ec"/>
+      <stop offset=".48" stop-color="#83e3ce"/><stop offset=".66" stop-color="#ffda8c"/>
+      <stop offset=".84" stop-color="#ffc360"/><stop offset="1" stop-color="#e99b55"/>
+    </linearGradient>
+    <linearGradient id="perfect-rating-aurora-drift" href="#perfect-rating-aurora-colors">
+      <animateTransform attributeName="gradientTransform" type="rotate" from="0 .5 .5" to="360 .5 .5" dur="10s" repeatCount="indefinite"/>
+    </linearGradient>
     <style>
       @media (prefers-reduced-motion: no-preference) {
         .perfect-rating-still { display: none; }
-        .perfect-rating-orbit { display: inline; }
+        .perfect-rating-aurora { display: inline; }
       }
     </style>
   </defs>
   <rect ${shape} fill="none" stroke="#83f3cf" stroke-width="3" opacity=".55" filter="url(#perfect-rating-glow)"/>
-  <g class="perfect-rating-still" aria-hidden="true" transform="translate(${center} ${y})">${halo}</g>
-  <g class="perfect-rating-orbit" aria-hidden="true" display="none">
-    ${halo}<animateMotion path="${rim}" dur="10s" rotate="auto" repeatCount="indefinite"/>
+  <g aria-hidden="true" transform="translate(${x} ${y}) scale(${width / 145} 1)" filter="url(#perfect-rating-aurora-blur)" opacity=".6">
+    <path class="perfect-rating-still" d="${auroraFrames[0]}" fill="url(#perfect-rating-aurora-colors)"/>
+    <path class="perfect-rating-aurora" display="none" d="${auroraFrames[0]}" fill="url(#perfect-rating-aurora-drift)">
+      <animate attributeName="d" values="${auroraLoop}" dur="14s" calcMode="spline" keyTimes="0; .33; .67; 1" keySplines=".42 0 .58 1; .42 0 .58 1; .42 0 .58 1" repeatCount="indefinite"/>
+    </path>
   </g>
-  <rect ${shape} fill="url(#perfect-rating-sheen)" stroke="#9bf4dc" stroke-opacity=".58"/>`;
+  <rect ${shape} fill="url(#perfect-rating-sheen)" fill-opacity=".9" stroke="#9bf4dc" stroke-opacity=".58"/>`;
 }
 
 export function renderBookTile(book, artwork, index) {
@@ -934,7 +942,7 @@ function cardStack(items, prefix, alt, versionData = (item) => item) {
     const number = index + 1;
     const data = versionData(item);
     const version = normaliseRating(item.rating) === 5 && item.ratingSource !== "unavailable"
-      ? [data, "perfect-rating soft halo"] : data;
+      ? [data, "perfect-rating aurora"] : data;
     return `<a href="${escapeXml(item.link)}"><img src="./assets/activity/${prefix}-${number}.svg?v=${assetVersion(version)}" width="100%" alt="${escapeDisplay(`${alt}: ${item.title}`)}" /></a>`;
   }).join("\n\n");
 }

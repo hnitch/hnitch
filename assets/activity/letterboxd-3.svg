@@ -10,24 +10,29 @@
       <stop stop-color="#163b39"/><stop offset=".48" stop-color="#2c6059"/><stop offset=".68" stop-color="#214b47"/><stop offset="1" stop-color="#163b39"/>
     </linearGradient>
     <filter id="perfect-rating-glow" x="-15%" y="-40%" width="130%" height="180%"><feGaussianBlur stdDeviation="2.5"/></filter>
-    <radialGradient id="perfect-rating-gold">
-      <stop stop-color="#ffd27a" stop-opacity=".74"/>
-      <stop offset=".48" stop-color="#ffbf55" stop-opacity=".42"/>
-      <stop offset=".8" stop-color="#f4a53b" stop-opacity=".09"/>
-      <stop offset="1" stop-color="#f4a53b" stop-opacity="0"/>
-    </radialGradient>
+    <filter id="perfect-rating-aurora-blur" x="-15%" y="-50%" width="130%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>
+    <linearGradient id="perfect-rating-aurora-colors" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop stop-color="#cba3ed"/><stop offset=".25" stop-color="#8fa8ec"/>
+      <stop offset=".48" stop-color="#83e3ce"/><stop offset=".66" stop-color="#ffda8c"/>
+      <stop offset=".84" stop-color="#ffc360"/><stop offset="1" stop-color="#e99b55"/>
+    </linearGradient>
+    <linearGradient id="perfect-rating-aurora-drift" href="#perfect-rating-aurora-colors">
+      <animateTransform attributeName="gradientTransform" type="rotate" from="0 .5 .5" to="360 .5 .5" dur="10s" repeatCount="indefinite"/>
+    </linearGradient>
     <style>
       @media (prefers-reduced-motion: no-preference) {
         .perfect-rating-still { display: none; }
-        .perfect-rating-orbit { display: inline; }
+        .perfect-rating-aurora { display: inline; }
       }
     </style>
   </defs>
   <rect x="164" y="183" width="145" height="34" rx="17" fill="none" stroke="#83f3cf" stroke-width="3" opacity=".55" filter="url(#perfect-rating-glow)"/>
-  <g class="perfect-rating-still" aria-hidden="true" transform="translate(236.5 183)"><ellipse rx="24" ry="12" fill="url(#perfect-rating-gold)"/></g>
-  <g class="perfect-rating-orbit" aria-hidden="true" display="none">
-    <ellipse rx="24" ry="12" fill="url(#perfect-rating-gold)"/><animateMotion path="M236.5 183 H292 a17 17 0 0 1 0 34 H181 a17 17 0 0 1 0 -34 Z" dur="10s" rotate="auto" repeatCount="indefinite"/>
+  <g aria-hidden="true" transform="translate(164 183) scale(1 1)" filter="url(#perfect-rating-aurora-blur)" opacity=".6">
+    <path class="perfect-rating-still" d="M1 17 C0 4 14 -4 40 -5 C61 -6 79 2 104 -4 C129 -10 146 -1 144 17 C143 29 132 36 105 36 C72 36 62 43 35 37 C11 36 1 31 1 17 Z" fill="url(#perfect-rating-aurora-colors)"/>
+    <path class="perfect-rating-aurora" display="none" d="M1 17 C0 4 14 -4 40 -5 C61 -6 79 2 104 -4 C129 -10 146 -1 144 17 C143 29 132 36 105 36 C72 36 62 43 35 37 C11 36 1 31 1 17 Z" fill="url(#perfect-rating-aurora-drift)">
+      <animate attributeName="d" values="M1 17 C0 4 14 -4 40 -5 C61 -6 79 2 104 -4 C129 -10 146 -1 144 17 C143 29 132 36 105 36 C72 36 62 43 35 37 C11 36 1 31 1 17 Z;M0 17 C1 2 16 -4 42 -1 C70 4 90 -9 114 -6 C136 -3 149 3 148 19 C149 35 127 39 104 38 C77 35 65 31 36 38 C11 43 -1 32 0 17 Z;M-3 18 C-3 6 11 -5 38 -6 C65 -7 77 -1 104 -4 C127 -9 146 2 145 17 C145 35 121 39 97 41 C73 43 53 34 33 34 C9 36 -3 31 -3 18 Z;M1 17 C0 4 14 -4 40 -5 C61 -6 79 2 104 -4 C129 -10 146 -1 144 17 C143 29 132 36 105 36 C72 36 62 43 35 37 C11 36 1 31 1 17 Z" dur="14s" calcMode="spline" keyTimes="0; .33; .67; 1" keySplines=".42 0 .58 1; .42 0 .58 1; .42 0 .58 1" repeatCount="indefinite"/>
+    </path>
   </g>
-  <rect x="164" y="183" width="145" height="34" rx="17" fill="url(#perfect-rating-sheen)" stroke="#9bf4dc" stroke-opacity=".58"/><g transform="translate(178 191) scale(.9)"><defs><clipPath id="rating-star-0"><rect width="20" height="20"/></clipPath></defs><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" opacity=".22"/><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" clip-path="url(#rating-star-0)"/></g><g transform="translate(198 191) scale(.9)"><defs><clipPath id="rating-star-1"><rect width="20" height="20"/></clipPath></defs><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" opacity=".22"/><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" clip-path="url(#rating-star-1)"/></g><g transform="translate(218 191) scale(.9)"><defs><clipPath id="rating-star-2"><rect width="20" height="20"/></clipPath></defs><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" opacity=".22"/><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" clip-path="url(#rating-star-2)"/></g><g transform="translate(238 191) scale(.9)"><defs><clipPath id="rating-star-3"><rect width="20" height="20"/></clipPath></defs><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" opacity=".22"/><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" clip-path="url(#rating-star-3)"/></g><g transform="translate(258 191) scale(.9)"><defs><clipPath id="rating-star-4"><rect width="20" height="20"/></clipPath></defs><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" opacity=".22"/><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" clip-path="url(#rating-star-4)"/></g><text x="286" y="205" fill="#c4fff0" font-size="14" font-weight="800">5</text></g>
+  <rect x="164" y="183" width="145" height="34" rx="17" fill="url(#perfect-rating-sheen)" fill-opacity=".9" stroke="#9bf4dc" stroke-opacity=".58"/><g transform="translate(178 191) scale(.9)"><defs><clipPath id="rating-star-0"><rect width="20" height="20"/></clipPath></defs><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" opacity=".22"/><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" clip-path="url(#rating-star-0)"/></g><g transform="translate(198 191) scale(.9)"><defs><clipPath id="rating-star-1"><rect width="20" height="20"/></clipPath></defs><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" opacity=".22"/><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" clip-path="url(#rating-star-1)"/></g><g transform="translate(218 191) scale(.9)"><defs><clipPath id="rating-star-2"><rect width="20" height="20"/></clipPath></defs><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" opacity=".22"/><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" clip-path="url(#rating-star-2)"/></g><g transform="translate(238 191) scale(.9)"><defs><clipPath id="rating-star-3"><rect width="20" height="20"/></clipPath></defs><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" opacity=".22"/><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" clip-path="url(#rating-star-3)"/></g><g transform="translate(258 191) scale(.9)"><defs><clipPath id="rating-star-4"><rect width="20" height="20"/></clipPath></defs><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" opacity=".22"/><path d="M10 0 12.9 6.3 20 7.3 14.8 12.3 16 19.3 10 16 4 19.3 5.2 12.3 0 7.3 7.1 6.3Z" fill="#c4fff0" clip-path="url(#rating-star-4)"/></g><text x="286" y="205" fill="#c4fff0" font-size="14" font-weight="800">5</text></g>
   <text fill="#a7b7c2" font-size="13" font-weight="600" font-style="italic"><tspan x="168" y="167">“HORROR TV IS SAVED AGAIN , mike flanagan i never</tspan><tspan x="168" y="182">doubted you !!”</tspan></text></g>
   </svg>

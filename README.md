@@ -38,7 +38,7 @@
 
 <a href="https://www.goodreads.com/review/show/8755007560"><img src="./assets/activity/goodreads-2.svg?v=fad46c710f" width="100%" alt="Read: Kiss Slay Replay" /></a>
 
-<a href="https://www.goodreads.com/review/show/8812304511"><img src="./assets/activity/goodreads-3.svg?v=67824b00d1" width="100%" alt="Read: The Poet Empress" /></a>
+<a href="https://www.goodreads.com/review/show/8812304511"><img src="./assets/activity/goodreads-3.svg?v=b755b92049" width="100%" alt="Read: The Poet Empress" /></a>
 
 <a href="https://www.goodreads.com/review/show/8444218649"><img src="./assets/activity/goodreads-4.svg?v=18aa27daf7" width="100%" alt="Read: What Feeds Below" /></a>
 <!-- GOODREADS-FEED:END -->
@@ -54,7 +54,7 @@
 
 <a href="https://letterboxd.com/hnitch/film/clayface/"><img src="./assets/activity/letterboxd-2.svg?v=5ba8e4e154" width="100%" alt="Watched: Clayface" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/carrie-2026/"><img src="./assets/activity/letterboxd-3.svg?v=3c14f0101d" width="100%" alt="Watched: Carrie" /></a>
+<a href="https://letterboxd.com/hnitch/film/carrie-2026/"><img src="./assets/activity/letterboxd-3.svg?v=dbc8f3fdbc" width="100%" alt="Watched: Carrie" /></a>
 
 <a href="https://letterboxd.com/hnitch/film/other-mommy/"><img src="./assets/activity/letterboxd-4.svg?v=819564fac7" width="100%" alt="Watched: Other Mommy" /></a>
 <!-- LETTERBOXD-FEED:END -->
