@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-10T14:45:38.784Z" format="relative" format-style="long" title="2026-11-10T14:45:38.784Z">2 days ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-12T15:55:38.334Z" format="relative" format-style="long" title="2026-11-12T15:55:38.334Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-12T16:03:27.705Z" format="relative" format-style="long" title="2026-11-12T16:03:27.705Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-12T16:03:27.921Z" format="relative" format-style="long" title="2026-11-12T16:03:27.921Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -32,7 +32,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/book/show/248285113-under-the-iron-sky"><img src="./assets/activity/goodreads-current.svg?v=908fbd447b" width="100%" alt="currently reading Under the Iron Sky" /></a>
+<a href="https://www.goodreads.com/book/show/248285113-under-the-iron-sky"><img src="./assets/activity/goodreads-current.svg?v=d071435b80" width="100%" alt="currently reading Under the Iron Sky" /></a>
 
 <a href="https://www.goodreads.com/review/show/8886771684"><img src="./assets/activity/goodreads-1.svg?v=7626b00cc2" width="100%" alt="Read: Victorious" /></a>
 
