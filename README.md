@@ -3,7 +3,7 @@
   <br/><br/>
   <img src="https://hnitch-discord-card.haarshaan.workers.dev/visitors.svg?v=2" height="28" alt="visitors" />
   <!-- READING-BADGE:START -->
-  <img src="./assets/activity/reading-status.svg?v=f8e1138ac2" height="28" alt="currently reading , probably" />
+  <img src="./assets/activity/reading-status.svg?v=971e4e93b3" height="28" alt="between books , allegedly" />
   <!-- READING-BADGE:END -->
 </div>
 
@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-12T16:03:27.705Z" format="relative" format-style="long" title="2026-11-12T16:03:27.705Z">23 hours ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-13T16:00:43.009Z" format="relative" format-style="long" title="2026-11-13T16:00:43.009Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-13T16:10:32.530Z" format="relative" format-style="long" title="2026-11-13T16:10:32.530Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-13T16:10:32.670Z" format="relative" format-style="long" title="2026-11-13T16:10:32.670Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -32,15 +32,15 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/book/show/248285113-under-the-iron-sky"><img src="./assets/activity/goodreads-current.svg?v=d071435b80" width="100%" alt="currently reading Under the Iron Sky" /></a>
+<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=728df2620d" width="100%" alt="not reading anything , rn" /></a>
 
-<a href="https://www.goodreads.com/review/show/8886771684"><img src="./assets/activity/goodreads-1.svg?v=7626b00cc2" width="100%" alt="Read: Victorious" /></a>
+<a href="https://www.goodreads.com/review/show/8950713330"><img src="./assets/activity/goodreads-1.svg?v=dfcef7ee12" width="100%" alt="Read: Under the Iron Sky" /></a>
 
-<a href="https://www.goodreads.com/review/show/8755007560"><img src="./assets/activity/goodreads-2.svg?v=fad46c710f" width="100%" alt="Read: Kiss Slay Replay" /></a>
+<a href="https://www.goodreads.com/review/show/8886771684"><img src="./assets/activity/goodreads-2.svg?v=7626b00cc2" width="100%" alt="Read: Victorious" /></a>
 
-<a href="https://www.goodreads.com/review/show/8812304511"><img src="./assets/activity/goodreads-3.svg?v=a685830656" width="100%" alt="Read: The Poet Empress" /></a>
+<a href="https://www.goodreads.com/review/show/8755007560"><img src="./assets/activity/goodreads-3.svg?v=fad46c710f" width="100%" alt="Read: Kiss Slay Replay" /></a>
 
-<a href="https://www.goodreads.com/review/show/8444218649"><img src="./assets/activity/goodreads-4.svg?v=18aa27daf7" width="100%" alt="Read: What Feeds Below" /></a>
+<a href="https://www.goodreads.com/review/show/8812304511"><img src="./assets/activity/goodreads-4.svg?v=a685830656" width="100%" alt="Read: The Poet Empress" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>

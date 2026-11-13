@@ -1,27 +1,23 @@
 {
   "goodreads": {
-    "current": {
-      "bookId": "248285113",
-      "title": "Under the Iron Sky",
-      "author": "A.T. Emerald",
-      "link": "https://www.goodreads.com/book/show/248285113-under-the-iron-sky",
-      "rating": 0,
-      "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1780183215i/248285113.jpg",
-      "pages": 544,
-      "averageRating": null,
-      "published": "2026",
-      "dateAdded": "",
-      "readAt": "",
-      "review": "",
-      "readingSessionId": "f9d5ed01-af5f-4e2f-bc18-859276a83b68",
-      "progress": {
-        "page": 341,
-        "total": 544,
-        "percent": 63,
-        "source": "shortcut"
-      }
-    },
+    "current": null,
     "recent": [
+      {
+        "bookId": "248285113",
+        "title": "Under the Iron Sky",
+        "author": "A.T. Emerald",
+        "link": "https://www.goodreads.com/review/show/8950713330",
+        "rating": null,
+        "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1780183215i/248285113.jpg",
+        "pages": 544,
+        "averageRating": null,
+        "published": "2026",
+        "dateAdded": "",
+        "readAt": "November 13, 2026 08:02",
+        "review": "rtc…",
+        "readingSessionId": "f9d5ed01-af5f-4e2f-bc18-859276a83b68",
+        "ratingSource": "unavailable"
+      },
       {
         "bookId": "259986702",
         "title": "Victorious",
@@ -91,29 +87,6 @@
             "relieved and heartbroken"
           ]
         }
-      },
-      {
-        "bookId": "243391644",
-        "title": "What Feeds Below",
-        "author": "Tatiana Schlote-Bonne",
-        "link": "https://www.goodreads.com/review/show/8444218649",
-        "rating": 4.5,
-        "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1766813122l/243391644._SY475_.jpg",
-        "pages": 266,
-        "averageRating": 4.35,
-        "published": "2026",
-        "dateAdded": "Mon, 26 Oct 2026 02:28:12 -0700",
-        "readAt": "October 28, 2026 07:32",
-        "review": "the void is a living nightmare and somehow i STILL wanted to explore every inch of it. WHAT IS WRONG WITH ME ? 😭 i think the void itself is what made this book so memorable. it’s such a horrifying yet fascinating place , and i was obsessed with how vividly it was described. everything feels so alive and thriving in a way , from the monstrous creatures to the most unassuming little organisms that can kill you before you even realise you’re in danger. the cryptids and mutations only made it all the more unsettling. it genuinely felt like stepping into a fever dream , and i loved every second of it. and THE BODY HORROR ??? as a horror fan , i was VERY happy with how brutal some of the imagery got. the descriptions did not hold back , and i was absolutely LIVING for every horrifying detail. pair that with the pacing , where practically every chapter has SOMETHING happening , and you’ve got yourself an incredibly addictive little horror read. i also really loved our main character and her view on life. even though she definitely had her flaws , i thought she showed so much character development by the end. in a world where practically everything is trying to kill you , she’s looking at these horrifying organisms and wondering how she could turn them into medicine. there’s something so endearing about someone who can find the potential for healing in a place filled with so much death. what surprised me too was how much the story had to say about love and validation , and the lengths we’re willing to go to feel wanted. there’s this underlying question of what happens when you become so attached to someone that you start losing yourself in them. where do you draw the line between loving someone and needing them to the point where you can’t exist outside their shadow ? i thought that was a really interesting layer beneath all the chaos. now , the reason this isn’t quite a perfect read for me is the ending. while i found it sad and wished things could’ve turned out differently , the main twist was unfortunately something i’d already pieced together. some of the clues scattered throughout the story weren’t exactly subtle , so i never got that HOLY SHIT WHAT JUST HAPPENED moment i was hoping for. there’s also one particular detail about how quickly things escalated towards the end with the mutations that i'm still a little confused about. but none of that took away from how much i enjoyed the overall experience. i’m SO glad i managed to squeeze this into the final week of october despite being swamped with internship work. it was literally the perfect way to close out spooky reading month... although let’s be real , october ending is NOT going to stop me from reading horror well into november and december. SO glad i picked this up to close out my october. i’ll definitely be keeping an eye on whatever this author writes next !",
-        "ratingSource": "confirmed",
-        "bookNote": {
-          "key": "3a5bf9d989b09f8d46ef471fb2b0e49e37994088c527bef86ad321ea483d2d5d",
-          "labels": [
-            "horrifying , fascinating",
-            "loved the body horror",
-            "guessed the twist"
-          ]
-        }
       }
     ]
   },
@@ -174,24 +147,24 @@
     "lastSuccessAt": "2026-11-02T15:25:34.085Z",
     "lastAttemptAt": "2026-11-13T13:20:28.981Z"
   },
-  "updatedAt": "2026-11-12T16:03:27.705Z",
-  "lastSignalRenderAt": "2026-11-12T16:20:33.808Z",
+  "updatedAt": "2026-11-13T16:10:32.530Z",
+  "lastSignalRenderAt": "2026-11-13T16:10:32.530Z",
   "feedChecks": {
-    "checkedAt": "2026-11-13T16:00:43.009Z",
+    "checkedAt": "2026-11-13T16:10:32.670Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-13T16:00:43.009Z",
-        "lastSuccessAt": "2026-11-13T16:00:43.009Z"
+        "checkedAt": "2026-11-13T16:10:32.670Z",
+        "lastSuccessAt": "2026-11-13T16:10:32.670Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-13T16:00:43.009Z",
-        "lastSuccessAt": "2026-11-13T16:00:43.009Z"
+        "checkedAt": "2026-11-13T16:10:32.670Z",
+        "lastSuccessAt": "2026-11-13T16:10:32.670Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-11-13T16:00:43.009Z",
+        "checkedAt": "2026-11-13T16:10:32.670Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {
