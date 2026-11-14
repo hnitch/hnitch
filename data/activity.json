@@ -7,16 +7,17 @@
         "title": "Under the Iron Sky",
         "author": "A.T. Emerald",
         "link": "https://www.goodreads.com/review/show/8950713330",
-        "rating": null,
+        "rating": 3.75,
         "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1780183215i/248285113.jpg",
         "pages": 544,
         "averageRating": null,
         "published": "2026",
         "dateAdded": "",
         "readAt": "November 13, 2026 08:02",
-        "review": "rtc…",
+        "review": "",
         "readingSessionId": "f9d5ed01-af5f-4e2f-bc18-859276a83b68",
-        "ratingSource": "unavailable"
+        "ratingSource": "confirmed",
+        "reviewPlaceholder": "rtc…"
       },
       {
         "bookId": "259986702",

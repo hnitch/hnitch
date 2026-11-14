@@ -34,7 +34,7 @@
 
 <a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=728df2620d" width="100%" alt="not reading anything , rn" /></a>
 
-<a href="https://www.goodreads.com/review/show/8950713330"><img src="./assets/activity/goodreads-1.svg?v=dfcef7ee12" width="100%" alt="Read: Under the Iron Sky" /></a>
+<a href="https://www.goodreads.com/review/show/8950713330"><img src="./assets/activity/goodreads-1.svg?v=e91ac1f147" width="100%" alt="Read: Under the Iron Sky" /></a>
 
 <a href="https://www.goodreads.com/review/show/8886771684"><img src="./assets/activity/goodreads-2.svg?v=7626b00cc2" width="100%" alt="Read: Victorious" /></a>
 

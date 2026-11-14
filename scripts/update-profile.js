@@ -1,5 +1,5 @@
 import { fetchWithRetry } from "./fetch-retry.js";
-import {publicGoodreads} from './goodreads-fallback.js';
+import { goodreadsReview, publicGoodreads } from "./goodreads-fallback.js";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { createHash } from "node:crypto";
@@ -149,7 +149,7 @@ export function normaliseBook(item = {}) {
     published: decode(first(item.book_published)),
     dateAdded: decode(first(item.user_date_added) || first(item.pubDate)),
     readAt: decode(first(item.user_read_at)),
-    review: cleanText(first(item.user_review)),
+    ...goodreadsReview(cleanText(first(item.user_review))),
   };
 }
 
@@ -626,14 +626,19 @@ export function renderBookTile(book, artwork, index) {
   const communityRating = book.averageRating && `GR avg ${Number(book.averageRating).toFixed(2)}`;
   const bookFacts = [publication, communityRating].filter(Boolean);
   const titleSidecar = bookFacts.length ? `<path d="M632 65v52" stroke="#756b80" stroke-width="2" stroke-linecap="round" opacity=".8"/>${bookFacts.map((fact, factIndex) => `<text x="649" y="${80 + factIndex * 23}" fill="#a99daf" font-size="12" font-weight="650">${escapeDisplay(fact)}</text>`).join("")}` : "";
-  const rating = normaliseRating(book.rating);
-  const mood = ratingMood(rating);
-  const ratingText = book.ratingSource === "unavailable" ? "rating pending" : stars(rating);
-  const ratingLabel = book.ratingSource === "unavailable" ? "Exact rating unavailable from Goodreads" : rating ? `${rating} out of 5 stars` : "unrated";
-  const showStars = rating > 0 && book.ratingSource !== "unavailable";
-  const numberWidth = [...String(rating)].reduce((width, char) => width + (char === "." ? 4 : 9), 0);
-  const ratingWidth = showStars ? 136 + numberWidth : Math.max(78, 32 + ratingText.length * 16);
-  const moods = bookNotes(book);
+  const { review, reviewPlaceholder = book.reviewPlaceholder } = goodreadsReview(book.review);
+  const exactRating = book.ratingSource !== "unavailable";
+  const rating = normaliseRating(exactRating ? book.rating : book.displayRating);
+  const mood = ratingMood(exactRating ? rating : 0);
+  const ratingText = exactRating ? "unrated" : "rated on Goodreads";
+  const ratingLabel = exactRating && rating > 0 ? `${rating} out of 5 stars` : ratingText;
+  const ratingNumber = exactRating && rating > 0 ? String(rating) : "";
+  const numberWidth = [...ratingNumber].reduce((width, char) => width + (char === "." ? 4 : 9), 0);
+  const ratingWidth = rating > 0 ? (ratingNumber ? 136 + numberWidth : 126) : (exactRating ? 144 : 180);
+  const ratingMarkup = rating > 0
+    ? ratingIcons(rating, mood.color) + (ratingNumber ? `<text x="286" y="205" fill="${mood.color}" font-size="14" font-weight="800" text-anchor="start">${ratingNumber}</text>` : "")
+    : `<text x="${164 + ratingWidth / 2}" y="205" fill="${mood.color}" font-size="16" font-weight="800" text-anchor="middle">${ratingText}</text>`;
+  const moods = review ? bookNotes(book) : [];
   let chipX = 164 + ratingWidth + 29;
   const chipColors = [
     { fill: "#332b4a", text: "#dccdff" },
@@ -650,19 +655,20 @@ export function renderBookTile(book, artwork, index) {
     const palette = chipColors[chipIndex];
     return `<rect x="${x}" y="183" width="${width}" height="34" rx="17" fill="${palette.fill}"/><text x="${x + width / 2}" y="205" fill="${palette.text}" font-size="${12 * chipScale}" font-weight="750" text-anchor="middle">${escapeDisplay(label)}</text>`;
   }).join("");
-  const emptyReview = moods.length ? "" : `<rect x="${chipX}" y="183" width="178" height="34" rx="17" fill="#302a3d"/><text x="${chipX + 89}" y="205" fill="#bdb1ca" font-size="12" font-weight="700" text-anchor="middle">${book.review ? "read the full review ↗" : "no written review"}</text>`;
+  const reviewStatus = review ? "read the full review ↗" : reviewPlaceholder || "no written review";
+  const emptyReview = moods.length ? "" : `<rect x="${chipX}" y="183" width="178" height="34" rx="17" fill="#302a3d"/><text x="${chipX + 89}" y="205" fill="#bdb1ca" font-size="12" font-weight="700" text-anchor="middle">${escapeDisplay(reviewStatus)}</text>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="242" viewBox="0 0 860 242" role="img" aria-label="${escapeDisplay(book.title)} by ${escapeDisplay(book.author)}" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#19222d"/><stop offset="1" stop-color="#252532"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
   <rect x="1" y="1" width="858" height="240" rx="25" fill="url(#bg)" stroke="#526378" stroke-width="2"/>
   <circle cx="820" cy="12" r="124" fill="#89c9f8" opacity=".045"/>
   ${cover({ dataUri: artwork, x: 24, y: 21, width: 130, height: 198, radius: 10 })}
   <g class="sans"><text x="164" y="38" fill="#e9c995" font-size="12" font-weight="800" letter-spacing="1.25">READ RECEIPT / 0${index + 1}</text>
-  <text x="816" y="38" fill="#b7cddd" font-size="11" font-weight="600" text-anchor="end">${book.review ? "read full review ↗" : "view on Goodreads ↗"}</text>
+  <text x="816" y="38" fill="#b7cddd" font-size="11" font-weight="600" text-anchor="end">${review ? "read full review ↗" : "view on Goodreads ↗"}</text>
   ${wrappedText({ x: 164, y: 51, width: bookFacts.length ? 450 : 630, height: 68, value: book.title, size: 27, weight: 800, lineHeight: 1.04 })}
   ${titleSidecar}
   <text x="164" y="136" fill="${theme.muted}" font-size="14.5" font-weight="700">${escapeDisplay(book.author)}</text>
   <text x="164" y="160" fill="#978a9f" font-size="12.5" font-weight="600">${escapeDisplay(facts)}</text>
-  <g role="img" aria-label="${ratingLabel}"><title>${ratingLabel}</title>${ratingPillBackground(ratingWidth, mood.background, showStars && rating === 5)}${showStars ? ratingIcons(rating, mood.color) + `<text x="286" y="205" fill="${mood.color}" font-size="14" font-weight="800" text-anchor="start">${rating}</text>` : `<text x="${164 + ratingWidth / 2}" y="205" fill="${mood.color}" font-size="16" font-weight="800" text-anchor="middle">${escapeDisplay(ratingText)}</text>`}</g>
+  <g role="img" aria-label="${ratingLabel}"><title>${ratingLabel}</title>${ratingPillBackground(ratingWidth, mood.background, exactRating && rating === 5)}${ratingMarkup}</g>
   <path d="M${174 + ratingWidth} 187v26" stroke="#776a88" stroke-width="2" stroke-linecap="round" opacity=".8"/>
   ${chips}${emptyReview}</g>
   </svg>`;

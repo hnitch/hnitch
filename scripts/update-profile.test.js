@@ -196,6 +196,15 @@ test("review link cue is visible without changing card height or inventing a wri
   assert.doesNotMatch(unwritten, /read full review ↗/);
 });
 
+test("a rated book with a review placeholder shows both the score and the placeholder", () => {
+  const book = normaliseBook({ title: ["Book"], user_rating: ["3.75"], user_review: ["RTC..."] });
+  assert.equal(book.review, "");
+  const svg = renderBookTile(book, null, 0);
+  assert.match(svg, /aria-label="3\.75 out of 5 stars"/);
+  assert.match(svg, />RTC\.\.\.<\/text>/);
+  assert.doesNotMatch(svg, /rating pending|read (?:the )?full review/);
+});
+
 test("check timestamps advance independently of content changes", () => {
   const at = new Date(now).toISOString();
   const source = { goodreads: { current: null, recent: [] }, letterboxd: { recent: [] }, appleMusic: {}, instagram: { username: "hnitch", avatarHash: "a" } };
@@ -325,6 +334,10 @@ test('public Goodreads fallback moves a finished book and preserves full review 
  const result=parsePublicGoodreads(profile,updates,previous);
  assert.equal(result.current,null);assert.equal(result.recent[0].rating,null);
  assert.equal(result.recent[0].ratingSource,"unavailable");
+ assert.equal(result.recent[0].displayRating,4.6);
+ const unknownExact=renderBookTile(result.recent[0],null,0);
+ assert.match(unknownExact,/id="rating-star-4"/);
+ assert.doesNotMatch(unknownExact,/rating pending|>4\.6<\/text>/);
  const exactReview=updates.replace('Full review<br>with context.', "The previous book was a 4.5 star for me. I'm keeping this at 4.75 rather than giving it the full five stars.");
  const explicit=parsePublicGoodreads(profile,exactReview,previous).recent[0];
  assert.equal(explicit.rating,4.75);
@@ -338,6 +351,11 @@ test('public Goodreads fallback moves a finished book and preserves full review 
  }
  assert.equal(result.recent[0].review,'Full review with context.');assert.equal(result.recent[0].pages,266);
  assert.equal(result.recent[0].progress,undefined);
+ const withoutReview=updates.replace(/<tr class="update no_border">.*?<\/tr>/, '<tr class="feedFooterReview" id="update_comment_stuff_Review9"><td></td></tr>');
+ const ratedOnly=parsePublicGoodreads(profile,withoutReview.replace('p6','p10'),previous).recent[0];
+ assert.equal(ratedOnly.rating,5);
+ assert.equal(ratedOnly.review,'');
+ assert.equal(ratedOnly.link,'https://www.goodreads.com/review/show/9');
  assert.throws(()=>parsePublicGoodreads('<title>Sign in</title>',updates,previous));
  assert.throws(()=>parsePublicGoodreads(profile,updates.replace('p6','p3'),previous));
  assert.throws(()=>parsePublicGoodreads(profile,updates.replace('/user/show/178629903-haarshaan','/user/show/999'),previous));
