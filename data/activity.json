@@ -94,6 +94,15 @@
   "letterboxd": {
     "recent": [
       {
+        "title": "The Hunger Games: Sunrise on the Reaping",
+        "year": "2026",
+        "rating": 5,
+        "liked": true,
+        "link": "https://letterboxd.com/hnitch/film/the-hunger-games-sunrise-on-the-reaping/",
+        "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/8/2/6/9/2/1182692-the-hunger-games-sunrise-on-the-reaping-0-600-0-900-crop.jpg?v=91001efc76",
+        "review": "best horror movie i’ve watched 😭😭"
+      },
+      {
         "title": "Street Fighter",
         "year": "2026",
         "rating": 2,
@@ -119,15 +128,6 @@
         "link": "https://letterboxd.com/hnitch/film/carrie-2026/",
         "poster": "https://a.ltrbxd.com/resized/film-poster/1/6/1/8/1/6/8/1618168-carrie-2026-0-600-0-900-crop.jpg?v=bef2e5cffd",
         "review": "HORROR TV IS SAVED AGAIN , mike flanagan i never doubted you !!"
-      },
-      {
-        "title": "Other Mommy",
-        "year": "2026",
-        "rating": 2.5,
-        "liked": false,
-        "link": "https://letterboxd.com/hnitch/film/other-mommy/",
-        "poster": "https://a.ltrbxd.com/resized/film-poster/1/2/8/4/4/8/0/1284480-other-mommy-0-600-0-900-crop.jpg?v=297427826f",
-        "review": "not them literally playing the clayface trailer infront of this ahsjdjdk it’s getting extra stars for the body horror"
       }
     ]
   },
@@ -148,24 +148,24 @@
     "lastSuccessAt": "2026-11-02T15:25:34.085Z",
     "lastAttemptAt": "2026-11-14T13:40:30.965Z"
   },
-  "updatedAt": "2026-11-13T16:10:32.530Z",
-  "lastSignalRenderAt": "2026-11-13T16:30:45.444Z",
+  "updatedAt": "2026-11-14T15:50:31.290Z",
+  "lastSignalRenderAt": "2026-11-14T15:50:31.290Z",
   "feedChecks": {
-    "checkedAt": "2026-11-14T15:40:31.648Z",
+    "checkedAt": "2026-11-14T15:50:31.465Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-14T15:40:31.648Z",
-        "lastSuccessAt": "2026-11-14T15:40:31.648Z"
+        "checkedAt": "2026-11-14T15:50:31.465Z",
+        "lastSuccessAt": "2026-11-14T15:50:31.465Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-14T15:40:31.648Z",
-        "lastSuccessAt": "2026-11-14T15:40:31.648Z"
+        "checkedAt": "2026-11-14T15:50:31.465Z",
+        "lastSuccessAt": "2026-11-14T15:50:31.465Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-11-14T15:40:31.648Z",
+        "checkedAt": "2026-11-14T15:50:31.465Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {
