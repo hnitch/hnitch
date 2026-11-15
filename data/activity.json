@@ -114,7 +114,8 @@
         "liked": true,
         "link": "https://letterboxd.com/hnitch/film/the-hunger-games-sunrise-on-the-reaping/",
         "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/8/2/6/9/2/1182692-the-hunger-games-sunrise-on-the-reaping-0-600-0-900-crop.jpg?v=91001efc76",
-        "review": "best horror movie i’ve watched 😭😭"
+        "review": "best horror movie i’ve watched 😭😭",
+        "released": "2026-10-28"
       },
       {
         "title": "Street Fighter",
@@ -123,7 +124,8 @@
         "liked": false,
         "link": "https://letterboxd.com/hnitch/film/street-fighter-2026/",
         "poster": "https://a.ltrbxd.com/resized/film-poster/1/0/4/0/2/9/0/1040290-street-fighter-2026-0-600-0-900-crop.jpg?v=5cc9002644",
-        "review": ""
+        "review": "",
+        "released": "2026-10-13"
       },
       {
         "title": "Clayface",
@@ -132,7 +134,8 @@
         "liked": false,
         "link": "https://letterboxd.com/hnitch/film/clayface/",
         "poster": "https://a.ltrbxd.com/resized/film-poster/1/2/8/4/6/3/6/1284636-clayface-0-600-0-900-crop.jpg?v=eb305849d5",
-        "review": "trust dc to make a good villain origin story ( ALSO BODY HORROR IS SO BACK !! )"
+        "review": "trust dc to make a good villain origin story ( ALSO BODY HORROR IS SO BACK !! )",
+        "released": "2026-10-13"
       },
       {
         "title": "Carrie",
@@ -141,7 +144,8 @@
         "liked": true,
         "link": "https://letterboxd.com/hnitch/film/carrie-2026/",
         "poster": "https://a.ltrbxd.com/resized/film-poster/1/6/1/8/1/6/8/1618168-carrie-2026-0-600-0-900-crop.jpg?v=bef2e5cffd",
-        "review": "HORROR TV IS SAVED AGAIN , mike flanagan i never doubted you !!"
+        "review": "HORROR TV IS SAVED AGAIN , mike flanagan i never doubted you !!",
+        "released": "2026-10-07"
       }
     ]
   },
@@ -162,24 +166,24 @@
     "lastSuccessAt": "2026-11-02T15:25:34.085Z",
     "lastAttemptAt": "2026-11-15T08:00:30.157Z"
   },
-  "updatedAt": "2026-11-15T05:20:36.146Z",
-  "lastSignalRenderAt": "2026-11-15T05:40:30.986Z",
+  "updatedAt": "2026-11-15T08:36:08.760Z",
+  "lastSignalRenderAt": "2026-11-15T08:36:08.760Z",
   "feedChecks": {
-    "checkedAt": "2026-11-15T08:30:38.346Z",
+    "checkedAt": "2026-11-15T08:36:09.095Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-15T08:30:38.346Z",
-        "lastSuccessAt": "2026-11-15T08:30:38.346Z"
+        "checkedAt": "2026-11-15T08:36:09.095Z",
+        "lastSuccessAt": "2026-11-15T08:36:09.095Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-15T08:30:38.346Z",
-        "lastSuccessAt": "2026-11-15T08:30:38.346Z"
+        "checkedAt": "2026-11-15T08:36:09.095Z",
+        "lastSuccessAt": "2026-11-15T08:36:09.095Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-11-15T08:30:38.346Z",
+        "checkedAt": "2026-11-15T08:36:09.095Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {
@@ -187,6 +191,21 @@
         "checkedAt": "2026-11-15T08:01:06.888Z",
         "lastSuccessAt": "2026-11-02T15:25:36.261Z"
       }
+    }
+  },
+  "metadataChecks": {
+    "goodreads": {
+      "247294908": "2026-11-15T08:36:08.737Z",
+      "248285113": "2026-11-15T08:36:08.737Z",
+      "259986702": "2026-11-15T08:36:08.737Z",
+      "260072083": "2026-11-15T08:36:08.737Z",
+      "263425266": "2026-11-15T08:36:08.737Z"
+    },
+    "letterboxd": {
+      "https://letterboxd.com/film/the-hunger-games-sunrise-on-the-reaping/": "2026-11-15T08:36:07.749Z",
+      "https://letterboxd.com/film/street-fighter-2026/": "2026-11-15T08:36:07.749Z",
+      "https://letterboxd.com/film/clayface/": "2026-11-15T08:36:07.749Z",
+      "https://letterboxd.com/film/carrie-2026/": "2026-11-15T08:36:07.749Z"
     }
   }
 }
