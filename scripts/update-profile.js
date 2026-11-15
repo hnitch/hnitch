@@ -1,9 +1,10 @@
 import { fetchWithRetry } from "./fetch-retry.js";
-import { goodreadsReview, publicGoodreads } from "./goodreads-fallback.js";
+import { goodreadsReview, parseEdition, publicGoodreads, refreshGoodreadsMetadata } from "./goodreads-fallback.js";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { pathToFileURL } from "node:url";
+import { load } from "cheerio";
 import { parseStringPromise } from "xml2js";
 import { ratingMood } from "./rating-colors.js";
 import { progressForCurrentBook, applyBookEditions, applySavedProgress } from "./reading-progress.js";
@@ -23,6 +24,7 @@ const RENDER_VERSION = "3.11.1";
 const INSTAGRAM_REFRESH_MS = 24 * 60 * 60_000;
 const INSTAGRAM_RETRY_MS = 6 * 60 * 60_000;
 const SIGNAL_FRESH_MS = 15 * 60_000;
+const FILM_METADATA_RETRY_MS = 60 * 60_000;
 
 const SOURCES = {
   goodreads: {
@@ -248,8 +250,30 @@ function normaliseFilm(item = {}) {
   };
 }
 
-async function readLetterboxd() {
-  const feed = await parseStringPromise(await fetchText(SOURCES.letterboxd));
+function letterboxdFilmUrl(link) {
+  const slug = link?.match(/^https:\/\/letterboxd\.com\/(?:[\w-]+\/)?film\/([\w-]+)\//)?.[1];
+  return slug ? `https://letterboxd.com/film/${slug}/` : null;
+}
+
+function parseLetterboxdRelease(html, url, year) {
+  const $ = load(html);
+  for (const script of $('script[type="application/ld+json"]')) {
+    // Letterboxd wraps its film JSON-LD in CDATA comments.
+    const json = $(script).text().trim().replace(/^\/\*\s*<!\[CDATA\[\s*\*\/|\/\*\s*\]\]>\s*\*\/$/g, "").trim();
+    let film;
+    try { film = JSON.parse(json); }
+    catch { continue; }
+    // The film's dateCreated is its first listed release, including premieres.
+    if (film?.["@type"] !== "Movie" || film.url !== url || !/^\d{4}-\d{2}-\d{2}$/.test(film.dateCreated)) continue;
+    const date = new Date(film.dateCreated);
+    if (Number.isFinite(date.valueOf()) && date.toISOString().slice(0, 10) === film.dateCreated
+      && (!year || film.dateCreated.startsWith(year + "-"))) return film.dateCreated;
+  }
+  return "";
+}
+
+export async function readLetterboxd(previous, checks = {}, fetcher = fetchText) {
+  const feed = await parseStringPromise(await fetcher(SOURCES.letterboxd));
   requireRssChannel(feed);
   const items = feed?.rss?.channel?.[0]?.item ?? [];
   const seen = new Set();
@@ -262,7 +286,31 @@ async function readLetterboxd() {
     recent.push(film);
     if (recent.length === 4) break;
   }
-  return { recent };
+  const cachedDates = new Map((previous?.recent || []).filter(film => film.released)
+    .map(film => [letterboxdFilmUrl(film.link), film.released]));
+  const metadataChecks = {};
+  const now = new Date();
+  await Promise.all(recent.map(async (film) => {
+    const url = letterboxdFilmUrl(film.link);
+    if (!url) return;
+    const cachedRelease = cachedDates.get(url);
+    if (cachedRelease && (!film.year || cachedRelease.startsWith(film.year + "-"))) {
+      film.released = cachedRelease;
+      return;
+    }
+    if (now - Date.parse(checks[url]) < FILM_METADATA_RETRY_MS) {
+      metadataChecks[url] = checks[url];
+      return;
+    }
+    metadataChecks[url] = now.toISOString();
+    try {
+      const released = parseLetterboxdRelease(await fetcher(url), url, film.year);
+      if (released) film.released = released;
+    } catch (error) {
+      console.warn(`warning: Letterboxd release date for ${film.title} unavailable (${error.message})`);
+    }
+  }));
+  return { data: { recent }, metadataChecks };
 }
 
 export function requireRssChannel(feed) {
@@ -438,18 +486,17 @@ export function stars(value) {
 }
 
 function monthYear(value) {
-  const date = new Date(value);
+  const input = typeof value === "string" ? value.trim() : value;
+  if (!input) return "";
+  if (/^\d{4}$/.test(input)) return String(input);
+  const date = new Date(input);
   if (Number.isNaN(date.valueOf())) return "";
   return new Intl.DateTimeFormat("en", { month: "short", year: "numeric", timeZone: "UTC" }).format(date);
 }
 
 function publicationLabel(value) {
-  const published = String(value || "").trim();
-  if (/^\d{4}$/.test(published)) return `published ${published}`;
-  const date = new Date(published);
-  if (!published || Number.isNaN(date.valueOf())) return "";
-  const monthAndYear = new Intl.DateTimeFormat("en", { month: "long", year: "numeric", timeZone: "UTC" }).format(date);
-  return `published ${monthAndYear}`;
+  const published = monthYear(value);
+  return published ? `published ${published}` : "";
 }
 
 function wrapLines(value, maxChars) {
@@ -536,7 +583,7 @@ export function renderBookCurrent(book, artwork) {
   const progress = item.progress;
   const facts = [
     (progress?.total || item.pages) && `${progress?.total || item.pages} pages`,
-    item.published,
+    monthYear(item.published),
     item.averageRating && `GR avg ${item.averageRating.toFixed(2)}`,
   ].filter(Boolean).join(" · ");
   const progressLabel = progress
@@ -674,8 +721,10 @@ export function renderBookTile(book, artwork, index) {
   </svg>`;
 }
 
-function renderFilmTile(film, artwork, index) {
+export function renderFilmTile(film, artwork, index) {
   const note = film.review || (film.liked ? "liked. evidence duly noted." : "logged without further comment.");
+  const released = monthYear(film.released);
+  const releaseLabel = released ? `released ${released}` : film.year;
   const rating = normaliseRating(film.rating);
   const mood = ratingMood(rating);
   const numberWidth = [...String(rating)].reduce((width, char) => width + (char === "." ? 4 : 9), 0);
@@ -688,7 +737,7 @@ function renderFilmTile(film, artwork, index) {
   ${cover({ dataUri: artwork, x: 24, y: 20, width: 118, height: 180, radius: 10 })}
   <g class="sans"><g transform="translate(168 25)"><circle cx="8" cy="8" r="8" fill="#ff8000"/><circle cx="22" cy="8" r="8" fill="#00e054"/><circle cx="36" cy="8" r="8" fill="#40bcf4"/></g><text x="808" y="38" fill="#8298a8" font-size="12" font-weight="800" text-anchor="end" letter-spacing="1.1">WATCH 0${index + 1}</text>
   ${wrappedText({ x: 168, y: 55, width: 630, height: 63, value: film.title, size: 28, weight: 800, lineHeight: 1.04 })}
-  <text x="168" y="139" fill="${theme.muted}" font-size="14" font-weight="700">${escapeDisplay(film.year)}${film.liked ? "  ·  ♥ liked" : ""}</text><g transform="translate(${808 - ratingWidth - 164} -78)" role="img" aria-label="${ratingLabel}"><title>${ratingLabel}</title>${ratingPillBackground(ratingWidth, mood.background, rating === 5)}${rating ? ratingIcons(rating, mood.color) + `<text x="286" y="205" fill="${mood.color}" font-size="14" font-weight="800">${rating}</text>` : `<text x="208" y="205" fill="${mood.color}" font-size="14" text-anchor="middle">unrated</text>`}</g>
+  <text x="168" y="139" fill="${theme.muted}" font-size="14" font-weight="700">${escapeDisplay(releaseLabel)}${film.liked ? "  ·  ♥ liked" : ""}</text><g transform="translate(${808 - ratingWidth - 164} -78)" role="img" aria-label="${ratingLabel}"><title>${ratingLabel}</title>${ratingPillBackground(ratingWidth, mood.background, rating === 5)}${rating ? ratingIcons(rating, mood.color) + `<text x="286" y="205" fill="${mood.color}" font-size="14" font-weight="800">${rating}</text>` : `<text x="208" y="205" fill="${mood.color}" font-size="14" text-anchor="middle">unrated</text>`}</g>
   ${wrappedText({ x: 168, y: 154, width: 420, height: 44, value: `“${note}”`, size: 13, weight: 600, color: "#a7b7c2", lineHeight: 1.18, italic: true })}</g>
   </svg>`;
 }
@@ -1116,6 +1165,14 @@ async function main() {
   const cachedInstagramAvatar = generatedInstagramBytes >= 1_500 ? generatedInstagramAvatar : null;
   const [goodreadsResult, letterboxdResult, appleMusicResult, instagramResult] = await Promise.all([
     readSource("goodreads", async () => {
+      const editionRequests = new Map();
+      const readEdition = (id) => {
+        if (!editionRequests.has(id)) {
+          const request = fetchText(`https://www.goodreads.com/book/show/${id}`).then(html => parseEdition(html, id));
+          editionRequests.set(id, request);
+        }
+        return editionRequests.get(id);
+      };
       let books;
       try { books = await readGoodreadsRss(); }
       catch (error) {
@@ -1124,13 +1181,13 @@ async function main() {
           fetchText('https://www.goodreads.com/user/show/178629903-haarshaan'),
           fetchText('https://www.goodreads.com/user/delayable_user_show/178629903?csm_scope=delayable_user_show&skip_cache=false'),
         ]);
-        books = await publicGoodreads(profile, updates, previous.goodreads, fetchText);
+        books = await publicGoodreads(profile, updates, previous.goodreads, readEdition);
       }
       const manuallyLogged = progressForCurrentBook(savedReadingProgress, books.current);
       if (manuallyLogged) books.current.progress = manuallyLogged;
-      return books;
+      return refreshGoodreadsMetadata(books, previous.goodreads, readEdition, { checks: previous.metadataChecks?.goodreads });
     }, previous),
-    readSource("letterboxd", readLetterboxd, previous),
+    readSource("letterboxd", () => readLetterboxd(previous.letterboxd, previous.metadataChecks?.letterboxd), previous),
     readSource("appleMusic", () => readAppleMusic(previous.appleMusic), previous),
     readInstagramSource(previous.instagram, cachedInstagramAvatar),
   ]);
@@ -1182,8 +1239,12 @@ async function main() {
     goodreads: goodreadsResult, letterboxd: letterboxdResult,
     appleMusic: appleMusicResult, instagram: instagramResult,
   }, new Date());
+  const metadataChecks = {
+    goodreads: goodreadsResult.metadataChecks ?? previous.metadataChecks?.goodreads ?? {},
+    letterboxd: letterboxdResult.metadataChecks ?? previous.metadataChecks?.letterboxd ?? {},
+  };
   await Promise.all([
-    fs.writeFile(DATA_FILE, `${JSON.stringify({ ...current, updatedAt, lastSignalRenderAt, feedChecks }, null, 2)}\n`),
+    fs.writeFile(DATA_FILE, `${JSON.stringify({ ...current, updatedAt, lastSignalRenderAt, feedChecks, metadataChecks }, null, 2)}\n`),
     updateReadme({ ...current, feedChecks }, updatedAt, new Date()),
   ]);
   console.log("profile activity refreshed ✨");

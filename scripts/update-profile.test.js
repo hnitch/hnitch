@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { parseStringPromise } from "xml2js";
-import { instagramOgAvatarUrl, musicFallback, normaliseBook, parseHistoryCard, readAppleMusic, renderAppleMusic, renderBookCurrent, renderBookTile, shouldRefreshInstagram, signalPresentation, staleInstagramData, stars } from "./update-profile.js";
+import { instagramOgAvatarUrl, musicFallback, normaliseBook, parseHistoryCard, readAppleMusic, readLetterboxd, renderAppleMusic, renderBookCurrent, renderBookTile, renderFilmTile, shouldRefreshInstagram, signalPresentation, staleInstagramData, stars } from "./update-profile.js";
+import { parseEdition, publicGoodreads, refreshGoodreadsMetadata } from "./goodreads-fallback.js";
 
 test("Apple Music owns its delay note without increasing card height", () => {
   const svg = renderAppleMusic({ title: "Example", artist: "Artist", source: "apple-history", playbackState: "recent" }, null);
@@ -172,7 +173,40 @@ test("finished-book card separates source publication facts from personal readin
   assert.match(svg, /341p · read Sep 2026/);
   assert.match(svg, /M632 65v52/);
   assert.doesNotMatch(svg, /published Sep 2026/);
-  assert.match(renderBookTile({ title: "Example", published: "2026-10-12" }, null, 1), /published October 2026/);
+  assert.match(renderBookTile({ title: "Example", published: "2026-10-12" }, null, 1), /published Oct 2026/);
+  const current = renderBookCurrent({ title: "Example", published: "2026-10-12", averageRating: 4.28, pages: 341 }, null);
+  assert.match(current, /341 pages · Oct 2026 · GR avg 4\.28/);
+});
+
+test("Letterboxd derives the release month from the film page and reuses it on a rewatch", async () => {
+  const url = "https://letterboxd.com/film/example/";
+  const html = `<script type="application/ld+json">/* <![CDATA[ */
+    {"@type":"Movie","url":"${url}","dateCreated":"2026-10-03"}
+    /* ]]> */</script>`;
+  const rss = (rewatch = "") => `<rss><channel>
+    <item><title>Example</title><link>https://letterboxd.com/hnitch/film/example/${rewatch}</link>
+      <letterboxd:filmYear>2026</letterboxd:filmYear><letterboxd:watchedDate>2026-11-12</letterboxd:watchedDate>
+    </item><item><title>Undated film</title><link>https://letterboxd.com/hnitch/film/undated/</link>
+      <letterboxd:filmYear>2026</letterboxd:filmYear>
+    </item></channel></rss>`;
+  const requests = [];
+  const { data, metadataChecks } = await readLetterboxd(null, {}, async target => {
+    requests.push(target);
+    return target.endsWith("/rss/") ? rss() : html;
+  });
+  assert.equal(requests.length, 3);
+  assert.equal(data.recent[0].released, "2026-10-03");
+  assert.equal(data.recent[1].released, undefined);
+  assert.match(renderFilmTile(data.recent[0], null, 0), /released Oct 2026/);
+  assert.match(renderFilmTile(data.recent[1], null, 1), />2026<\/text>/);
+  const previousRequestCount = requests.length;
+  const again = await readLetterboxd(data, metadataChecks, async target => {
+    requests.push(target);
+    return rss("1/");
+  });
+  assert.deepEqual(requests.slice(previousRequestCount), ["https://letterboxd.com/hnitch/rss/"]);
+  assert.equal(again.data.recent[0].released, "2026-10-03");
+  assert.equal(again.metadataChecks["https://letterboxd.com/film/undated/"], metadataChecks["https://letterboxd.com/film/undated/"]);
 });
 
 test("reading badge adapts without introducing an external image dependency", async () => {
@@ -362,13 +396,24 @@ test('public Goodreads fallback moves a finished book and preserves full review 
 });
 
 test('public fallback imports a new current edition from the profile page', async()=>{
- const {publicGoodreads,parseEdition}=await import('./goodreads-fallback.js');
  const profile='<div id="shelves"><a href="?shelf=currently-reading">currently-reading (1)</a></div><div id="currentlyReadingReviews"><a class="bookTitle" href="/book/show/456-new">New book</a></div>';
  const updates='<table class="newsfeedUpdates"><tr class="update" data-timestamp="2026-10-29"><td><div class="updateAction"><a href="/user/show/178629903">haarshaan</a> rated a book '+Array(5).fill('<span class="staticStar p10"></span>').join('')+'</div><a class="bookTitle" href="/book/show/123-old">Old book</a></td></tr><tr class="update no_border"><td id="reviewTextContainer9"><span id="freeTextreview9">Loved it.</span></td></tr></table>';
- const html='<script id="__NEXT_DATA__">'+JSON.stringify({props:{pageProps:{apolloState:{b:{__typename:'Book',legacyId:456,title:'New book',webUrl:'https://www.goodreads.com/book/show/456',primaryContributorEdge:{node:{__ref:'a'}},details:{numPages:390,publicationTime:1767225600000}},a:{name:'Author'}}}}})+'</script>';
+ const state = {
+  b: {
+   __typename: 'Book', legacyId: 456, title: 'New book', titleComplete: 'New book (Series, #2)',
+   webUrl: 'https://www.goodreads.com/book/show/456', primaryContributorEdge: {node: {__ref: 'a'}},
+   details: {numPages: 390, publicationTime: Date.parse('2026-10-12')}, work: {__ref: 'w'},
+  },
+  w: {__typename: 'Work', stats: {averageRating: 4.42}, details: {publicationTime: Date.parse('2026-09-12')}},
+  a: {name: 'Author'},
+ };
+ const html = `<script id="__NEXT_DATA__">${JSON.stringify({props: {pageProps: {apolloState: state}}})}</script>
+   <script type="application/ld+json">{"@type":"Book","name":"Other book","aggregateRating":{"ratingValue":1.2}}</script>`;
  let requests=0;
- const result=await publicGoodreads(profile,updates,{current:null,recent:[{bookId:'123',title:'Old book'}]},async url=>{requests++;assert.match(url,/\/456$/);return html;});
+ const result=await publicGoodreads(profile,updates,{current:null,recent:[{bookId:'123',title:'Old book'}]},async id=>{requests++;assert.equal(id,'456');return parseEdition(html,id);});
  assert.equal(requests,1);assert.equal(result.current.title,'New book');assert.equal(result.current.pages,390);assert.equal(result.current.rating,0);assert.equal(result.recent[0].review,'Loved it.');
+ assert.equal(result.current.averageRating, 4.42);
+ assert.equal(result.current.published, '2026-10-12');
  assert.ok(result.current.readingSessionId);
  const again=await publicGoodreads(profile,updates,result,async()=>{throw Error('unexpected fetch');});
  assert.equal(again.current.readingSessionId,result.current.readingSessionId);
@@ -376,4 +421,30 @@ test('public fallback imports a new current edition from the profile page', asyn
  assert.notEqual(reread.current.readingSessionId,result.current.readingSessionId);
  assert.equal(reread.current.progress,undefined);
  assert.throws(()=>parseEdition(html,'789'),/mismatched/);
+});
+
+test("Goodreads enriches an existing read receipt and retains confirmed facts during an outage", async () => {
+  const book = { bookId: "123", pages: 450, published: "2026", averageRating: null, readAt: "2026-11-05", rating: 3.75 };
+  const shelf = { current: null, recent: [book] };
+  const { data, metadataChecks } = await refreshGoodreadsMetadata(shelf, shelf, async id => {
+    assert.equal(id, book.bookId);
+    return { pages: 420, published: "2026-10-08", averageRating: 4.13, rating: 0 };
+  }, { now: new Date("2026-11-12") });
+  assert.deepEqual(data.recent[0], { ...book, published: "2026-10-08", averageRating: 4.13 });
+  let requests = 0;
+  const unavailable = async () => {
+    requests++;
+    throw Error("Edition page temporarily unavailable");
+  };
+  const again = await refreshGoodreadsMetadata(shelf, data, unavailable, {
+    checks: metadataChecks, now: new Date("2026-11-12T12:00:00Z"),
+  });
+  assert.equal(requests, 0);
+  assert.deepEqual(again, { data, metadataChecks });
+  const delayed = await refreshGoodreadsMetadata(shelf, data, unavailable, {
+    checks: metadataChecks, now: new Date("2026-11-13T12:00:00Z"),
+  });
+  assert.equal(requests, 1);
+  assert.deepEqual(delayed.data, data);
+  assert.equal(dataChanged({ goodreads: data, metadataChecks }, { goodreads: delayed.data, metadataChecks: delayed.metadataChecks }), false);
 });

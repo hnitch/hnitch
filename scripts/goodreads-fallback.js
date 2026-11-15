@@ -96,18 +96,72 @@ export function fallbackBookIds(profileHtml, updatesHtml) {
  u('tr.update').each((_,e)=>{const row=u(e),action=row.find('.updateAction').first();if(/^haarshaan\s+rated a book/.test(action.text().trim())&&action.find('a[href*="/user/show/178629903"]').length)ids.push(row.find('.bookTitle').attr('href')?.match(/\/book\/show\/(\d+)/)?.[1]);});
  return [...new Set(ids.filter(Boolean))].slice(0,8);
 }
-export function parseEdition(html,id){
- const $=load(html);const data=JSON.parse($('#__NEXT_DATA__').text()||'{}');
- const state=data.props?.pageProps?.apolloState||{};
- const book=Object.values(state).find(b=>b?.__typename==='Book'&&String(b.legacyId)===String(id)&&b.title);
- const author=state[book?.primaryContributorEdge?.node?.__ref]?.name;
- if(!book||!author)throw Error('Goodreads edition metadata missing or mismatched');
- const structured=$('script[type="application/ld+json"]').toArray().map(e=>{try{return JSON.parse($(e).text());}catch{return null;}}).find(b=>b?.['@type']==='Book'&&b.name===book.title);
- const published=book.details?.publicationTime;
- return {bookId:String(id),title:book.title,author,link:book.webUrl,rating:0,cover:book.imageUrl,pages:Number(book.details?.numPages||structured?.numberOfPages)||null,averageRating:Number(structured?.aggregateRating?.ratingValue)||null,published:published?String(new Date(published).getUTCFullYear()):'',dateAdded:'',readAt:'',review:''};
+export function parseEdition(html, id) {
+ const $ = load(html);
+ const data = JSON.parse($('#__NEXT_DATA__').text() || '{}');
+ const state = data.props?.pageProps?.apolloState || {};
+ const book = Object.values(state).find(b => b?.__typename === 'Book' && String(b.legacyId) === String(id) && b.title);
+ const author = state[book?.primaryContributorEdge?.node?.__ref]?.name;
+ if (!book || !author) throw Error('Goodreads edition metadata missing or mismatched');
+
+ // Goodreads keeps the community average on the work shared by its editions.
+ const work = state[book.work?.__ref];
+ const structured = $('script[type="application/ld+json"]').toArray().map(element => {
+  try { return JSON.parse($(element).text()); }
+  catch { return null; }
+ }).find(record => record?.['@type'] === 'Book'
+  && (record.name === book.title || record.name === book.titleComplete));
+ const averageRating = [work?.stats?.averageRating, structured?.aggregateRating?.ratingValue]
+  .map(Number).find(rating => rating > 0 && rating <= 5) ?? null;
+ const publicationTime = book.details?.publicationTime;
+ const date = new Date(publicationTime || NaN);
+ const published = Number.isFinite(date.valueOf()) ? date.toISOString().slice(0, 10) : '';
+
+ return {
+  bookId: String(id), title: book.title, author, link: book.webUrl, rating: 0,
+  cover: book.imageUrl, pages: Number(book.details?.numPages || structured?.numberOfPages) || null,
+  averageRating, published, dateAdded: '', readAt: '', review: '',
+ };
 }
-export async function publicGoodreads(profile,updates,previous,fetcher){
- const known=new Set([previous?.current,...(previous?.recent||[])].filter(Boolean).map(b=>String(b.bookId)));
- const metadata=await Promise.all(fallbackBookIds(profile,updates).filter(id=>!known.has(id)).map(async id=>parseEdition(await fetcher(`https://www.goodreads.com/book/show/${id}`),id)));
- return parsePublicGoodreads(profile,updates,previous,metadata);
+
+export async function publicGoodreads(profile, updates, previous, readEdition) {
+ const known = new Set([previous?.current, ...(previous?.recent || [])].filter(Boolean).map(book => String(book.bookId)));
+ const metadata = await Promise.all(fallbackBookIds(profile, updates).filter(id => !known.has(id)).map(readEdition));
+ return parsePublicGoodreads(profile, updates, previous, metadata);
+}
+
+function hasPublicationMonth(value) {
+ const published = String(value || '').trim();
+ return Boolean(published) && !/^\d{4}$/.test(published) && Number.isFinite(Date.parse(published));
+}
+
+export async function refreshGoodreadsMetadata(books, previous, readEdition, { checks = {}, now = new Date() } = {}) {
+ const known = new Map([previous?.current, ...(previous?.recent || [])].filter(Boolean).map(book => [book.bookId, book]));
+ const metadataChecks = {};
+ const refresh = async book => {
+  if (!book || !/^\d+$/.test(book.bookId)) return book;
+  const { bookId } = book;
+  const cached = known.get(bookId);
+  const details = {
+   averageRating: book.averageRating || cached?.averageRating || null,
+   published: hasPublicationMonth(cached?.published) ? cached.published : book.published || cached?.published || '',
+  };
+  const hours = details.averageRating && hasPublicationMonth(details.published) ? 24 : 1;
+  const lastCheck = checks[bookId];
+  if (now - Date.parse(lastCheck) < hours * 60 * 60_000) {
+   metadataChecks[bookId] = lastCheck;
+  } else {
+   metadataChecks[bookId] = now.toISOString();
+   try {
+    const edition = await readEdition(bookId);
+    details.averageRating = edition.averageRating || details.averageRating;
+    details.published = edition.published || details.published;
+   } catch (error) {
+    console.warn(`warning: Goodreads metadata for ${bookId} unavailable (${error.message})`);
+   }
+  }
+  return { ...book, ...details };
+ };
+ const [current, ...recent] = await Promise.all([books.current, ...books.recent].map(refresh));
+ return { data: { current, recent }, metadataChecks };
 }
