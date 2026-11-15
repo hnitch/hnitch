@@ -1,6 +1,20 @@
 {
   "goodreads": {
-    "current": null,
+    "current": {
+      "bookId": "263425266",
+      "title": "Reap & Sow",
+      "author": "Charlotte B. Plumb",
+      "link": "https://www.goodreads.com/book/show/263425266-reap-sow",
+      "rating": 0,
+      "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1794409773i/263425266.jpg",
+      "pages": 480,
+      "averageRating": null,
+      "published": "2026",
+      "dateAdded": "",
+      "readAt": "",
+      "review": "",
+      "readingSessionId": "dc18f50a-38ac-4ae2-b739-03289a9483b9"
+    },
     "recent": [
       {
         "bookId": "248285113",
@@ -148,24 +162,24 @@
     "lastSuccessAt": "2026-11-02T15:25:34.085Z",
     "lastAttemptAt": "2026-11-15T01:50:32.237Z"
   },
-  "updatedAt": "2026-11-14T15:50:31.290Z",
-  "lastSignalRenderAt": "2026-11-14T16:10:31.298Z",
+  "updatedAt": "2026-11-15T05:20:36.146Z",
+  "lastSignalRenderAt": "2026-11-15T05:20:36.146Z",
   "feedChecks": {
-    "checkedAt": "2026-11-15T05:10:30.544Z",
+    "checkedAt": "2026-11-15T05:20:36.401Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-15T05:10:30.544Z",
-        "lastSuccessAt": "2026-11-15T05:10:30.544Z"
+        "checkedAt": "2026-11-15T05:20:36.401Z",
+        "lastSuccessAt": "2026-11-15T05:20:36.401Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-15T05:10:30.544Z",
-        "lastSuccessAt": "2026-11-15T05:10:30.544Z"
+        "checkedAt": "2026-11-15T05:20:36.401Z",
+        "lastSuccessAt": "2026-11-15T05:20:36.401Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-11-15T05:10:30.544Z",
+        "checkedAt": "2026-11-15T05:20:36.401Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {
