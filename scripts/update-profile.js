@@ -233,6 +233,19 @@ async function readGoodreadsRss() {
   };
 }
 
+async function readGoodreadsEdition(id) {
+  const path = `/book/show/${id}`;
+  const response = await fetchResponse(`https://www.goodreads.com${path}`, "text/html");
+  try {
+    return parseEdition(await response.text(), id);
+  } catch (error) {
+    // Goodreads can send an error page with a successful HTTP status.
+    console.warn(`warning: Goodreads edition ${id} could not be read (${error.message}); checking its English page`);
+    const alternate = await fetchResponse(`https://www.goodreads.com/en${path}`, "text/html");
+    return parseEdition(await alternate.text(), id);
+  }
+}
+
 function normaliseFilm(item = {}) {
   const description = decode(first(item.description));
   const poster = description.match(/<img[^>]+src="([^"]+)"/)?.[1] || "";
@@ -1168,8 +1181,7 @@ async function main() {
       const editionRequests = new Map();
       const readEdition = (id) => {
         if (!editionRequests.has(id)) {
-          const request = fetchText(`https://www.goodreads.com/book/show/${id}`).then(html => parseEdition(html, id));
-          editionRequests.set(id, request);
+          editionRequests.set(id, readGoodreadsEdition(id));
         }
         return editionRequests.get(id);
       };

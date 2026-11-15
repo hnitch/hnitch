@@ -32,15 +32,15 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/book/show/263425266-reap-sow"><img src="./assets/activity/goodreads-current.svg?v=9e75f7e13b" width="100%" alt="currently reading Reap &amp; Sow" /></a>
+<a href="https://www.goodreads.com/book/show/263425266-reap-sow"><img src="./assets/activity/goodreads-current.svg?v=183761bd26" width="100%" alt="currently reading Reap &amp; Sow" /></a>
 
-<a href="https://www.goodreads.com/review/show/8950713330"><img src="./assets/activity/goodreads-1.svg?v=e91ac1f147" width="100%" alt="Read: Under the Iron Sky" /></a>
+<a href="https://www.goodreads.com/review/show/8950713330"><img src="./assets/activity/goodreads-1.svg?v=757898afa0" width="100%" alt="Read: Under the Iron Sky" /></a>
 
-<a href="https://www.goodreads.com/review/show/8886771684"><img src="./assets/activity/goodreads-2.svg?v=7626b00cc2" width="100%" alt="Read: Victorious" /></a>
+<a href="https://www.goodreads.com/review/show/8886771684"><img src="./assets/activity/goodreads-2.svg?v=bfb9a8d05e" width="100%" alt="Read: Victorious" /></a>
 
-<a href="https://www.goodreads.com/review/show/8755007560"><img src="./assets/activity/goodreads-3.svg?v=fad46c710f" width="100%" alt="Read: Kiss Slay Replay" /></a>
+<a href="https://www.goodreads.com/review/show/8755007560"><img src="./assets/activity/goodreads-3.svg?v=8c19ac46d3" width="100%" alt="Read: Kiss Slay Replay" /></a>
 
-<a href="https://www.goodreads.com/review/show/8812304511"><img src="./assets/activity/goodreads-4.svg?v=a685830656" width="100%" alt="Read: The Poet Empress" /></a>
+<a href="https://www.goodreads.com/review/show/8812304511"><img src="./assets/activity/goodreads-4.svg?v=6cbe2c28e3" width="100%" alt="Read: The Poet Empress" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
