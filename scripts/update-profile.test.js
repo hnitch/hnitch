@@ -178,11 +178,22 @@ test("finished-book card separates source publication facts from personal readin
   assert.match(current, /341 pages · Oct 2026 · GR avg 4\.28/);
 });
 
-test("Letterboxd derives the release month from the film page and reuses it on a rewatch", async () => {
+test("Letterboxd uses the general opening and switches the label on release day", async () => {
   const url = "https://letterboxd.com/film/example/";
-  const html = `<script type="application/ld+json">/* <![CDATA[ */
-    {"@type":"Movie","url":"${url}","dateCreated":"2026-10-03"}
-    /* ]]> */</script>`;
+  const undated = "https://letterboxd.com/film/undated/";
+  const listings = (url, general) => `<meta property="og:url" content="${url}">
+    <script type="application/ld+json">{"@type":"Movie","url":"${url}","dateCreated":"2026-10-03"}</script>
+    <section id="tab-panel-releases-by-date">
+      <h3 class="release-table-title">Premiere</h3>
+      <div class="release-table"><div class="cell"><h5 class="date">03 Oct 2026</h5></div></div>
+      <h3 class="release-table-title">Theatrical limited</h3>
+      <div class="release-table"><div class="cell"><h5 class="date">30 Oct 2026</h5></div></div>
+      ${general ? `<h3 class="release-table-title">Theatrical</h3>
+        <div class="release-table">
+          <div class="cell"><h5 class="date">20 Nov 2026</h5></div>
+          <div class="cell"><h5 class="date">19 Nov 2026</h5></div>
+        </div>` : ""}
+    </section>`;
   const rss = (rewatch = "") => `<rss><channel>
     <item><title>Example</title><link>https://letterboxd.com/hnitch/film/example/${rewatch}</link>
       <letterboxd:filmYear>2026</letterboxd:filmYear><letterboxd:watchedDate>2026-11-12</letterboxd:watchedDate>
@@ -190,23 +201,41 @@ test("Letterboxd derives the release month from the film page and reuses it on a
       <letterboxd:filmYear>2026</letterboxd:filmYear>
     </item></channel></rss>`;
   const requests = [];
-  const { data, metadataChecks } = await readLetterboxd(null, {}, async target => {
+  const checkedAt = new Date("2026-11-18T15:30:00Z");
+  const previous = { recent: [{ link: url, released: "2026-10-03" }] };
+  const { data, metadataChecks } = await readLetterboxd(previous, { [url]: checkedAt.toISOString() }, async target => {
     requests.push(target);
-    return target.endsWith("/rss/") ? rss() : html;
-  });
+    return target.endsWith("/rss/") ? rss() : listings(target, target === url);
+  }, checkedAt);
   assert.equal(requests.length, 3);
-  assert.equal(data.recent[0].released, "2026-10-03");
-  assert.equal(data.recent[1].released, undefined);
-  assert.match(renderFilmTile(data.recent[0], null, 0), /released Oct 2026/);
+  assert.equal(data.recent[0].releaseDate, "2026-11-19");
+  assert.equal(data.recent[0].releaseUpcoming, true);
+  assert.equal(data.recent[1].releaseDate, undefined);
+  assert.match(renderFilmTile(data.recent[0], null, 0), /releases Nov 2026/);
   assert.match(renderFilmTile(data.recent[1], null, 1), />2026<\/text>/);
   const previousRequestCount = requests.length;
   const again = await readLetterboxd(data, metadataChecks, async target => {
     requests.push(target);
     return rss("1/");
-  });
+  }, new Date("2026-11-18T16:00:00Z"));
   assert.deepEqual(requests.slice(previousRequestCount), ["https://letterboxd.com/hnitch/rss/"]);
-  assert.equal(again.data.recent[0].released, "2026-10-03");
-  assert.equal(again.metadataChecks["https://letterboxd.com/film/undated/"], metadataChecks["https://letterboxd.com/film/undated/"]);
+  assert.equal(again.data.recent[0].releaseDate, "2026-11-19");
+  assert.match(renderFilmTile(again.data.recent[0], null, 0), /released Nov 2026/);
+  assert.equal(again.metadataChecks[undated], metadataChecks[undated]);
+});
+
+test("Letterboxd uses a series' first air date when its release listings are empty", async () => {
+  const { data } = await readLetterboxd(null, {}, async target => {
+    if (target.endsWith("/rss/")) return `<rss><channel><item><title>Series</title>
+      <link>https://letterboxd.com/hnitch/film/series/</link><letterboxd:filmYear>2026</letterboxd:filmYear>
+      <tmdb:tvId>123</tmdb:tvId></item></channel></rss>`;
+    if (target === "https://letterboxd.com/film/series/") return '<meta property="og:url" content="https://letterboxd.com/film/series/">';
+    assert.equal(target, "https://www.themoviedb.org/tv/123");
+    return `<script type="application/ld+json">
+      {"@type":"TVSeries","url":"https://www.themoviedb.org/tv/123-series","startDate":"2026-10-07T00:00:00Z"}
+    </script>`;
+  }, new Date("2026-11-15T00:00:00Z"));
+  assert.equal(data.recent[0].releaseDate, "2026-10-07");
 });
 
 test("reading badge adapts without introducing an external image dependency", async () => {

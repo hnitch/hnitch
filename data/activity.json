@@ -115,7 +115,8 @@
         "link": "https://letterboxd.com/hnitch/film/the-hunger-games-sunrise-on-the-reaping/",
         "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/8/2/6/9/2/1182692-the-hunger-games-sunrise-on-the-reaping-0-600-0-900-crop.jpg?v=91001efc76",
         "review": "best horror movie i’ve watched 😭😭",
-        "released": "2026-10-28"
+        "releaseDate": "2026-11-18",
+        "releaseUpcoming": true
       },
       {
         "title": "Street Fighter",
@@ -125,7 +126,7 @@
         "link": "https://letterboxd.com/hnitch/film/street-fighter-2026/",
         "poster": "https://a.ltrbxd.com/resized/film-poster/1/0/4/0/2/9/0/1040290-street-fighter-2026-0-600-0-900-crop.jpg?v=5cc9002644",
         "review": "",
-        "released": "2026-10-13"
+        "releaseDate": "2026-10-14"
       },
       {
         "title": "Clayface",
@@ -135,7 +136,7 @@
         "link": "https://letterboxd.com/hnitch/film/clayface/",
         "poster": "https://a.ltrbxd.com/resized/film-poster/1/2/8/4/6/3/6/1284636-clayface-0-600-0-900-crop.jpg?v=eb305849d5",
         "review": "trust dc to make a good villain origin story ( ALSO BODY HORROR IS SO BACK !! )",
-        "released": "2026-10-13"
+        "releaseDate": "2026-10-21"
       },
       {
         "title": "Carrie",
@@ -145,7 +146,7 @@
         "link": "https://letterboxd.com/hnitch/film/carrie-2026/",
         "poster": "https://a.ltrbxd.com/resized/film-poster/1/6/1/8/1/6/8/1618168-carrie-2026-0-600-0-900-crop.jpg?v=bef2e5cffd",
         "review": "HORROR TV IS SAVED AGAIN , mike flanagan i never doubted you !!",
-        "released": "2026-10-07"
+        "releaseDate": "2026-10-07"
       }
     ]
   },

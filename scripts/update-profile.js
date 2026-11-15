@@ -25,6 +25,7 @@ const INSTAGRAM_REFRESH_MS = 24 * 60 * 60_000;
 const INSTAGRAM_RETRY_MS = 6 * 60 * 60_000;
 const SIGNAL_FRESH_MS = 15 * 60_000;
 const FILM_METADATA_RETRY_MS = 60 * 60_000;
+const FILM_RELEASE_REFRESH_MS = 24 * 60 * 60_000;
 
 const SOURCES = {
   goodreads: {
@@ -268,60 +269,83 @@ function letterboxdFilmUrl(link) {
   return slug ? `https://letterboxd.com/film/${slug}/` : null;
 }
 
-function parseLetterboxdRelease(html, url, year) {
+function letterboxdReleaseDate(html, url) {
+  const $ = load(html);
+  if ($('meta[property="og:url"]').attr("content") !== url) return "";
+  const publicTypes = new Set(["theatrical", "digital", "tv", "physical"]);
+  const dates = [];
+  for (const heading of $("#tab-panel-releases-by-date > .release-table-title")) {
+    if (!publicTypes.has($(heading).text().trim().toLowerCase())) continue;
+    for (const cell of $(heading).next(".release-table").find(".cell > .date")) {
+      const label = $(cell).text().trim();
+      if (!/^\d{1,2} [A-Za-z]{3} \d{4}$/.test(label)) continue;
+      const date = new Date(`${label} UTC`);
+      if (date.getUTCDate() === Number.parseInt(label, 10)) dates.push(date.toISOString().slice(0, 10));
+    }
+  }
+  return dates.sort()[0] || "";
+}
+
+function seriesFirstAirDate(html, id) {
   const $ = load(html);
   for (const script of $('script[type="application/ld+json"]')) {
-    // Letterboxd wraps its film JSON-LD in CDATA comments.
-    const json = $(script).text().trim().replace(/^\/\*\s*<!\[CDATA\[\s*\*\/|\/\*\s*\]\]>\s*\*\/$/g, "").trim();
-    let film;
-    try { film = JSON.parse(json); }
+    let series;
+    try { series = JSON.parse($(script).text()); }
     catch { continue; }
-    // The film's dateCreated is its first listed release, including premieres.
-    if (film?.["@type"] !== "Movie" || film.url !== url || !/^\d{4}-\d{2}-\d{2}$/.test(film.dateCreated)) continue;
-    const date = new Date(film.dateCreated);
-    if (Number.isFinite(date.valueOf()) && date.toISOString().slice(0, 10) === film.dateCreated
-      && (!year || film.dateCreated.startsWith(year + "-"))) return film.dateCreated;
+    const seriesId = series?.url?.match(/^https:\/\/www\.themoviedb\.org\/tv\/(\d+)(?:[-/]|$)/)?.[1];
+    const day = series?.startDate?.match(/^(\d{4}-\d{2}-\d{2})(?:T|$)/)?.[1];
+    if (series?.["@type"] !== "TVSeries" || seriesId !== id || !day) continue;
+    const date = new Date(day);
+    if (Number.isFinite(date.valueOf()) && date.toISOString().slice(0, 10) === day) return day;
   }
   return "";
 }
 
-export async function readLetterboxd(previous, checks = {}, fetcher = fetchText) {
+export async function readLetterboxd(previous, checks = {}, fetcher = fetchText, now = new Date()) {
   const feed = await parseStringPromise(await fetcher(SOURCES.letterboxd));
   requireRssChannel(feed);
   const items = feed?.rss?.channel?.[0]?.item ?? [];
   const seen = new Set();
-  const recent = [];
+  const entries = [];
   for (const item of items) {
     const film = normaliseFilm(item);
     const key = `${film.title}:${film.year}`;
     if (!film.title || seen.has(key)) continue;
     seen.add(key);
-    recent.push(film);
-    if (recent.length === 4) break;
+    entries.push({ film, seriesId: decode(first(item["tmdb:tvId"])) });
+    if (entries.length === 4) break;
   }
-  const cachedDates = new Map((previous?.recent || []).filter(film => film.released)
-    .map(film => [letterboxdFilmUrl(film.link), film.released]));
+  const cachedFilms = new Map((previous?.recent || []).map(film => [letterboxdFilmUrl(film.link), film]));
   const metadataChecks = {};
-  const now = new Date();
-  await Promise.all(recent.map(async (film) => {
+  const today = new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Kuala_Lumpur" }).format(now);
+  const recent = await Promise.all(entries.map(async ({ film, seriesId }) => {
     const url = letterboxdFilmUrl(film.link);
-    if (!url) return;
-    const cachedRelease = cachedDates.get(url);
-    if (cachedRelease && (!film.year || cachedRelease.startsWith(film.year + "-"))) {
-      film.released = cachedRelease;
-      return;
+    if (!url) return film;
+    const cached = cachedFilms.get(url);
+    let releaseDate = cached?.releaseDate;
+    // Old snapshots used Letterboxd's first event, which could be a premiere.
+    const lastCheck = cached?.released ? undefined : checks[url];
+    const interval = releaseDate ? FILM_RELEASE_REFRESH_MS : FILM_METADATA_RETRY_MS;
+    if (now - Date.parse(lastCheck) < interval) {
+      metadataChecks[url] = lastCheck;
+    } else {
+      metadataChecks[url] = now.toISOString();
+      try {
+        const date = letterboxdReleaseDate(await fetcher(url), url);
+        if (date) releaseDate = date;
+        else if (/^\d+$/.test(seriesId)) {
+          const series = await fetcher(`https://www.themoviedb.org/tv/${seriesId}`);
+          releaseDate = seriesFirstAirDate(series, seriesId) || releaseDate;
+        }
+      } catch (error) {
+        console.warn(`warning: Letterboxd release date for ${film.title} unavailable (${error.message})`);
+      }
     }
-    if (now - Date.parse(checks[url]) < FILM_METADATA_RETRY_MS) {
-      metadataChecks[url] = checks[url];
-      return;
+    if (releaseDate) {
+      film.releaseDate = releaseDate;
+      if (releaseDate > today) film.releaseUpcoming = true;
     }
-    metadataChecks[url] = now.toISOString();
-    try {
-      const released = parseLetterboxdRelease(await fetcher(url), url, film.year);
-      if (released) film.released = released;
-    } catch (error) {
-      console.warn(`warning: Letterboxd release date for ${film.title} unavailable (${error.message})`);
-    }
+    return film;
   }));
   return { data: { recent }, metadataChecks };
 }
@@ -736,8 +760,8 @@ export function renderBookTile(book, artwork, index) {
 
 export function renderFilmTile(film, artwork, index) {
   const note = film.review || (film.liked ? "liked. evidence duly noted." : "logged without further comment.");
-  const released = monthYear(film.released);
-  const releaseLabel = released ? `released ${released}` : film.year;
+  const releaseMonth = monthYear(film.releaseDate);
+  const releaseLabel = releaseMonth ? `${film.releaseUpcoming ? "releases" : "released"} ${releaseMonth}` : film.year;
   const rating = normaliseRating(film.rating);
   const mood = ratingMood(rating);
   const numberWidth = [...String(rating)].reduce((width, char) => width + (char === "." ? 4 : 9), 0);

@@ -50,13 +50,13 @@
 
 <br/>
 
-<a href="https://letterboxd.com/hnitch/film/the-hunger-games-sunrise-on-the-reaping/"><img src="./assets/activity/letterboxd-1.svg?v=51158f6951" width="100%" alt="Watched: The Hunger Games: Sunrise on the Reaping" /></a>
+<a href="https://letterboxd.com/hnitch/film/the-hunger-games-sunrise-on-the-reaping/"><img src="./assets/activity/letterboxd-1.svg?v=e6a53060a5" width="100%" alt="Watched: The Hunger Games: Sunrise on the Reaping" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/street-fighter-2026/"><img src="./assets/activity/letterboxd-2.svg?v=c68019d2f8" width="100%" alt="Watched: Street Fighter" /></a>
+<a href="https://letterboxd.com/hnitch/film/street-fighter-2026/"><img src="./assets/activity/letterboxd-2.svg?v=ccdea2c12f" width="100%" alt="Watched: Street Fighter" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/clayface/"><img src="./assets/activity/letterboxd-3.svg?v=6405d491c2" width="100%" alt="Watched: Clayface" /></a>
+<a href="https://letterboxd.com/hnitch/film/clayface/"><img src="./assets/activity/letterboxd-3.svg?v=bb5971dc49" width="100%" alt="Watched: Clayface" /></a>
 
-<a href="https://letterboxd.com/hnitch/film/carrie-2026/"><img src="./assets/activity/letterboxd-4.svg?v=a8d5cde5cf" width="100%" alt="Watched: Carrie" /></a>
+<a href="https://letterboxd.com/hnitch/film/carrie-2026/"><img src="./assets/activity/letterboxd-4.svg?v=ff2d6d0cad" width="100%" alt="Watched: Carrie" /></a>
 <!-- LETTERBOXD-FEED:END -->
 
 <br/>
