@@ -8,7 +8,7 @@
       "rating": 0,
       "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1794409773i/263425266.jpg",
       "pages": 480,
-      "averageRating": 3.93,
+      "averageRating": 3.92,
       "published": "2026-10-06",
       "dateAdded": "",
       "readAt": "",
@@ -167,24 +167,24 @@
     "lastSuccessAt": "2026-11-02T15:25:34.085Z",
     "lastAttemptAt": "2026-11-16T08:20:28.350Z"
   },
-  "updatedAt": "2026-11-15T08:36:08.760Z",
-  "lastSignalRenderAt": "2026-11-15T09:00:34.998Z",
+  "updatedAt": "2026-11-16T08:50:35.692Z",
+  "lastSignalRenderAt": "2026-11-16T08:50:35.692Z",
   "feedChecks": {
-    "checkedAt": "2026-11-16T08:40:33.841Z",
+    "checkedAt": "2026-11-16T08:50:36.599Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-16T08:40:33.841Z",
-        "lastSuccessAt": "2026-11-16T08:40:33.841Z"
+        "checkedAt": "2026-11-16T08:50:36.599Z",
+        "lastSuccessAt": "2026-11-16T08:50:36.599Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-16T08:40:33.841Z",
-        "lastSuccessAt": "2026-11-16T08:40:33.841Z"
+        "checkedAt": "2026-11-16T08:50:36.599Z",
+        "lastSuccessAt": "2026-11-16T08:50:36.599Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-11-16T08:40:33.841Z",
+        "checkedAt": "2026-11-16T08:50:36.599Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {
@@ -196,11 +196,11 @@
   },
   "metadataChecks": {
     "goodreads": {
-      "247294908": "2026-11-15T08:42:52.421Z",
-      "248285113": "2026-11-15T08:42:52.421Z",
-      "259986702": "2026-11-15T08:42:52.421Z",
-      "260072083": "2026-11-15T08:42:52.421Z",
-      "263425266": "2026-11-15T08:42:52.421Z"
+      "247294908": "2026-11-16T08:50:34.155Z",
+      "248285113": "2026-11-16T08:50:34.155Z",
+      "259986702": "2026-11-16T08:50:34.155Z",
+      "260072083": "2026-11-16T08:50:34.155Z",
+      "263425266": "2026-11-16T08:50:34.155Z"
     },
     "letterboxd": {
       "https://letterboxd.com/film/the-hunger-games-sunrise-on-the-reaping/": "2026-11-15T09:15:59.760Z",
