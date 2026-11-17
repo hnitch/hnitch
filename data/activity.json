@@ -115,8 +115,7 @@
         "link": "https://letterboxd.com/hnitch/film/the-hunger-games-sunrise-on-the-reaping/",
         "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/8/2/6/9/2/1182692-the-hunger-games-sunrise-on-the-reaping-0-600-0-900-crop.jpg?v=91001efc76",
         "review": "best horror movie i’ve watched 😭😭",
-        "releaseDate": "2026-11-18",
-        "releaseUpcoming": true
+        "releaseDate": "2026-11-18"
       },
       {
         "title": "Street Fighter",
@@ -167,24 +166,24 @@
     "lastSuccessAt": "2026-11-02T15:25:34.085Z",
     "lastAttemptAt": "2026-11-17T14:40:30.581Z"
   },
-  "updatedAt": "2026-11-16T08:50:35.692Z",
-  "lastSignalRenderAt": "2026-11-16T09:10:33.430Z",
+  "updatedAt": "2026-11-17T16:00:33.767Z",
+  "lastSignalRenderAt": "2026-11-17T16:00:33.767Z",
   "feedChecks": {
-    "checkedAt": "2026-11-17T15:50:34.766Z",
+    "checkedAt": "2026-11-17T16:00:33.958Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-17T15:50:34.766Z",
-        "lastSuccessAt": "2026-11-17T15:50:34.766Z"
+        "checkedAt": "2026-11-17T16:00:33.958Z",
+        "lastSuccessAt": "2026-11-17T16:00:33.958Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-17T15:50:34.766Z",
-        "lastSuccessAt": "2026-11-17T15:50:34.766Z"
+        "checkedAt": "2026-11-17T16:00:33.958Z",
+        "lastSuccessAt": "2026-11-17T16:00:33.958Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-11-17T15:50:34.766Z",
+        "checkedAt": "2026-11-17T16:00:33.958Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {
