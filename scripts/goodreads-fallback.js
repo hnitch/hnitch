@@ -4,7 +4,7 @@ import confirmedRatings from '../data/book-ratings.json' with {type:'json'};
 
 export function goodreadsReview(text) {
  const review = typeof text === 'string' ? text.trim() : '';
- if (/^(?:r\.?t\.?c|review (?:to come|pending|coming soon))[\s.…]*$/i.test(review)) {
+ if (/^(?:r[.\s]*t[.\s]*c|review\s+(?:to\s+come|pending|coming\s+soon))(?:[\s\p{P}]|\p{RGI_Emoji})*$/iv.test(review)) {
   return { review: '', reviewPlaceholder: review };
  }
  return { review };

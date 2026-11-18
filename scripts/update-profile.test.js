@@ -388,6 +388,23 @@ test("wrapped waiting title has breathing room before its playback explanation",
   assert.ok(192 - Number(subtitle[2]) >= 20, "keep space above the status pill too");
 });
 
+test("Goodreads preserves an RTC placeholder with emoji and accepts a later written review", async () => {
+ const { goodreadsReview } = await import('./goodreads-fallback.js');
+ for (const text of ['rtc 🤭', 'R. T. C. ✨', 'review to come 🫶🏽']) {
+  assert.deepEqual(goodreadsReview(text), { review: '', reviewPlaceholder: text });
+ }
+ const book = { title: 'Book', rating: null, ratingSource: 'unavailable', displayRating: 4.3 };
+ const pending = renderBookTile({ ...book, review: 'rtc 🤭' }, null, 0);
+ assert.match(pending, />rtc 🤭<\/text>/);
+ assert.match(pending, />view on Goodreads ↗<\/text>/);
+ assert.doesNotMatch(pending, /read (?:the )?full review|>4\.3<\/text>/);
+ assert.match(pending, /fill="#8edfd4"/);
+ const review = 'RTC was my placeholder. I loved every page once I got past the opening.';
+ assert.deepEqual(goodreadsReview(review), { review });
+ const written = renderBookTile({ ...book, review, reviewPlaceholder: 'rtc 🤭' }, null, 0);
+ assert.match(written, />read the full review ↗<\/text>/);
+ assert.doesNotMatch(written, />rtc 🤭<\/text>/);
+});
 
 test('public Goodreads fallback moves a finished book and preserves full review without guessing ambiguous fractions', async () => {
  const {parsePublicGoodreads}=await import('./goodreads-fallback.js');

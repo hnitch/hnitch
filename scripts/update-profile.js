@@ -713,7 +713,7 @@ export function renderBookTile(book, artwork, index) {
   const { review, reviewPlaceholder = book.reviewPlaceholder } = goodreadsReview(book.review);
   const exactRating = book.ratingSource !== "unavailable";
   const rating = normaliseRating(exactRating ? book.rating : book.displayRating);
-  const mood = ratingMood(exactRating ? rating : 0);
+  const mood = ratingMood(rating);
   const ratingText = exactRating ? "unrated" : "rated on Goodreads";
   const ratingLabel = exactRating && rating > 0 ? `${rating} out of 5 stars` : ratingText;
   const ratingNumber = exactRating && rating > 0 ? String(rating) : "";
@@ -1043,7 +1043,7 @@ function cardStack(items, prefix, alt, versionData = (item) => item) {
 function goodreadsMarkup(data) {
   const currentLink = data.current?.link || "https://www.goodreads.com/user/show/178629903";
   const currentVersion = data.current ? data.current : ["empty shelf", "...", "smaller italic status", "lowercase rn"];
-  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(currentVersion)}" width="100%" alt="${data.current ? `currently reading ${escapeDisplay(data.current.title)}` : "not reading anything , rn"}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read", (book) => [book, bookNotes(book), "quarter-star ratings"])}`;
+  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(currentVersion)}" width="100%" alt="${data.current ? `currently reading ${escapeDisplay(data.current.title)}` : "not reading anything , rn"}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read", (book) => [book, bookNotes(book), "Goodreads star palettes and review placeholders"])}`;
 }
 
 function letterboxdMarkup(data) {
@@ -1228,11 +1228,16 @@ async function main() {
     readInstagramSource(previous.instagram, cachedInstagramAvatar),
   ]);
   const current = {
-    goodreads: goodreadsResult.data,
+    goodreads: goodreadsResult.fresh ? goodreadsResult.data : structuredClone(goodreadsResult.data),
     letterboxd: letterboxdResult.data,
     appleMusic: appleMusicResult.data,
     instagram: instagramResult.data,
   };
+  // A cached shelf can contain a placeholder saved by an older parser.
+  for (const book of [current.goodreads.current, ...current.goodreads.recent]) {
+    const placeholder = goodreadsReview(book?.review);
+    if (placeholder.reviewPlaceholder) Object.assign(book, placeholder);
+  }
   applySavedProgress(current.goodreads, savedReadingProgress);
   applyBookEditions(current.goodreads, editions);
   applyBookNotes(current.goodreads, await readBookNotes());
