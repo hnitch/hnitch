@@ -20,6 +20,28 @@ export function statedFractionalRating(review, fullStars) {
  return rating>fullStars&&rating<fullStars+1?rating:null;
 }
 
+function publicRating(fills, review, book, confirmed) {
+ const partialStars = fills.filter(fill => fill > 0 && fill < 10);
+ const valid = fills.length === 5 && partialStars.length <= 1
+  && fills.every((fill, index) => Number.isFinite(fill) && (index === 0 || fills[index - 1] >= fill));
+ if (!valid) return { rating: null, ratingSource: 'unavailable' };
+
+ const fullStars = fills.filter(fill => fill === 10).length;
+ if (!partialStars.length) return { rating: fullStars, ratingSource: 'public-stars' };
+
+ const stated = statedFractionalRating(review, fullStars);
+ if (stated !== null) return { rating: stated, ratingSource: 'review-text' };
+
+ const confirmedForBook = confirmed?.bookId === book.bookId;
+ const trusted = confirmedForBook ? confirmed.rating : book.ratingSource === 'numeric-feed' ? book.rating : null;
+ if (Number.isFinite(trusted) && Number.isInteger(trusted * 4) && trusted > fullStars && trusted < fullStars + 1) {
+  return { rating: trusted, ratingSource: confirmedForBook ? 'confirmed' : 'numeric-feed' };
+ }
+
+ // Goodreads uses these fills for drawing stars. The fill can be shown without claiming an exact score.
+ return { rating: null, ratingSource: 'unavailable', displayRating: fullStars + partialStars[0] / 10 };
+}
+
 // The public profile still exposes complete reviews when its RSS routes are unavailable.
 // Only reuse metadata for known editions; missing evidence must never clear a shelf.
 export function parsePublicGoodreads(profileHtml, updatesHtml, previous, metadata = []) {
@@ -59,27 +81,15 @@ export function parsePublicGoodreads(profileHtml, updatesHtml, previous, metadat
   if(!full.length&&reviewRow.find('[data-text-id]').length)throw Error('Goodreads review was truncated');
   const copy=text.clone();copy.find('br').replaceWith('\n');
   const review=copy.text().replace(/\s+/g,' ').trim();
-  const stars=action.find('.staticStar').toArray().map(el=>updates(el).attr('class')?.match(/\bp(\d+)\b/)?.[1]);
-  // p6 describes the icon fill, not the reader's exact fractional score.
-  const values={'0':0,'6':0.6,'10':1};
-  if(stars.length!==5||stars.some(s=>!(s in values)))throw Error('Goodreads rating could not be read precisely');
-  const iconRating=stars.reduce((sum,s)=>sum+values[s],0);
+  const fills = action.find('.staticStar').toArray()
+   .map(element => Number(updates(element).attr('class')?.match(/\bp(10|[0-9])\b/)?.[1]));
   const footer=(reviewRow.length?reviewRow:row).next('tr.feedFooterReview');
   const reviewId=reviewRow.find('[id^="reviewTextContainer"]').attr('id')?.match(/^reviewTextContainer(\d+)$/)?.[1]
    ?? footer.attr('id')?.match(/^update_comment_stuff_Review(\d+)$/)?.[1];
-  const confirmed=confirmedRatings[reviewId];
-  const trusted=confirmed?.bookId===id?confirmed.rating:book.ratingSource==='numeric-feed'?book.rating:null;
-  const fullStars=stars.filter(s=>s==='10').length;
-  const compatible=Number.isFinite(trusted)&&trusted>fullStars&&trusted<fullStars+1&&Number.isInteger(trusted*4);
-  const stated=stars.includes('6')?statedFractionalRating(review,fullStars):null;
-  const rating=stars.includes('6')?(stated??(compatible?trusted:null)):iconRating;
-  const ratingSource=stars.includes('6')?(stated!==null?'review-text':compatible?(confirmed?.bookId===id?'confirmed':'numeric-feed'):'unavailable'):'public-stars';
   const { progress, reviewPlaceholder, displayRating, ...metadata } = book;
   recent.push({
    ...metadata,
-   rating,
-   ratingSource,
-   ...(rating === null ? { displayRating: iconRating } : {}),
+   ...publicRating(fills, review, book, confirmedRatings[reviewId]),
    ...goodreadsReview(review),
    link: reviewId ? `https://www.goodreads.com/review/show/${reviewId}` : `https://www.goodreads.com/book/show/${id}`,
    readAt: book.readAt || row.attr('data-timestamp') || '',

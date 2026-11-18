@@ -420,7 +420,17 @@ test('public Goodreads fallback moves a finished book and preserves full review 
  assert.equal(ratedOnly.review,'');
  assert.equal(ratedOnly.link,'https://www.goodreads.com/review/show/9');
  assert.throws(()=>parsePublicGoodreads('<title>Sign in</title>',updates,previous));
- assert.throws(()=>parsePublicGoodreads(profile,updates.replace('p6','p3'),previous));
+ const quarterStar = parsePublicGoodreads(profile, updates.replace('p6', 'p3'), previous);
+ assert.equal(quarterStar.current, null);
+ assert.equal(quarterStar.recent[0].rating, null);
+ assert.equal(quarterStar.recent[0].displayRating, 4.3);
+ assert.equal(quarterStar.recent[0].readAt, 'October 28, 2026 07:32');
+ assert.equal(parsePublicGoodreads(profile, updates.replace('p6','p3').replace('Full review<br>with context.', "I'm giving this 4.25 stars."), previous).recent[0].rating, 4.25);
+ const unknown = parsePublicGoodreads(profile, updates.replace('p6', 'p99'), previous);
+ assert.equal(unknown.current, null);
+ assert.equal(unknown.recent[0].rating, null);
+ assert.equal(unknown.recent[0].displayRating, undefined);
+ assert.match(renderBookTile(unknown.recent[0], null, 0), />rated on Goodreads<\/text>/);
  assert.throws(()=>parsePublicGoodreads(profile,updates.replace('/user/show/178629903-haarshaan','/user/show/999'),previous));
 });
 
