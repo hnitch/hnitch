@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/hero.svg?v=3.10.0" width="100%" alt="hii , i'm hn. i build things for screens. off-screen , there’s usually a book involved and music playing somewhere." />
+  <img src="./assets/hero.svg?v=3.10.1" width="100%" alt="hii , i'm hn. i build things for screens. off-screen , books and music." />
   <br/><br/>
   <img src="https://hnitch-discord-card.haarshaan.workers.dev/visitors.svg?v=2" height="28" alt="visitors" />
   <!-- READING-BADGE:START -->
