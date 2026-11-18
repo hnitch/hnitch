@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-18T16:04:04.145Z" format="relative" format-style="long" title="2026-11-18T16:04:04.145Z">6 minutes ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-18T16:10:31.689Z" format="relative" format-style="long" title="2026-11-18T16:10:31.689Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-18T16:20:31.374Z" format="relative" format-style="long" title="2026-11-18T16:20:31.374Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-18T16:20:31.641Z" format="relative" format-style="long" title="2026-11-18T16:20:31.641Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -34,13 +34,13 @@
 
 <a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=728df2620d" width="100%" alt="not reading anything , rn" /></a>
 
-<a href="https://www.goodreads.com/review/show/9018606082"><img src="./assets/activity/goodreads-1.svg?v=9ee6fbd935" width="100%" alt="Read: Reap &amp; Sow" /></a>
+<a href="https://www.goodreads.com/review/show/9018606082"><img src="./assets/activity/goodreads-1.svg?v=06b9fc8dff" width="100%" alt="Read: Reap &amp; Sow" /></a>
 
-<a href="https://www.goodreads.com/review/show/8950713330"><img src="./assets/activity/goodreads-2.svg?v=9d26e5c283" width="100%" alt="Read: Under the Iron Sky" /></a>
+<a href="https://www.goodreads.com/review/show/8950713330"><img src="./assets/activity/goodreads-2.svg?v=20d816fca5" width="100%" alt="Read: Under the Iron Sky" /></a>
 
-<a href="https://www.goodreads.com/review/show/8886771684"><img src="./assets/activity/goodreads-3.svg?v=bfb9a8d05e" width="100%" alt="Read: Victorious" /></a>
+<a href="https://www.goodreads.com/review/show/8886771684"><img src="./assets/activity/goodreads-3.svg?v=b9d09cdb09" width="100%" alt="Read: Victorious" /></a>
 
-<a href="https://www.goodreads.com/review/show/8755007560"><img src="./assets/activity/goodreads-4.svg?v=8c19ac46d3" width="100%" alt="Read: Kiss Slay Replay" /></a>
+<a href="https://www.goodreads.com/review/show/8755007560"><img src="./assets/activity/goodreads-4.svg?v=07d7b132d4" width="100%" alt="Read: Kiss Slay Replay" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>
