@@ -34,7 +34,7 @@
 
 <a href="https://www.goodreads.com/book/show/263425266-reap-sow"><img src="./assets/activity/goodreads-current.svg?v=1da8bc7ed9" width="100%" alt="currently reading Reap &amp; Sow" /></a>
 
-<a href="https://www.goodreads.com/review/show/8950713330"><img src="./assets/activity/goodreads-1.svg?v=1a9be774f1" width="100%" alt="Read: Under the Iron Sky" /></a>
+<a href="https://www.goodreads.com/review/show/8950713330"><img src="./assets/activity/goodreads-1.svg?v=9d26e5c283" width="100%" alt="Read: Under the Iron Sky" /></a>
 
 <a href="https://www.goodreads.com/review/show/8886771684"><img src="./assets/activity/goodreads-2.svg?v=bfb9a8d05e" width="100%" alt="Read: Victorious" /></a>
 
