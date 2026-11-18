@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-17T16:00:33.767Z" format="relative" format-style="long" title="2026-11-17T16:00:33.767Z">12 hours ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-18T04:30:30.781Z" format="relative" format-style="long" title="2026-11-18T04:30:30.781Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-18T04:40:34.126Z" format="relative" format-style="long" title="2026-11-18T04:40:34.126Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-18T04:40:34.364Z" format="relative" format-style="long" title="2026-11-18T04:40:34.364Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -34,7 +34,7 @@
 
 <a href="https://www.goodreads.com/book/show/263425266-reap-sow"><img src="./assets/activity/goodreads-current.svg?v=1da8bc7ed9" width="100%" alt="currently reading Reap &amp; Sow" /></a>
 
-<a href="https://www.goodreads.com/review/show/8950713330"><img src="./assets/activity/goodreads-1.svg?v=757898afa0" width="100%" alt="Read: Under the Iron Sky" /></a>
+<a href="https://www.goodreads.com/review/show/8950713330"><img src="./assets/activity/goodreads-1.svg?v=8bae9972d4" width="100%" alt="Read: Under the Iron Sky" /></a>
 
 <a href="https://www.goodreads.com/review/show/8886771684"><img src="./assets/activity/goodreads-2.svg?v=bfb9a8d05e" width="100%" alt="Read: Victorious" /></a>
 
