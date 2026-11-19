@@ -157,21 +157,21 @@
   "updatedAt": "2026-11-18T16:20:31.374Z",
   "lastSignalRenderAt": "2026-11-18T16:40:32.601Z",
   "feedChecks": {
-    "checkedAt": "2026-11-19T09:26:02.381Z",
+    "checkedAt": "2026-11-19T09:35:33.011Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-19T09:26:02.381Z",
-        "lastSuccessAt": "2026-11-19T09:26:02.381Z"
+        "checkedAt": "2026-11-19T09:35:33.011Z",
+        "lastSuccessAt": "2026-11-19T09:35:33.011Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-19T09:26:02.381Z",
-        "lastSuccessAt": "2026-11-19T09:26:02.381Z"
+        "checkedAt": "2026-11-19T09:35:33.011Z",
+        "lastSuccessAt": "2026-11-19T09:35:33.011Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-11-19T09:26:02.381Z",
+        "checkedAt": "2026-11-19T09:35:33.011Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {
@@ -189,10 +189,10 @@
       "263425266": "2026-11-19T09:15:33.075Z"
     },
     "letterboxd": {
-      "https://letterboxd.com/film/the-hunger-games-sunrise-on-the-reaping/": "2026-11-18T09:30:30.053Z",
-      "https://letterboxd.com/film/street-fighter-2026/": "2026-11-18T09:30:30.053Z",
-      "https://letterboxd.com/film/clayface/": "2026-11-18T09:30:30.053Z",
-      "https://letterboxd.com/film/carrie-2026/": "2026-11-18T09:30:30.053Z"
+      "https://letterboxd.com/film/the-hunger-games-sunrise-on-the-reaping/": "2026-11-19T09:35:31.052Z",
+      "https://letterboxd.com/film/street-fighter-2026/": "2026-11-19T09:35:31.052Z",
+      "https://letterboxd.com/film/clayface/": "2026-11-19T09:35:31.052Z",
+      "https://letterboxd.com/film/carrie-2026/": "2026-11-19T09:35:31.052Z"
     }
   }
 }
