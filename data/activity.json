@@ -1,6 +1,20 @@
 {
   "goodreads": {
-    "current": null,
+    "current": {
+      "bookId": "257119361",
+      "title": "Steelborn",
+      "author": "Taylor J. LaRue",
+      "link": "https://www.goodreads.com/book/show/257119361-steelborn",
+      "rating": 0,
+      "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1787092183i/257119361.jpg",
+      "pages": 432,
+      "averageRating": 4.1,
+      "published": "2026-08-04",
+      "dateAdded": "",
+      "readAt": "",
+      "review": "",
+      "readingSessionId": "3b27afb5-75d6-4beb-b81c-5e4e6ae8a8af"
+    },
     "recent": [
       {
         "bookId": "263425266",
@@ -154,24 +168,24 @@
     "lastSuccessAt": "2026-11-02T15:25:34.085Z",
     "lastAttemptAt": "2026-11-19T09:25:30.709Z"
   },
-  "updatedAt": "2026-11-18T16:20:31.374Z",
-  "lastSignalRenderAt": "2026-11-18T16:40:32.601Z",
+  "updatedAt": "2026-11-19T10:55:34.559Z",
+  "lastSignalRenderAt": "2026-11-19T10:55:34.559Z",
   "feedChecks": {
-    "checkedAt": "2026-11-19T10:45:34.666Z",
+    "checkedAt": "2026-11-19T10:55:34.810Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-19T10:45:34.666Z",
-        "lastSuccessAt": "2026-11-19T10:45:34.666Z"
+        "checkedAt": "2026-11-19T10:55:34.810Z",
+        "lastSuccessAt": "2026-11-19T10:55:34.810Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-19T10:45:34.666Z",
-        "lastSuccessAt": "2026-11-19T10:45:34.666Z"
+        "checkedAt": "2026-11-19T10:55:34.810Z",
+        "lastSuccessAt": "2026-11-19T10:55:34.810Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-11-19T10:45:34.666Z",
+        "checkedAt": "2026-11-19T10:55:34.810Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {
@@ -184,6 +198,7 @@
   "metadataChecks": {
     "goodreads": {
       "248285113": "2026-11-19T09:15:33.075Z",
+      "257119361": "2026-11-19T10:55:34.551Z",
       "259986702": "2026-11-19T09:15:33.075Z",
       "260072083": "2026-11-19T09:15:33.075Z",
       "263425266": "2026-11-19T09:15:33.075Z"
