@@ -157,21 +157,21 @@
   "updatedAt": "2026-11-18T16:20:31.374Z",
   "lastSignalRenderAt": "2026-11-18T16:40:32.601Z",
   "feedChecks": {
-    "checkedAt": "2026-11-19T09:05:34.976Z",
+    "checkedAt": "2026-11-19T09:15:34.921Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-19T09:05:34.976Z",
-        "lastSuccessAt": "2026-11-19T09:05:34.976Z"
+        "checkedAt": "2026-11-19T09:15:34.921Z",
+        "lastSuccessAt": "2026-11-19T09:15:34.921Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-19T09:05:34.976Z",
-        "lastSuccessAt": "2026-11-19T09:05:34.976Z"
+        "checkedAt": "2026-11-19T09:15:34.921Z",
+        "lastSuccessAt": "2026-11-19T09:15:34.921Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-11-19T09:05:34.976Z",
+        "checkedAt": "2026-11-19T09:15:34.921Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {
@@ -183,10 +183,10 @@
   },
   "metadataChecks": {
     "goodreads": {
-      "248285113": "2026-11-18T09:10:38.901Z",
-      "259986702": "2026-11-18T09:10:38.901Z",
-      "260072083": "2026-11-18T09:10:38.901Z",
-      "263425266": "2026-11-18T09:10:38.901Z"
+      "248285113": "2026-11-19T09:15:33.075Z",
+      "259986702": "2026-11-19T09:15:33.075Z",
+      "260072083": "2026-11-19T09:15:33.075Z",
+      "263425266": "2026-11-19T09:15:33.075Z"
     },
     "letterboxd": {
       "https://letterboxd.com/film/the-hunger-games-sunrise-on-the-reaping/": "2026-11-18T09:30:30.053Z",
