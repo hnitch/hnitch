@@ -121,9 +121,9 @@
         "year": "2026",
         "rating": 5,
         "liked": true,
-        "link": "https://letterboxd.com/hnitch/film/the-hunger-games-sunrise-on-the-reaping/",
+        "link": "https://letterboxd.com/hnitch/film/the-hunger-games-sunrise-on-the-reaping/1/",
         "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/8/2/6/9/2/1182692-the-hunger-games-sunrise-on-the-reaping-0-600-0-900-crop.jpg?v=91001efc76",
-        "review": "best horror movie i’ve watched 😭😭",
+        "review": "this again in imax , my eyes are blessed 🥹",
         "releaseDate": "2026-11-18"
       },
       {
@@ -175,24 +175,24 @@
     "lastSuccessAt": "2026-11-02T15:25:34.085Z",
     "lastAttemptAt": "2026-11-21T10:05:33.412Z"
   },
-  "updatedAt": "2026-11-21T09:25:32.815Z",
-  "lastSignalRenderAt": "2026-11-21T09:45:43.400Z",
+  "updatedAt": "2026-11-21T14:45:29.336Z",
+  "lastSignalRenderAt": "2026-11-21T14:45:29.336Z",
   "feedChecks": {
-    "checkedAt": "2026-11-21T14:35:29.568Z",
+    "checkedAt": "2026-11-21T14:45:29.817Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-21T14:35:29.568Z",
-        "lastSuccessAt": "2026-11-21T14:35:29.568Z"
+        "checkedAt": "2026-11-21T14:45:29.817Z",
+        "lastSuccessAt": "2026-11-21T14:45:29.817Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-21T14:35:29.568Z",
-        "lastSuccessAt": "2026-11-21T14:35:29.568Z"
+        "checkedAt": "2026-11-21T14:45:29.817Z",
+        "lastSuccessAt": "2026-11-21T14:45:29.817Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-11-21T14:35:29.568Z",
+        "checkedAt": "2026-11-21T14:45:29.817Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {

@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-21T09:25:32.815Z" format="relative" format-style="long" title="2026-11-21T09:25:32.815Z">5 hours ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-21T14:35:29.568Z" format="relative" format-style="long" title="2026-11-21T14:35:29.568Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-21T14:45:29.336Z" format="relative" format-style="long" title="2026-11-21T14:45:29.336Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-21T14:45:29.817Z" format="relative" format-style="long" title="2026-11-21T14:45:29.817Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -50,7 +50,7 @@
 
 <br/>
 
-<a href="https://letterboxd.com/hnitch/film/the-hunger-games-sunrise-on-the-reaping/"><img src="./assets/activity/letterboxd-1.svg?v=a0b9034cfd" width="100%" alt="Watched: The Hunger Games: Sunrise on the Reaping" /></a>
+<a href="https://letterboxd.com/hnitch/film/the-hunger-games-sunrise-on-the-reaping/1/"><img src="./assets/activity/letterboxd-1.svg?v=73a91f92fd" width="100%" alt="Watched: The Hunger Games: Sunrise on the Reaping" /></a>
 
 <a href="https://letterboxd.com/hnitch/film/street-fighter-2026/"><img src="./assets/activity/letterboxd-2.svg?v=ccdea2c12f" width="100%" alt="Watched: Street Fighter" /></a>
 
