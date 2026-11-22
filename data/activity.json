@@ -15,7 +15,13 @@
         "dateAdded": "",
         "readAt": "November 22, 2026 07:45",
         "review": "not sure how i feel about this one… rtc",
-        "ratingSource": "public-stars"
+        "ratingSource": "public-stars",
+        "bookNote": {
+          "key": "482870b36f3c7ecd1d18155cb8912b08011eddb4d82bf4794a811f27c25b5e94",
+          "labels": [
+            "not sure"
+          ]
+        }
       },
       {
         "bookId": "263425266",

@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-22T15:55:32.966Z" format="relative" format-style="long" title="2026-11-22T15:55:32.966Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-22T15:55:33.102Z" format="relative" format-style="long" title="2026-11-22T15:55:33.102Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-22T15:55:32.966Z" format="relative" format-style="long" title="2026-11-22T15:55:32.966Z">5 minutes ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-22T15:55:33.102Z" format="relative" format-style="long" title="2026-11-22T15:55:33.102Z">5 minutes ago</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -34,7 +34,7 @@
 
 <a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=728df2620d" width="100%" alt="not reading anything , rn" /></a>
 
-<a href="https://www.goodreads.com/review/show/8679130453"><img src="./assets/activity/goodreads-1.svg?v=66047a73be" width="100%" alt="Read: Steelborn" /></a>
+<a href="https://www.goodreads.com/review/show/8679130453"><img src="./assets/activity/goodreads-1.svg?v=000a0d45b8" width="100%" alt="Read: Steelborn" /></a>
 
 <a href="https://www.goodreads.com/review/show/9018606082"><img src="./assets/activity/goodreads-2.svg?v=b438cf2d9a" width="100%" alt="Read: Reap &amp; Sow" /></a>
 
