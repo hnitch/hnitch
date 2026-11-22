@@ -3,6 +3,21 @@
     "current": null,
     "recent": [
       {
+        "bookId": "257119361",
+        "title": "Steelborn",
+        "author": "Taylor J. LaRue",
+        "link": "https://www.goodreads.com/review/show/8679130453",
+        "rating": 2,
+        "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1787092183i/257119361.jpg",
+        "pages": 432,
+        "averageRating": 4.1,
+        "published": "2026-08-04",
+        "dateAdded": "",
+        "readAt": "November 22, 2026 07:45",
+        "review": "not sure how i feel about this one… rtc",
+        "ratingSource": "public-stars"
+      },
+      {
         "bookId": "263425266",
         "title": "Reap & Sow",
         "author": "Charlotte B. Plumb",
@@ -74,29 +89,6 @@
             "not ready for goodbye"
           ]
         }
-      },
-      {
-        "bookId": "260072083",
-        "title": "Kiss Slay Replay",
-        "author": "Rachel   Harrison",
-        "link": "https://www.goodreads.com/review/show/8755007560",
-        "rating": 3.75,
-        "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1790845276i/260072083.jpg",
-        "pages": 390,
-        "averageRating": 3.72,
-        "published": "2026-09-08",
-        "dateAdded": "",
-        "readAt": "November 04, 2026 06:47",
-        "review": "tell me why reading this felt like playing until dawn except every time i thought i'd figured out what was coming , rachel harrison decided to throw an ENTIRELY different nightmare at me. like seriously , zombies , phantoms , cryptids... at this point i'm convinced there's NOTHING that isn't trying to kill these people. that's exactly why i think she deserves some credit here. there's a reason why we don't see many time loop novels and it's plainly because , they are notoriously difficult to pull off. there's only so many times you can make someone relive the same day before it starts getting repetitive and very boring. but somehow , that never really happened here. every loop had something new going on and i was always curious to see what fresh hell we'd be dealing with next. there's just SO much happening in this book and i love that she managed to keep things entertaining without making the whole time loop concept feel like a chore to get through. what i didn't expect was how much i'd appreciate willa's character development. and i'm NOT about to sit here giving a whole lecture about life lessons because who am i kidding , i came here for the horror. but i really did love seeing how much she'd changed from the beginning to the end , especially when it came to finally confronting the things she'd been running away from. it was such a satisfying part of the story and honestly , i didn't expect to care about that nearly as much as i did. NOW... can we PLEASE talk about that ending because after everything this book put us through , THAT'S how we're wrapping things up ?! i'm sorry but i was expecting something a little more unhinged after spending an entire book getting terrorized by practically every supernatural creature known to mankind. instead , everything felt a little too easy and honestly quite anticlimactic. like i get what the ending was trying to do , but WHERE was the final round of absolute insanity ?? i was fully prepared for things to get so much worse. ANYWAYSS , i promise i actually liked this book LMAOO. the way i've been going on about that ending you'd think i hated the entire thing when i genuinely had so much fun reading it. i just wish the finale had matched the insanity of everything that came before it because i was SO ready for things to go completely off the rails. regardless , i'll definitely be reading more from rachel harrison.",
-        "ratingSource": "confirmed",
-        "bookNote": {
-          "key": "88e5ac78436fafaf963a69618b7ae0d28a474b34d6c004d45e050e0e2dc4f876",
-          "labels": [
-            "fresh hell every loop",
-            "loved willa's arc",
-            "ending felt too easy"
-          ]
-        }
       }
     ]
   },
@@ -161,24 +153,24 @@
     "lastSuccessAt": "2026-11-02T15:25:34.085Z",
     "lastAttemptAt": "2026-11-22T10:35:28.733Z"
   },
-  "updatedAt": "2026-11-22T15:45:32.970Z",
-  "lastSignalRenderAt": "2026-11-22T15:45:32.970Z",
+  "updatedAt": "2026-11-22T15:55:32.966Z",
+  "lastSignalRenderAt": "2026-11-22T15:55:32.966Z",
   "feedChecks": {
-    "checkedAt": "2026-11-22T15:45:33.073Z",
+    "checkedAt": "2026-11-22T15:55:33.102Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-22T15:45:33.073Z",
-        "lastSuccessAt": "2026-11-22T15:45:33.073Z"
+        "checkedAt": "2026-11-22T15:55:33.102Z",
+        "lastSuccessAt": "2026-11-22T15:55:33.102Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-22T15:45:33.073Z",
-        "lastSuccessAt": "2026-11-22T15:45:33.073Z"
+        "checkedAt": "2026-11-22T15:55:33.102Z",
+        "lastSuccessAt": "2026-11-22T15:55:33.102Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-11-22T15:45:33.073Z",
+        "checkedAt": "2026-11-22T15:55:33.102Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {
@@ -191,8 +183,8 @@
   "metadataChecks": {
     "goodreads": {
       "248285113": "2026-11-22T09:35:36.291Z",
+      "257119361": "2026-11-22T15:55:32.950Z",
       "259986702": "2026-11-22T09:35:36.291Z",
-      "260072083": "2026-11-22T09:35:36.291Z",
       "263425266": "2026-11-22T09:35:36.291Z"
     },
     "letterboxd": {
