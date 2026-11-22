@@ -1,26 +1,6 @@
 {
   "goodreads": {
-    "current": {
-      "bookId": "257119361",
-      "title": "Steelborn",
-      "author": "Taylor J. LaRue",
-      "link": "https://www.goodreads.com/book/show/257119361-steelborn",
-      "rating": 0,
-      "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1787092183i/257119361.jpg",
-      "pages": 432,
-      "averageRating": 4.1,
-      "published": "2026-08-04",
-      "dateAdded": "",
-      "readAt": "",
-      "review": "",
-      "readingSessionId": "3b27afb5-75d6-4beb-b81c-5e4e6ae8a8af",
-      "progress": {
-        "page": 322,
-        "total": 432,
-        "percent": 75,
-        "source": "shortcut"
-      }
-    },
+    "current": null,
     "recent": [
       {
         "bookId": "263425266",
@@ -181,24 +161,24 @@
     "lastSuccessAt": "2026-11-02T15:25:34.085Z",
     "lastAttemptAt": "2026-11-22T10:35:28.733Z"
   },
-  "updatedAt": "2026-11-22T07:25:51.702Z",
-  "lastSignalRenderAt": "2026-11-22T07:45:31.649Z",
+  "updatedAt": "2026-11-22T15:45:32.970Z",
+  "lastSignalRenderAt": "2026-11-22T15:45:32.970Z",
   "feedChecks": {
-    "checkedAt": "2026-11-22T15:35:33.669Z",
+    "checkedAt": "2026-11-22T15:45:33.073Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-22T15:35:33.669Z",
-        "lastSuccessAt": "2026-11-22T15:35:33.669Z"
+        "checkedAt": "2026-11-22T15:45:33.073Z",
+        "lastSuccessAt": "2026-11-22T15:45:33.073Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-22T15:35:33.669Z",
-        "lastSuccessAt": "2026-11-22T15:35:33.669Z"
+        "checkedAt": "2026-11-22T15:45:33.073Z",
+        "lastSuccessAt": "2026-11-22T15:45:33.073Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-11-22T15:35:33.669Z",
+        "checkedAt": "2026-11-22T15:45:33.073Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {
@@ -211,7 +191,6 @@
   "metadataChecks": {
     "goodreads": {
       "248285113": "2026-11-22T09:35:36.291Z",
-      "257119361": "2026-11-22T11:15:32.246Z",
       "259986702": "2026-11-22T09:35:36.291Z",
       "260072083": "2026-11-22T09:35:36.291Z",
       "263425266": "2026-11-22T09:35:36.291Z"

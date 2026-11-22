@@ -3,7 +3,7 @@
   <br/><br/>
   <img src="https://hnitch-discord-card.haarshaan.workers.dev/visitors.svg?v=2" height="28" alt="visitors" />
   <!-- READING-BADGE:START -->
-  <img src="./assets/activity/reading-status.svg?v=f8e1138ac2" height="28" alt="currently reading , probably" />
+  <img src="./assets/activity/reading-status.svg?v=971e4e93b3" height="28" alt="between books , allegedly" />
   <!-- READING-BADGE:END -->
 </div>
 
@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-22T07:25:51.702Z" format="relative" format-style="long" title="2026-11-22T07:25:51.702Z">8 hours ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-22T15:35:33.669Z" format="relative" format-style="long" title="2026-11-22T15:35:33.669Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-22T15:45:32.970Z" format="relative" format-style="long" title="2026-11-22T15:45:32.970Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-22T15:45:33.073Z" format="relative" format-style="long" title="2026-11-22T15:45:33.073Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -32,7 +32,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/book/show/257119361-steelborn"><img src="./assets/activity/goodreads-current.svg?v=cf97bfc5f5" width="100%" alt="currently reading Steelborn" /></a>
+<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=728df2620d" width="100%" alt="not reading anything , rn" /></a>
 
 <a href="https://www.goodreads.com/review/show/9018606082"><img src="./assets/activity/goodreads-1.svg?v=b438cf2d9a" width="100%" alt="Read: Reap &amp; Sow" /></a>
 
