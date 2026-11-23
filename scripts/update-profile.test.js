@@ -367,6 +367,7 @@ test("cached rendering keeps both timestamps and the compact strip without incre
   assert.match(readme, /reading-status\.svg\?v=/);
   assert.match(readme, /<!-- PROFILE-FRESHNESS:END -->\s*<\/div>\s*<br\/>\s*<!-- GOODREADS-FEED:START -->/);
   assert.doesNotMatch(readme, /img\.shields\.io\/badge\/currently/);
+  assert.match(readme, /src="https:\/\/raw\.githubusercontent\.com\/hnitch\/hnitch\/main\/assets\/activity\/goodreads-1\.svg\?v=[a-f0-9]+"/);
   const finished = snapshot.goodreads.recent[0];
   await fs.writeFile(path.join(root, "data/book-editions.json"), JSON.stringify({ [finished.bookId]: { total: 777 } }));
   execFileSync(process.execPath, [fileURLToPath(new URL("update-profile.js", import.meta.url)), "--render-cached"], { cwd: root });

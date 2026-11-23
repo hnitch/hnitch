@@ -1043,7 +1043,7 @@ function cardStack(items, prefix, alt, versionData = (item) => item) {
     const data = versionData(item);
     const version = normaliseRating(item.rating) === 5 && item.ratingSource !== "unavailable"
       ? [data, "perfect-rating continuous aurora"] : data;
-    return `<a href="${escapeXml(item.link)}"><img src="./assets/activity/${prefix}-${number}.svg?v=${assetVersion(version)}" width="100%" alt="${escapeDisplay(`${alt}: ${item.title}`)}" /></a>`;
+    return `<a href="${escapeXml(item.link)}"><img src="https://raw.githubusercontent.com/hnitch/hnitch/main/assets/activity/${prefix}-${number}.svg?v=${assetVersion(version)}" width="100%" alt="${escapeDisplay(`${alt}: ${item.title}`)}" /></a>`;
   }).join("\n\n");
 }
 
