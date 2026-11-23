@@ -509,7 +509,7 @@ test("the card keeps a short reaction alongside its RTC sign-off", () => {
   const book = {title: "Steelborn", review: "not sure how i feel about this one… rtc", rating: 2};
   for (const ending of ["… rtc", ". review to come", " RTC 🤭"]) {
     const card = renderBookTile({...book, review: "not sure how i feel about this one" + ending}, null, 0);
-    assert.match(card, />not sure how i feel about this one<\/text>/);
+    assert.match(card, />not sure how i feel<\/text>/);
     assert.match(card, />rtc<\/text>/);
     assert.match(card, />view on Goodreads ↗<\/text>/);
   }

@@ -727,7 +727,8 @@ export function renderBookTile(book, artwork, index) {
   const signoff = review.match(/(?:[.!?…;,—–\-]+\s*|\n+\s*|\s+(?=r[.\s]*t[.\s]*c\b))(?:r[.\s]*t[.\s]*c|review\s+(?:to\s+come|pending|coming\s+soon))(?:[\s\p{P}]|\p{RGI_Emoji})*$/iv);
   const reaction = (signoff ? review.slice(0, signoff.index) : review).trim();
   const shortReaction = reaction && [...reaction].length <= 58;
-  const moods = shortReaction ? [reaction] : bookNotes(book).slice(0, signoff ? 2 : 3);
+  const compactReaction = reaction.replace(/^(not sure how i feel) about (?:this one|this book|it)[.!…]*$/i, "$1");
+  const moods = shortReaction ? [compactReaction] : bookNotes(book).slice(0, signoff ? 2 : 3);
   if (signoff) moods.push("rtc");
   let chipX = 164 + ratingWidth + 29;
   const chipColors = [
@@ -1049,7 +1050,7 @@ function cardStack(items, prefix, alt, versionData = (item) => item) {
 function goodreadsMarkup(data) {
   const currentLink = data.current?.link || "https://www.goodreads.com/user/show/178629903";
   const currentVersion = data.current ? data.current : ["empty shelf", "...", "smaller italic status", "lowercase rn"];
-  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(currentVersion)}" width="100%" alt="${data.current ? `currently reading ${escapeDisplay(data.current.title)}` : "not reading anything , rn"}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read", (book) => [book, bookNotes(book), "Goodreads reader reactions and RTC"])}`;
+  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(currentVersion)}" width="100%" alt="${data.current ? `currently reading ${escapeDisplay(data.current.title)}` : "not reading anything , rn"}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read", (book) => [book, bookNotes(book), "Compact Goodreads reader reactions and RTC"])}`;
 }
 
 function letterboxdMarkup(data) {
