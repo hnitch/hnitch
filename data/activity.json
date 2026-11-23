@@ -15,13 +15,7 @@
         "dateAdded": "",
         "readAt": "November 22, 2026 07:45",
         "review": "not sure how i feel about this one… rtc",
-        "ratingSource": "public-stars",
-        "bookNote": {
-          "key": "482870b36f3c7ecd1d18155cb8912b08011eddb4d82bf4794a811f27c25b5e94",
-          "labels": [
-            "not sure"
-          ]
-        }
+        "ratingSource": "public-stars"
       },
       {
         "bookId": "263425266",
@@ -42,9 +36,9 @@
         "bookNote": {
           "key": "2b1793d114dda122df70c9b32f2b3fe1195bbc0dd3b8a466b550175c51881cea",
           "labels": [
-            "loved blackbridge",
-            "favorite demonic diva",
-            "turn the darkness up"
+            "kit is a diva",
+            "seated for the sequel",
+            "wanted it a little darker"
           ]
         }
       },

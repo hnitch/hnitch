@@ -504,3 +504,16 @@ test("Goodreads enriches an existing read receipt and retains confirmed facts du
   assert.deepEqual(delayed.data, data);
   assert.equal(dataChanged({ goodreads: data, metadataChecks }, { goodreads: delayed.data, metadataChecks: delayed.metadataChecks }), false);
 });
+
+test("the card keeps a short reaction alongside its RTC sign-off", () => {
+  const book = {title: "Steelborn", review: "not sure how i feel about this one… rtc", rating: 2};
+  for (const ending of ["… rtc", ". review to come", " RTC 🤭"]) {
+    const card = renderBookTile({...book, review: "not sure how i feel about this one" + ending}, null, 0);
+    assert.match(card, />not sure how i feel about this one<\/text>/);
+    assert.match(card, />rtc<\/text>/);
+    assert.match(card, />view on Goodreads ↗<\/text>/);
+  }
+  const edited = renderBookTile({...book, review: "the ending finally won me over"}, null, 0);
+  assert.match(edited, />the ending finally won me over<\/text>/);
+  assert.doesNotMatch(edited, />rtc<\/text>/);
+});

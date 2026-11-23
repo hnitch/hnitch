@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-22T15:55:32.966Z" format="relative" format-style="long" title="2026-11-22T15:55:32.966Z">8 hours ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-23T00:20:35.945Z" format="relative" format-style="long" title="2026-11-23T00:20:35.945Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-22T15:55:32.966Z" format="relative" format-style="long" title="2026-11-22T15:55:32.966Z">8 hours ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-23T00:20:35.945Z" format="relative" format-style="long" title="2026-11-23T00:20:35.945Z">2 minutes ago</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -34,13 +34,13 @@
 
 <a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=728df2620d" width="100%" alt="not reading anything , rn" /></a>
 
-<a href="https://www.goodreads.com/review/show/8679130453"><img src="./assets/activity/goodreads-1.svg?v=000a0d45b8" width="100%" alt="Read: Steelborn" /></a>
+<a href="https://www.goodreads.com/review/show/8679130453"><img src="./assets/activity/goodreads-1.svg?v=7c26feb352" width="100%" alt="Read: Steelborn" /></a>
 
-<a href="https://www.goodreads.com/review/show/9018606082"><img src="./assets/activity/goodreads-2.svg?v=b438cf2d9a" width="100%" alt="Read: Reap &amp; Sow" /></a>
+<a href="https://www.goodreads.com/review/show/9018606082"><img src="./assets/activity/goodreads-2.svg?v=e1784942bb" width="100%" alt="Read: Reap &amp; Sow" /></a>
 
-<a href="https://www.goodreads.com/review/show/8950713330"><img src="./assets/activity/goodreads-3.svg?v=20d816fca5" width="100%" alt="Read: Under the Iron Sky" /></a>
+<a href="https://www.goodreads.com/review/show/8950713330"><img src="./assets/activity/goodreads-3.svg?v=66aaca1e82" width="100%" alt="Read: Under the Iron Sky" /></a>
 
-<a href="https://www.goodreads.com/review/show/8886771684"><img src="./assets/activity/goodreads-4.svg?v=2a627ee18a" width="100%" alt="Read: Victorious" /></a>
+<a href="https://www.goodreads.com/review/show/8886771684"><img src="./assets/activity/goodreads-4.svg?v=ef208f9c00" width="100%" alt="Read: Victorious" /></a>
 <!-- GOODREADS-FEED:END -->
 
 <br/>

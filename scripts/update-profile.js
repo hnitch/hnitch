@@ -722,7 +722,13 @@ export function renderBookTile(book, artwork, index) {
   const ratingMarkup = rating > 0
     ? ratingIcons(rating, mood.color) + (ratingNumber ? `<text x="286" y="205" fill="${mood.color}" font-size="14" font-weight="800" text-anchor="start">${ratingNumber}</text>` : "")
     : `<text x="${164 + ratingWidth / 2}" y="205" fill="${mood.color}" font-size="16" font-weight="800" text-anchor="middle">${ratingText}</text>`;
-  const moods = review ? bookNotes(book) : [];
+  // Some readers leave a first impression followed by a separate RTC sign-off.
+  // Keep the complete source review as the key for any later verified notes.
+  const signoff = review.match(/(?:[.!?…;,—–\-]+\s*|\n+\s*|\s+(?=r[.\s]*t[.\s]*c\b))(?:r[.\s]*t[.\s]*c|review\s+(?:to\s+come|pending|coming\s+soon))(?:[\s\p{P}]|\p{RGI_Emoji})*$/iv);
+  const reaction = (signoff ? review.slice(0, signoff.index) : review).trim();
+  const shortReaction = reaction && [...reaction].length <= 58;
+  const moods = shortReaction ? [reaction] : bookNotes(book).slice(0, signoff ? 2 : 3);
+  if (signoff) moods.push("rtc");
   let chipX = 164 + ratingWidth + 29;
   const chipColors = [
     { fill: "#332b4a", text: "#dccdff" },
@@ -747,7 +753,7 @@ export function renderBookTile(book, artwork, index) {
   <circle cx="820" cy="12" r="124" fill="#89c9f8" opacity=".045"/>
   ${cover({ dataUri: artwork, x: 24, y: 21, width: 130, height: 198, radius: 10 })}
   <g class="sans"><text x="164" y="38" fill="#e9c995" font-size="12" font-weight="800" letter-spacing="1.25">READ RECEIPT / 0${index + 1}</text>
-  <text x="816" y="38" fill="#b7cddd" font-size="11" font-weight="600" text-anchor="end">${review ? "read full review ↗" : "view on Goodreads ↗"}</text>
+  <text x="816" y="38" fill="#b7cddd" font-size="11" font-weight="600" text-anchor="end">${review && !signoff ? "read full review ↗" : "view on Goodreads ↗"}</text>
   ${wrappedText({ x: 164, y: 51, width: bookFacts.length ? 450 : 630, height: 68, value: book.title, size: 27, weight: 800, lineHeight: 1.04 })}
   ${titleSidecar}
   <text x="164" y="136" fill="${theme.muted}" font-size="14.5" font-weight="700">${escapeDisplay(book.author)}</text>
@@ -1043,7 +1049,7 @@ function cardStack(items, prefix, alt, versionData = (item) => item) {
 function goodreadsMarkup(data) {
   const currentLink = data.current?.link || "https://www.goodreads.com/user/show/178629903";
   const currentVersion = data.current ? data.current : ["empty shelf", "...", "smaller italic status", "lowercase rn"];
-  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(currentVersion)}" width="100%" alt="${data.current ? `currently reading ${escapeDisplay(data.current.title)}` : "not reading anything , rn"}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read", (book) => [book, bookNotes(book), "Goodreads star palettes and review placeholders"])}`;
+  return `<div align="center"><a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/brands/goodreads.svg" height="42" alt="Goodreads" /></a><br/><sub>the shelf is public. the opinions are unfortunately also public.</sub></div>\n\n<br/>\n\n<a href="${escapeXml(currentLink)}"><img src="./assets/activity/goodreads-current.svg?v=${assetVersion(currentVersion)}" width="100%" alt="${data.current ? `currently reading ${escapeDisplay(data.current.title)}` : "not reading anything , rn"}" /></a>\n\n${cardStack(data.recent, "goodreads", "Read", (book) => [book, bookNotes(book), "Goodreads reader reactions and RTC"])}`;
 }
 
 function letterboxdMarkup(data) {
