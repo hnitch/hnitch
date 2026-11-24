@@ -25,7 +25,7 @@
         "rating": null,
         "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1794409773i/263425266.jpg",
         "pages": 480,
-        "averageRating": 3.92,
+        "averageRating": 3.91,
         "published": "2026-10-06",
         "dateAdded": "",
         "readAt": "November 18, 2026 06:50",
@@ -153,24 +153,24 @@
     "lastSuccessAt": "2026-11-02T15:25:34.085Z",
     "lastAttemptAt": "2026-11-24T05:05:31.083Z"
   },
-  "updatedAt": "2026-11-22T15:55:32.966Z",
-  "lastSignalRenderAt": "2026-11-22T16:15:33.463Z",
+  "updatedAt": "2026-11-24T09:45:33.494Z",
+  "lastSignalRenderAt": "2026-11-24T09:45:33.494Z",
   "feedChecks": {
-    "checkedAt": "2026-11-24T09:35:34.316Z",
+    "checkedAt": "2026-11-24T09:45:33.690Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-24T09:35:34.316Z",
-        "lastSuccessAt": "2026-11-24T09:35:34.316Z"
+        "checkedAt": "2026-11-24T09:45:33.690Z",
+        "lastSuccessAt": "2026-11-24T09:45:33.690Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-24T09:35:34.316Z",
-        "lastSuccessAt": "2026-11-24T09:35:34.316Z"
+        "checkedAt": "2026-11-24T09:45:33.690Z",
+        "lastSuccessAt": "2026-11-24T09:45:33.690Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-11-24T09:35:34.316Z",
+        "checkedAt": "2026-11-24T09:45:33.690Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {
@@ -182,10 +182,10 @@
   },
   "metadataChecks": {
     "goodreads": {
-      "248285113": "2026-11-23T09:45:31.840Z",
+      "248285113": "2026-11-24T09:45:32.567Z",
       "257119361": "2026-11-23T16:00:36.996Z",
-      "259986702": "2026-11-23T09:45:31.840Z",
-      "263425266": "2026-11-23T09:45:31.840Z"
+      "259986702": "2026-11-24T09:45:32.567Z",
+      "263425266": "2026-11-24T09:45:32.567Z"
     },
     "letterboxd": {
       "https://letterboxd.com/film/the-hunger-games-sunrise-on-the-reaping/": "2026-11-23T10:05:28.604Z",

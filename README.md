@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-22T15:55:32.966Z" format="relative" format-style="long" title="2026-11-22T15:55:32.966Z">1 day ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-24T09:35:34.316Z" format="relative" format-style="long" title="2026-11-24T09:35:34.316Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-24T09:45:33.494Z" format="relative" format-style="long" title="2026-11-24T09:45:33.494Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-24T09:45:33.690Z" format="relative" format-style="long" title="2026-11-24T09:45:33.690Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -36,7 +36,7 @@
 
 <a href="https://www.goodreads.com/review/show/8679130453"><img src="https://raw.githubusercontent.com/hnitch/hnitch/main/assets/activity/goodreads-1.svg?v=28daee7f0d" width="100%" alt="Read: Steelborn" /></a>
 
-<a href="https://www.goodreads.com/review/show/9018606082"><img src="https://raw.githubusercontent.com/hnitch/hnitch/main/assets/activity/goodreads-2.svg?v=f73e1ca6a5" width="100%" alt="Read: Reap &amp; Sow" /></a>
+<a href="https://www.goodreads.com/review/show/9018606082"><img src="https://raw.githubusercontent.com/hnitch/hnitch/main/assets/activity/goodreads-2.svg?v=37b8a75067" width="100%" alt="Read: Reap &amp; Sow" /></a>
 
 <a href="https://www.goodreads.com/review/show/8950713330"><img src="https://raw.githubusercontent.com/hnitch/hnitch/main/assets/activity/goodreads-3.svg?v=624d58f2ae" width="100%" alt="Read: Under the Iron Sky" /></a>
 
