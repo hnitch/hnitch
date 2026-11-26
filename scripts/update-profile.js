@@ -258,6 +258,7 @@ function normaliseFilm(item = {}) {
     year: decode(first(item["letterboxd:filmYear"])),
     rating: Number(first(item["letterboxd:memberRating"])) || 0,
     liked: first(item["letterboxd:memberLike"]) === "Yes",
+    ...(first(item["letterboxd:rewatch"]) === "Yes" ? { rewatched: true } : {}),
     link: decode(first(item.link)),
     poster: decode(poster),
     review: paragraphs[0] || "",
@@ -781,7 +782,7 @@ export function renderFilmTile(film, artwork, index) {
   ${cover({ dataUri: artwork, x: 24, y: 20, width: 118, height: 180, radius: 10 })}
   <g class="sans"><g transform="translate(168 25)"><circle cx="8" cy="8" r="8" fill="#ff8000"/><circle cx="22" cy="8" r="8" fill="#00e054"/><circle cx="36" cy="8" r="8" fill="#40bcf4"/></g><text x="808" y="38" fill="#8298a8" font-size="12" font-weight="800" text-anchor="end" letter-spacing="1.1">WATCH 0${index + 1}</text>
   ${wrappedText({ x: 168, y: 55, width: 630, height: 63, value: film.title, size: 28, weight: 800, lineHeight: 1.04 })}
-  <text x="168" y="139" fill="${theme.muted}" font-size="14" font-weight="700">${escapeDisplay(releaseLabel)}${film.liked ? "  ·  ♥ liked" : ""}</text><g transform="translate(${808 - ratingWidth - 164} -78)" role="img" aria-label="${ratingLabel}"><title>${ratingLabel}</title>${ratingPillBackground(ratingWidth, mood.background, rating === 5)}${rating ? ratingIcons(rating, mood.color) + `<text x="286" y="205" fill="${mood.color}" font-size="14" font-weight="800">${rating}</text>` : `<text x="208" y="205" fill="${mood.color}" font-size="14" text-anchor="middle">unrated</text>`}</g>
+  <text x="168" y="139" fill="${theme.muted}" font-size="14" font-weight="700">${escapeDisplay(releaseLabel)}${film.liked ? "  ·  ♥ liked" : ""}${film.rewatched ? "  ·  ↻ rewatched" : ""}</text><g transform="translate(${808 - ratingWidth - 164} -78)" role="img" aria-label="${ratingLabel}"><title>${ratingLabel}</title>${ratingPillBackground(ratingWidth, mood.background, rating === 5)}${rating ? ratingIcons(rating, mood.color) + `<text x="286" y="205" fill="${mood.color}" font-size="14" font-weight="800">${rating}</text>` : `<text x="208" y="205" fill="${mood.color}" font-size="14" text-anchor="middle">unrated</text>`}</g>
   ${wrappedText({ x: 168, y: 154, width: 420, height: 44, value: `“${note}”`, size: 13, weight: 600, color: "#a7b7c2", lineHeight: 1.18, italic: true })}</g>
   </svg>`;
 }

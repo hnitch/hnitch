@@ -196,6 +196,7 @@ test("Letterboxd uses the general opening and switches the label on release day"
     </section>`;
   const rss = (rewatch = "") => `<rss><channel>
     <item><title>Example</title><link>https://letterboxd.com/hnitch/film/example/${rewatch}</link>
+      <letterboxd:rewatch>${rewatch ? "Yes" : "No"}</letterboxd:rewatch>
       <letterboxd:filmYear>2026</letterboxd:filmYear><letterboxd:watchedDate>2026-11-12</letterboxd:watchedDate>
     </item><item><title>Undated film</title><link>https://letterboxd.com/hnitch/film/undated/</link>
       <letterboxd:filmYear>2026</letterboxd:filmYear>
@@ -221,6 +222,8 @@ test("Letterboxd uses the general opening and switches the label on release day"
   assert.deepEqual(requests.slice(previousRequestCount), ["https://letterboxd.com/hnitch/rss/"]);
   assert.equal(again.data.recent[0].releaseDate, "2026-11-19");
   assert.match(renderFilmTile(again.data.recent[0], null, 0), /released Nov 2026/);
+  assert.match(renderFilmTile(again.data.recent[0], null, 0), /↻ rewatched/);
+  for (const film of data.recent) assert.doesNotMatch(renderFilmTile(film, null, 0), /↻ rewatched/);
   assert.equal(again.metadataChecks[undated], metadataChecks[undated]);
 });
 
