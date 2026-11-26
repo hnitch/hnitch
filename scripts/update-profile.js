@@ -802,25 +802,19 @@ export function renderBookTile(book, artwork, index) {
   </svg>`;
 }
 
-function rewatchFooter(film) {
+function rewatchHeader(film) {
+  if (!film.rewatched) return "";
   const stats = film.rewatchStats;
-  if (!film.rewatched || !stats) return "";
-  const metrics = [
-    ["LOGGED WATCHES", `${stats.logged}${stats.partial ? "+" : ""}`],
-    ["SINCE LAST WATCH", stats.daysApart === 0 ? "same day" : `${stats.daysApart} day${stats.daysApart === 1 ? "" : "s"}`],
-  ];
-  if (stats.previousRating && film.rating) metrics.push(["RATING THEN → NOW", `${stats.previousRating} ★ → ${film.rating} ★`]);
-  const columns = metrics.map(([label, value], i) => {
-    const x = 26 + i * 810 / metrics.length;
-    return `<text x="${x}" y="237" fill="#a7b7c2" font-size="10" font-weight="700" letter-spacing="1">${label}</text>
-      <text x="${x}" y="259" fill="#a8e5d8" font-size="17" font-weight="750">${value}</text>`;
-  });
-  return `<path d="M25 215h810" stroke="#45657b" opacity=".7"/>${columns.join("")}`;
+  let summary = "";
+  if (stats) {
+    const count = `${stats.logged}${stats.partial ? "+" : ""} logged watches`;
+    const gap = stats.daysApart === 0 ? "same day" : `${stats.daysApart} day${stats.daysApart === 1 ? "" : "s"} apart`;
+    summary = `<text x="324" y="37" fill="#b0c3ce" font-size="12" font-weight="550">${escapeXml(count)} · ${escapeXml(gap)}</text>`;
+  }
+  return `<path d="M226 26v14" stroke="#45657b"/><text x="238" y="37" fill="#a8e5d8" font-size="12" font-weight="700">↻ rewatched</text>${summary}`;
 }
 
 export function renderFilmTile(film, artwork, index) {
-  const footer = rewatchFooter(film);
-  const height = footer ? 276 : 220;
   const note = film.review || (film.liked ? "liked. evidence duly noted." : "logged without further comment.");
   const releaseMonth = monthYear(film.releaseDate);
   const releaseLabel = releaseMonth ? `${film.releaseUpcoming ? "releases" : "released"} ${releaseMonth}` : film.year;
@@ -829,15 +823,19 @@ export function renderFilmTile(film, artwork, index) {
   const numberWidth = [...String(rating)].reduce((width, char) => width + (char === "." ? 4 : 9), 0);
   const ratingWidth = rating ? 136 + numberWidth : 88;
   const ratingLabel = rating ? `${rating} out of 5 stars` : "unrated";
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="${height}" viewBox="0 0 860 ${height}" role="img" aria-label="${escapeDisplay(film.title)} (${escapeDisplay(film.year)})" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
+  const previousRating = film.rewatched && film.rewatchStats?.previousRating;
+  const ratingHistory = previousRating && rating
+    ? `<text x="${808 - ratingWidth / 2}" y="157" fill="#adc0cc" font-size="11.5" font-weight="600" text-anchor="middle">${previousRating === rating ? "also " : ""}${escapeXml(previousRating)}★ last time</text>`
+    : "";
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="220" viewBox="0 0 860 220" role="img" aria-label="${escapeDisplay(film.title)} (${escapeDisplay(film.year)})" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#17232e"/><stop offset="1" stop-color="#21313d"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
-  <rect x="1" y="1" width="858" height="${height - 2}" rx="25" fill="url(#bg)" stroke="#45657b" stroke-width="2"/>
+  <rect x="1" y="1" width="858" height="218" rx="25" fill="url(#bg)" stroke="#45657b" stroke-width="2"/>
   <circle cx="815" cy="18" r="130" fill="#89c9f8" opacity=".05"/>
   ${cover({ dataUri: artwork, x: 24, y: 20, width: 118, height: 180, radius: 10 })}
-  <g class="sans"><g transform="translate(168 25)"><circle cx="8" cy="8" r="8" fill="#ff8000"/><circle cx="22" cy="8" r="8" fill="#00e054"/><circle cx="36" cy="8" r="8" fill="#40bcf4"/></g><text x="808" y="38" fill="#8298a8" font-size="12" font-weight="800" text-anchor="end" letter-spacing="1.1">WATCH 0${index + 1}</text>
+  <g class="sans"><g transform="translate(168 25)"><circle cx="8" cy="8" r="8" fill="#ff8000"/><circle cx="22" cy="8" r="8" fill="#00e054"/><circle cx="36" cy="8" r="8" fill="#40bcf4"/></g>${rewatchHeader(film)}<text x="808" y="38" fill="#8298a8" font-size="12" font-weight="800" text-anchor="end" letter-spacing="1.1">WATCH 0${index + 1}</text>
   ${wrappedText({ x: 168, y: 55, width: 630, height: 63, value: film.title, size: 28, weight: 800, lineHeight: 1.04 })}
-  <text x="168" y="139" fill="${theme.muted}" font-size="14" font-weight="700">${escapeDisplay(releaseLabel)}${film.liked ? "  ·  ♥ liked" : ""}${film.rewatched ? "  ·  ↻ rewatched" : ""}</text><g transform="translate(${808 - ratingWidth - 164} -78)" role="img" aria-label="${ratingLabel}"><title>${ratingLabel}</title>${ratingPillBackground(ratingWidth, mood.background, rating === 5)}${rating ? ratingIcons(rating, mood.color) + `<text x="286" y="205" fill="${mood.color}" font-size="14" font-weight="800">${rating}</text>` : `<text x="208" y="205" fill="${mood.color}" font-size="14" text-anchor="middle">unrated</text>`}</g>
-  ${wrappedText({ x: 168, y: 154, width: 420, height: 44, value: `“${note}”`, size: 13, weight: 600, color: "#a7b7c2", lineHeight: 1.18, italic: true })}${footer}</g>
+  <text x="168" y="139" fill="${theme.muted}" font-size="14" font-weight="700">${escapeDisplay(releaseLabel)}${film.liked ? "  ·  ♥ liked" : ""}</text><g transform="translate(${808 - ratingWidth - 164} -78)" role="img" aria-label="${ratingLabel}"><title>${ratingLabel}</title>${ratingPillBackground(ratingWidth, mood.background, rating === 5)}${rating ? ratingIcons(rating, mood.color) + `<text x="286" y="205" fill="${mood.color}" font-size="14" font-weight="800">${rating}</text>` : `<text x="208" y="205" fill="${mood.color}" font-size="14" text-anchor="middle">unrated</text>`}</g>
+  ${wrappedText({ x: 168, y: 154, width: 420, height: 44, value: `“${note}”`, size: 13, weight: 600, color: "#a7b7c2", lineHeight: 1.18, italic: true })}${ratingHistory}</g>
   </svg>`;
 }
 
@@ -1109,7 +1107,7 @@ function goodreadsMarkup(data) {
 }
 
 function letterboxdMarkup(data) {
-  return `<div align="center"><a href="https://letterboxd.com/hnitch/"><img src="./assets/brands/letterboxd.svg" width="230" alt="Letterboxd" /></a><br/><sub>films watched. stars assigned. feelings were involved.</sub></div>\n\n<br/>\n\n${cardStack(data.recent, "letterboxd", "Watched")}`;
+  return `<div align="center"><a href="https://letterboxd.com/hnitch/"><img src="./assets/brands/letterboxd.svg" width="230" alt="Letterboxd" /></a><br/><sub>films watched. stars assigned. feelings were involved.</sub></div>\n\n<br/>\n\n${cardStack(data.recent, "letterboxd", "Watched", film => film.rewatched ? [film, "inline rewatch stats"] : film)}`;
 }
 
 function appleMusicMarkup(data) {

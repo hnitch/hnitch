@@ -241,15 +241,17 @@ test("rewatch cards compare distinct dated diary logs for the same film", async 
   }
   const film = await read(log("example", "", "2026-11-14", "No", 4.5));
   assert.deepEqual(film.rewatchStats, {logged: 2, partial: false, daysApart: 7, previousRating: 4.5});
-  assert.match(renderFilmTile(film, null, 0), /4.5 ★ → 5 ★/);
+  const fullCard = renderFilmTile(film, null, 0);
+  assert.match(fullCard, /2 logged watches · 7 days apart/);
+  assert.match(fullCard, /4\.5★ last time/);
+  assert.match(fullCard, /viewBox="0 0 860 220"/);
   const partial = await read(log("example", "", "2026-11-21", "Yes", ""));
   const card = renderFilmTile(partial, null, 0);
-  assert.match(card, />2\+<\/text>/);
-  assert.match(card, />same day<\/text>/);
-  assert.doesNotMatch(card, /RATING THEN/);
+  assert.match(card, /2\+ logged watches · same day/);
+  assert.doesNotMatch(card, /★ last time/);
   const noHistory = await read(log("example", "", "2026-02-31", "No", 1));
   assert.equal(noHistory.rewatchStats, undefined);
-  assert.doesNotMatch(renderFilmTile(noHistory, null, 0), /LOGGED WATCHES/);
+  assert.doesNotMatch(renderFilmTile(noHistory, null, 0), /logged watches/);
 });
 
 test("Letterboxd uses a series' first air date when its release listings are empty", async () => {
