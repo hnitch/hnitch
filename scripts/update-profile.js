@@ -823,9 +823,9 @@ export function renderFilmTile(film, artwork, index) {
   const numberWidth = [...String(rating)].reduce((width, char) => width + (char === "." ? 4 : 9), 0);
   const ratingWidth = rating ? 136 + numberWidth : 88;
   const ratingLabel = rating ? `${rating} out of 5 stars` : "unrated";
-  const previousRating = film.rewatched && film.rewatchStats?.previousRating;
-  const ratingHistory = previousRating && rating
-    ? `<text x="${808 - ratingWidth / 2}" y="157" fill="#adc0cc" font-size="11.5" font-weight="600" text-anchor="middle">${previousRating === rating ? "also " : ""}${escapeXml(previousRating)}★ last time</text>`
+  const previousRating = normaliseRating(film.rewatchStats?.previousRating);
+  const ratingHistory = film.rewatched && previousRating && rating && previousRating !== rating
+    ? `<text x="${808 - ratingWidth / 2}" y="157" fill="#adc0cc" font-size="11.5" font-weight="600" text-anchor="middle">${previousRating} → ${rating}</text>`
     : "";
   return `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="220" viewBox="0 0 860 220" role="img" aria-label="${escapeDisplay(film.title)} (${escapeDisplay(film.year)})" text-rendering="geometricPrecision" shape-rendering="geometricPrecision">
   <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#17232e"/><stop offset="1" stop-color="#21313d"/></linearGradient><style>.sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}</style></defs>
@@ -1107,7 +1107,7 @@ function goodreadsMarkup(data) {
 }
 
 function letterboxdMarkup(data) {
-  return `<div align="center"><a href="https://letterboxd.com/hnitch/"><img src="./assets/brands/letterboxd.svg" width="230" alt="Letterboxd" /></a><br/><sub>films watched. stars assigned. feelings were involved.</sub></div>\n\n<br/>\n\n${cardStack(data.recent, "letterboxd", "Watched", film => film.rewatched ? [film, "inline rewatch stats"] : film)}`;
+  return `<div align="center"><a href="https://letterboxd.com/hnitch/"><img src="./assets/brands/letterboxd.svg" width="230" alt="Letterboxd" /></a><br/><sub>films watched. stars assigned. feelings were involved.</sub></div>\n\n<br/>\n\n${cardStack(data.recent, "letterboxd", "Watched", film => film.rewatched ? [film, "rewatch rating changes"] : film)}`;
 }
 
 function appleMusicMarkup(data) {

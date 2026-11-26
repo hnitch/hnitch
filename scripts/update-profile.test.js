@@ -243,12 +243,16 @@ test("rewatch cards compare distinct dated diary logs for the same film", async 
   assert.deepEqual(film.rewatchStats, {logged: 2, partial: false, daysApart: 7, previousRating: 4.5});
   const fullCard = renderFilmTile(film, null, 0);
   assert.match(fullCard, /2 logged watches · 7 days apart/);
-  assert.match(fullCard, /4\.5★ last time/);
+  assert.match(fullCard, />4\.5 → 5</);
+  assert.match(renderFilmTile({...film, rating: 4}, null, 0), />4\.5 → 4</);
+  for (const rating of [4.5, 0]) {
+    assert.doesNotMatch(renderFilmTile({...film, rating}, null, 0), / → |last time/);
+  }
   assert.match(fullCard, /viewBox="0 0 860 220"/);
   const partial = await read(log("example", "", "2026-11-21", "Yes", ""));
   const card = renderFilmTile(partial, null, 0);
   assert.match(card, /2\+ logged watches · same day/);
-  assert.doesNotMatch(card, /★ last time/);
+  assert.doesNotMatch(card, / → |last time/);
   const noHistory = await read(log("example", "", "2026-02-31", "No", 1));
   assert.equal(noHistory.rewatchStats, undefined);
   assert.doesNotMatch(renderFilmTile(noHistory, null, 0), /logged watches/);

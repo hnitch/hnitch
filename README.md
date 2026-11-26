@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-26T13:54:05.970Z" format="relative" format-style="long" title="2026-11-26T13:54:05.970Z">16 minutes ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-26T14:10:32.535Z" format="relative" format-style="long" title="2026-11-26T14:10:32.535Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-26T13:54:05.970Z" format="relative" format-style="long" title="2026-11-26T13:54:05.970Z">17 minutes ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-26T14:10:32.535Z" format="relative" format-style="long" title="2026-11-26T14:10:32.535Z">1 minute ago</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -50,7 +50,7 @@
 
 <br/>
 
-<a href="https://letterboxd.com/hnitch/film/the-hunger-games-sunrise-on-the-reaping/1/"><img src="https://raw.githubusercontent.com/hnitch/hnitch/main/assets/activity/letterboxd-1.svg?v=122461975f" width="100%" alt="Watched: The Hunger Games: Sunrise on the Reaping" /></a>
+<a href="https://letterboxd.com/hnitch/film/the-hunger-games-sunrise-on-the-reaping/1/"><img src="https://raw.githubusercontent.com/hnitch/hnitch/main/assets/activity/letterboxd-1.svg?v=0d008a68aa" width="100%" alt="Watched: The Hunger Games: Sunrise on the Reaping" /></a>
 
 <a href="https://letterboxd.com/hnitch/film/street-fighter-2026/"><img src="https://raw.githubusercontent.com/hnitch/hnitch/main/assets/activity/letterboxd-2.svg?v=ccdea2c12f" width="100%" alt="Watched: Street Fighter" /></a>
 
