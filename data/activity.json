@@ -99,11 +99,11 @@
         "year": "2026",
         "rating": 5,
         "liked": true,
+        "rewatched": true,
         "link": "https://letterboxd.com/hnitch/film/the-hunger-games-sunrise-on-the-reaping/1/",
         "poster": "https://a.ltrbxd.com/resized/film-poster/1/1/8/2/6/9/2/1182692-the-hunger-games-sunrise-on-the-reaping-0-600-0-900-crop.jpg?v=91001efc76",
         "review": "this again in imax , my eyes are blessed 🥹",
-        "releaseDate": "2026-11-18",
-        "rewatched": true
+        "releaseDate": "2026-11-18"
       },
       {
         "title": "Street Fighter",
@@ -154,24 +154,24 @@
     "lastSuccessAt": "2026-11-02T15:25:34.085Z",
     "lastAttemptAt": "2026-11-26T11:30:34.362Z"
   },
-  "updatedAt": "2026-11-24T09:45:33.494Z",
-  "lastSignalRenderAt": "2026-11-24T10:05:32.483Z",
+  "updatedAt": "2026-11-26T13:50:35.242Z",
+  "lastSignalRenderAt": "2026-11-26T13:50:35.242Z",
   "feedChecks": {
-    "checkedAt": "2026-11-26T13:40:32.982Z",
+    "checkedAt": "2026-11-26T13:50:35.433Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-26T13:40:32.982Z",
-        "lastSuccessAt": "2026-11-26T13:40:32.982Z"
+        "checkedAt": "2026-11-26T13:50:35.433Z",
+        "lastSuccessAt": "2026-11-26T13:50:35.433Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-26T13:40:32.982Z",
-        "lastSuccessAt": "2026-11-26T13:40:32.982Z"
+        "checkedAt": "2026-11-26T13:50:35.433Z",
+        "lastSuccessAt": "2026-11-26T13:50:35.433Z"
       },
       "appleMusic": {
         "status": "delayed",
-        "checkedAt": "2026-11-26T13:40:32.982Z",
+        "checkedAt": "2026-11-26T13:50:35.433Z",
         "lastSuccessAt": "2026-10-21T06:32:38.881Z"
       },
       "instagram": {
