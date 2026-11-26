@@ -227,6 +227,31 @@ test("Letterboxd uses the general opening and switches the label on release day"
   assert.equal(again.metadataChecks[undated], metadataChecks[undated]);
 });
 
+test("rewatch cards compare distinct dated diary logs for the same film", async () => {
+  const log = (slug, entry, day, rewatch, rating) => `<item><title>Film</title>
+    <link>https://letterboxd.com/hnitch/film/${slug}/${entry}</link>
+    <letterboxd:rewatch>${rewatch}</letterboxd:rewatch>
+    <letterboxd:watchedDate>${day}</letterboxd:watchedDate>
+    <letterboxd:memberRating>${rating}</letterboxd:memberRating></item>`;
+  const current = log("example", "1/", "2026-11-21", "Yes", 5);
+  async function read(earlier) {
+    const feed = `<rss><channel>${current}${current}${log("other", "", "2026-11-20", "No", 1)}${earlier}</channel></rss>`;
+    const { data } = await readLetterboxd(null, {}, async url => url.endsWith("/rss/") ? feed : "");
+    return data.recent[0];
+  }
+  const film = await read(log("example", "", "2026-11-14", "No", 4.5));
+  assert.deepEqual(film.rewatchStats, {logged: 2, partial: false, daysApart: 7, previousRating: 4.5});
+  assert.match(renderFilmTile(film, null, 0), /4.5 ★ → 5 ★/);
+  const partial = await read(log("example", "", "2026-11-21", "Yes", ""));
+  const card = renderFilmTile(partial, null, 0);
+  assert.match(card, />2\+<\/text>/);
+  assert.match(card, />same day<\/text>/);
+  assert.doesNotMatch(card, /RATING THEN/);
+  const noHistory = await read(log("example", "", "2026-02-31", "No", 1));
+  assert.equal(noHistory.rewatchStats, undefined);
+  assert.doesNotMatch(renderFilmTile(noHistory, null, 0), /LOGGED WATCHES/);
+});
+
 test("Letterboxd uses a series' first air date when its release listings are empty", async () => {
   const { data } = await readLetterboxd(null, {}, async target => {
     if (target.endsWith("/rss/")) return `<rss><channel><item><title>Series</title>
