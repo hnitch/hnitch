@@ -5,11 +5,11 @@ import { instagramOgAvatarUrl, musicFallback, normaliseBook, parseHistoryCard, r
 import { parseEdition, publicGoodreads, refreshGoodreadsMetadata } from "./goodreads-fallback.js";
 
 test("Apple Music owns its delay note without increasing card height", () => {
-  const svg = renderAppleMusic({ title: "Example", artist: "Artist", source: "apple-history", playbackState: "recent" }, null);
+  const svg = renderAppleMusic({ title: "Example", artist: "Artist", album: "Example - Single", source: "apple-history", playbackState: "recent" }, null);
   assert.match(svg, /height="270" viewBox="0 0 860 270"/);
   assert.match(svg, /updates may be delayed , not live/);
   assert.match(svg, /<g transform="translate\(0 -19\)"><rect x="357" y="211"/);
-  assert.match(svg, /<tspan x="405" y="168">/);
+  assert.match(svg, />Example · Single<\/tspan>/);
   assert.match(svg, /font-style="italic">a little behind the beat/);
   assert.match(svg, /y="48"[^>]*>OPEN IN APPLE MUSIC/);
   const unavailable = renderAppleMusic({ title: "Waiting", artist: "", source: "unavailable", playbackState: "unknown" }, null);

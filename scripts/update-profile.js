@@ -849,6 +849,8 @@ export function renderAppleMusic(data, artwork) {
   };
   const playback = states[data.playbackState] || states.recent;
   const duration = formatDuration(data.duration);
+  const album = data.playbackState !== "unknown" && data.album !== "album metadata not listed"
+    ? data.album?.trim().replace(/ - (Single|EP)$/, " · $1") : "";
   const sourceLabel = data.playbackState === "playing"
     ? "PLAYING RIGHT NOW"
     : data.playbackState === "paused"
@@ -868,7 +870,7 @@ export function renderAppleMusic(data, artwork) {
   <g class="sans"><g transform="translate(356 27) scale(1.08)"><path d="${appleMusicPath}" fill="#fa243c"/></g><text x="390" y="48" fill="#ff8293" font-size="12" font-weight="800" letter-spacing="1.25">APPLE MUSIC</text><text x="810" y="48" fill="#d6b8c6" font-size="11" font-weight="700" text-anchor="end">OPEN IN APPLE MUSIC ↗</text>
   ${wrappedText({ x: 356, y: 65, width: 458, height: 62, value: data.title, size: 30, weight: 800, lineHeight: 1.03 })}
   ${wrappedText({ x: 357, y: data.playbackState === "unknown" ? 145 : 130, width: 445, height: 28, value: data.artist, size: 17, weight: 700, lineHeight: 1 })}
-  ${data.playbackState === "unknown" ? "<!-- awaiting verified album metadata -->" : `<text x="357" y="168" fill="#9f8191" font-size="10.5" font-weight="800" letter-spacing="1">ALBUM</text>${wrappedText({ x: 405, y: 155, width: duration ? 300 : 397, height: 35, value: data.album || "album metadata not listed", size: 12.5, weight: 600, color: "#c7a9b8", lineHeight: 1.06 })}`}
+  ${album ? `<g aria-label="Album: ${escapeXml(album)}"><g transform="translate(364 165)" fill="none" stroke="#b69bab" stroke-width="1.3"><circle r="6"/><circle r="1.5"/></g>${wrappedText({ x: 378, y: 156, width: duration ? 334 : 424, height: 32, value: album, size: 13, weight: 500, color: "#c7b3c0", lineHeight: 1.1 })}</g>` : ""}
 ${duration ? `  <rect x="724" y="155" width="78" height="27" rx="13.5" fill="#fff" opacity=".07"/><text x="763" y="173" fill="#d9c2ce" font-size="11.5" font-weight="700" text-anchor="middle">${duration}</text>` : ""}
   <g transform="translate(0 -19)"><rect x="357" y="211" width="${sourceWidth}" height="36" rx="18" fill="${playback.color}" opacity=".13"/><circle cx="378" cy="229" r="5" fill="${playback.color}"/>${data.isNowPlaying ? `<circle cx="378" cy="229" r="9" fill="none" stroke="${playback.color}" opacity=".35"><animate attributeName="r" values="7;12;7" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".45;0;.45" dur="1.8s" repeatCount="indefinite"/></circle>` : ""}<text x="391" y="233" fill="#eadce3" font-size="11.5" font-weight="800" letter-spacing=".55">${sourceLabel}</text>
   </g>
@@ -1113,7 +1115,7 @@ function letterboxdMarkup(data) {
 function appleMusicMarkup(data) {
   const action = data.isNowPlaying ? "now playing" : data.source === "unavailable" ? "Apple Music status" : "last played";
   const alt = data.source === "unavailable" ? "Apple Music: awaiting a verified listening update" : `${action} ${escapeDisplay(data.title)} by ${escapeDisplay(data.artist)}`;
-  return `<a href="${escapeXml(data.link || MUSIC_PROFILE_URL)}"><img src="./assets/activity/apple-music.svg?v=${assetVersion([data, "spaced inline playback note"])}" width="100%" alt="${alt}" /></a>`;
+  return `<a href="${escapeXml(data.link || MUSIC_PROFILE_URL)}"><img src="https://raw.githubusercontent.com/hnitch/hnitch/main/assets/activity/apple-music.svg?v=${assetVersion([data, "album release line"])}" width="100%" alt="${alt}" /></a>`;
 }
 
 function discordMarkup() {
