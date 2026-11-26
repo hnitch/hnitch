@@ -144,13 +144,13 @@
     ]
   },
   "appleMusic": {
-    "title": "waiting for a listening update",
-    "artist": "no verified playback available",
-    "album": "",
-    "link": "https://music.apple.com/profile/hnitch",
+    "title": "Blink",
+    "artist": "Corbyn Besson & TZUYU",
+    "album": "Blink - Single",
+    "link": "https://music.apple.com/us/album/blink/1838563413?i=1838563679",
     "duration": 0,
-    "source": "unavailable",
-    "playbackState": "unknown",
+    "source": "apple-history",
+    "playbackState": "recent",
     "isNowPlaying": false,
     "observedAt": null
   },
@@ -160,25 +160,25 @@
     "lastSuccessAt": "2026-11-02T15:25:34.085Z",
     "lastAttemptAt": "2026-11-26T11:30:34.362Z"
   },
-  "updatedAt": "2026-11-26T13:54:05.970Z",
-  "lastSignalRenderAt": "2026-11-26T14:10:32.361Z",
+  "updatedAt": "2026-11-26T14:17:57.626Z",
+  "lastSignalRenderAt": "2026-11-26T14:17:57.626Z",
   "feedChecks": {
-    "checkedAt": "2026-11-26T14:10:32.535Z",
+    "checkedAt": "2026-11-26T14:17:57.735Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-26T14:10:32.535Z",
-        "lastSuccessAt": "2026-11-26T14:10:32.535Z"
+        "checkedAt": "2026-11-26T14:17:57.735Z",
+        "lastSuccessAt": "2026-11-26T14:17:57.735Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-26T14:10:32.535Z",
-        "lastSuccessAt": "2026-11-26T14:10:32.535Z"
+        "checkedAt": "2026-11-26T14:17:57.735Z",
+        "lastSuccessAt": "2026-11-26T14:17:57.735Z"
       },
       "appleMusic": {
-        "status": "delayed",
-        "checkedAt": "2026-11-26T14:10:32.535Z",
-        "lastSuccessAt": "2026-10-21T06:32:38.881Z"
+        "status": "ok",
+        "checkedAt": "2026-11-26T14:17:57.735Z",
+        "lastSuccessAt": "2026-11-26T14:17:57.735Z"
       },
       "instagram": {
         "status": "delayed",
