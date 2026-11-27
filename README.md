@@ -3,7 +3,7 @@
   <br/><br/>
   <img src="https://hnitch-discord-card.haarshaan.workers.dev/visitors.svg?v=2" height="28" alt="visitors" />
   <!-- READING-BADGE:START -->
-  <img src="./assets/activity/reading-status.svg?v=971e4e93b3" height="28" alt="between books , allegedly" />
+  <img src="./assets/activity/reading-status.svg?v=f8e1138ac2" height="28" alt="currently reading , probably" />
   <!-- READING-BADGE:END -->
 </div>
 
@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-idle.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-26T15:55:43.167Z" format="relative" format-style="long" title="2026-11-26T15:55:43.167Z">8 hours ago</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-27T00:05:33.439Z" format="relative" format-style="long" title="2026-11-27T00:05:33.439Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-27T00:15:58.161Z" format="relative" format-style="long" title="2026-11-27T00:15:58.161Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-27T00:15:58.347Z" format="relative" format-style="long" title="2026-11-27T00:15:58.347Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -32,7 +32,7 @@
 
 <br/>
 
-<a href="https://www.goodreads.com/user/show/178629903"><img src="./assets/activity/goodreads-current.svg?v=728df2620d" width="100%" alt="not reading anything , rn" /></a>
+<a href="https://www.goodreads.com/book/show/243250179-scorpion-deep"><img src="./assets/activity/goodreads-current.svg?v=3c9037a70f" width="100%" alt="currently reading Scorpion Deep" /></a>
 
 <a href="https://www.goodreads.com/review/show/8679130453"><img src="https://raw.githubusercontent.com/hnitch/hnitch/main/assets/activity/goodreads-1.svg?v=28daee7f0d" width="100%" alt="Read: Steelborn" /></a>
 
