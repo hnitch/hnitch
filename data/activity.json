@@ -39,7 +39,7 @@
         "rating": null,
         "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1794409773i/263425266.jpg",
         "pages": 480,
-        "averageRating": 3.91,
+        "averageRating": 3.9,
         "published": "2026-10-06",
         "dateAdded": "",
         "readAt": "November 18, 2026 06:50",
@@ -64,7 +64,7 @@
         "rating": 3.75,
         "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1780183215i/248285113.jpg",
         "pages": 544,
-        "averageRating": 4.46,
+        "averageRating": 4.45,
         "published": "2026-10-13",
         "dateAdded": "",
         "readAt": "November 13, 2026 08:02",
@@ -174,25 +174,25 @@
     "lastSuccessAt": "2026-11-02T15:25:34.085Z",
     "lastAttemptAt": "2026-11-27T05:55:30.260Z"
   },
-  "updatedAt": "2026-11-27T00:15:58.161Z",
-  "lastSignalRenderAt": "2026-11-27T00:35:35.421Z",
+  "updatedAt": "2026-11-27T10:05:35.384Z",
+  "lastSignalRenderAt": "2026-11-27T10:05:35.384Z",
   "feedChecks": {
-    "checkedAt": "2026-11-27T09:55:37.829Z",
+    "checkedAt": "2026-11-27T10:05:35.482Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-27T09:55:37.829Z",
-        "lastSuccessAt": "2026-11-27T09:55:37.829Z"
+        "checkedAt": "2026-11-27T10:05:35.482Z",
+        "lastSuccessAt": "2026-11-27T10:05:35.482Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-27T09:55:37.829Z",
-        "lastSuccessAt": "2026-11-27T09:55:37.829Z"
+        "checkedAt": "2026-11-27T10:05:35.482Z",
+        "lastSuccessAt": "2026-11-27T10:05:35.482Z"
       },
       "appleMusic": {
         "status": "ok",
-        "checkedAt": "2026-11-27T09:55:37.829Z",
-        "lastSuccessAt": "2026-11-27T09:55:37.829Z"
+        "checkedAt": "2026-11-27T10:05:35.482Z",
+        "lastSuccessAt": "2026-11-27T10:05:35.482Z"
       },
       "instagram": {
         "status": "delayed",
@@ -204,10 +204,10 @@
   "metadataChecks": {
     "goodreads": {
       "243250179": "2026-11-27T00:15:31.927Z",
-      "248285113": "2026-11-26T10:00:30.992Z",
+      "248285113": "2026-11-27T10:05:31.488Z",
       "257119361": "2026-11-26T16:25:29.704Z",
-      "259986702": "2026-11-26T10:00:30.992Z",
-      "263425266": "2026-11-26T10:00:30.992Z"
+      "259986702": "2026-11-27T10:05:31.488Z",
+      "263425266": "2026-11-27T10:05:31.488Z"
     },
     "letterboxd": {
       "https://letterboxd.com/film/the-hunger-games-sunrise-on-the-reaping/": "2026-11-26T10:20:35.197Z",
