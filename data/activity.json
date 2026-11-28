@@ -172,31 +172,31 @@
     "username": "hnitch",
     "avatarHash": "bc623f7b849a",
     "lastSuccessAt": "2026-11-02T15:25:34.085Z",
-    "lastAttemptAt": "2026-11-28T06:20:29.513Z"
+    "lastAttemptAt": "2026-11-28T12:26:08.014Z"
   },
   "updatedAt": "2026-11-28T12:10:38.824Z",
-  "lastSignalRenderAt": "2026-11-28T12:10:38.824Z",
+  "lastSignalRenderAt": "2026-11-28T12:26:49.451Z",
   "feedChecks": {
-    "checkedAt": "2026-11-28T12:20:34.796Z",
+    "checkedAt": "2026-11-28T12:26:49.531Z",
     "sources": {
       "goodreads": {
         "status": "ok",
-        "checkedAt": "2026-11-28T12:20:34.796Z",
-        "lastSuccessAt": "2026-11-28T12:20:34.796Z"
+        "checkedAt": "2026-11-28T12:26:49.531Z",
+        "lastSuccessAt": "2026-11-28T12:26:49.531Z"
       },
       "letterboxd": {
         "status": "ok",
-        "checkedAt": "2026-11-28T12:20:34.796Z",
-        "lastSuccessAt": "2026-11-28T12:20:34.796Z"
+        "checkedAt": "2026-11-28T12:26:49.531Z",
+        "lastSuccessAt": "2026-11-28T12:26:49.531Z"
       },
       "appleMusic": {
         "status": "ok",
-        "checkedAt": "2026-11-28T12:20:34.796Z",
-        "lastSuccessAt": "2026-11-28T12:20:34.796Z"
+        "checkedAt": "2026-11-28T12:26:49.531Z",
+        "lastSuccessAt": "2026-11-28T12:26:49.531Z"
       },
       "instagram": {
         "status": "delayed",
-        "checkedAt": "2026-11-28T06:21:16.150Z",
+        "checkedAt": "2026-11-28T12:26:49.531Z",
         "lastSuccessAt": "2026-11-02T15:25:36.261Z"
       }
     }
