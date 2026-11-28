@@ -21,7 +21,7 @@
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->
-  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-28T12:00:37.301Z" format="relative" format-style="long" title="2026-11-28T12:00:37.301Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Apple Music delayed; Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-28T12:00:37.517Z" format="relative" format-style="long" title="2026-11-28T12:00:37.517Z">just now</relative-time></kbd>
+  <kbd><img src="./assets/signal-fresh.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · <relative-time datetime="2026-11-28T12:10:38.824Z" format="relative" format-style="long" title="2026-11-28T12:10:38.824Z">just now</relative-time><br/><br/><img src="./assets/signal-delayed.svg?v=3.10.0" height="8" alt="" /> <span title="Instagram delayed">feeds checked</span> · <relative-time datetime="2026-11-28T12:10:38.939Z" format="relative" format-style="long" title="2026-11-28T12:10:38.939Z">just now</relative-time></kbd>
   <!-- PROFILE-FRESHNESS:END -->
 </div>
 
@@ -62,7 +62,7 @@
 <br/>
 
 <!-- APPLE-MUSIC-FEED:START -->
-<a href="https://music.apple.com/profile/hnitch"><img src="https://raw.githubusercontent.com/hnitch/hnitch/main/assets/activity/apple-music.svg?v=24f0989896" width="100%" alt="Apple Music: awaiting a verified listening update" /></a>
+<a href="https://music.apple.com/us/album/blink/1838563413?i=1838563679"><img src="https://raw.githubusercontent.com/hnitch/hnitch/main/assets/activity/apple-music.svg?v=38cfa98312" width="100%" alt="last played Blink by Corbyn Besson &amp; TZUYU" /></a>
 <!-- APPLE-MUSIC-FEED:END -->
 
 <br/>
