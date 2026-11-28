@@ -17,7 +17,9 @@
   <img src="./assets/divider.svg?v=3.9.0" width="320" alt="" />
 </div>
 
-<img src="./assets/stalk.svg?v=3.9.0" width="100%" alt="the legally-approved stalking zone" />
+<!-- SOCIAL-DIRECTORY:START -->
+<img src="./assets/stalk-no-music.svg" width="100%" alt="Social directory: books, films and presence" />
+<!-- SOCIAL-DIRECTORY:END -->
 
 <div align="center">
   <!-- PROFILE-FRESHNESS:START -->

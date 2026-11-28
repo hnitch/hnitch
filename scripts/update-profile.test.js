@@ -556,12 +556,14 @@ test("the card keeps a short reaction alongside its RTC sign-off", () => {
 test("Apple Music visibility survives refreshes while the preview stays renderable", async () => {
   const {musicSection} = await import('./update-profile.js');
   const music = {title:"Example",artist:"Artist",playbackState:"recent"};
-  const readme = "Films\n<!-- APPLE-MUSIC-FEED:START -->\n<!-- APPLE-MUSIC-FEED:END -->\nDiscord";
+  const readme = "<!-- SOCIAL-DIRECTORY:START --><!-- SOCIAL-DIRECTORY:END -->\nFilms\n<!-- APPLE-MUSIC-FEED:START -->\n<!-- APPLE-MUSIC-FEED:END -->\nDiscord";
   const hidden = musicSection(readme,music,"hide");
-  assert.doesNotMatch(hidden, /<br|<a |<img/);
+  assert.doesNotMatch(hidden, /<br|<a |apple-music\.svg/);
+  assert.match(hidden, /stalk-no-music\.svg/);
   assert.equal(musicSection(hidden,{...music,title:"New song"}),hidden);
   assert.match(renderAppleMusic(music,null), /Example/);
   const shown = musicSection(hidden,{...music,title:"New song"},"show");
   assert.match(shown, /last played New song by Artist/);
+  assert.match(shown, /stalk\.svg/);
   assert.doesNotMatch(shown, /music widget hidden/);
 });

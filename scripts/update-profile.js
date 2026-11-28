@@ -1200,6 +1200,9 @@ export function freshnessMarkup(updatedAt, checks, now) {
 export function musicSection(readme, music, visibility) {
   const hiddenMarker = "<!-- music widget hidden -->";
   const hidden = visibility === "hide" || (!visibility && readme.includes(hiddenMarker));
+  const directory = hidden ? "stalk-no-music.svg" : "stalk.svg";
+  const trails = hidden ? "books, films and presence" : "books, films, music and presence";
+  readme = replaceSection(readme, "SOCIAL-DIRECTORY", `<img src="./assets/${directory}" width="100%" alt="Social directory: ${trails}" />`);
   return replaceSection(readme, "APPLE-MUSIC-FEED", hidden ? hiddenMarker : `<br/>\n\n${appleMusicMarkup(music)}`);
 }
 
