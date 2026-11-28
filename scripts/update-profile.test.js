@@ -552,3 +552,16 @@ test("the card keeps a short reaction alongside its RTC sign-off", () => {
   assert.match(edited, />the ending finally won me over<\/text>/);
   assert.doesNotMatch(edited, />rtc<\/text>/);
 });
+
+test("Apple Music visibility survives refreshes while the preview stays renderable", async () => {
+  const {musicSection} = await import('./update-profile.js');
+  const music = {title:"Example",artist:"Artist",playbackState:"recent"};
+  const readme = "Films\n<!-- APPLE-MUSIC-FEED:START -->\n<!-- APPLE-MUSIC-FEED:END -->\nDiscord";
+  const hidden = musicSection(readme,music,"hide");
+  assert.doesNotMatch(hidden, /<br|<a |<img/);
+  assert.equal(musicSection(hidden,{...music,title:"New song"}),hidden);
+  assert.match(renderAppleMusic(music,null), /Example/);
+  const shown = musicSection(hidden,{...music,title:"New song"},"show");
+  assert.match(shown, /last played New song by Artist/);
+  assert.doesNotMatch(shown, /music widget hidden/);
+});

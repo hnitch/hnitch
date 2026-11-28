@@ -59,9 +59,9 @@
 <a href="https://letterboxd.com/hnitch/film/carrie-2026/"><img src="https://raw.githubusercontent.com/hnitch/hnitch/main/assets/activity/letterboxd-4.svg?v=ff2d6d0cad" width="100%" alt="Watched: Carrie" /></a>
 <!-- LETTERBOXD-FEED:END -->
 
+<!-- APPLE-MUSIC-FEED:START -->
 <br/>
 
-<!-- APPLE-MUSIC-FEED:START -->
 <a href="https://music.apple.com/us/album/blink/1838563413?i=1838563679"><img src="https://raw.githubusercontent.com/hnitch/hnitch/main/assets/activity/apple-music.svg?v=38cfa98312" width="100%" alt="last played Blink by Corbyn Besson &amp; TZUYU" /></a>
 <!-- APPLE-MUSIC-FEED:END -->
 

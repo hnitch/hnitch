@@ -1195,11 +1195,26 @@ export function freshnessMarkup(updatedAt, checks, now) {
   return `<kbd><img src="./assets/${signal.fresh ? "signal-fresh" : "signal-idle"}.svg?v=3.7.0" height="10" alt="" /> last signal received (content change) · ${relative(signal, "awaiting a signal")}<br/><br/><img src="./assets/${checkIcon}.svg?v=3.10.0" height="8" alt="" /> <span title="${escapeXml(detail)}">feeds checked</span> · ${relative(checked, "awaiting first check")}</kbd>`;
 }
 
+// Keep the visibility decision with the public section so every renderer,
+// including cached renders, uses the last published choice.
+export function musicSection(readme, music, visibility) {
+  const hiddenMarker = "<!-- music widget hidden -->";
+  const hidden = visibility === "hide" || (!visibility && readme.includes(hiddenMarker));
+  return replaceSection(readme, "APPLE-MUSIC-FEED", hidden ? hiddenMarker : `<br/>\n\n${appleMusicMarkup(music)}`);
+}
+
+async function setMusicVisibility(visibility) {
+  if (!["show", "hide"].includes(visibility)) throw Error("Choose show or hide");
+  const readme = await fs.readFile(README_FILE, "utf8");
+  const { appleMusic } = JSON.parse(await fs.readFile(DATA_FILE, "utf8"));
+  await fs.writeFile(README_FILE, musicSection(readme, appleMusic, visibility));
+}
+
 async function updateReadme(data, updatedAt, now) {
   let readme = await fs.readFile(README_FILE, "utf8");
   readme = replaceSection(readme, "GOODREADS-FEED", goodreadsMarkup(data.goodreads));
   readme = replaceSection(readme, "LETTERBOXD-FEED", letterboxdMarkup(data.letterboxd));
-  readme = replaceSection(readme, "APPLE-MUSIC-FEED", appleMusicMarkup(data.appleMusic));
+  readme = musicSection(readme, data.appleMusic);
   readme = replaceSection(readme, "DISCORD-FEED", discordMarkup());
   readme = replaceSection(readme, "INSTAGRAM-FEED", instagramMarkup(data.instagram));
   readme = replaceSection(readme, "PROFILE-FRESHNESS", freshnessMarkup(updatedAt, data.feedChecks, now));
@@ -1385,7 +1400,7 @@ async function renderCached() {
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  (process.argv.includes("--render-cached") ? renderCached() : main()).catch((error) => {
+  (process.argv[2] === "--music-visibility" ? setMusicVisibility(process.argv[3]) : process.argv.includes("--render-cached") ? renderCached() : main()).catch((error) => {
     console.error(error);
     process.exitCode = 1;
   });
