@@ -60,9 +60,7 @@
 <!-- LETTERBOXD-FEED:END -->
 
 <!-- APPLE-MUSIC-FEED:START -->
-<br/>
-
-<a href="https://music.apple.com/us/album/blink/1838563413?i=1838563679"><img src="https://raw.githubusercontent.com/hnitch/hnitch/main/assets/activity/apple-music.svg?v=38cfa98312" width="100%" alt="last played Blink by Corbyn Besson &amp; TZUYU" /></a>
+<!-- music widget hidden -->
 <!-- APPLE-MUSIC-FEED:END -->
 
 <br/>
